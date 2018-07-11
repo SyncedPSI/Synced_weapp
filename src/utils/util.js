@@ -3,7 +3,7 @@ function formatNumber(n) {
   return n[1] ? n : "0" + n;
 }
 
-export function formatTime(date) {
+export const formatTime = (date) => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   const day = date.getDate();
@@ -79,3 +79,25 @@ export const getDateDiff = dateStr => {
     return Y + "-" + M + "-" + D + " " + H + ":" + m;
   }
 };
+
+export const request = (url, data = {}, method = "GET") => {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: url,
+      data: {
+        ...data,
+      },
+      method: method,
+      header: {
+        'Content-Type': 'application/json',
+        'token': wx.getStorageSync('token')
+      },
+      success: function (res) {
+        resolve(res.data);
+      },
+      fail: function (err) {
+        reject(err);
+      }
+    })
+  });
+}
