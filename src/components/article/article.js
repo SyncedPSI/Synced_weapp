@@ -2,15 +2,15 @@ Component({
   properties: {
     title: {
       type: String,
-      value: 'none'
+      value: "none"
     },
     category: {
       type: String,
-      value: 'none'
+      value: "none"
     },
     published_at: {
       type: String,
-      value: 'none'
+      value: "none"
     }
   }
 });

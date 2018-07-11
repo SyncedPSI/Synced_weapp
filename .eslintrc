@@ -1,5 +1,5 @@
 {
-  "extends": ["cantonjs"],
+  "extends": ["eslint:recommended"],
   "globals": {
     "__DEV__": true,
     "__WECHAT__": true,
@@ -17,5 +17,9 @@
         "config": "webpack.config.babel.js"
       }
     }
+  },
+  "rules": {
+    "strict": 2,
+    "indent": 0
   }
 }
