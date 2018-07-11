@@ -1,0 +1,44 @@
+@import 'color';
+
+.header_wrapper {
+  height: 100rpx;
+  background-color: $white;
+
+  .header {
+    width: 100%;
+    height: 100rpx;
+    position: fixed;
+    top: 0;
+    padding: 0;
+    background-color: $white;
+
+    .search_box {
+      height: 100%;
+      margin: 0;
+      border: none;
+      display: flex;
+
+      input {
+        height: 100%;
+        width: 100%;
+        font-size: 32rpx;
+        padding-left: 28rpx;
+        display: inline-block;
+      }
+
+      .search_button {
+        width: 120rpx;
+        height: 100%;
+        display: inline-block;
+
+        image {
+          width: 40rpx;
+          height: 40rpx;
+          margin: 0 auto;
+          margin-top: 26rpx;
+          display: block;
+        }
+      }
+    }
+  }
+}

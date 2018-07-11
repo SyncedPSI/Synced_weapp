@@ -1,0 +1,134 @@
+
+// @import 'share';
+
+// .motto {
+//  @extend %center-flex;
+
+//  margin-top: 200px;
+//  align-items: center;
+// }
+
+// .face {
+//  $r: 24px;
+
+//  width: $r;
+//  height: $r;
+//  border-radius: 50%;
+//  margin-right: 10px;
+// }
+
+// .powered {
+//  margin-top: 30px;
+//  font-size: 11px;
+//  color: gray;
+//
+
+@import 'color';
+
+.header_wrapper {
+  // height: 100rpx;
+  background-color: $white;
+
+  &.fixed {
+    height: 100rpx;
+
+    .header {
+      height: 100rpx;
+      position: fixed;
+      top: 0;
+      padding: 0;
+      background-color: $white;
+
+      .search_box {
+        height: 100%;
+        margin: 0;
+        border: none;
+      }
+
+      .logo {
+        display: none;
+      }
+    }
+  }
+}
+
+.header {
+  width: 100%;
+  padding-top: 76rpx;
+  padding-bottom: 120rpx;
+
+  &.fixed {
+    height: 100rpx;
+    position: fixed;
+    top: 0;
+    padding: 0;
+    background-color: $white;
+
+    .search_box {
+      height: 100%;
+      margin: 0;
+      border: none;
+    }
+
+    .logo {
+      display: none;
+    }
+  }
+
+  .logo {
+    margin-bottom: 60rpx;
+    width: 100%;
+    height: 90rpx;
+    position: relative;
+
+    image {
+      width: 100%;
+      height: 70rpx;
+      position: absolute;
+      bottom: 0;
+    }
+  }
+
+  .search_box {
+    height: 100rpx;
+    margin-left: 40rpx;
+    margin-right: 40rpx;
+    border: 1rpx solid #ededed;
+    display: flex;
+
+    input {
+      height: 100%;
+      width: 100%;
+      font-size: 32rpx;
+      padding-left: 28rpx;
+      display: inline-block;
+    }
+
+    .search_button {
+      width: 120rpx;
+      height: 100%;
+      display: inline-block;
+
+      image {
+        width: 40rpx;
+        height: 40rpx;
+        margin: 0 auto;
+        margin-top: 26rpx;
+        display: block;
+      }
+    }
+  }
+}
+
+.hover_button {
+  position: fixed;
+  width: 124rpx;
+  height: 124rpx;
+  bottom: 100rpx;
+  right: 36rpx;
+
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}

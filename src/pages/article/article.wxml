@@ -1,0 +1,35 @@
+<view class="article">
+  <view class="title">
+    {{article.title}}
+  </view>
+  <view class="info">
+    <view class="left">
+      <view class="avatar">
+        <image wx:if="{{article.author.avatar_url}}" src="{{article.author.avatar_url}}"></image>
+      </view>
+      <view class="author">{{article.author.name}}</view>
+      <view class="copyright">{{article.copyright}}</view>
+    </view>
+    <view class="right">{{article.published_at}}</view>
+  </view>
+  <!-- <view class="content">{{article.content}}</view> -->
+  <view class="content">
+    <import src="../../wxParse/wxParse.wxml"/>
+    <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
+  </view>
+</view>
+<view class="related_nodes">
+  <view class="title">相关数据</view>
+  <scroll-view scroll-x="{{true}}" style="width: 100%">
+    <view class="node_card" wx:for="{{article.related_nodes}}" wx:key="unique" id="{{item.node_id}}" bindtap="bindToNodeShow">
+      <view class="top">
+        <view class="zh_name">{{item.zh_name}}</view>
+        <view class="type">{{item.node_type}}</view>
+      </view>
+      <view class="en_name">{{item.en_name}}</view>
+    </view>
+  </scroll-view>
+</view>
+<view class="comments">
+  <view class="title">评论</view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "user": "../../components/user/user",
+    "article": "../../components/article/article"
+  },
+  "enablePullDownRefresh": true
+}

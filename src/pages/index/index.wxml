@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<!-- <import src="../../wxml/motto/motto.wxml"/>
+<wxs src="../../wxs/powered.wxs" module="powered" />
+
+<view class="container">
+  <view bindtap="bindViewTap">
+    <user avatarUrl="{{userInfo.avatarUrl}}" nickName="{{userInfo.nickName}}"></user>
+  </view>
+  <view class="motto">
+    <template is="motto" data="{{motto:motto}}" />
+  </view>
+  <view class="powered">
+    <text>{{powered.by}}</text>
+  </view>
+</view> -->
+
+<view class='container'>
+  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="loadMore">
+    <view class="header_wrapper {{scrollTop >= 160 ? 'fixed' : ''}}">
+      <view class="header">
+        <view class='logo'>
+          <image src="{{logoUrl}}" mode='aspectFit'></image>
+        </view>
+        <view class='search_box' bindtap="bindToSearch">
+          <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='全网搜索知识'></input>
+          <view class='search_button'>
+            <image src="{{searchIconUrl}}"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='content_container'>
+      <view wx:for="{{articles}}" wx:key="unique">
+        <article id="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" bindtap="bindToArticleShow"></article>
+      </view>
+    </view>
+  </scroll-view>
+  <!-- <view class='hover_button'>
+    <image src="{{hoverImageUrl}}" mode='cover'></image>
+  </view> -->
+</view>

@@ -1,0 +1,21 @@
+@import 'color';
+
+.card_wrapper {
+  background-color: $white;
+  padding: 18px 12px;
+  margin-bottom: 32rpx;
+
+  .title {
+    font-size: 36rpx;
+    color: #282828;
+    line-height: 50rpx;
+    margin-bottom: 36rpx;
+  }
+
+  .bottom {
+    .info {
+      font-size: 28rpx;
+      color: $gray;
+    }
+  }
+}

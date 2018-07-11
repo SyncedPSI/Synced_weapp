@@ -1,0 +1,7 @@
+<view class="caard_wrapper">
+  <view class="top">
+    <view class="title">{{zh_name}}</view>
+    <view class="info">查看知识详情</view>
+  </view>
+  <view class="summary">{{summary}}</view>
+</view>

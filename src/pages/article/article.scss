@@ -1,0 +1,148 @@
+@import 'color';
+
+.article {
+  padding: 0 40rpx;
+  background-color: $white;
+
+  .title {
+    font-size: 44rpx;
+    line-height: 60rpx;
+    color: $black;
+    margin-top: 40rpx;
+    margin-bottom: 24rpx;
+    font-weight: 400;
+  }
+
+  .info {
+    display: flex;
+    margin-bottom: 40rpx;
+
+    .left {
+      display: inline-block;
+      flex: 1;
+      vertical-align: middle;
+
+      .avatar {
+        display: inline-block;
+        height: 40rpx;
+        width: 40rpx;
+        vertical-align: middle;
+
+        image {
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .author {
+        display: inline-block;
+        margin-left: 20rpx;
+        margin-right: 16rpx;
+        font-size: 28rpx;
+        line-height: 40rpx;
+        vertical-align: middle;
+      }
+
+      .copyright {
+        display: inline-block;
+        font-size: 28rpx;
+        background-color: $red;
+        line-height: 40rpx;
+        color: $white;
+        padding-right: 18rpx;
+        padding-left: 18rpx;
+        border-radius: 20rpx;
+        font-weight: 300;
+      }
+    }
+
+    .right {
+      display: inline-block;
+      text-align: right;
+      flex: 1;
+      color: $light_gray;
+      font-size: 28rpx;
+      line-height: 40rpx;
+      vertical-align: middle;
+    }
+  }
+
+  .content {
+    font-size: 32rpx;
+    line-height: 60rpx;
+    font-weight: 300;
+    margin-bottom: 80rpx;
+  }
+}
+
+.related_nodes {
+  background-color: $background-color;
+  padding-top: 50rpx;
+
+  .title {
+    font-size: 28rpx;
+    color: $black;
+    padding-left: 40rpx;
+    margin-bottom: 20rpx;
+  }
+
+  scroll-view {
+    display: flex;
+    white-space: nowrap;
+
+    .node_card:first-child {
+      margin-left: 40rpx;
+    }
+
+    .node_card:last-child {
+      margin-right: 40rpx;
+    }
+  }
+
+  .node_card {
+    width: 512rpx;
+    background-color: $white;
+    padding: 20rpx 32rpx;
+    display: inline-block;
+    margin-right: 32rpx;
+
+    .top {
+      margin-bottom: 20rpx;
+
+      .zh_name {
+        font-size: 36rpx;
+        color: $black;
+        vertical-align: middle;
+        margin-right: 16rpx;
+        display: inline-block;
+        line-height: 36rpx;
+      }
+
+      .type {
+        font-size: 20rpx;
+        color: $light_gray;
+        background-color: $background_gray;
+        vertical-align: middle;
+        display: inline-block;
+        padding: 4rpx 10rpx;
+      }
+    }
+
+    .en_name {
+      font-size: 28rpx;
+      color: $light_gray;
+    }
+  }
+}
+
+.comments {
+  background-color: $background-color;
+  padding-top: 50rpx;
+
+  .title {
+    font-size: 28rpx;
+    color: $black;
+    padding-left: 40rpx;
+    margin-bottom: 20rpx;
+  }
+}

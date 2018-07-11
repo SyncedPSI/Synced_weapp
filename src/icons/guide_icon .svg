@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="7px" height="67px" viewBox="0 0 7 67" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>guide_icon </title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#EB2835" offset="0%"></stop>
+            <stop stop-color="#EB2835" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="切图" transform="translate(-800.000000, -47.000000)" fill="url(#linearGradient-1)">
+            <g id="guide_icon-" transform="translate(800.000000, 47.000000)">
+                <path d="M2.33333333,7.03716608 C0.973942232,6.5399942 0,5.1984984 0,3.62162162 C0,1.62145523 1.56700338,0 3.5,0 C5.43299662,0 7,1.62145523 7,3.62162162 C7,5.1984984 6.02605777,6.5399942 4.66666667,7.03716608 L4.66666667,67 L2.33333333,67 L2.33333333,7.03716608 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
