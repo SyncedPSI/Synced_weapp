@@ -47,7 +47,8 @@ Page({
     logoUrl: "../../images/logo.svg",
     hoverImageUrl: "../../icons/ic_chatbot_n.svg",
     searchIconUrl: "../../icons/ic_search.svg",
-    articles: []
+    articles: [],
+    isFetching: false,
   },
 
   bindToSearch: function(e) {
@@ -69,21 +70,29 @@ Page({
   },
 
   fetchData: function(e) {
-    const $this = this;
     const page = this.data.page;
+    this.toggleFetching(true);
+
     request(`${timeline}?page=${page}`)
       .then(res => {
-        const articles = $this.data.articles;
+        const articles = this.data.articles;
         const newArticles = res.data;
         newArticles.forEach(item => {
           item.published_at = getDateDiff(item.published_at);
         });
         const newArticleList = articles.concat(newArticles);
-        $this.setData({
+        this.setData({
           articles: newArticleList,
-          page: page + 1
+          page: page + 1,
+          isFetching: false,
         });
       });
+  },
+
+  toggleFetching: function(status) {
+    this.setData({
+      isFetching: status,
+    });
   },
 
   /**
