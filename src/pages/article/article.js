@@ -47,7 +47,7 @@ Page({
       // id: ''
     });
     wx.request({
-      url: `http://d8e8d55a.ngrok.io/api/v1/articles/${this.data.id}`,
+      url: `https://jiqizhixin.com/api/v1/articles/${this.data.id}`,
       header: { "Contetn-Type": "application/json" },
       method: "GET",
       success: function(res) {

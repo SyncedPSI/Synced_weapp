@@ -1,5 +1,3 @@
-//import { flow } from 'lodash';
-
 // const delay = (t = 0) => new Promise((resolve) => setTimeout(resolve, t));
 
 // // 获取应用实例
@@ -34,8 +32,8 @@
 // 		});
 // 	},
 // });
-
-import { getDateDiff } from "../../utils/util";
+import { request, getDateDiff } from "../../utils/util";
+import { timeline } from "../../config/api";
 
 const app = getApp();
 
@@ -44,7 +42,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    page: 24,
+    page: 1,
     scrollTop: 0,
     logoUrl: "../../images/logo.svg",
     hoverImageUrl: "../../icons/ic_chatbot_n.svg",
@@ -70,19 +68,11 @@ Page({
     });
   },
 
-  loadMore: function(e) {
+  fetchData: function(e) {
     const $this = this;
-    console.log("Load More");
     const page = this.data.page;
-    console.log(`page: ${page}`);
-    this.setData({
-      page: page + 1
-    });
-    wx.request({
-      url: `https://www.jiqizhixin.com/api/v1/timelines?page=${page}`,
-      header: { "Contetn-Type": "application/json" },
-      method: "GET",
-      success: function(res) {
+    request(`${timeline}?page=${page}`)
+      .then(res => {
         const articles = $this.data.articles;
         const newArticles = res.data;
         newArticles.forEach(item => {
@@ -90,32 +80,17 @@ Page({
         });
         const newArticleList = articles.concat(newArticles);
         $this.setData({
-          articles: newArticleList
+          articles: newArticleList,
+          page: page + 1
         });
-      }
-    });
+      });
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const $this = this;
-    wx.request({
-      url: `https://www.jiqizhixin.com/api/v1/timelines?page=${this.data.page}`,
-      header: { "Contetn-Type": "application/json" },
-      method: "GET",
-      success: function(res) {
-        const articles = res.data;
-        articles.forEach(item => {
-          item.published_at = getDateDiff(item.published_at);
-        });
-        $this.setData({
-          articles: articles
-        });
-      }
-    });
-    const published_at = "article[published_at]";
+    this.fetchData();
   },
 
   /**

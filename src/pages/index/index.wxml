@@ -15,7 +15,7 @@
 </view> -->
 
 <view class='container'>
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="loadMore">
+  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="fetchData">
     <view class="header_wrapper {{scrollTop >= 160 ? 'fixed' : ''}}">
       <view class="header">
         <view class='logo'>

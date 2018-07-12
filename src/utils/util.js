@@ -93,7 +93,7 @@ export const request = (url, data = {}, method = "GET") => {
         'token': wx.getStorageSync('token')
       },
       success: function (res) {
-        resolve(res.data);
+        resolve(res);
       },
       fail: function (err) {
         reject(err);
