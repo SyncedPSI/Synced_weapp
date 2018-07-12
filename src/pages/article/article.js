@@ -58,10 +58,4 @@ Page({
         });
       })
   },
-
-  bindToNodeShow: function(e) {
-    wx.navigateTo({
-      url: `../node/node?id=${e.target.id}`
-    });
-  }
 });

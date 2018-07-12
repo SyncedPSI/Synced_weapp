@@ -21,13 +21,13 @@
 <view class="related_nodes">
   <view class="title">相关数据</view>
   <scroll-view scroll-x="{{true}}" style="width: 100%">
-    <view class="node_card" wx:for="{{article.related_nodes}}" wx:key="unique" id="{{item.node_id}}" bindtap="bindToNodeShow">
+    <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}" class="node_card" wx:for="{{article.related_nodes}}" wx:key="unique" id="{{item.node_id}}">
       <view class="top">
         <view class="zh_name">{{item.zh_name}}</view>
         <view class="type">{{item.node_type}}</view>
       </view>
       <view class="en_name">{{item.en_name}}</view>
-    </view>
+    </navigator>
   </scroll-view>
 </view>
 <view class="comments">
