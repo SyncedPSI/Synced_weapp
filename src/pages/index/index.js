@@ -32,8 +32,8 @@
 // 		});
 // 	},
 // });
-import { request, getDateDiff } from "../../utils/util";
-import { timeline } from "../../config/api";
+import { request, getDateDiff } from "utils/util";
+import { timeline } from "config/api";
 
 const app = getApp();
 
@@ -44,9 +44,9 @@ Page({
   data: {
     page: 1,
     scrollTop: 0,
-    logoUrl: "../../images/logo.svg",
-    hoverImageUrl: "../../icons/ic_chatbot_n.svg",
-    searchIconUrl: "../../icons/ic_search.svg",
+    logoUrl: "/images/logo.svg",
+    hoverImageUrl: "/icons/ic_chatbot_n.svg",
+    searchIconUrl: "/icons/ic_search.svg",
     articles: [],
     isFetching: false,
   },

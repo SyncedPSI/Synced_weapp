@@ -1,6 +1,6 @@
-import { request, getDateDiff } from "../../utils/util";
-import { articleShow } from "../../config/api";
-const WxParse = require("../../wxParse/wxParse.js");
+import { request, getDateDiff } from "utils/util";
+import { articleShow } from "config/api";
+const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
 

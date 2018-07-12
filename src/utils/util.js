@@ -100,4 +100,20 @@ export const request = (url, data = {}, method = "GET") => {
       }
     })
   });
-}
+};
+
+export const showErrorToast = (msg) => {
+  wx.showToast({
+    title: msg,
+    image: '/images/icon_error.png',
+  })
+};
+
+export const checkValue = ({value, reg, isRequired = true, errMsg}) => {
+  if ((value === null) || (isRequired && value.length === 0) || !reg.test(value)) {
+    showErrorToast(errMsg);
+    return false;
+  } else {
+    return true;
+  }
+};
