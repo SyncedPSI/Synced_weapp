@@ -1,0 +1,10 @@
+<view class="account">
+  <view class="account__weclome">欢迎你！</view>
+  <view class="account__desc">关联账户，有助于我们为你同步更多优质资源。</view>
+
+  <view class="account-form">
+    <input class="account-form__input" placeholder="手机号/邮箱账号" />
+    <input class="account-form__input" placeholder="密码" />
+    <button class="account-form__btn account-form__submmit" type="default" size="defaultSize" bindtap="defaultTap" disabled="disabled">登录</button>
+  </view>
+</view>

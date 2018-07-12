@@ -1,0 +1,14 @@
+<view class="account">
+  <view class="account__weclome">欢迎你！</view>
+  <view class="account__desc">绑定手机号码，可查看更多优质内容。</view>
+
+  <view class="account-form">
+    <input class="account-form__input" placeholder="手机号" />
+    <view class="u-flex">
+      <input class="account-form__input" placeholder="验证码" />
+      <button class="account-form__btn account-form__code">获取验证码</button>
+    </view>
+    <button class="account-form__btn account-form__submmit" bindtap="defaultTap">登录</button>
+  </view>
+  <navigator class="account__link" url="../mobile/mobile">关联已有账户</navigator>
+</view>

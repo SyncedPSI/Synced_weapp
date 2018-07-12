@@ -1,0 +1,54 @@
+.account {
+  padding: 60rpx 64rpx 0;
+
+  &__weclome {
+    font-size: 48rpx;
+    margin-bottom: 32rpx;
+    color: $black;
+  }
+
+  &__desc {
+    font-size: 32rpx;
+    color: $mute-black;
+  }
+
+  &__link {
+    font-size: 32rpx;
+    color: $black;
+    margin-top: 24rpx;
+    text-align: center;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+.account-form {
+  margin-top: 100rpx;
+
+  &__input {
+    border-bottom: 2rpx solid $bg-white;
+    height: 80rpx;
+    margin-bottom: 24rpx;
+    font-size: 32rpx;
+    flex-grow: 1;
+  }
+
+  &__btn {
+    border-radius: 0;
+    border: none;
+    background-color: $black;
+    color: #fff;
+  }
+
+  &__code {
+    flex-shrink: 0;
+    padding: 2rpx 18rpx;
+    margin: 0 0 24rpx 20rpx;
+    font-size: 32rpx;
+  }
+
+  &__submit {
+    font-size: 36rpx;
+  }
+}

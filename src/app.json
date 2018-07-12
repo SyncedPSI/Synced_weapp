@@ -6,6 +6,8 @@
     "pages/institution/institution",
     "pages/expert/expert",
     "pages/technology/technology",
+    "pages/account/mobile/mobile",
+    "pages/account/link/link",
     "pages/logs/logs"
   ],
   "window":{
