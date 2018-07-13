@@ -1,0 +1,23 @@
+<import src="../common/node_header.wxml"/>
+<import src="../common/node_experts.wxml"/>
+<import src="../common/node_technologies.wxml"/>
+
+<view class="node-header">
+  <template is="node-header" />
+  <view class="node-header__website">
+    <text>机构主页：</text>
+    <navigator class="node-header__link" url="" redirect hover-class="className">jiqizhixin.com</navigator>
+  </view>
+  <template is="node-technologies" />
+</view>
+
+<view class="node-block">
+    <view class="node-block__header">
+      <text class="node-block__title">简介</text>
+    </view>
+    <view class="node-block__content">
+      lalalallaal这里是内容需要wxparse
+    </view>
+</view>
+
+<template is="node-experts" />

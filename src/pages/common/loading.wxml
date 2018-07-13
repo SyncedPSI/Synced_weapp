@@ -1,0 +1,7 @@
+<template name="loading">
+   <view class="u-loadmore__spinner">
+    <view class="u-loadmore__bounce u-loadmore__bounce1"></view>
+    <view class="u-loadmore__bounce u-loadmore__bounce2"></view>
+    <view class="u-loadmore__bounce u-loadmore__bounce3"></view>
+  </view>
+</template>

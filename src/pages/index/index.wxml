@@ -13,9 +13,10 @@
     <text>{{powered.by}}</text>
   </view>
 </view> -->
+<import src="../common/loading.wxml"/>
 
 <view class='container'>
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="loadMore">
+  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="fetchData">
     <view class="header_wrapper {{scrollTop >= 160 ? 'fixed' : ''}}">
       <view class="header">
         <view class='logo'>
@@ -35,6 +36,9 @@
       </view>
     </view>
   </scroll-view>
+  <view wx:if="{{isFetching}}">
+    <template is="loading" />
+  </view>
   <!-- <view class='hover_button'>
     <image src="{{hoverImageUrl}}" mode='cover'></image>
   </view> -->

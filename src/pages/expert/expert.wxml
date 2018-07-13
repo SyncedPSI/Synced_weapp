@@ -1,0 +1,21 @@
+<import src="../common/node_header.wxml"/>
+<import src="../common/node_technologies.wxml"/>
+<import src="../common/node_institutions.wxml"/>
+
+<view class="node-header">
+  <view class="u-flex">
+    <view>
+      <template is="node-header" />
+    </view>
+    <image class="node-header__avatar" src="" mode="cover" />
+  </view>
+  <view class="node-header__summary">出生于美国纽约州白原市，是知名的社交网站Facebook的创始人、</view>
+  <view class="node-header__origins">
+    <text>来源：</text>
+    <navigator class="node-header__origin" url="/index/index">危机</navigator>
+    <navigator class="node-header__origin" url="/index/index">谷歌</navigator>
+  </view>
+  <template is="node-technologies" />
+</view>
+
+<template is="node-institutions" />

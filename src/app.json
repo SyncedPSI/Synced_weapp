@@ -3,7 +3,11 @@
     "pages/index/index",
     "pages/search/search",
     "pages/article/article",
-    "pages/node/node",
+    "pages/institution/institution",
+    "pages/expert/expert",
+    "pages/technology/technology",
+    "pages/account/mobile/mobile",
+    "pages/account/link/link",
     "pages/logs/logs"
   ],
   "window":{
