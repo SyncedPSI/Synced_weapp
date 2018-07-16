@@ -1,0 +1,52 @@
+@import 'color';
+
+.card_wrapper {
+  background-color: $white;
+  padding: 18px 12px;
+  margin-bottom: 32rpx;
+  position: relative;
+
+  &.is-node::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    border: 20rpx solid transparent;
+    border-top-color: $red;
+    border-right-color: $red;
+  }
+
+  .title {
+    font-size: 36rpx;
+    color: #282828;
+    line-height: 50rpx;
+    margin-bottom: 36rpx;
+    flex-grow: 1;
+  }
+
+  .bottom {
+    .info {
+      font-size: 28rpx;
+      color: $gray;
+    }
+  }
+
+  .flex {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .more {
+    color: $mute-black;
+    font-size: 28rpx;
+    margin-right: 30rpx;
+    margin-bottom: 36rpx;
+  }
+
+  .summary {
+    color: $black;
+    font-size: 28rpx;
+  }
+}
