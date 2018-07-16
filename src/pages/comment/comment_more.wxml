@@ -1,0 +1,7 @@
+<template name="comment_more">
+  <view class="comment-more">
+    <text>另外</text>
+    <text class="comment-more__highlight">1</text>
+    <text>条评论</text>
+  </view>
+</template>

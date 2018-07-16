@@ -1,0 +1,95 @@
+.comment {
+  padding: 0 40rpx;
+  background-color:$background_color;
+
+  &__title {
+    color: $black;
+    font-size: 28rpx;
+  }
+
+  &__item {
+    padding: 30rpx 0 0 35rpx;
+  }
+}
+
+.comment-inline {
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+
+  &:last-child .comment-inline__body {
+    border-color: transparent;
+  }
+
+  &__body {
+    padding-left: 64rpx;
+    padding-bottom: 10rpx;
+    border-left: 4rpx solid $bg-white;
+  }
+
+  &__content {
+    font-size: 30rpx;
+    line-height: 1.6;
+    color: $title-black;
+    margin: 20rpx 0 30rpx;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    color: $mute-black;
+    font-size: 28rpx;
+  }
+
+  &__author {
+    min-height: 70rpx;
+  }
+
+  &__user {
+    color: $mute-black;
+    padding-left: 64rpx;
+  }
+
+  &__user.is-only .comment-inline__from {
+    line-height: 70rpx;
+  }
+
+  &__from {
+    color: $black;
+  }
+
+  &__link {
+    display: block;
+  }
+
+  &__avatar {
+    @include set-avatar-width(70rpx);
+    position: absolute;
+    border: solid 1rpx #dddddd;
+    margin-left: -35rpx;
+  }
+
+  &__hr {
+    margin-right: 10rpx;
+    color: $mute-black;
+  }
+}
+
+.comment-more {
+  margin: 20rpx 0 20rpx 60rpx;
+  border-bottom: 2rpx solid $bg-white;
+  padding-bottom: 10rpx;
+  font-size: 28rpx;
+  color: $mute-black;
+
+  &::before {
+    content: '• • •';
+    position: absolute;
+    margin-left: -90rpx;
+    color: #d8d8d8;
+  }
+
+  &__highlight {
+    color: $red;
+    margin: 0 10rpx;
+  }
+}

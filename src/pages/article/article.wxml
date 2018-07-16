@@ -1,3 +1,5 @@
+<import src="../comment/comment.wxml"/>
+
 <view class="article">
   <view class="title">
     {{article.title}}
@@ -30,6 +32,5 @@
     </navigator>
   </scroll-view>
 </view>
-<view class="comments">
-  <view class="title">评论</view>
-</view>
+
+<template is="comment" />

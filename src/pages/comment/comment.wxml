@@ -1,0 +1,8 @@
+<import src="./comment_item.wxml"/>
+
+<template name="comment">
+  <view class="comment">
+    <view class="comment__title">评论</view>
+    <template is="comment_item" />
+  </view>
+</template>

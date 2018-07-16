@@ -96,3 +96,9 @@
 		}
 	}
 }
+
+@mixin set-avatar-width($width: 80rpx) {
+  width: $width;
+  height: $width;
+  border-radius: 50%;
+}

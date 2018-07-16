@@ -1,0 +1,11 @@
+<import src="./comment_inline.wxml"/>
+<import src="./comment_more.wxml"/>
+
+<template name="comment_item">
+  <view class="comment__item">
+    <template is="comment_inline" />
+    <template is="comment_inline" />
+    <template is="comment_inline" />
+    <template is="comment_more" />
+  </view>
+</template>
