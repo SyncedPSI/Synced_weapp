@@ -1,0 +1,23 @@
+.u-fix-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 96rpx;
+  background-color: #fff;
+  color: $black;
+  font-size: 30rpx;
+  text-align: center;
+  box-shadow: 0 -1px 0 0 #EEEEEE;
+
+  &--bar.is-only {
+    line-height: 96rpx;
+  }
+}
+
+.u-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+

@@ -4,3 +4,11 @@
   <view class="comment__title">评论</view>
   <template is="comment_item" />
 </view>
+
+<view class="u-container-cover comment-editor" wx:if="{{isShowComment}}">
+  <view class="u-container-cover comment-editor__mask" bindtap="closeComment"></view>
+  <view class="comment-editor__main">
+    <textarea class="comment-editor__textarea" auto-height placeholder="请输入评论" name="textarea" bindinput="bindContentInput" />
+    <text class="comment-editor__submit" bindtap="submitComment">发布</text>
+  </view>
+</view>

@@ -1,8 +1,15 @@
 @import 'color';
 @import 'mixins';
 
+.u-container-cover {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
 .comment {
-  padding: 0 40rpx;
+  padding: 0 40rpx 96rpx;
   background-color:$background_color;
 
   &__title {
@@ -94,5 +101,43 @@
   &__highlight {
     color: $red;
     margin: 0 10rpx;
+  }
+}
+
+.comment-editor {
+  position: fixed;
+  z-index: 5;
+
+  &__mask {
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, .1);
+  }
+
+  &__main {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    padding: 20rpx 40rpx;
+    display: flex;
+    align-items: center;
+    font-size: 30rpx;
+  }
+
+  &__textarea {
+    flex-grow: 1;
+    border-radius: 100rpx;
+    padding: 12rpx 24rpx;
+    font-size: 30rpx;
+    background: #FCFAFB;
+    border: 1px solid #E5E3E4;
+  }
+
+  &__submit {
+    margin-left: 28rpx;
+    flex-shrink: 0;
   }
 }

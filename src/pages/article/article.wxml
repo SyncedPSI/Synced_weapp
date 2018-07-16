@@ -31,4 +31,8 @@
   </scroll-view>
 </view>
 
-<comment></comment>
+<comment isShowComment="{{isShowComment}}" path="/articles/{{article.id}}" bindclosecommentevent="closeShowComment"></comment>
+
+<view class="u-fix-bottom">
+  <text class="u-fix-bottom--bar is-only" bindtap="openComment">评论</text>
+</view>
