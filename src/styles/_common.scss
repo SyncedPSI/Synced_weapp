@@ -7,17 +7,25 @@
   background-color: #fff;
   color: $black;
   font-size: 30rpx;
-  text-align: center;
   box-shadow: 0 -1px 0 0 #EEEEEE;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-  &--bar.is-only {
-    line-height: 96rpx;
+  &--bar {
+    display:flex;
+    align-items:center;
+  }
+
+  &--icon {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 8rpx;
   }
 }
 
 .u-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
-
