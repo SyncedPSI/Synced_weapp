@@ -8,6 +8,7 @@ Page({
   data: {
     mobile: null,
     code: null,
+    btnInnerHtml: '获得验证码',
     countDown: 0
   },
   bindMobileInput: function (e) {
@@ -21,7 +22,9 @@ Page({
     });
   },
   getVerificationCode: function() {
-    const { mobile } = this.data;
+    const { mobile, countDown } = this.data;
+    if (countDown > 0) return;
+
     const checkMobile = checkValue({
       value: mobile,
       reg: mobile_reg,
@@ -32,12 +35,33 @@ Page({
       request(getVerificationCode, {
         mobile,
       }).then(res => {
-        // 倒计时
+        this.setData({
+          countDown: 60
+        }, () => {
+          this.changeCount();
+        });
       }).catch(err => {
         showErrorToast('出错啦');
       });
     } else {
       showErrorToast('手机号不正确');
+    }
+  },
+  changeCount: function() {
+    const { countDown } = this.data;
+
+    if (countDown === 0) {
+      clearTimeout(this.timeout);
+    } else {
+      const newCountDown = countDown - 1;
+      this.setData({
+        countDown: newCountDown,
+        btnInnerHtml: newCountDown === 0 ? '获得验证码' : `重新发送(${newCountDown})`
+      });
+
+      this.timeout = setTimeout(() => {
+        this.changeCount();
+      }, 1000);
     }
 
   },
