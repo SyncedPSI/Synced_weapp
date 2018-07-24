@@ -1,4 +1,4 @@
 <template name="node-header">
-  <view class="node-header__full">加州大学洛杉矶分校 认证系统实验室</view>
-  <view class="node-header__en">COGNTIVE SYSTEMS LABORATORY ,U-SLA</view>
+  <view class="node-header__full">{{zh_name}}</view>
+  <view class="node-header__en">{{en_name}}</view>
 </template>

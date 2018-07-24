@@ -82,6 +82,7 @@
 
   &__header {
     border-bottom: 2rpx solid $bg-white;
+    margin-bottom: 40rpx;
   }
 
   &__title {
@@ -96,6 +97,7 @@
 .node-expert {
   display: flex;
   margin: 40rpx 0;
+  overflow: hidden;
 
   &__avatar {
     height: 120rpx;
@@ -114,7 +116,7 @@
     font-weight: 500;
   }
 
-  &__desc {
+  &__extra-name {
     color: $title-black;
     font-size: 32rpx;
   }

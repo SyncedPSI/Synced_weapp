@@ -1,9 +1,8 @@
 import {
-  request,
-  getDateDiff
+  request
 } from "../../utils/util";
 import {
-  articleShow
+  technologyShow
 } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
 
@@ -20,15 +19,16 @@ Page({
     this.setData({
       id: option.id
     });
-    // request(`${articleShow}${option.id}`)
-    //   .then(res => {
-    //     const article = res.data;
-    //     article.published_at = getDateDiff(res.data.published_at);
-    //     WxParse.wxParse("article_content", "html", res.data.content, $this, 5);
-    //     $this.setData({
-    //       article: article
-    //     });
-    //   })
+    console.log(option.id);
+    request(`${technologyShow}${option.id}`)
+      .then(res => {
+        const technology = res.data;
+        console.log(technology);
+        WxParse.wxParse("technology_content", "html", res.data.desc, $this, 5);
+        $this.setData({
+          technology: technology
+        });
+      })
   },
 
   bindToNodeShow: function (e) {

@@ -3,14 +3,16 @@
     <view class="node-block__header">
       <text class="node-block__title">相关专家</text>
     </view>
-    <view class="node-expert">
-      <navigator class="node-expert__avatar" url="/index/index">
-        <image src="" mode="cover" />
-      </navigator>
-      <view class="node-expert__right">
-        <navigator class="node-expert__name" url="/index/index">邱绍裘</navigator>
-        <text class="node-expert__desc">美国经济学家；2004年诺贝尔经济学奖获得者；亚里桑那州立大学</text>
+    <block wx:for="{{experts}}" wx:for-item="item" wx:key="unique">
+      <view class="node-expert">
+        <navigator class="node-expert__avatar" url="/index/index">
+          <image src="" mode="cover" />
+        </navigator>
+        <view class="node-expert__right">
+          <navigator class="node-expert__name" url="/index/index">{{item.zh_name ? item.zh_name : item.en_name}}</navigator>
+          <text class="node-expert__extra-name">{{item.zh_name ? en_name : ''}}</text>
+        </view>
       </view>
-    </view>
+    </block>
   </view>
 </template>

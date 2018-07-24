@@ -4,7 +4,9 @@
       <text class="node-block__title">相关机构</text>
     </view>
     <view class="node-institution">
-      <navigator class="node-institution__title" url="/index/index">机器之心科技有限公司</navigator>
+      <block wx:for="{{institutions}}" wx:for-item="item" wx:key="unique">
+        <navigator class="node-institution__title" url="/index/index">• {{item.zh_name ? item.zh_name : item.en_name}}</navigator>
+      </block>
     </view>
   </view>
 </template>
