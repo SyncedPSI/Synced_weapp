@@ -43,12 +43,12 @@
 .u-loadmore {
   &__spinner {
     text-align: center;
-    padding: 15px 10px;
+    padding: 40rpx 20rpx;
   }
 
   &__bounce {
-    width: 18px;
-    height: 18px;
+    width: 28rpx;
+    height: 28rpx;
     background-color: $red;
     margin: 0 5px;
     border-radius: 100%;
