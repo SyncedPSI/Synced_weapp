@@ -1,4 +1,5 @@
 @import 'color';
+@import 'content';
 
 .article {
   padding: 0 40rpx;
@@ -91,12 +92,12 @@
   .node_card {
     width: 512rpx;
     background-color: $white;
-    padding: 20rpx 32rpx;
+    padding: 20rpx 32rpx 28rpx;
     display: inline-block;
     margin-right: 32rpx;
 
     .top {
-      margin-bottom: 20rpx;
+      margin-bottom: 18rpx;
 
       .zh_name {
         font-size: 36rpx;
@@ -104,7 +105,6 @@
         vertical-align: middle;
         margin-right: 16rpx;
         display: inline-block;
-        line-height: 36rpx;
       }
 
       .type {
@@ -120,113 +120,7 @@
     .en_name {
       font-size: 28rpx;
       color: $light_gray;
+      line-height: 40rpx;
     }
-  }
-}
-
-.article .content {
-  font-size: 32rpx;
-
-  .wxParse-mark {
-    background-color: transparent;
-    color: inherit;
-    border-bottom: 1px solid $red;
-  }
-
-  .wxParse-p {
-    font-size: 32rpx;
-    line-height: 1.8;
-    text-align: left;
-    color: $title-black;
-    margin: 48rpx 0;
-  }
-
-  .wxParse-h1 {
-    font-size: 40rpx;
-    font-weight: 600;
-    color: $black;
-  }
-
-  .wxParse-h2 {
-    font-size: 38rpx;
-    font-weight: 600;
-    color: $black;
-    margin: 50rpx 0 20rpx;
-  }
-
-  .wxParse-h3 {
-    font-size: 36rpx;
-    font-weight: 600;
-    color: $black;
-    margin: 48rpx 0 16rpx;
-  }
-
-  .wxParse-iframe {
-    max-width: 100%;
-  }
-
-  .wxParse-h4 {
-    font-size: 34rpx;
-    font-weight: 600;
-    color: $black;
-    margin: 10rpx 0 12rpx;
-  }
-
-  .wxParse-h5 {
-    font-size: 32rpx;
-    font-weight: normal;
-    line-height: 1.14;
-    color: $secondary-black;
-    margin: 20rpx 0;
-  }
-
-  .wxParse-blockquote {
-    border-left: 2rpx solid $bg-white;
-    padding: 8rpx 0 8rpx 16rpx;
-    margin: 0;
-
-    .wxParse-p {
-      margin-top: 0;
-      font-size: 30rpx;
-    }
-
-    .wxParse-p:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .wxParse-pre {
-    margin: 22rpx -22rpx;
-    background-color: $bg-white;
-    padding: 20rpx 40rpx 40rpx;
-    color: $mute-black;
-    overflow-x: auto;
-  }
-
-  .wxParse-img {
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
-  }
-
-  .wxParse-a {
-    color: $title-black;
-    // border-bottom: 2rpx dashed $red;
-  }
-
-  .wxParse-ul {
-    margin: 0;
-  }
-
-  .wxParse-li {
-    margin: 20rpx 0;
-  }
-
-  .wxParse-li-inner {
-    margin: 0;
-  }
-
-  .wxParse-li-text .wxParse-p {
-    margin: 0;
   }
 }
