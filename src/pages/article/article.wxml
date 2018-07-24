@@ -12,24 +12,38 @@
     </view>
     <view class="right">{{article.published_at}}</view>
   </view>
-  <!-- <view class="content">{{article.content}}</view> -->
   <view class="content">
     <import src="../../wxParse/wxParse.wxml"/>
     <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
   </view>
 </view>
-<view class="related_nodes">
-  <view class="title">相关数据</view>
-  <scroll-view scroll-x="{{true}}" style="width: 100%">
-    <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}" class="node_card" wx:for="{{article.related_nodes}}" wx:key="unique" id="{{item.node_id}}">
-      <view class="top">
-        <view class="zh_name">{{item.zh_name}}</view>
-        <view class="type">{{item.node_type}}</view>
-      </view>
-      <view class="en_name">{{item.en_name}}</view>
-    </navigator>
-  </scroll-view>
-</view>
+<block wx:if="{{article.related_nodes.length != 0}}">
+  <view class="related_nodes">
+    <view class="title">相关数据</view>
+    <scroll-view scroll-x="{{true}}" style="width: 100%">
+      <block wx:for="{{article.related_nodes}}" wx:key="unique">
+        <block wx:if="{{item.level == 'level_1'}}">
+          <view class="node_card">
+            <view class="top">
+              <view class="zh_name">{{item.zh_name}}</view>
+              <view class="type">{{item.node_type}}</view>
+            </view>
+            <view class="en_name">{{item.en_name}}</view>
+          </view>
+        </block>
+        <block wx:else>
+          <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}" class="node_card can_click" id="{{item.node_id}}">
+            <view class="top">
+              <view class="zh_name">{{item.zh_name}}</view>
+              <view class="type">{{item.node_type}}</view>
+            </view>
+            <view class="en_name">{{item.en_name}}</view>
+          </navigator>
+        </block>
+      </block>
+    </scroll-view>
+  </view>
+</block>
 
 <comment isShowComment="{{isShowComment}}" path="/articles/{{article.id}}" bindclosecommentevent="closeShowComment"></comment>
 

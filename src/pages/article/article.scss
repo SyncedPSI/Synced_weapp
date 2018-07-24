@@ -94,6 +94,19 @@
     padding: 20rpx 32rpx 28rpx;
     display: inline-block;
     margin-right: 32rpx;
+    position: relative;
+
+    &.can_click::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border: 20rpx solid transparent;
+      border-top-color: $red;
+      border-right-color: $red;
+    }
 
     .top {
       margin-bottom: 18rpx;
