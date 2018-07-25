@@ -26,6 +26,9 @@ Component({
     closeComment: function() {
       this.triggerEvent('closecommentevent');
     },
+    openComment: function() {
+      this.triggerEvent('opencommentevent');
+    },
     bindContentInput: function (e) {
       this.setData({
         content: e.detail.value
