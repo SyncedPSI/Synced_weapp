@@ -66,13 +66,12 @@
 
 .related_nodes {
   background-color: $background-color;
-  padding-top: 50rpx;
 
   .title {
     font-size: 28rpx;
     color: $black;
-    padding-left: 40rpx;
-    margin-bottom: 20rpx;
+    padding: 0 40rpx;
+    margin: 48rpx 0 20rpx;
   }
 
   scroll-view {
