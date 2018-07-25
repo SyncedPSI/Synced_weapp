@@ -4,6 +4,13 @@
 
 <view class="node-header">
   <template is="node-header" data="{{...technology}}" />
+  <view class="node-header__summary">{{technology.summary}}</view>
+  <view class="node-header__origins">
+    <text>来源： </text>
+    <block wx:for="{{technology.summary_sources}}" wx:key="unique" wx:for-index="key">
+      <text class="node-header__origin">{{key}}</text>
+    </block>
+  </view>
 </view>
 
 <view wx:if="{{technology.desc != ''}}" class="node-block">
