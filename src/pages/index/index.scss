@@ -38,6 +38,7 @@
       top: 0;
       padding: 0;
       background-color: $white;
+      z-index: 2;
 
       .search_box {
         height: 100%;
@@ -105,6 +106,7 @@
 
   .search__btn {
     width: 40rpx;
+    height: 40rpx;
   }
 }
 
