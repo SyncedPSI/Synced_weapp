@@ -95,28 +95,15 @@
     margin-right: 40rpx;
     border: 1rpx solid #ededed;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2rpx solid #ededed;
+    color: $mute-black;
+    padding: 0 28rpx;
+  }
 
-    input {
-      height: 100%;
-      width: 100%;
-      font-size: 32rpx;
-      padding-left: 28rpx;
-      display: inline-block;
-    }
-
-    .search_button {
-      width: 120rpx;
-      height: 100%;
-      display: inline-block;
-
-      image {
-        width: 40rpx;
-        height: 40rpx;
-        margin: 0 auto;
-        margin-top: 26rpx;
-        display: block;
-      }
-    }
+  .search__btn {
+    width: 40rpx;
   }
 }
 
