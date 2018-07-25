@@ -23,10 +23,8 @@
           <image src="{{logoUrl}}" mode='aspectFit'></image>
         </view>
         <view class='search_box' bindtap="bindToSearch">
-          <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='全网搜索知识'></input>
-          <view class='search_button'>
-            <image src="{{searchIconUrl}}"></image>
-          </view>
+          <text>全网搜索知识</text>
+          <image class="search__btn" src="{{searchIconUrl}}"></image>
         </view>
       </view>
     </view>
