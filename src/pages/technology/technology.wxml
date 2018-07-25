@@ -6,7 +6,7 @@
   <template is="node-header" data="{{...technology}}" />
 </view>
 
-<view class="node-block">
+<view wx:if="{{technology.desc != ''}}" class="node-block">
     <view class="node-block__header">
       <text class="node-block__title">简介</text>
     </view>
@@ -16,5 +16,5 @@
     </view>
 </view>
 
-<template is="node-experts" data="{{experts: technology.experts}}"/>
-<template is="node-institutions" data="{{institutions: technology.institutions}}"/>
+<template wx:if="{{technology.experts.length != 0}}" is="node-experts" data="{{experts: technology.experts}}"/>
+<template wx:if="{{technology.institutions.length != 0}}" is="node-institutions" data="{{institutions: technology.institutions}}"/>
