@@ -15,10 +15,11 @@
   &__title {
     color: $black;
     font-size: 28rpx;
+    margin: 48rpx 0 20rpx;
   }
 
   &__item {
-    padding: 30rpx 0 0 35rpx;
+    padding-left: 35rpx;
   }
 }
 
