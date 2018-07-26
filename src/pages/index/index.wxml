@@ -33,7 +33,7 @@
         <article id="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" bindtap="bindToArticleShow"></article>
       </view>
     </view>
-    <view wx:show="{{isFetching}}">
+    <view hidden="{{!isFetching}}">
       <template is="loading" />
     </view>
   </scroll-view>
