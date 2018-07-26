@@ -1,7 +1,7 @@
 <view class="card_wrapper is-node">
   <view class="top flex">
-    <view class="title">{{zh_name}}</view>
-    <view class="more">查看知识详情 ></view>
+    <text class="title">{{zhName}}</text>
+    <navigator class="more" alt="查看知识详情" url="../{{type}}/{{type}}?id={{nodeId}}">查看知识详情 ></navigator>
   </view>
   <view class="summary">{{summary}}</view>
 </view>

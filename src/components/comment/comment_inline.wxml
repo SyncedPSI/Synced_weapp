@@ -2,11 +2,11 @@
   <view class="comment-inline">
     <view class="comment-inline__header">
       <view class="comment-inline__author">
-        <navigator alt="小学生" class="comment-inline__avatar" href="/user/id">
+        <navigator alt="小学生" class="comment-inline__avatar" url="/user/id">
           <image src="" mode="cover" />
         </navigator>
         <view class="comment-inline__user is-only">
-          <navigator class="comment-inline__from" href="/user/id">小学生</navigator>
+          <navigator class="comment-inline__from" url="/user/id">小学生</navigator>
         </view>
       </view>
     </view>
@@ -14,7 +14,7 @@
       <view class="comment-inline__content">test</view>
       <view class="comment-inline__footer">
         <text>7月9日</text>
-        <text>回复</text>
+        <text bindtap="openComment">回复</text>
       </view>
     </view>
   </view>

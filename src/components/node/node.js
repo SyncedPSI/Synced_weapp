@@ -1,12 +1,20 @@
 Component({
   properties: {
-    zh_name: {
+    zhName: {
       type: String,
-      value: "none"
+      value: ""
+    },
+    type: {
+      type: String,
+      value: ""
+    },
+    nodeId: {
+      type: String,
+      value: ""
     },
     summary: {
       type: String,
-      value: "none"
+      value: ""
     }
   }
 });

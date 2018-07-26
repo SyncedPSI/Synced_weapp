@@ -40,8 +40,8 @@ view {
   &__bounce {
     width: 28rpx;
     height: 28rpx;
-    background-color: $red;
-    margin: 0 5px;
+    background-color: $black;
+    margin: 0 10rpx;
     border-radius: 100%;
     display: inline-block;
     animation: sk-bouncedelay 1.4s infinite ease-in-out both;

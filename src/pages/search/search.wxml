@@ -1,14 +1,25 @@
+<import src="../common/loading.wxml"/>
+
 <view class="container">
-  <view class="header_wrapper">
-    <view class="header">
-        <view class='search_box'>
-          <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='全网搜索知识' focus="{{true}}" type="text" confirm-type='搜索' bindconfirm='search' bindblur='search'></input>
-          <view class='search_button' >
-            <image src="{{searchIconUrl}}"></image>
-          </view>
-        </view>
+  <view class="header">
+    <view class='search_box'>
+      <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='全网搜索知识' focus="{{true}}" type="text" confirm-type='搜索' bindinput='searchByKeyword' bindconfirm='search' bindblur='search'></input>
+      <view class='search_button' >
+        <image src="{{searchIconUrl}}"></image>
       </view>
+    </view>
   </view>
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+  <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreData">
+    <view class="search__container">
+      <view hidden="{{node === null}}">
+        <node id="{{node.id}}" nodeId="{{node.id}}" zhName="{{node.zh_name}}" type="{{node.type}}" summary="{{node.summary}}"></node>
+      </view>
+      <view wx:for="{{articles}}" wx:key="{{item.id}}">
+        <article id="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" bindtap="bindToArticleShow"></article>
+      </view>
+    </view>
+    <view hidden="{{!hasNextPage || articles.length === 0}}">
+      <template is="loading" />
+    </view>
   </scroll-view>
 </view>
