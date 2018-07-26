@@ -5,11 +5,11 @@
     </view>
     <block wx:for="{{experts}}" wx:for-item="item" wx:key="unique">
       <view class="node-expert">
-        <navigator class="node-expert__avatar" url="/index/index">
+        <navigator class="node-expert__avatar" url="../expert/expert?id={{item.id}}">
           <image src="" mode="cover" />
         </navigator>
         <view class="node-expert__right">
-          <navigator class="node-expert__name" url="/index/index">{{item.zh_name ? item.zh_name : item.en_name}}</navigator>
+          <navigator class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.zh_name ? item.zh_name : item.en_name}}</navigator>
           <text class="node-expert__extra-name">{{item.zh_name ? en_name : ''}}</text>
         </view>
       </view>

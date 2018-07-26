@@ -1,7 +1,8 @@
 <template name="node-technologies">
   <view class="node-technology">
     <text class="node-technology__tip">涉及领域：</text>
-    <text class="node-technology__item">机器学习</text>
-    <text class="node-technology__item">机器学习</text>
+    <block wx:for="{{technologies}}" wx:key="{{unique}}" wx:for-item="item">
+      <text class="node-technology__item">{{item.zh_name ? item.zh_name : item.en_name}}</text>
+    </block>
   </view>
 </template>

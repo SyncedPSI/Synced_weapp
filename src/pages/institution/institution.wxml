@@ -1,23 +1,26 @@
 <import src="../common/node_header.wxml"/>
+<import src="../common/node_summary.wxml"/>
 <import src="../common/node_experts.wxml"/>
 <import src="../common/node_technologies.wxml"/>
 
 <view class="node-header">
-  <template is="node-header" />
-  <view class="node-header__website">
+  <template is="node-header" data="{{...institution}}" />
+  <view wx:if="{{institution.website != ''}}" class="node-header__website">
     <text>机构主页：</text>
-    <navigator class="node-header__link" url="" redirect hover-class="className">jiqizhixin.com</navigator>
+    <navigator class="node-header__link" url="" redirect hover-class="className">{{institution.website}}</navigator>
   </view>
-  <template is="node-technologies" />
+  <template wx:if="{{institution.summary != ''}}" is="node-summary" data="{{...institution}}" />
+  <template wx:if="{{institution.technologies}}" is="node-technologies" data="{{technologies: institution.technologies}}" />
 </view>
 
-<view class="node-block">
+<view wx:if="{{institution.desc != ''}}" class="node-block">
     <view class="node-block__header">
       <text class="node-block__title">简介</text>
     </view>
-    <view class="node-block__content">
-      lalalallaal这里是内容需要wxparse
+    <view class="content">
+      <import src="../../wxParse/wxParse.wxml"/>
+      <template is="wxParse" data="{{wxParseData:institution_content.nodes}}" />
     </view>
 </view>
 
-<template is="node-experts" />
+<template wx:if="{{institution.experts.length != 0}}" is="node-experts" data="{{experts: institution.experts}}" />
