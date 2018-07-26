@@ -5,7 +5,7 @@
     </view>
     <view class="node-institution">
       <block wx:for="{{institutions}}" wx:for-item="item" wx:key="unique">
-        <navigator class="node-institution__title" url="/index/index">• {{item.zh_name ? item.zh_name : item.en_name}}</navigator>
+        <navigator class="node-institution__title" url="../institution/institution?id={{item.id}}">• {{item.zh_name ? item.zh_name : item.en_name}}</navigator>
       </block>
     </view>
   </view>

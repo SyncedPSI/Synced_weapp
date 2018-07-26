@@ -1,4 +1,4 @@
 <template name="node-header">
-  <view class="node-header__full">{{zh_name}}</view>
-  <view class="node-header__en">{{en_name}}</view>
+  <view class="node-header__full">{{zh_name ? zh_name : en_name}}</view>
+  <view class="node-header__en">{{zh_name ? en_name : ''}}</view>
 </template>
