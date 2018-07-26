@@ -2,7 +2,12 @@
   <view class="node-technology">
     <text class="node-technology__tip">涉及领域：</text>
     <block wx:for="{{technologies}}" wx:key="{{unique}}" wx:for-item="item">
-      <text class="node-technology__item">{{item.zh_name ? item.zh_name : item.en_name}}</text>
+      <block wx:if="{{item.level == 'level_1'}}">
+        <text class="node-technology__item">{{item.zh_name ? item.zh_name : item.en_name}}</text>
+      </block>
+      <block wx:else>
+        <navigator class="node-technology__item" url="../technology/technology?id={{item.id}}">• {{item.zh_name ? item.zh_name : item.en_name}}</navigator>
+      </block>
     </block>
   </view>
 </template>

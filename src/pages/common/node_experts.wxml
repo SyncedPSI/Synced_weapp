@@ -4,15 +4,28 @@
       <text class="node-block__title">相关专家</text>
     </view>
     <block wx:for="{{experts}}" wx:for-item="item" wx:key="unique">
-      <view class="node-expert">
-        <navigator class="node-expert__avatar" url="../expert/expert?id={{item.id}}">
-          <image src="" mode="cover" />
-        </navigator>
-        <view class="node-expert__right">
-          <navigator class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.zh_name ? item.zh_name : item.en_name}}</navigator>
-          <text class="node-expert__extra-name">{{item.zh_name ? en_name : ''}}</text>
+      <block wx:if="{{item.level == 'level_1'}}">
+        <view class="node-expert">
+          <view class="node-expert__avatar" url="../expert/expert?id={{item.id}}">
+            <image src="" mode="cover" />
+          </view>
+          <view class="node-expert__right">
+            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.zh_name ? item.zh_name : item.en_name}}</view>
+            <text class="node-expert__extra-name">{{item.zh_name ? item.en_name : ''}}</text>
+          </view>
         </view>
-      </view>
+      </block>
+      <block wx:else>
+        <navigator class="node-expert" url="../expert/expert?id={{item.id}}">
+          <view class="node-expert__avatar" url="../expert/expert?id={{item.id}}">
+            <image src="" mode="cover" />
+          </view>
+          <view class="node-expert__right">
+            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.zh_name ? item.zh_name : item.en_name}}</view>
+            <text class="node-expert__extra-name">{{item.zh_name ? item.en_name : ''}}</text>
+          </view>
+        </navigator>
+      </block>
     </block>
   </view>
 </template>
