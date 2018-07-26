@@ -1,1 +1,7 @@
-{}
+{
+  "usingComponents": {
+    "article": "../../components/article/article",
+    "node": "../../components/node/node"
+  },
+  "enablePullDownRefresh": true
+}
