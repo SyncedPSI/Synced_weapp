@@ -6,16 +6,19 @@ const app = getApp();
 Page({
   data: {
     searchIconUrl: "../../icons/ic_search.svg",
-    page: 1,
     articles: [],
     node: null,
     hasNextPage: true,
-    isFetching: false,
+  },
+  onLoad: function() {
+    this.page = 1;
   },
   fetchData: function(keywords = '') {
     this.keywords = keywords;
-    this.switchFetching(true);
-    const { page } = this.data;
+    const { hasNextPage } = this.data;
+    if (!hasNextPage || keywords === '') return;
+
+    const page = this.page;
     request(`${searchByKeyword}${keywords}`, {
       page
     })
@@ -26,9 +29,8 @@ Page({
           articles: articles,
           hasNextPage: hasNextPage,
           node: card_node,
-          page: page + 1,
-          isFetching: false,
         })
+        this.page += 1;
 
         this.clearTimer();
       })
@@ -56,10 +58,6 @@ Page({
   },
   clearTimer: function() {
     clearTimeout(this.timer);
+    this.page = 1;
   },
-  switchFetching: function(status) {
-    this.setData({
-      isFetching: status
-    });
-  }
 });

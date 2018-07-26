@@ -65,7 +65,6 @@ Page({
 
   fetchData: function(e) {
     const page = this.data.page;
-    this.toggleFetching(true);
 
     request(`${timeline}?page=${page}`)
       .then(res => {
@@ -78,16 +77,10 @@ Page({
         this.setData({
           articles: newArticleList,
           page: page + 1,
-          isFetching: false,
         });
       });
   },
 
-  toggleFetching: function(status) {
-    this.setData({
-      isFetching: status,
-    });
-  },
 
   /**
    * 生命周期函数--监听页面加载
