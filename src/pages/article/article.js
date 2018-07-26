@@ -12,14 +12,15 @@ Page({
     },
     isShowComment: false
   },
-  closeShowComment: function() {
-    this.setData({
-      isShowComment: false
-    });
-  },
   openComment: function() {
+    this.switchComment(true);
+  },
+  closeComment: function() {
+    this.switchComment(false);
+  },
+  switchComment: function(status) {
     this.setData({
-      isShowComment: true
+      isShowComment: status
     });
   },
   onLoad: function(option) {

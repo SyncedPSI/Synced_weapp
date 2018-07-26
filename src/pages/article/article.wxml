@@ -45,7 +45,7 @@
   </view>
 </block>
 
-<comment isShowComment="{{isShowComment}}" path="/articles/{{article.id}}" bindclosecommentevent="closeShowComment"></comment>
+<comment isShowComment="{{isShowComment}}" path="/articles/{{article.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
 
 <view class="u-fix-bottom">
   <view class="u-fix-bottom--bar">
