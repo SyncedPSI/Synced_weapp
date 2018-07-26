@@ -20,7 +20,7 @@
 
     .left {
       display: flex;
-      flex: 1;
+      flex: 2;
       vertical-align: middle;
 
       .avatar {
@@ -29,6 +29,11 @@
         width: 40rpx;
         vertical-align: middle;
         border-radius: 50%;
+
+        image {
+          width: 100%;
+          height: 100%;
+        }
       }
 
       .author {

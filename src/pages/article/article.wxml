@@ -5,7 +5,7 @@
   <view class="info">
     <view class="left">
       <view class="avatar">
-        <image wx:if="{{article.author.avatar_url}}" src="{{article.author.avatar_url}}" mode="center"></image>
+        <image wx:if="{{article.author.avatar_url}}" src="{{article.author.avatar_url}}" mode="aspectFill"></image>
       </view>
       <view class="author">{{article.author.name}}</view>
       <view class="copyright">{{article.copyright}}</view>
