@@ -23,7 +23,7 @@
           <image src="{{logoUrl}}" mode='aspectFit'></image>
         </view>
         <navigator alt="搜索" class="search_box" url="../search/search">
-          <text>全网搜索知识</text>
+          <text>搜索知识</text>
           <image class="search__btn" src="{{searchIconUrl}}"></image>
         </navigator>
       </view>

@@ -3,7 +3,7 @@
 <view class="container">
   <view class="header">
     <view class='search_box'>
-      <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='全网搜索知识' focus="{{true}}" type="text" confirm-type='搜索' bindinput='searchByKeyword' bindconfirm='search' bindblur='search'></input>
+      <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='搜索知识' focus="{{true}}" type="text" confirm-type="搜索" bindinput='searchByKeyword' bindconfirm='search' bindblur='search'></input>
       <view class='search_button' >
         <image src="{{searchIconUrl}}"></image>
       </view>
