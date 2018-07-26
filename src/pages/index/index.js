@@ -51,12 +51,6 @@ Page({
     isFetching: false,
   },
 
-  bindToSearch: function(e) {
-    wx.navigateTo({
-      url: "../search/search"
-    });
-  },
-
   bindToArticleShow: function(e) {
     wx.navigateTo({
       url: `../article/article?id=${e.target.id}`
