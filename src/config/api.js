@@ -8,4 +8,4 @@ export const institutionShow =  ApiRootUrl + '/institutions/';
 export const getVerificationCode = ApiRootUrl + '/send_verification';
 export const bindMobile = ApiRootUrl + '/bind_mobile';
 export const linkCount = ApiRootUrl + '/login';
-export const searchByKeyword = ApiRootUrl + 'search?type=articles&keywords=';
+export const searchByKeyword = ApiRootUrl + '/search?type=for_weapp&keywords=';
