@@ -22,10 +22,10 @@
         <view class='logo'>
           <image src="{{logoUrl}}" mode='aspectFit'></image>
         </view>
-        <view class='search_box' bindtap="bindToSearch">
+        <navigator alt="搜索" class="search_box" url="../search/search">
           <text>全网搜索知识</text>
           <image class="search__btn" src="{{searchIconUrl}}"></image>
-        </view>
+        </navigator>
       </view>
     </view>
     <view class='content_container'>
