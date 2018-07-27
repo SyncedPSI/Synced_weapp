@@ -4,7 +4,6 @@
   .wxParse-mark {
     background-color: transparent;
     color: inherit;
-    border-bottom: 1px solid $red;
   }
 
   .wxParse-p {
@@ -59,8 +58,7 @@
   }
 
   .wxParse-blockquote {
-    border-left: 2rpx solid $bg-white;
-    padding: 8rpx 0 8rpx 16rpx;
+    padding: 20rpx;
     margin: 0;
 
     .wxParse-p {
@@ -89,7 +87,6 @@
 
   .wxParse-a {
     color: $title-black;
-    // border-bottom: 2rpx dashed $red;
   }
 
   .wxParse-ul {
@@ -106,5 +103,10 @@
 
   .wxParse-li-text .wxParse-p {
     margin: 0;
+  }
+
+  .wxParse-i, .wxParse-em {
+    font-style: normal;
+    color: $secondary-black;
   }
 }

@@ -4,6 +4,7 @@
 .article {
   padding: 0 40rpx;
   background-color: $white;
+  padding-bottom: 60rpx;
 
   .title {
     font-size: 44rpx;
@@ -11,7 +12,7 @@
     color: $black;
     margin-top: 40rpx;
     margin-bottom: 24rpx;
-    font-weight: 400;
+    font-weight: 500;
   }
 
   .info {
@@ -47,14 +48,16 @@
 
       .copyright {
         display: inline-block;
-        font-size: 28rpx;
+        font-size: 24rpx;
         background-color: $red;
-        line-height: 40rpx;
+        line-height: 36rpx;
         color: $white;
         padding-right: 18rpx;
         padding-left: 18rpx;
         border-radius: 20rpx;
         font-weight: 300;
+        height: 36rpx;
+        margin-top: 2rpx;
       }
     }
 
@@ -107,7 +110,7 @@
       top: 0;
       width: 0;
       height: 0;
-      border: 20rpx solid transparent;
+      border: 14rpx solid transparent;
       border-top-color: $red;
       border-right-color: $red;
     }
