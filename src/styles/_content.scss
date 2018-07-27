@@ -99,10 +99,23 @@
 
   .wxParse-li-inner {
     margin: 0;
+    width: 100%;
+
+    .wxParse-li-text {
+      flex: 18;
+    }
+
+    .wxParse-li-text:first-child {
+      flex: 1;
+    }
   }
 
   .wxParse-li-text .wxParse-p {
     margin: 0;
+  }
+
+  .wxParse-li-circle {
+    display: inline-block;
   }
 
   .wxParse-i, .wxParse-em {
