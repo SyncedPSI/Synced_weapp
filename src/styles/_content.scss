@@ -103,6 +103,7 @@
 
     .wxParse-li-text {
       flex: 18;
+      line-height: 44px;
     }
 
     .wxParse-li-text:first-child {
@@ -112,10 +113,6 @@
 
   .wxParse-li-text .wxParse-p {
     margin: 0;
-  }
-
-  .wxParse-li-circle {
-    display: inline-block;
   }
 
   .wxParse-i, .wxParse-em {
