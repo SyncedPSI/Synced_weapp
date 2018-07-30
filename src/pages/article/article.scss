@@ -96,12 +96,12 @@
   }
 
   .node_card {
-    width: 512rpx;
     background-color: $white;
-    padding: 20rpx 32rpx 28rpx;
+    padding: 20rpx 130rpx 28rpx 32rpx;
     display: inline-block;
     margin-right: 32rpx;
     position: relative;
+    min-width: 180rpx;
 
     &.can_click::after {
       content: '';
