@@ -1,5 +1,9 @@
 Component({
   properties: {
+    article_id: {
+      type: String,
+      value: "none"
+    },
     title: {
       type: String,
       value: "none"

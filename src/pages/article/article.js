@@ -7,9 +7,8 @@ const app = getApp();
 Page({
   data: {
     id: "",
-    article: {
-      id: "92c7175c-4178-4131-9a35-71d40f443b36",
-    },
+    article: {},
+    isShowPage: false,
     isShowComment: false
   },
   openComment: function() {
@@ -25,10 +24,12 @@ Page({
   },
   onLoad: function(option) {
     const $this = this;
+    wx.setNavigationBarTitle({
+      title: option.title
+    });
     this.setData({
       id: option.id
     });
-
     request(`${articleShow}${option.id}`)
       .then(res => {
         const article = res.data;
@@ -36,6 +37,9 @@ Page({
         WxParse.wxParse("article_content", "html", res.data.content, $this, 5);
         $this.setData({
           article: article
+        });
+        this.setData({
+          isShowPage: true
         });
       })
   },
