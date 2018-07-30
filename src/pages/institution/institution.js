@@ -11,21 +11,24 @@ const app = getApp();
 Page({
   data: {
     id: "",
-    institution: {}
+    institution: {},
+    isRequestFinished: false
   },
 
   onLoad: function (option) {
     this.setData({
       id: option.id
     });
-    console.log(this.data.id);
-
+    wx.setNavigationBarTitle({
+      title: option.title
+    });
     request(`${institutionShow}${option.id}`)
       .then(res => {
         const institution = res.data;
         WxParse.wxParse("institution_content", "html", res.data.desc, this, 5);
         this.setData({
-          institution: institution
+          institution: institution,
+          isRequestFinished: true
         });
       })
   }

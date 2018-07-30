@@ -9,6 +9,10 @@ view {
   overflow: hidden;
 }
 
+page {
+  background-color: $background-color;
+}
+
 .container {
   height: 100vh;
   position: relative;

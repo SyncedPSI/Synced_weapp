@@ -33,7 +33,7 @@
             </view>
           </block>
           <block wx:else>
-            <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}" class="node_card can_click" id="{{item.node_id}}">
+            <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}&title={{item.zh_name ? item.zh_name : item.en_name}}" class="node_card can_click" id="{{item.node_id}}">
               <view class="top">
                 <view class="zh_name">{{item.zh_name}}</view>
                 <view class="type">{{item.node_type}}</view>

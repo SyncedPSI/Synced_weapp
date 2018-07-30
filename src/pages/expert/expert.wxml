@@ -3,25 +3,25 @@
 <import src="../common/node_technologies.wxml"/>
 <import src="../common/node_institutions.wxml"/>
 
-<view class="node-header">
-  <view class="u-flex">
-    <view>
-      <template is="node-header" data="{{...expert}}" />
+<block wx:if="{{isRequestFinished}}">
+  <view class="node-header">
+    <view class="u-flex">
+      <view>
+        <template is="node-header" data="{{...expert}}" />
+      </view>
+      <image class="node-header__avatar" src="" mode="cover" />
     </view>
-    <image class="node-header__avatar" src="" mode="cover" />
+    <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
+    <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
   </view>
-  <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
-  <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
-</view>
-
-<view wx:if="{{expert.desc != ''}}" class="node-block">
-    <view class="node-block__header">
-      <text class="node-block__title">简介</text>
-    </view>
-    <view class="content">
-      <import src="../../wxParse/wxParse.wxml"/>
-      <template is="wxParse" data="{{wxParseData:expert_content.nodes}}" />
-    </view>
-</view>
-
-<template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
+  <view wx:if="{{expert.desc != ''}}" class="node-block">
+      <view class="node-block__header">
+        <text class="node-block__title">简介</text>
+      </view>
+      <view class="content">
+        <import src="../../wxParse/wxParse.wxml"/>
+        <template is="wxParse" data="{{wxParseData:expert_content.nodes}}" />
+      </view>
+  </view>
+  <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
+</block>

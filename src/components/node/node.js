@@ -1,6 +1,6 @@
 Component({
   properties: {
-    zhName: {
+    name: {
       type: String,
       value: ""
     },

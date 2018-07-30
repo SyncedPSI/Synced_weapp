@@ -12,10 +12,10 @@
   <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreData">
     <view class="search__container">
       <view hidden="{{node === null}}">
-        <node id="{{node.id}}" nodeId="{{node.id}}" zhName="{{node.zh_name}}" type="{{node.type}}" summary="{{node.summary}}"></node>
+        <node id="{{node.id}}" nodeId="{{node.id}}" name="{{node.zh_name ? node.zh_name : node.en_name}}" type="{{node.type}}" summary="{{node.summary}}"></node>
       </view>
       <view wx:for="{{articles}}" wx:key="{{item.id}}">
-        <article id="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" bindtap="bindToArticleShow"></article>
+        <article article_id="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}"></article>
       </view>
     </view>
     <view hidden="{{!hasNextPage || articles.length === 0}}">
