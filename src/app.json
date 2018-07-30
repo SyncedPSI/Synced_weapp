@@ -15,7 +15,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "机器之心",
     "navigationBarTextStyle":"black",
-    "enablePullDownRefresh": true,
     "backgroundColor": "#f6f6f6"
   }
 }
