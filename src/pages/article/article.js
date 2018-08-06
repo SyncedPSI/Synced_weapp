@@ -36,17 +36,17 @@ Page({
       title
     });
 
-    // request(`${articleShow}${option.id}`)
-    //   .then(res => {
-    //     const article = res.data;
-    //     article.published_at = getDateDiff(res.data.published_at);
-    //     WxParse.wxParse("article_content", "html", res.data.content, $this, 5);
+    request(`${articleShow}${option.id}`)
+      .then(res => {
+        const article = res.data;
+        article.published_at = getDateDiff(res.data.published_at);
+        WxParse.wxParse("article_content", "html", res.data.content, $this, 5);
 
-    //     $this.setData({
-    //       article,
-    //       isFetching: false,
-    //     });
-    //   });
+        $this.setData({
+          article,
+          isFetching: false,
+        });
+      });
   },
   bindForsubmit: function(event) {
     console.log(event.detail.value.textarea)
