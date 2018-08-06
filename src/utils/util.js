@@ -89,6 +89,7 @@ export const request = (url, data = {}, method = "GET") => {
       },
       method: method,
       header: {
+        'Accept': '*/*',
         'Content-Type': 'application/json',
         'token': wx.getStorageSync('token')
       },
