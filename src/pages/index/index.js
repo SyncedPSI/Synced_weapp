@@ -62,7 +62,6 @@ Page({
 
     request(`${timeline}?page=${page}`)
       .then(res => {
-        console.log('success', res)
         const articles = this.data.articles;
         const newArticles = res.data;
         newArticles.forEach(item => {
@@ -73,8 +72,6 @@ Page({
           articles: newArticleList,
           page: page + 1,
         });
-      }).catch(error => {
-        console.log('error', error)
       });
   },
 
