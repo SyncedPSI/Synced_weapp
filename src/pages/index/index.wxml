@@ -16,7 +16,7 @@
 <import src="../common/loading.wxml"/>
 
 <view class='container'>
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="fetchData">
+  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="fetchData" enable-back-to-top>
     <view class="header_wrapper {{scrollTop >= 160 ? 'fixed' : ''}}">
       <view class="header">
         <view class='logo'>
