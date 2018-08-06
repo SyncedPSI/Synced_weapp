@@ -7,8 +7,11 @@ const app = getApp();
 Page({
   data: {
     id: "",
-    article: {},
-    isShowPage: false,
+    title: "",
+    isFetching: true,
+    article: {
+      related_nodes: [],
+    },
     isShowComment: false
   },
   openComment: function() {
@@ -23,25 +26,27 @@ Page({
     });
   },
   onLoad: function(option) {
+    const { id, title } = option;
     const $this = this;
     wx.setNavigationBarTitle({
       title: option.title
     });
     this.setData({
-      id: option.id
+      id,
+      title
     });
+
     request(`${articleShow}${option.id}`)
       .then(res => {
         const article = res.data;
         article.published_at = getDateDiff(res.data.published_at);
         WxParse.wxParse("article_content", "html", res.data.content, $this, 5);
+
         $this.setData({
-          article: article
+          article,
+          isFetching: false,
         });
-        this.setData({
-          isShowPage: true
-        });
-      })
+      });
   },
   bindForsubmit: function(event) {
     console.log(event.detail.value.textarea)

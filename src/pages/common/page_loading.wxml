@@ -1,0 +1,5 @@
+<template name="page_loading">
+  <view class="page-loading__bounce page-loading__bounce1"></view>
+  <view class="page-loading__bounce page-loading__bounce2"></view>
+  <view class="page-loading__bounce page-loading__bounce3"></view>
+</template>

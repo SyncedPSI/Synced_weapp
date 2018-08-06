@@ -51,12 +51,6 @@ Page({
     isFetching: false,
   },
 
-  bindToArticleShow: function(e) {
-    wx.navigateTo({
-      url: `../article/article?id=${e.target.id}`
-    });
-  },
-
   scroll: function(e) {
     this.setData({
       scrollTop: e.detail.scrollTop

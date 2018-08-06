@@ -1,9 +1,5 @@
 Component({
   properties: {
-    article_id: {
-      type: String,
-      value: "none"
-    },
     title: {
       type: String,
       value: "none"
@@ -15,6 +11,10 @@ Component({
     published_at: {
       type: String,
       value: "none"
+    },
+    articleId: {
+      type: String,
+      value: ""
     }
   }
 });

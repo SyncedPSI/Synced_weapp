@@ -72,3 +72,32 @@ page {
     }
   }
 }
+
+.page-loading {
+  &__bounce {
+    width: 76%;
+    height: 20rpx;
+    background-color: $bg-white;
+    margin: 20rpx 0;
+    animation: pl-bouncedelay 1.4s infinite;
+  }
+
+  &__bounce1 {
+    animation-delay: -0.32s;
+  }
+
+  &__bounce2 {
+    animation-delay: -0.16s;
+  }
+
+  @keyframes pl-bouncedelay {
+    0%,
+    80%,
+    100% {
+      width: 76%;
+    }
+    40% {
+      width: 20%;
+    }
+  }
+}

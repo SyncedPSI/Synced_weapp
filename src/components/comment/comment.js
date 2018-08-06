@@ -23,6 +23,9 @@ Component({
 
   },
   methods: {
+    move: function() {
+      return false;
+    },
     closeComment: function() {
       this.triggerEvent('closecommentevent');
     },
