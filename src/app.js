@@ -3,7 +3,7 @@ import { camelCase } from 'lodash';
 App({
   onLaunch() {
     console.log(camelCase('OnLaunch'));
-
+    this.checkSystemInfo();
     // 调用API从本地缓存中获取数据
     const logs = wx.getStorageSync('logs') || [];
     logs.unshift(Date.now());
@@ -27,7 +27,17 @@ App({
       });
     }
   },
+  checkSystemInfo: function() {
+    wx.getSystemInfo({
+      success: (res) => {
+        if (res.model.match('iPhone X') !== null) {
+          this.globalData.isIphoneX = true;
+        }
+      }
+    })
+  },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    isIphoneX: false,
   }
 });

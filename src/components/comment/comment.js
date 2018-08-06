@@ -14,7 +14,8 @@ Component({
   },
   data: {
     comment: [],
-    content: ''
+    content: '',
+    isIphoneX: getApp().globalData.isIphoneX
   },
   attached: function() {
     console.log(this.properties.path)

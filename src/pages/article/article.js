@@ -12,7 +12,8 @@ Page({
     article: {
       related_nodes: [],
     },
-    isShowComment: false
+    isShowComment: false,
+    isIphoneX: getApp().globalData.isIphoneX
   },
   openComment: function() {
     this.switchComment(true);
