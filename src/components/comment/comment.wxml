@@ -5,7 +5,7 @@
   <template is="comment_item" />
 </view>
 
-<view class="u-container-cover comment-editor" wx:if="{{isShowComment}}">
+<view class="u-container-cover comment-editor" wx:if="{{isShowComment}}" catchtouchmove="move">
   <view class="u-container-cover comment-editor__mask" bindtap="closeComment"></view>
   <view class="comment-editor__main">
     <textarea class="comment-editor__textarea" auto-height placeholder="请输入评论" name="textarea" bindinput="bindContentInput" />
