@@ -1,4 +1,4 @@
-@import 'color';
+@import 'variables';
 @import 'mixins';
 
 .u-container-cover {
@@ -126,6 +126,10 @@
     display: flex;
     align-items: center;
     font-size: 30rpx;
+
+    &.has-safe-padding {
+      padding-bottom: 20rpx + $safe-padding-bottom;
+    }
   }
 
   &__textarea {

@@ -1,5 +1,9 @@
-@import 'color';
+@import 'variables';
 @import 'content';
+
+page {
+  background-color: #fff;
+}
 
 .article {
   padding: 0 40rpx;

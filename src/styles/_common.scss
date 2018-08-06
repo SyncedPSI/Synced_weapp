@@ -12,6 +12,10 @@
   justify-content: space-around;
   align-items: center;
 
+  .has-safe-padding {
+    bottom: $safe-padding-bottom;
+  }
+
   &--bar {
     display:flex;
     align-items:center;

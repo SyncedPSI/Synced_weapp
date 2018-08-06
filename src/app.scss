@@ -1,9 +1,10 @@
-@import 'color';
+@import 'variables';
 @import 'share';
 @import 'common';
 @import './wxParse/wxParse.wxss';
 @import 'node';
 @import 'account';
+
 
 view {
   overflow: hidden;
@@ -11,6 +12,10 @@ view {
 
 page {
   background-color: $background-color;
+}
+
+.has-safe-padding {
+  padding-bottom: $safe-padding-bottom;
 }
 
 .container {
