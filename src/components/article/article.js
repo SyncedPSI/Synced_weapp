@@ -1,5 +1,5 @@
 Component({
-  properties: {,
+  properties: {
     title: {
       type: String,
       value: "none"
