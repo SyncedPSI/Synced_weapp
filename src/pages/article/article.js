@@ -27,11 +27,11 @@ Page({
     });
   },
   onLoad: function(option) {
+    this.setNavigationBarTitle();
+    this.getTitleHeight();
+
     const { id, title } = option;
     const $this = this;
-    wx.setNavigationBarTitle({
-      title: option.title
-    });
     this.setData({
       id,
       title
@@ -51,5 +51,26 @@ Page({
   },
   bindForsubmit: function(event) {
     console.log(event.detail.value.textarea)
-  }
+  },
+  setNavigationBarTitle: function(title = '') {
+    wx.setNavigationBarTitle({
+      title,
+    });
+  },
+  getTitleHeight: function() {
+    setTimeout(() => {
+      wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
+        this.titleHeight = (rect.height + 16);
+      }).exec();
+    }, 300);
+  },
+  onPageScroll: function(event) {
+    if (this.titleHeight === undefined) return;
+    const { scrollTop } = event;
+    if (scrollTop > this.titleHeight) {
+      this.setNavigationBarTitle(this.data.title);
+    } else {
+      this.setNavigationBarTitle();
+    }
+  },
 });
