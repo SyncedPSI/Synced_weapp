@@ -88,25 +88,52 @@ export const request = (url, data = {}, method = "GET") => {
         ...data,
       },
       method: method,
-      header: {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-        'token': wx.getStorageSync('token')
+      header: getHeader(),
+      success: (res) => {
+        if (res.statusCode == 200) {
+          resolve(res);
+        } else {
+          reject(res);
+        }
       },
-      success: function (res) {
-        resolve(res);
-      },
-      fail: function (err) {
-        reject(err);
+      fail: (err) => {
+        wx.showToast({
+          title: '服务器未响应',
+          icon: 'loading',
+          duration: 2000
+        });
       }
     })
   });
+};
+
+const getHeader = () => {
+  try {
+    const token = app.globalData.authToken;
+    if (token) {
+      return {
+        'Accept': '*/*',
+        'Content-Type': 'application/json',
+        'Authorization': `bearer ${token}`
+      }
+    }
+    return {
+      'Content-Type': 'application/json',
+      'Accept': '*/*'
+    }
+  } catch (e) {
+    return {
+      'Content-Type': 'application/json',
+      'Accept': '*/*'
+    }
+  }
 };
 
 export const showErrorToast = (msg) => {
   wx.showToast({
     title: msg,
     image: '/images/icon_error.png',
+    duration: 2000
   })
 };
 
