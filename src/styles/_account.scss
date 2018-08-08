@@ -39,6 +39,7 @@
     border: none;
     background-color: $black;
     color: #fff;
+    margin-top: 80rpx;
   }
 
   &__code {
@@ -51,4 +52,11 @@
   &__submit {
     font-size: 36rpx;
   }
+}
+
+.account-register {
+  font-size: 32rpx;
+  color: $black;
+  text-align: center;
+  margin-top: 60rpx;
 }

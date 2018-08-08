@@ -1,10 +1,13 @@
 <view class="account">
   <view class="account__weclome">欢迎你！</view>
-  <view class="account__desc">关联账户，有助于我们为你同步更多优质资源。</view>
+  <view class="account__desc">关联已有账户或直接微信注册，获得更多优质内容</view>
 
   <view class="account-form">
-    <input class="account-form__input" placeholder="手机号/邮箱账号" bindinput="bindLoginNameInput" />
+    <input class="account-form__input" placeholder="手机号/邮箱账号" bindinput="bindLoginNameInput" focus="{{true}}" type="text" confirm-type="next"/>
     <input class="account-form__input" placeholder="密码" bindinput="bindPasswordInput" />
     <button class="account-form__btn account-form__submmit"  bindtap="submitForm">登录</button>
+  </view>
+  <view class="account-register">
+    <text bindtap="register">微信注册</text>
   </view>
 </view>
