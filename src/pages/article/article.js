@@ -1,5 +1,5 @@
-import { request, getDateDiff } from "utils/util";
-import { articleShow } from "config/api";
+import { request, getDateDiff, showErrorToast } from "utils/util";
+import { articleShow, login } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -13,50 +13,54 @@ Page({
       related_nodes: [],
     },
     isShowComment: false,
-    isIphoneX: getApp().globalData.isIphoneX
+    isIphoneX: app.globalData.isIphoneX,
+    isLogin: app.globalData.isLogin,
+    userInfo: app.globalData.userInfo
   },
+
   openComment: function() {
     this.switchComment(true);
   },
+
   closeComment: function() {
     this.switchComment(false);
   },
+
   switchComment: function(status) {
     this.setData({
       isShowComment: status
     });
   },
+
   onLoad: function(option) {
     this.setNavigationBarTitle();
     this.getTitleHeight();
 
     const { id, title } = option;
-    const $this = this;
     this.setData({
       id,
-      title
+      title,
+      isLogin: app.globalData.isLogin
     });
 
     request(`${articleShow}${option.id}`)
       .then(res => {
         const article = res.data;
         article.published_at = getDateDiff(res.data.published_at);
-        WxParse.wxParse("article_content", "html", res.data.content, $this, 5);
-
-        $this.setData({
+        WxParse.wxParse("article_content", "html", res.data.content, this, 5);
+        this.setData({
           article,
-          isFetching: false,
+          isFetching: false
         });
       });
   },
-  bindForsubmit: function(event) {
-    console.log(event.detail.value.textarea)
-  },
+
   setNavigationBarTitle: function(title = '') {
     wx.setNavigationBarTitle({
       title,
     });
   },
+
   getTitleHeight: function() {
     setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
@@ -64,6 +68,7 @@ Page({
       }).exec();
     }, 300);
   },
+
   onPageScroll: function(event) {
     if (this.titleHeight === undefined) return;
     const { scrollTop } = event;
@@ -73,4 +78,55 @@ Page({
       this.setNavigationBarTitle();
     }
   },
+
+  getUserInfo: (event) => {
+    var encryptedData = '';
+    var iv = '';
+
+    wx.setStorage({
+      key: 'userInfo',
+      data: event.detail.userInfo
+    });
+
+    wx.login({
+      success: (res) => {
+        const code = res.code;
+        if (code) {
+          wx.getUserInfo({
+            success: (e) => {
+              encryptedData = e.encryptedData;
+              iv = e.iv;
+              request(
+                login,
+                {
+                  code: code,
+                  encrypted_data: encryptedData,
+                  iv: iv
+                },
+                "POST")
+                .then(res => {
+                  const authToken = res.data.auth_token;
+                  wx.setStorage({
+                    key: 'authToken',
+                    data: authToken
+                  });
+                  this.setData({
+                    isLogin: true
+                  });
+                  app.globalData.isLogin = true;
+                })
+                .catch(err => {
+                  const unionid = err.data.unionid
+                  wx.navigateTo({
+                    url: `../account/link/link?unionid=${unionid}`
+                  })
+                })
+            }
+          });
+        } else {
+          showErrorToast('点击重试')
+        }
+      }
+    });
+  }
 });
