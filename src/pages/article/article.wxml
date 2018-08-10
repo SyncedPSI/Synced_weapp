@@ -53,10 +53,18 @@
     <comment isShowComment="{{isShowComment}}" path="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
 
     <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
-      <view class="u-fix-bottom--bar">
-        <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
-        <text bindtap="openComment">评论</text>
-      </view>
+      <block wx:if="{{isLogin}}">
+        <view class="u-fix-bottom--bar">
+          <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
+          <text bindtap="openComment">评论</text>
+        </view>
+      </block>
+      <block wx:else>
+        <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
+          <text bindtap="openComment">评论</text>
+        </button>
+      </block>
     </view>
   </block>
 </view>
