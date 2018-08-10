@@ -14,8 +14,7 @@ Page({
     },
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
-    isLogin: app.globalData.isLogin,
-    userInfo: app.globalData.userInfo
+    isLogin: false
   },
 
   openComment: function() {
@@ -79,7 +78,12 @@ Page({
     }
   },
 
-  getUserInfo: (event) => {
+  getUserInfo: function(event) {
+    wx.showToast({
+      title: '正在登录',
+      icon: 'loading',
+      duration: 2000
+    });
     var encryptedData = '';
     var iv = '';
 
@@ -87,6 +91,7 @@ Page({
       key: 'userInfo',
       data: event.detail.userInfo
     });
+    app.globalData.userInfo = wx.getStorageSync('userInfo');
 
     wx.login({
       success: (res) => {
@@ -97,7 +102,7 @@ Page({
               encryptedData = e.encryptedData;
               iv = e.iv;
               request(
-                login,
+                `http://f8cb76dc.ngrok.io/api/v1/users/login`,
                 {
                   code: code,
                   encrypted_data: encryptedData,
@@ -106,20 +111,31 @@ Page({
                 "POST")
                 .then(res => {
                   const authToken = res.data.auth_token;
+                  const expiredTime = res.data.expired_time;
                   wx.setStorage({
                     key: 'authToken',
                     data: authToken
                   });
+                  wx.setStorage({
+                    key: 'expiredTime',
+                    data: expiredTime
+                  });
                   this.setData({
-                    isLogin: true
+                    isLogin: true,
+                    isShowComment: true
                   });
                   app.globalData.isLogin = true;
                 })
                 .catch(err => {
-                  const unionid = err.data.unionid
-                  wx.navigateTo({
-                    url: `../account/link/link?unionid=${unionid}`
-                  })
+                  if (err.statusCode == 401) {
+                    console.log('401');
+                    const unionid = err.data.unionid
+                    wx.navigateTo({
+                      url: `../account/link/link?unionid=${unionid}`
+                    })
+                  } else {
+                    showErrorToast('登录失败')
+                  }
                 })
             }
           });
