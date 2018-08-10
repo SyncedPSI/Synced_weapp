@@ -1,43 +1,61 @@
-import { camelCase } from 'lodash';
+import { request } from "utils/util";
 
 App({
-  onLaunch() {
-    console.log(camelCase('OnLaunch'));
+  globalData: {
+    isIphoneX: false,
+    isLogin: false,
+    authToken: null,
+    expiredTime: null
+  },
+
+  onLaunch: function () {
     this.checkSystemInfo();
-    // 调用API从本地缓存中获取数据
-    const logs = wx.getStorageSync('logs') || [];
-    logs.unshift(Date.now());
-    wx.setStorageSync('logs', logs);
+    this.checkSession();
   },
-  getUserInfo(cb) {
-    if (this.globalData.userInfo) {
-      typeof cb === 'function' && cb(this.globalData.userInfo);
-    } else {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              console.log(res.userInfo);
-              this.globalData.userInfo = res.userInfo;
-              typeof cb === 'function' && cb(this.globalData.userInfo);
-            }
-          });
-        }
-      });
-    }
-  },
+
   checkSystemInfo: function() {
     wx.getSystemInfo({
       success: (res) => {
         if (res.model.match('iPhone X') !== null) {
-          this.globalData.isIphoneX = true;
-        }
+          this.globalData.isIphoneX = true;        }
       }
     })
   },
-  globalData: {
-    userInfo: null,
-    isIphoneX: false,
+
+  checkSession: function() {
+    wx.checkSession({
+      success: () => {
+        this.globalData.authToken = wx.getStorageSync('authToken');
+        this.globalData.expiredTime = wx.getStorageSync('expiredTime');
+        const { authToken, expiredTime } = this.globalData;
+
+        if (authToken) {
+          request(
+            `http://f8cb76dc.ngrok.io/api/v1/users/login`,
+            {},
+            "POST")
+            .then(res => {
+              const remain_hours = (expiredTime - parseInt(new Date().getTime() / 1000)) / 3600;
+              if (remain_hours > 1.5) {
+                console.log('已登录');
+                this.globalData.isLogin = true;
+              } else {
+                console.log('未登录');
+                this.globalData.isLogin = false;
+              }
+            }).catch(err => {
+              console.log('isLogin请求401: 未登录');
+              this.globalData.isLogin = false;
+            })
+        } else {
+          this.globalData.isLogin = false;
+          console.log('没有auth_token: 未登录');
+        }
+      },
+      fail: () => {
+        this.globalData.isLogin = false;
+        console.log('session过期: 未登录');
+      }
+    });
   }
 });
