@@ -76,7 +76,7 @@ export const getDateDiff = dateStr => {
   } else if (d_days >= 20 && d_days < 30) {
     return M + "-" + D + " " + H + ":" + m;
   } else if (d_days >= 30) {
-    return Y + "-" + M + "-" + D + " " + H + ":" + m;
+    return Y + "-" + M + "-" + D;
   }
 };
 
