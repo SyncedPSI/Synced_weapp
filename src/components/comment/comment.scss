@@ -144,5 +144,16 @@
   &__submit {
     margin-left: 28rpx;
     flex-shrink: 0;
+    color: $black;
   }
+}
+
+button {
+  border-radius: 0;
+  background-color: $white;
+}
+
+button::after {
+  border-radius: 0;
+  border: none;
 }
