@@ -1,4 +1,4 @@
-import { linkCount } from "config/api";
+import { bindAccount, register } from "config/api";
 import { mobile_or_email_reg, pwd_reg } from 'config/all_reg';
 import { showErrorToast, request, checkValue } from 'utils/util';
 
@@ -8,24 +8,33 @@ Page({
   data: {
     loginName: null,
     password: null,
-    countDown: 0
+    unionid: null
   },
+
+  onLoad: function(option) {
+    this.setData({
+      unionid: option.unionid
+    });
+  },
+
   bindLoginNameInput: function (e) {
     this.setData({
       loginName: e.detail.value
     });
   },
+
   bindPasswordInput: function (e) {
     this.setData({
       password: e.detail.value
     });
   },
+
   submitForm: function() {
-    const { loginName, password } = this.data;
+    const { loginName, password, unionid } = this.data;
     const checkLoginName = checkValue({
       value: loginName,
       reg: mobile_or_email_reg,
-      errMsg: '账户名不正确',
+      errMsg: '用户名格式不正确',
     });
 
     const checkPassword = checkValue({
@@ -35,16 +44,56 @@ Page({
     });
 
     if (checkLoginName && checkPassword) {
-      request(linkCount, {
+      request(
+      bindAccount,
+      {
         'login_name': loginName,
         password,
-      }).then(res => {
+        unionid
+      },
+      "POST")
+      .then(res => {
+        const authToken = res.data.auth_token;
+        const expiredTime = res.data.expired_time;
+        wx.setStorage({
+          key: 'authToken',
+          data: authToken
+        });
+        wx.setStorage({
+          key: 'expiredTime',
+          data: expiredTime
+        });
         wx.navigateTo({
           url: "../../index/index"
         });
-      }).catch((err) => {
-        showErrorToast('出错啦');
+      }).catch(err => {
+        showErrorToast('账号或密码错误');
       });
     }
+  },
+
+  register: function() {
+    const { unionid } = this.data;
+    request(
+    register,
+    {
+      'user_info': app.globalData.userInfo,
+      unionid
+    },
+    "POST")
+    .then(res => {
+      const authToken = res.data.auth_token;
+      wx.setStorage({
+        key: 'authToken',
+        data: authToken
+      });
+      wx.setStorage({
+        key: 'expiredTime',
+        data: expiredTime
+      });
+      wx.navigateTo({
+          url: "../../index/index"
+        });
+    })
   }
 });
