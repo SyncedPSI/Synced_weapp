@@ -4,7 +4,7 @@
 
   <view class="account-form">
     <input class="account-form__input" placeholder="手机号/邮箱账号" bindinput="bindLoginNameInput" focus="{{true}}" type="text" confirm-type="next"/>
-    <input class="account-form__input" placeholder="密码" bindinput="bindPasswordInput" />
+    <input class="account-form__input" placeholder="密码" bindinput="bindPasswordInput" password="{{true}}" />
     <button class="account-form__btn account-form__submmit"  bindtap="submitForm">登录</button>
   </view>
   <view class="account-register">
