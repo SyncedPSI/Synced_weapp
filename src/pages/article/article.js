@@ -102,7 +102,7 @@ Page({
               encryptedData = e.encryptedData;
               iv = e.iv;
               request(
-                `http://f8cb76dc.ngrok.io/api/v1/users/login`,
+                login,
                 {
                   code: code,
                   encrypted_data: encryptedData,
@@ -128,7 +128,6 @@ Page({
                 })
                 .catch(err => {
                   if (err.statusCode == 401) {
-                    console.log('401');
                     const unionid = err.data.unionid
                     wx.navigateTo({
                       url: `../account/link/link?unionid=${unionid}`
