@@ -17,6 +17,7 @@ Component({
     comments: [],
     comments_count: 0,
     content: '',
+    placeholder: '请输入评论',
     isIphoneX: getApp().globalData.isIphoneX
   },
 
@@ -60,7 +61,11 @@ Component({
         });
     },
     replyComment: function(event) {
-      this.replyCommentId = event.target.dataset.id;
+      const { id, name } = event.target.dataset;
+      this.replyCommentId = id;
+      this.setData({
+        placeholder: `回复${name}`
+      });
       this.triggerEvent('opencommentevent');
     },
     bindContentInput: function (e) {
