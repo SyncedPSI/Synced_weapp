@@ -50,7 +50,7 @@
   </block>
 
   <block wx:if="{{!isFetching}}">
-    <comment isShowComment="{{isShowComment}}" path="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <comment isShowComment="{{isShowComment}}" article_id="{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
 
     <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
       <block wx:if="{{isLogin}}">

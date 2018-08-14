@@ -1,4 +1,4 @@
-import { ApiRootUrl } from "config/api";
+import { comments } from "config/api";
 import { request } from 'utils/util';
 
 Component({
@@ -7,22 +7,31 @@ Component({
       type: Boolean,
       value: false
     },
-    path: {
+    article_id: {
       type: String,
       value: ''
     }
   },
+
   data: {
-    comment: [],
+    comments: [],
+    comments_count: 0,
     content: '',
     isIphoneX: getApp().globalData.isIphoneX
   },
-  attached: function() {
-    console.log(this.properties.path)
-    // 获得评论列表
-    // request(`${ApiRootUrl}${this.properties.path}`)
 
+  attached: function() {
+    console.log(this.properties.article_id);
+    request(`${comments}?article_id=${this.properties.article_id}`)
+      .then(res => {
+        const { comments, comments_count } = res.data;
+        this.setData({
+          comments,
+          comments_count
+        });
+      });
   },
+
   methods: {
     move: function() {
       return false;
