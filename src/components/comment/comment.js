@@ -1,4 +1,4 @@
-import { comments } from "config/api";
+import { comments, ApiRootUrl } from "config/api";
 import { request, showErrorToast } from 'utils/util';
 
 Component({
@@ -27,7 +27,7 @@ Component({
 
   methods: {
     fetchData: function() {
-      request(`${comments}?article_id=${this.properties.article_id}`)
+      request(`${ApiRootUrl}/articles/${this.properties.article_id}/comments`)
         .then(res => {
           const { comments, comments_count } = res.data;
           this.setData({
@@ -72,8 +72,8 @@ Component({
       const { content } = this.data;
 
       if (content === '') return;
-      const url = this.replyCommentId === null ? `?article_id=${this.properties.article_id}` : `/${this.replyCommentId}/reply`
-      request(`${comments}${url}`, {
+      const url = this.replyCommentId === null ? `${ApiRootUrl}/articles/${this.properties.article_id}/comments` : `${comments}/${this.replyCommentId}/reply`
+      request(`${url}`, {
         content
       }, 'POST')
         .then((res) => {
