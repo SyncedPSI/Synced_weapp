@@ -8,7 +8,7 @@
 <view class="u-container-cover comment-editor" wx:if="{{isShowComment}}" catchtouchmove="move">
   <view class="u-container-cover comment-editor__mask" bindtap="closeComment"></view>
   <view class="comment-editor__main {{isIphoneX ? 'has-safe-padding' : ''}}">
-    <textarea class="comment-editor__textarea" auto-height auto-focus placeholder="{{placeholder}}" fixed show-confirm-bar="{{false}}" name="textarea" bindinput="bindContentInput" />
+    <textarea class="comment-editor__textarea" auto-height auto-focus cursor-spacing="14" placeholder="{{placeholder}}" fixed show-confirm-bar="{{false}}" name="textarea" bindinput="bindContentInput" />
     <text class="comment-editor__submit" bindtap="submitComment">发布</text>
   </view>
 </view>
