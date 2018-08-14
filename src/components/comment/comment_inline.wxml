@@ -2,19 +2,26 @@
   <view class="comment-inline">
     <view class="comment-inline__header">
       <view class="comment-inline__author">
-        <navigator alt="小学生" class="comment-inline__avatar" url="/user/id">
-          <image src="" mode="cover" />
-        </navigator>
-        <view class="comment-inline__user is-only">
-          <navigator class="comment-inline__from" url="/user/id">小学生</navigator>
+        <!-- <navigator alt="{{from.nickname}}" class="comment-inline__avatar" url="/user/{{from.id}}"> -->
+        <view class="comment-inline__avatar">
+          <image src="{{from.avatar_url}}" mode="cover" />
+        </view>
+        <!-- </navigator> -->
+        <view class="comment-inline__user {{to === null ? 'is-only' : ''}}">
+          <text class="comment-inline__from">{{from.nickname}}</text>
+          <!-- <navigator class="comment-inline__from" url="/user/id">{{from.name}}</navigator> -->
+        </view>
+        <view class="comment-inline__user" wx:if="{{to !== null}}">
+          <text>回复 </text>
+          <text class="comment-inline__from"> {{to.nickname}}</text>
         </view>
       </view>
     </view>
     <view class="comment-inline__body">
-      <view class="comment-inline__content">test</view>
+      <view class="comment-inline__content">{{content}}</view>
       <view class="comment-inline__footer">
-        <text>7月9日</text>
-        <text bindtap="openComment">回复</text>
+        <text>{{createdAt}}</text>
+        <text bindtap="replyComment" data-id="{{id}}" data-name="{{to.nickname || from.nickname}}">回复</text>
       </view>
     </view>
   </view>

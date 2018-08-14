@@ -10,6 +10,10 @@ page {
   background-color: $white;
   padding-bottom: 100rpx;
 
+  &__container {
+    margin-top: 96rpx;
+  }
+
   .title {
     font-size: 44rpx;
     line-height: 60rpx;

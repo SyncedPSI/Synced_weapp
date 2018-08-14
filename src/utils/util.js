@@ -109,7 +109,7 @@ export const request = (url, data = {}, method = "GET") => {
 
 const getHeader = () => {
   try {
-    const token = app.globalData.authToken;
+    const token = getApp().globalData.authToken;
     if (token) {
       return {
         'Accept': '*/*',
