@@ -1,6 +1,6 @@
 <import src="../common/page_loading.wxml"/>
 
-<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
+<view class="article__container {{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="article">
     <view class="title" id="js-article-title">{{title}}</view>
     <view wx:if="{{isFetching}}">

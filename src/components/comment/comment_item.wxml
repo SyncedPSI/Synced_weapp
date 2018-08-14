@@ -2,10 +2,11 @@
 <import src="./comment_more.wxml"/>
 
 <template name="comment_item">
-  <view class="comment__item">
-    <template is="comment_inline" />
-    <template is="comment_inline" />
-    <template is="comment_inline" />
-    <template is="comment_more" />
+  <view class="comment__item" wx:for="{{comments}}" wx:key="{{item.id}}">
+    <template is="comment_inline" data="{{from: item.from, content: item.content, id: item.id, createdAt: item.created_at, to: null }}" />
+    <block wx:for="{{item.replies}}" wx:key="{{replyItem.id}}" wx:for-item="replyItem">
+      <template is="comment_inline" data="{{from: replyItem.from, content: replyItem.content, id: replyItem.id, createdAt: replyItem.created_at, to: item.from }}" />
+    </block>
+    <template is="comment_more" wx-if="{{item.count > 3}}" data="{{ count: item.count, index: index, id: item.id }}" />
   </view>
 </template>
