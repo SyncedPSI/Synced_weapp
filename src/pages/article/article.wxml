@@ -52,19 +52,21 @@
   <block wx:if="{{!isFetching}}">
     <comment isShowComment="{{isShowComment}}" article_id="{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
 
-    <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
-      <block wx:if="{{isLogin}}">
+    <block wx:if="{{isLogin}}">
+      <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openComment">
         <view class="u-fix-bottom--bar">
           <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
-          <text bindtap="openComment">评论</text>
+          <text>评论</text>
         </view>
-      </block>
-      <block wx:else>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
         <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
           <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
-          <text bindtap="openComment">评论</text>
+          <text>评论</text>
         </button>
-      </block>
-    </view>
+      </view>
+    </block>
   </block>
 </view>
