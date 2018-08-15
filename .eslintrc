@@ -19,7 +19,7 @@
     }
   },
   "rules": {
-    "strict": 2,
+    "strict": 0,
     "indent": 0
   }
 }
