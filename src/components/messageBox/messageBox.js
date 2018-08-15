@@ -13,6 +13,7 @@ Component({
       },
       node: null,
     }],
+    avatar: wx.getStorageSync('userInfo').avatarUrl,
     scrollTop: 0,
     fillingHeight: 0,
     recommend: defaultRecommend,

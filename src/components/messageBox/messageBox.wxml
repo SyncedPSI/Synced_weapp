@@ -23,7 +23,9 @@
 
         <view class="message-box__inline t-right" wx:else>
           <view class="message-box__content">{{item.message}}</view>
-          <view class="message-box__avatar"></view>
+          <view class="message-box__avatar">
+            <image class="message-box__image" src="{{avatar}}" mode="aspectFill"></image>
+          </view>
         </view>
       </view>
     </view>
