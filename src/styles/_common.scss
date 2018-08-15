@@ -18,7 +18,9 @@
 
   &--bar {
     display: flex;
-    align-items:center;
+    align-items: center;
+    height: 100%;
+    padding: 0 20rpx;
 
     &.is-button {
       display: block;
