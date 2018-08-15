@@ -8,6 +8,11 @@
     "pages/technology/technology",
     "pages/account/mobile/mobile",
     "pages/account/link/link",
+    "pages/setting/collection/collection",
+    "pages/setting/card/card",
+    "pages/setting/comment/comment",
+    "pages/setting/pending/pending",
+    "pages/setting/chatbot/chatbot",
     "pages/logs/logs"
   ],
   "window":{

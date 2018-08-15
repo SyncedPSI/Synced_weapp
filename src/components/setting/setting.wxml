@@ -1,4 +1,4 @@
-<navigator url="/user/chatbot" class="setting" wx:if="{{isLogin}}">
+<navigator url="../setting/chatbot/chatbot" class="setting" wx:if="{{isLogin}}">
   <image class="setting__avatar" src="/icon_png/ic_chatbot_h.png" mode="cover" />
 </navigator>
 <navigator class="setting" wx:else>
