@@ -15,7 +15,7 @@ Component({
     }],
     avatar: wx.getStorageSync('userInfo').avatarUrl,
     scrollTop: 0,
-    fillingHeight: 0,
+    keyboardHeight: 0,
     recommend: defaultRecommend,
     enableSendMessage: false,
     isIphoneX: getApp().globalData.isIphoneX
@@ -56,7 +56,6 @@ Component({
         if (recommend.items.length > 0) {
           realRecommend = recommend.items.map(item => item.question);
         }
-
 
         this.setData({
           chat,
@@ -110,40 +109,24 @@ Component({
     pageScrollToBottom: function() {
       this.getContentHeight((rect) => {
         const { height } = rect;
-
-        if (this.enableChangeFilling) {
-          let newheight = this.getFillingHeight(height);
-          this.setData({
-            fillingHeight: newheight
-          });
-        } else {
-          this.setData({
-            scrollTop: height - this.scrollViewHeight
-          });
-        }
+        this.setData({
+          scrollTop: height - this.scrollViewHeight
+        });
       });
     },
-    inputFocus: function(event) {
-      if (!this.enableChangeFilling) return;
-
+    inputFocus: function (event) {
+      this.setData({
+        keyboardHeight: event.detail.height
+      });
       this.pageScrollToBottom();
     },
     inputBlur: function() {
       this.setData({
-        fillingHeight: 0
+        keyboardHeight: 0
       });
     },
     getContentHeight: function(cb) {
       wx.createSelectorQuery().in(this).select('#js-content').boundingClientRect(cb).exec()
-    },
-    getFillingHeight: function(contentHeight) {
-      const { fillingHeight } = this.data;
-      if (this.scrollViewHeight > contentHeight) {
-        return this.scrollViewHeight - contentHeight;
-      } else if (fillingHeight >= 0) {
-        this.enableChangeFilling = false;
-        return 0;
-      }
     }
   },
 });
