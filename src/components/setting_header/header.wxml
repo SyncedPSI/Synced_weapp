@@ -1,0 +1,18 @@
+<view class="setting-header">
+  <view class="setting-header__user">
+    <image class="setting-header__avatar" src="{{user.avatarUrl}}" mode="cover" />
+    <text>{{user.nickName}}</text>
+  </view>
+  <view class="setting-header__list">
+    <navigator class="setting-header__item {{ activeBar === 'index' ? 'is-active' : '' }}" url="../index/index" hover-class="">
+      <image class="setting-header__icon" src="/icon_png/me_collection.png" mode="cover" />
+    </navigator>
+    <navigator class="setting-header__item {{ activeBar === 'pending' ? 'is-active' : '' }}" url="../pending/pending" hover-class="">
+      <image class="setting-header__icon" src="/icon_png/me_delayread.png" mode="cover" />
+      <text class="setting-header__count">16</text>
+    </navigator>
+    <navigator class="setting-header__item {{ activeBar === 'chatbox' ? 'is-active' : '' }}" url="../chatbot/chatbot" hover-class="">
+      <image class="setting-header__icon" src="/icon_png/me_message.png" mode="cover" />
+    </navigator>
+  </view>
+</view>
