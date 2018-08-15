@@ -38,10 +38,22 @@
   &__item {
     padding: 0 30rpx;
     position: relative;
-  }
 
-  &__item.is-active &__icon {
-    border-bottom: 4rpx solid $red;
+    &::after {
+      content: '';
+      width: 44rpx;
+      height: 6rpx;
+      border-radius: 40rpx;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      margin-left: -22rpx;
+      background-color: #fff;
+    }
+
+    &.is-active::after {
+      background-color: $red;
+    }
   }
 
   &__icon {

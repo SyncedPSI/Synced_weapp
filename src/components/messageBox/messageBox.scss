@@ -146,9 +146,8 @@ $bottom-height: 188rpx;
 
   &__input {
     flex: 1;
-    height: 68rpx;
-    padding: 4rpx 24rpx;
-    padding-bottom: 14rpx;
+    padding: 5rpx 24rpx 6rpx;
+    height: auto;
     color: $black;
     font-size: 30rpx;
     line-height: 1.4;

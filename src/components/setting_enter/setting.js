@@ -18,7 +18,8 @@ Component({
       }, 2000);
     } else {
       this.setData({
-        isLogin
+        isLogin,
+        isHidden: false
       });
     }
   },
