@@ -13,6 +13,7 @@
     "pages/setting/comment/comment",
     "pages/setting/pending/pending",
     "pages/setting/chatbot/chatbot",
+    "pages/setting/index/index",
     "pages/logs/logs"
   ],
   "window":{
