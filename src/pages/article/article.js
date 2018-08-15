@@ -79,69 +79,12 @@ Page({
   },
 
   getUserInfo: function(event) {
-    wx.showToast({
-      title: '正在登录',
-      icon: 'loading',
-      duration: 2000
-    });
-    var encryptedData = '';
-    var iv = '';
-
-    wx.setStorage({
-      key: 'userInfo',
-      data: event.detail.userInfo
-    });
-    app.globalData.userInfo = wx.getStorageSync('userInfo');
-
-    wx.login({
-      success: (res) => {
-        const code = res.code;
-        if (code) {
-          wx.getUserInfo({
-            success: (e) => {
-              encryptedData = e.encryptedData;
-              iv = e.iv;
-              request(
-                login,
-                {
-                  code: code,
-                  encrypted_data: encryptedData,
-                  iv: iv
-                },
-                "POST")
-                .then(res => {
-                  const authToken = res.data.auth_token;
-                  const expiredTime = res.data.expired_time;
-                  wx.setStorage({
-                    key: 'authToken',
-                    data: authToken
-                  });
-                  wx.setStorage({
-                    key: 'expiredTime',
-                    data: expiredTime
-                  });
-                  this.setData({
-                    isLogin: true,
-                    isShowComment: true
-                  });
-                  app.globalData.isLogin = true;
-                })
-                .catch(err => {
-                  if (err.statusCode == 401) {
-                    const unionid = err.data.unionid
-                    wx.navigateTo({
-                      url: `../account/link/link?unionid=${unionid}`
-                    })
-                  } else {
-                    showErrorToast('登录失败')
-                  }
-                })
-            }
-          });
-        } else {
-          showErrorToast('点击重试')
-        }
-      }
+    // event.detail.userInfo
+    app.login(event.detail.userInfo, () => {
+      this.setData({
+        isLogin: true,
+        isShowComment: true
+      });
     });
   }
 });

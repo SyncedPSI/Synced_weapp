@@ -1,3 +1,5 @@
+const app = getApp();
+
 Component({
   properties: {
   },
@@ -6,7 +8,17 @@ Component({
   },
   attached: function () {
     this.setData({
-      isLogin: getApp().globalData.isLogin
+      isLogin: app.globalData.isLogin
     });
   },
+  methods: {
+    getUserInfo: function (event) {
+      app.login(event.detail.userInfo, () => {
+        this.setData({
+          isLogin: true,
+          isShowComment: true
+        });
+      });
+    }
+  }
 });
