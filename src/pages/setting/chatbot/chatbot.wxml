@@ -1,1 +1,5 @@
 <myheader activeBar="chatbox"></myheader>
+
+<view class="chatbot-container">
+  <messageBox class="chatbot"/>
+</view>

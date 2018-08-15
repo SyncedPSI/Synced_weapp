@@ -1,0 +1,9 @@
+<template name="search">
+  <view class="message-search">
+    <view wx:for="{{data}}" wx:key="{{item.id}}" class="message-search__item">
+      <view class="message-search__title">{{item.title}}</view>
+      <view class="message-search__desc">{{item.desc}}</view>
+    </view>
+    <view class="message-search__footer">查看更多></view>
+  </view>
+</template>

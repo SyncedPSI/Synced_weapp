@@ -1,0 +1,43 @@
+<import src="./node.wxml"/>
+<import src="./search.wxml"/>
+
+<view class="message-box {{isIphoneX ? 'is-iphonex' : ''}}">
+  <scroll-view class="message-box__body" id="js-scroll-view" scroll-y style="height: 100%; padding-top: {{scrollViewPaddingTop}}px;" scroll-top="{{scrollTop}}">
+    <view id="js-content">
+      <view class="message-box__item" wx:for="{{chat}}" wx:key="{{index}}">
+        <view class="message-box__inline t-left" wx:if="{{item.fromRobot}}">
+          <view class="message-box__avatar">
+            <image class="message-box__image" src="/images/logo_avatar.png" mode="aspectFill"></image>
+          </view>
+          <view>
+            <view class="message-box__content">{{item.message}}</view>
+            <view class="message-box__content" wx:if="{{item.node !== null}}">
+              <template is="node" data="{{...item.node}}" />
+            </view>
+            <view class="message-box__content" wx:if="{{item.askBack.items.length !== 0}}">
+              <template is="search" data="{{...item.askBack}}" />
+            </view>
+          </view>
+        </view>
+
+        <view class="message-box__inline t-right" wx:else>
+          <view class="message-box__content">{{item.message}}</view>
+          <view class="message-box__avatar"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="message-box__bottom {{isIphoneX ? 'is-iphonex' : ''}}">
+  <scroll-view class="recommend-word__container" scroll-x style="width: 100%">
+    <view class="recommend-word__item" wx:for="{{recommend}}" wx:key="recommend-word-{{index}}">
+      <text class="recommend-word__inline" bindtap="sendRecommendWord" data-value="{{item}}">{{item}}</text>
+    </view>
+  </scroll-view>
+  <view class="input-box">
+    <!-- <button type="default" class="input-box__btn input-box__voice" confirm-type="send"></button> -->
+    <input class="input-box__input" type="text" confirm-type="send" bindfocus="inputFocus" bindblur="inputBlur" confirm-hold value="{{message}}" placeholder="和我心聊一聊吧！" bindinput="handleInput" placeholder-class="input_placeholder" cursor-spacing="18" bindconfirm="sendMessage"/>
+    <button type="default" bindtap="sendMessage" class="input-box__btn input-box__send {{enableSendMessage ? 'enable' : ''}}" confirm-type="send"></button>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+<template name="node">
+  <view class="message-node">
+    <view class="message-node__logo">
+      <img height="28"></img>
+    </view>
+    <view class="message__flex">
+      <text class="message-node__title">{{title}}</text>
+      <text class="message-node__type">{{type}}</text>
+    </view>
+    <view class="message-node__desc">{{desc}}</view>
+  </view>
+</template>
