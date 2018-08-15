@@ -1,7 +1,8 @@
 <import src="./comment_item.wxml"/>
 
 <view class="comment">
-  <view class="comment__title">评论</view>
+  <view class="comment__title">评论（{{count}}）</view>
+  <view class="comment__none" hidden="{{comments.length > 0}}">暂无评论</view>
   <template is="comment_item" data="{{comments}}" />
 </view>
 

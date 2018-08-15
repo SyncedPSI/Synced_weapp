@@ -21,6 +21,13 @@
   &__item {
     padding-left: 35rpx;
   }
+
+  &__none {
+    margin: 60rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: $title-black;
+  }
 }
 
 .comment-inline {

@@ -15,7 +15,7 @@ Component({
 
   data: {
     comments: [],
-    comments_count: 0,
+    count: 0,
     content: '',
     placeholder: '请输入评论',
     isIphoneX: getApp().globalData.isIphoneX
@@ -30,10 +30,10 @@ Component({
     fetchData: function() {
       request(`${ApiRootUrl}/articles/${this.properties.article_id}/comments`)
         .then(res => {
-          const { comments, comments_count } = res.data;
+          const { comments, count } = res.data;
           this.setData({
             comments,
-            comments_count
+            count
           });
         });
     },
