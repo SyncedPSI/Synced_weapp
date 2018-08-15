@@ -18,6 +18,7 @@ Component({
     count: 0,
     content: '',
     placeholder: '请输入评论',
+    keyboardHeight: 0,
     isIphoneX: getApp().globalData.isIphoneX
   },
 
@@ -94,6 +95,17 @@ Component({
           this.replyCommentId = null;
           this.triggerEvent('closecommentevent');
         })
-    }
-  }
+    },
+    inputFocus: function (event) {
+      console.log(event.detail.height)
+      this.setData({
+        keyboardHeight: event.detail.height
+      });
+    },
+    inputBlur: function() {
+      this.setData({
+        keyboardHeight: 0
+      });
+    },
+  },
 });
