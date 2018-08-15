@@ -14,15 +14,15 @@ Component({
       node: null,
     }],
     scrollTop: 0,
-    scrollViewPaddingTop: 0,
+    fillingHeight: 0,
     recommend: defaultRecommend,
     enableSendMessage: false,
     isIphoneX: getApp().globalData.isIphoneX
   },
   ready: function() {
-    this.enableChangePadding = true;
+    this.enableChangeFilling = true;
     wx.createSelectorQuery().in(this).select('#js-scroll-view').boundingClientRect((rect) => {
-      this.scrollViewHeight = rect.bottom;
+      this.scrollViewHeight = rect.height;
     }).exec()
   },
   methods: {
@@ -80,8 +80,8 @@ Component({
         enableSendMessage: false,
       }, () => {
         this.pageScrollToBottom();
+        this.fetchData(message);
       });
-      this.fetchData(message)
     },
     handleInput: function (event) {
       const newMessage = event.detail.value;
@@ -108,61 +108,41 @@ Component({
     },
     pageScrollToBottom: function() {
       this.getContentHeight((rect) => {
-        const { height, bottom } = rect;
+        const { height } = rect;
 
-        if (this.enableChangePadding) {
-          let newPaddingtop = this.getWillSrollViewPaddingTop(height);
-          if (newPaddingtop === -1) {
-            this.setData({
-              scrollTop: bottom
-            });
-          } else {
-            this.setData({
-              scrollViewPaddingTop: newPaddingtop,
-              scrollTop: bottom + newPaddingtop
-            });
-          }
-
+        if (this.enableChangeFilling) {
+          let newheight = this.getFillingHeight(height);
+          this.setData({
+            fillingHeight: newheight
+          });
         } else {
           this.setData({
-            scrollTop: height - this.scrollViewHeight + 28
+            scrollTop: height - this.scrollViewHeight
           });
         }
       });
     },
     inputFocus: function(event) {
-      if (!this.enableChangePadding) return;
+      if (!this.enableChangeFilling) return;
 
-      this.keyboardHeight = event.detail.height;
-      this.getContentHeight((rect) => {
-        const newPaddingtop = this.getWillSrollViewPaddingTop(rect.height);
-        if (newPaddingtop !== -1) {
-          this.setData({
-            scrollViewPaddingTop: newPaddingtop
-          })
-        }
-      });
+      this.pageScrollToBottom();
     },
     inputBlur: function() {
       this.setData({
-        scrollViewPaddingTop: 0
+        fillingHeight: 0
       });
     },
     getContentHeight: function(cb) {
       wx.createSelectorQuery().in(this).select('#js-content').boundingClientRect(cb).exec()
     },
-    getWillSrollViewPaddingTop: function(contentHeight) {
-      const { scrollViewPaddingTop } = this.data;
-      let newValue = -1;
-      if ((this.scrollViewHeight - this.keyboardHeight) > contentHeight) {
-        newValue = this.keyboardHeight - 34;
-      } else if (this.scrollViewHeight > contentHeight) {
-        newValue = this.scrollViewHeight - contentHeight;
-      } else if (scrollViewPaddingTop > 0) {
-        newValue = 0;
-        this.enableChangePadding = false;
+    getFillingHeight: function(contentHeight) {
+      const { fillingHeight } = this.data;
+      if (this.scrollViewHeight > contentHeight) {
+        return this.scrollViewHeight - contentHeight;
+      } else if (fillingHeight >= 0) {
+        this.enableChangeFilling = false;
+        return 0;
       }
-      return newValue;
     }
   },
 });

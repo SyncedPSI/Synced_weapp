@@ -2,7 +2,8 @@
 <import src="./search.wxml"/>
 
 <view class="message-box {{isIphoneX ? 'is-iphonex' : ''}}">
-  <scroll-view class="message-box__body" id="js-scroll-view" scroll-y style="height: 100%; padding-top: {{scrollViewPaddingTop}}px;" scroll-top="{{scrollTop}}">
+  <scroll-view class="message-box__body" id="js-scroll-view" scroll-y style="height: 100%;" scroll-top="{{scrollTop}}">
+    <view style="height: {{fillingHeight}}px"></view>
     <view id="js-content">
       <view class="message-box__item" wx:for="{{chat}}" wx:key="{{index}}">
         <view class="message-box__inline t-left" wx:if="{{item.fromRobot}}">
