@@ -8,16 +8,12 @@ $bottom-height: 188rpx;
 
 .message-box {
   height: 100%;
+  background-color: $background_color;
   padding-bottom: $bottom-height;
-  background-color: #fff;
   box-sizing: border-box;
 
   &.is-iphonex {
     padding-bottom: $bottom-height + $safe-padding-bottom;
-  }
-
-  &__body {
-    background-color: $background_color;
   }
 
   &__item {

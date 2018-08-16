@@ -1,4 +1,5 @@
 {
+  "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "myheader": "../../../components/setting_header/header",
     "messageBox": "../../../components/messageBox/messageBox"
