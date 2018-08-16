@@ -1,5 +1,5 @@
 import { comments, ApiRootUrl } from "config/api";
-import { request, showErrorToast } from 'utils/util';
+import { request, showErrorToast, showSuccessToast } from 'utils/util';
 
 Component({
   properties: {
@@ -78,11 +78,18 @@ Component({
       const { content } = this.data;
 
       if (content === '') return;
-      const url = this.replyCommentId === null ? `${ApiRootUrl}/articles/${this.properties.article_id}/comments` : `${comments}/${this.replyCommentId}/reply`
+      const isCreateComment = this.replyCommentId === null;
+      const url = isCreateComment ? `${ApiRootUrl}/articles/${this.properties.article_id}/comments` : `${comments}/${this.replyCommentId}/reply`
       request(`${url}`, {
         content
       }, 'POST')
-        .then((res) => {
+        .then(() => {
+          if (isCreateComment) {
+            showSuccessToast('评论成功');
+          } else {
+            showSuccessToast('回复成功');
+          }
+
           this.fetchData();
         })
         .catch(() => {
