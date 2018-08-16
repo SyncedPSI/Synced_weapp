@@ -65,25 +65,29 @@ Component({
         });
       })
     },
-    sendKeywords: function(keywords) {
+    sendKeywords: function(keywords, isResetInput = false) {
       const { chat } = this.data;
       chat.push({
         fromRobot: false,
         message: keywords,
       });
 
-      this.setData({
-        chat,
-        message: '',
-        enableSendMessage: false,
-      }, () => {
+      const newObject = {
+        chat
+      };
+      if (isResetInput) {
+        newObject.message = '';
+        newObject.enableSendMessage = false;
+      }
+
+      this.setData(newObject, () => {
         this.pageScrollToBottom();
         this.fetchData(keywords);
       });
     },
     sendMessage: function () {
       if (!this.data.enableSendMessage) return;
-      this.sendKeywords(this.data.message);
+      this.sendKeywords(this.data.message, true);
     },
     handleInput: function (event) {
       const newMessage = event.detail.value;
