@@ -124,9 +124,11 @@ Component({
       });
     },
     inputFocus: function (event) {
+      const { height } = event.detail;
+      const newHeight = this.data.isIphoneX ? height - 34 : height;
       this.setData({
-        keyboardHeight: event.detail.height
-      });
+        keyboardHeight: newHeight
+      })
       this.pageScrollToBottom();
     },
     inputBlur: function() {
