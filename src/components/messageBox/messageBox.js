@@ -65,13 +65,11 @@ Component({
         });
       })
     },
-    sendMessage: function () {
-      if (!this.data.enableSendMessage) return;
-
-      const { chat, message } = this.data;
+    sendKeywords: function(keywords) {
+      const { chat } = this.data;
       chat.push({
         fromRobot: false,
-        message,
+        message: keywords,
       });
 
       this.setData({
@@ -80,8 +78,12 @@ Component({
         enableSendMessage: false,
       }, () => {
         this.pageScrollToBottom();
-        this.fetchData(message);
+        this.fetchData(keywords);
       });
+    },
+    sendMessage: function () {
+      if (!this.data.enableSendMessage) return;
+      this.sendKeywords(this.data.message);
     },
     handleInput: function (event) {
       const newMessage = event.detail.value;
@@ -95,16 +97,7 @@ Component({
     },
     sendRecommendWord: function (event) {
       const keyword = event.target.dataset.value;
-      const { chat } = this.data;
-      chat.push({
-        fromRobot: false,
-        message: keyword,
-      });
-
-      this.setData({
-        chat,
-      });
-      this.fetchData(keyword);
+      this.sendKeywords(keyword);
     },
     pageScrollToBottom: function() {
       this.getContentHeight((rect) => {
