@@ -41,7 +41,7 @@
   <view class="input-box">
     <!-- <button type="default" class="input-box__btn input-box__voice" confirm-type="send"></button> -->
     <view class="input-box__body">
-      <textarea class="input-box__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" auto-height auto-focus
+      <textarea class="input-box__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" auto-height
        cursor-spacing="14" placeholder="和我心聊一聊吧！" fixed show-confirm-bar="{{false}}" name="textarea" bindinput="handleInput" />
 
 
