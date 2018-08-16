@@ -74,9 +74,9 @@ export const getDateDiff = dateStr => {
       return d_seconds + "秒前";
     }
   } else if (d_days >= 20 && d_days < 30) {
-    return M + "-" + D + " " + H + ":" + m;
+    return M + "月" + D + "日";
   } else if (d_days >= 30) {
-    return Y + "-" + M + "-" + D;
+    return Y + "年" + M + "月";
   }
 };
 
