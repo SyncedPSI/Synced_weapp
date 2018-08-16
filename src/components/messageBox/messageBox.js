@@ -32,25 +32,37 @@ Component({
         keyword,
       }, 'POST').then(res => {
         console.log(res.data);
-        const { reply, askBack, recommend } = res.data.result;
+        const { reply, askBack, recommend } = res.data.result.dialog;
         const { chat } = this.data;
         if (reply === undefined) return;
 
-        const { CardType, node_label, Title, Items, path } = reply;
+        const { CardType, Title, Items, path } = reply;
 
-        chat.push({
-          fromRobot: true,
-          message: Title,
-          askBack: {
-            items: Items || [],
-            path,
-          },
-          node: null,
-        });
-
-        if (askBack && askBack.items.length > 0) {
-
+        if (CardType === 1) {
+          chat.push({
+            fromRobot: true,
+            message: Title,
+            askBack: {
+              items: [],
+              path,
+            },
+            node: null,
+          });
+        } else if (CardType === 2) {
+          // 得到node
+          chat.push({
+            fromRobot: true,
+            message: Items[0].user_defined,
+            askBack: {
+              items: [],
+              path,
+            },
+            node: null,
+          });
         }
+
+        // if (askBack && askBack.items.length > 0) {
+        // }
 
         let realRecommend = defaultRecommend;
         if (recommend.items.length > 0) {
