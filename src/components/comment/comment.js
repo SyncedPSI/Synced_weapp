@@ -18,7 +18,7 @@ Component({
     count: 0,
     content: '',
     placeholder: '请输入评论',
-    keyboardHeight: 0,
+    keyboardHeight: null,
     isIphoneX: getApp().globalData.isIphoneX
   },
 
@@ -104,7 +104,7 @@ Component({
     },
     inputBlur: function() {
       this.setData({
-        keyboardHeight: 0
+        keyboardHeight: null
       });
     },
   },

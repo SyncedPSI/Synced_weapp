@@ -15,10 +15,10 @@ Component({
     }],
     avatar: wx.getStorageSync('userInfo').avatarUrl,
     scrollTop: 0,
-    keyboardHeight: 0,
+    keyboardHeight: null,
     recommend: defaultRecommend,
     enableSendMessage: false,
-    isIphoneX: getApp().globalData.isIphoneX
+    isIphoneX: getApp().globalData.isIphoneX,
   },
   ready: function() {
     this.enableChangeFilling = true;
@@ -122,7 +122,7 @@ Component({
     },
     inputBlur: function() {
       this.setData({
-        keyboardHeight: 0
+        keyboardHeight: null
       });
     },
     getContentHeight: function(cb) {

@@ -136,7 +136,7 @@
     font-size: 30rpx;
 
     &.has-safe-padding {
-      padding-bottom: 20rpx + $safe-padding-bottom;
+      bottom: $safe-padding-bottom;
     }
   }
 
