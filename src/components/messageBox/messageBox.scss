@@ -144,18 +144,17 @@ $bottom-height: 188rpx;
     margin: 0 10rpx;
   }
 
-  &__input {
-    flex: 1;
-    padding: 5rpx 24rpx 6rpx;
-    height: auto;
-    color: $black;
+  &__body {
+    flex-grow: 1;
+    border-radius: 50rpx;
+    padding: 14rpx 24rpx 10rpx;
     font-size: 30rpx;
-    line-height: 1.4;
-    border-radius: 100rpx;
-    border: 2rpx solid #E5E3E4;
     background: #FCFAFB;
-    display: block;
-    box-sizing: border-box;
+    border: 2rpx solid #E5E3E4;
+  }
+
+  &__textarea {
+    width: auto;
   }
 
   &__btn {

@@ -40,7 +40,15 @@
   </scroll-view>
   <view class="input-box">
     <!-- <button type="default" class="input-box__btn input-box__voice" confirm-type="send"></button> -->
-    <input class="input-box__input" adjust-position="{{false}}" type="text" fixed confirm-type="send" bindfocus="inputFocus" bindblur="inputBlur" confirm-hold value="{{message}}" placeholder="和我心聊一聊吧！" bindinput="handleInput" placeholder-class="input_placeholder" cursor-spacing="18" bindconfirm="sendMessage"/>
+    <view class="input-box__body">
+      <textarea class="input-box__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" auto-height auto-focus
+       cursor-spacing="14" placeholder="和我心聊一聊吧！" fixed show-confirm-bar="{{false}}" name="textarea" bindinput="handleInput" />
+
+
+
+      <!--<textarea class="input-box__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" auto-height
+       cursor-spacing="14" placeholder="和我心聊一聊吧！" bindinput="handleInput" placeholder-class="input_placeholder" bindconfirm="sendMessage" /> -->
+    </view>
     <button type="default" bindtap="sendMessage" class="input-box__btn input-box__send {{enableSendMessage ? 'enable' : ''}}" confirm-type="send"></button>
   </view>
 </view>
