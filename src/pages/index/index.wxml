@@ -1,29 +1,22 @@
 <import src="../common/loading.wxml"/>
 
-<view class='container'>
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll" bindscrolltolower="fetchData" enable-back-to-top>
-    <view class="header_wrapper {{scrollTop >= 160 ? 'fixed' : ''}}">
-      <view class="header">
-        <view class='logo'>
-          <image src="{{logoUrl}}" mode='aspectFit'></image>
-        </view>
-        <navigator alt="搜索" class="search_box" url="../search/search">
-          <text>搜索知识</text>
-          <image class="search__btn" src="{{searchIconUrl}}"></image>
-        </navigator>
-      </view>
+<view class="header_wrapper {{ scrollTop >= 160 ? 'fixed' : ''}}">
+  <view class="header">
+    <view class='logo'>
+      <image src="{{logoUrl}}" mode='aspectFit'></image>
     </view>
-    <view class='content_container'>
-      <view wx:for="{{articles}}" wx:key="unique">
-        <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}"></article>
-      </view>
-    </view>
-    <view>
-      <template is="loading" />
-    </view>
-  </scroll-view>
-  <settingEntry></settingEntry>
-  <!-- <view class='hover_button'>
-    <image src="{{hoverImageUrl}}" mode='cover'></image>
-  </view> -->
+    <navigator alt="搜索" class="search_box" url="../search/search">
+      <text>搜索知识</text>
+      <image class="search__btn" src="{{searchIconUrl}}"></image>
+    </navigator>
+  </view>
 </view>
+<view class='content_container'>
+  <view wx:for="{{articles}}" wx:key="unique">
+    <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}"></article>
+  </view>
+</view>
+<view>
+  <template is="loading" />
+</view>
+<settingEntry></settingEntry>

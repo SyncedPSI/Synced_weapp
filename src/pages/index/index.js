@@ -1,11 +1,8 @@
 import { request, getDateDiff } from "utils/util";
 import { timeline } from "config/api";
 
-const app = getApp();
-
 Page({
   data: {
-    page: 1,
     scrollTop: 0,
     logoUrl: "/images/logo.svg",
     hoverImageUrl: "/icons/ic_chatbot_n.svg",
@@ -14,7 +11,8 @@ Page({
   },
 
   onLoad: function(options) {
-    this.fetchData();
+    this.page = 1;
+    this.getData();
   },
 
   scroll: function(e) {
@@ -22,22 +20,46 @@ Page({
       scrollTop: e.detail.scrollTop
     });
   },
-
-  fetchData: function(e) {
-    const { page } = this.data;
-
-    request(`${timeline}?page=${page}`)
+  getData: function (isRefresh = false) {
+    return request(`${timeline}?page=${this.page}`)
       .then(res => {
+        this.page += 1;
         const { articles } = this.data;
         const newArticles = res.data;
         newArticles.forEach(item => {
           item.published_at = getDateDiff(item.published_at);
         });
-        const newArticleList = articles.concat(newArticles);
-        this.setData({
-          articles: newArticleList,
-          page: page + 1,
-        });
+
+        if (isRefresh) {
+          console.log('iiii')
+          this.setData({
+            articles: newArticleList,
+            isHideLoding: true,
+          });
+        } else {
+          this.setData({
+            articles: [...articles, ...newArticles],
+          });
+        }
+      })
+  },
+  onPageScroll: function (event) {
+    this.setData({
+      scrollTop: event.scrollTop,
+    });
+  },
+  onReachBottom: function () {
+    this.getData();
+  },
+  onPullDownRefresh: function () {
+    wx.showNavigationBarLoading();
+
+    this.page = 1;
+    this.getData(true)
+      .catch(() => {})
+      .then(() => {
+        wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
       });
   }
 });

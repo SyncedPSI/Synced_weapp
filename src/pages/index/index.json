@@ -4,5 +4,6 @@
     "article": "../../components/article/article",
     "settingEntry": "../../components/setting_enter/setting"
   },
-  "enablePullDownRefresh": true
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
 }
