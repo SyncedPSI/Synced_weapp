@@ -4,6 +4,7 @@ import { login } from "config/api";
 App({
   globalData: {
     isIphoneX: false,
+    isAndroid: true,
     isLogin: false,
     authToken: null,
     expiredTime: null,
@@ -19,7 +20,11 @@ App({
     wx.getSystemInfo({
       success: (res) => {
         if (res.model.match('iPhone X') !== null) {
-          this.globalData.isIphoneX = true;        }
+          this.globalData.isIphoneX = true;
+        }
+        if (res.platform === 'ios') {
+          this.globalData.isAndroid = false;
+        }
       }
     })
   },

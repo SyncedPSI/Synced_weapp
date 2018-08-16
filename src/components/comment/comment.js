@@ -19,7 +19,8 @@ Component({
     content: '',
     placeholder: '请输入评论',
     keyboardHeight: null,
-    isIphoneX: getApp().globalData.isIphoneX
+    isIphoneX: getApp().globalData.isIphoneX,
+    isAndroid: getApp().globalData.isAndroid,
   },
 
   attached: function() {

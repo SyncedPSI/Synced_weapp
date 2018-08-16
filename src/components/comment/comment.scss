@@ -143,10 +143,15 @@
   &__body {
     flex-grow: 1;
     border-radius: 50rpx;
-    padding: 12rpx 24rpx;
+    padding: 13rpx 24rpx;
     font-size: 30rpx;
     background: #FCFAFB;
     border: 2rpx solid #E5E3E4;
+
+    &.t-ios {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
   }
 
   &__textarea {
