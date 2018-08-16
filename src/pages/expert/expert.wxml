@@ -24,4 +24,5 @@
       </view>
   </view>
   <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
+  <settingEntry></settingEntry>
 </block>

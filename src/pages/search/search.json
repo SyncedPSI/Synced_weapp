@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "article": "../../components/article/article",
-    "node": "../../components/node/node"
+    "node": "../../components/node/node",
+    "settingEntry": "../../components/setting_enter/setting"
   },
   "enablePullDownRefresh": true
 }

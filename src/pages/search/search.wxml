@@ -22,4 +22,5 @@
       <template is="loading" />
     </view>
   </scroll-view>
+  <settingEntry></settingEntry>
 </view>

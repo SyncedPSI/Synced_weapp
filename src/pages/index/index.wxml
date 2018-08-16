@@ -22,7 +22,7 @@
       <template is="loading" />
     </view>
   </scroll-view>
-  <setting></setting>
+  <settingEntry></settingEntry>
   <!-- <view class='hover_button'>
     <image src="{{hoverImageUrl}}" mode='cover'></image>
   </view> -->

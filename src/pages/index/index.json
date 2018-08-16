@@ -2,7 +2,7 @@
   "usingComponents": {
     "user": "../../components/user/user",
     "article": "../../components/article/article",
-    "setting": "../../components/setting_enter/setting"
+    "settingEntry": "../../components/setting_enter/setting"
   },
   "enablePullDownRefresh": true
 }

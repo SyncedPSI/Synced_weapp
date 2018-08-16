@@ -10,4 +10,5 @@
   <view class="account-register">
     <text bindtap="register">微信注册</text>
   </view>
+  <settingEntry></settingEntry>
 </view>

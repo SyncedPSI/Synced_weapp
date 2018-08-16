@@ -11,4 +11,5 @@
     <button class="account-form__btn account-form__submmit" bindtap="submitForm">登录</button>
   </view>
   <navigator class="account__link" url="../link/link">关联已有账户</navigator>
+  <settingEntry></settingEntry>
 </view>

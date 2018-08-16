@@ -1,1 +1,5 @@
-{}
+{
+  "usingComponents": {
+    "settingEntry": "../../../components/setting_enter/setting"
+  }
+}
