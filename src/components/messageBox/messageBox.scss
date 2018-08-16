@@ -137,7 +137,6 @@ $bottom-height: 188rpx;
 .input-box {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
   padding: 20rpx 20rpx;
 
   &__input, &__btn {
@@ -146,8 +145,9 @@ $bottom-height: 188rpx;
 
   &__body {
     flex-grow: 1;
+    max-height: 68rpx;
     border-radius: 50rpx;
-    padding: 14rpx 24rpx 10rpx;
+    padding: 8rpx 24rpx 10rpx;
     font-size: 30rpx;
     background: #FCFAFB;
     border: 2rpx solid #E5E3E4;
