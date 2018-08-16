@@ -79,8 +79,7 @@
 }
 
 .node-block {
-  padding: 60rpx 40rpx;
-  margin-top: 48rpx;
+  padding: 60rpx 40rpx 0;
 
   &__header {
     border-bottom: 2rpx solid $bg-white;
@@ -106,7 +105,7 @@
 
 .node-expert {
   display: flex;
-  margin: 40rpx 0;
+  margin: 40rpx 0 0;
 
   &__avatar {
     height: 120rpx;
@@ -137,6 +136,8 @@
 }
 
 .node-institution {
+  padding-bottom: 60rpx;
+
   &__title {
     color: $black;
     font-size: 30rpx;
