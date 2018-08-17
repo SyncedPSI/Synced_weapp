@@ -87,6 +87,10 @@
     margin-left: -35rpx;
   }
 
+  &__img {
+    @include set-avatar-width(70rpx);
+  }
+
   &__hr {
     margin-right: 10rpx;
     color: $mute-black;

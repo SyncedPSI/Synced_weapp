@@ -4,7 +4,7 @@
       <view class="comment-inline__author">
         <!-- <navigator alt="{{from.nickname}}" class="comment-inline__avatar" url="/user/{{from.id}}"> -->
         <view class="comment-inline__avatar">
-          <image src="{{from.avatar_url}}" mode="cover" />
+          <image  class="comment-inline__img" src="{{from.avatar_url}}" mode="cover" />
         </view>
         <!-- </navigator> -->
         <view class="comment-inline__user {{to === null ? 'is-only' : ''}}">
