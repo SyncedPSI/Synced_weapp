@@ -1,12 +1,21 @@
 <template name="node">
-  <view class="message-node">
-    <view class="message-node__logo">
-      <img height="28"></img>
-    </view>
-    <view class="message__flex">
-      <text class="message-node__title">{{title}}</text>
-      <text class="message-node__type">{{type}}</text>
-    </view>
-    <view class="message-node__desc">{{desc}}</view>
-  </view>
+  <navigator url="../../{{nodeType}}/{{id}}" class="message-node">
+    <block wx-if="{{nodeType !== 'expert'}}">
+      <img class="message-node__logo" mode="cover" src="{{image_url}}" wx-if="{{nodeType === 'institution'}}"></img>
+      <view class="message__flex">
+        <text class="message-node__title">{{zh_name}}</text>
+        <text class="message-node__type">{{type}}</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="message__flex message-node__expert">
+        <view class="message__flex message-node__expert--info">
+          <text class="message-node__title">{{zh_name}}</text>
+          <text class="message-node__type">{{type}}</text>
+        </view>
+        <img class="message-node__avatar" mode="cover" src="{{image_url}}"></img>
+      </view>
+    </block>
+    <view class="message-node__desc">{{summary}}</view>
+  </navigator>
 </template>

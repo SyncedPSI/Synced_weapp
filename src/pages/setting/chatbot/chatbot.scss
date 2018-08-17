@@ -1,6 +1,6 @@
 @import 'variables';
 
 .chatbot-container {
-  height: calc(100vh - $setting-header);
+  height: calc(100vh - 120rpx);
   padding-top: $setting-header;
 }

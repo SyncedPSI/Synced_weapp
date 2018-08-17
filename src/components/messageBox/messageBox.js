@@ -1,4 +1,5 @@
 import { request } from "utils/util";
+import { ApiRootUrl } from 'config/api';
 const defaultRecommend = ['机器之心', '应用案例', '猜你喜欢', '人工智能', '推荐文章'];
 
 Component({
@@ -54,15 +55,17 @@ Component({
           });
         } else if (CardType === 2) {
           // 得到node
+          const { Description, user_defined } = Items[0];
           chat.push({
             fromRobot: true,
-            message: Items[0].user_defined,
+            message: Description,
             askBack: {
               items: [],
               path,
             },
             node: null,
           });
+          this.getNode(user_defined);
         }
 
         // if (askBack && askBack.items.length > 0) {
@@ -82,6 +85,30 @@ Component({
           });
         }, 1500);
       })
+    },
+    getNode: function (msg) {
+      const [_, id, nodeType] = msg.match(new RegExp('"id":"([^/?#]+)","type":"([^/?#]+)"}', 'i'));
+      request(`${ApiRootUrl}/chatbot/cards/64d4c374-6061-46cc-8d29-d0a582934876`)
+        .then(res => {
+          const { chat } = this.data;
+          const node = res.data.card_node;
+          node.nodeType = nodeType;
+          chat.push({
+            fromRobot: true,
+            message: null,
+            askBack: {
+              items: [],
+              path: null,
+            },
+            node
+          });
+
+          this.setData({
+            chat
+          }, () => {
+            this.pageScrollToBottom();
+          });
+        })
     },
     sendKeywords: function(keywords, isResetInput = false) {
       const { chat } = this.data;

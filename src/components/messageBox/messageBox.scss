@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'mixins';
 $bottom-height: 188rpx;
 
 .message__flex {
@@ -198,7 +199,20 @@ $bottom-height: 188rpx;
   }
 
   &__logo {
+    width: 40%;
+    height: 28rpx;
+  }
 
+  &__avatar {
+    @include set-avatar-width(80rpx);
+  }
+
+  &__expert {
+    justify-content: space-between;
+  }
+
+  &__expert--info {
+    max-width: 60%;
   }
 
   &__title {
@@ -212,6 +226,7 @@ $bottom-height: 188rpx;
     padding: 0 8rpx;
     color: $light_gray;
     background-color: #e2e2e2;
+    line-height: 1.4;
   }
 
   &__desc {

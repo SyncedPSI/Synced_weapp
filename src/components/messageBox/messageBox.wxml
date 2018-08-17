@@ -10,7 +10,7 @@
             <image class="message-box__image" src="/images/logo_avatar.png" mode="aspectFill"></image>
           </view>
           <view>
-            <view class="message-box__content">{{item.message}}</view>
+            <view class="message-box__content"  wx:if="{{item.message !== null}}">{{item.message}}</view>
             <view class="message-box__content" wx:if="{{item.node !== null}}">
               <template is="node" data="{{...item.node}}" />
             </view>
