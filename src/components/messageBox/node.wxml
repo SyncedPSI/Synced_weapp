@@ -1,5 +1,5 @@
 <template name="node">
-  <navigator url="../../{{nodeType}}/{{id}}" class="message-node">
+  <navigator url="../../{{nodeType}}/{{nodeType}}?id={{id}}" class="message-node">
     <block wx-if="{{nodeType !== 'expert'}}">
       <img class="message-node__logo" mode="cover" src="{{image_url}}" wx-if="{{nodeType === 'institution'}}"></img>
       <view class="message__flex">
