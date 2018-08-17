@@ -21,10 +21,14 @@ Component({
     isIphoneX: getApp().globalData.isIphoneX,
   },
   ready: function() {
+    this.timeout = false;
     this.enableChangeFilling = true;
     wx.createSelectorQuery().in(this).select('#js-scroll-view').boundingClientRect((rect) => {
       this.scrollViewHeight = rect.height;
     }).exec()
+  },
+  detached: function() {
+    clearTimeout(this.timeout);
   },
   methods: {
     fetchData: function (keyword) {
@@ -69,12 +73,14 @@ Component({
           realRecommend = recommend.items.map(item => item.question);
         }
 
-        this.setData({
-          chat,
-          recommend: realRecommend,
-        }, () => {
-          this.pageScrollToBottom();
-        });
+        this.timeout = setTimeout(() => {
+          this.setData({
+            chat,
+            recommend: realRecommend,
+          }, () => {
+            this.pageScrollToBottom();
+          });
+        }, 1500);
       })
     },
     sendKeywords: function(keywords, isResetInput = false) {

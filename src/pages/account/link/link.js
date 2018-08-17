@@ -12,6 +12,7 @@ Page({
   },
 
   onLoad: function(option) {
+    this.timeout = null;
     this.setData({
       unionid: option.unionid
     });
