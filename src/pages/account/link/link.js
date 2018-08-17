@@ -55,11 +55,8 @@ Page({
         unionid
       }, "POST")
       .then(res => {
-        app.setLoginSuccess({
-          ...res.data,
-          msg: '关联成功'
-        });
-       this.redirectPage();
+        app.setLoginSuccess(res.data, '关联成功');
+        this.redirectPage();
       }).catch(() => {
         showErrorToast('账号或密码错误');
       });
@@ -77,10 +74,7 @@ Page({
           showErrorToast('注册失败，请重试');
           return;
         }
-        app.setLoginSuccess({
-          ...res.data,
-          msg: '注册成功'
-        });
+        app.setLoginSuccess(res.data, '注册成功');
         this.redirectPage();
       })
   },

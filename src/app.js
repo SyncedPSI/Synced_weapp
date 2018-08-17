@@ -34,17 +34,16 @@ App({
         this.globalData.authToken = wx.getStorageSync('authToken');
         this.globalData.expiredTime = wx.getStorageSync('expiredTime');
         const { authToken, expiredTime } = this.globalData;
-
         if (authToken) {
           request(login, {}, "POST")
-            .then(res => {
+            .then(() => {
               const remain_hours = (expiredTime - parseInt(new Date().getTime() / 1000)) / 3600;
               if (remain_hours > 1.5) {
                 this.globalData.isLogin = true;
               } else {
                 this.globalData.isLogin = false;
               }
-            }).catch(err => {
+            }).catch(() => {
               this.globalData.isLogin = false;
             })
         } else {
@@ -81,10 +80,7 @@ App({
                 iv: iv
               }, "POST")
                 .then(res => {
-                  this.setLoginSuccess({
-                    ...res.data,
-                    msg: '登录成功'
-                  });
+                  this.setLoginSuccess(res.data, '登录成功');
                   cb();
                 })
                 .catch(err => {
@@ -105,14 +101,15 @@ App({
       }
     });
   },
-  setLoginSuccess: function ( { authToken, expiredTime, msg }) {
+  setLoginSuccess: function (loginData, msg) {
+    const { auth_token, expired_time } = loginData;
     wx.setStorage({
       key: 'authToken',
-      data: authToken
+      data: auth_token
     });
     wx.setStorage({
       key: 'expiredTime',
-      data: expiredTime
+      data: expired_time
     });
     this.globalData.isLogin = true;
     showTipToast(msg);
