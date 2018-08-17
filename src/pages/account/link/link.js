@@ -1,6 +1,6 @@
 import { bindAccount, register } from "config/api";
 import { mobile_or_email_reg, pwd_reg } from 'config/all_reg';
-import { showErrorToast, request, checkValue } from 'utils/util';
+import { showErrorToast, request, checkValue, showTipToast } from 'utils/util';
 
 const app = getApp();
 
@@ -15,6 +15,10 @@ Page({
     this.setData({
       unionid: option.unionid
     });
+  },
+
+  onUnload: function () {
+    clearTimeout(this.timeout);
   },
 
   bindLoginNameInput: function (e) {
@@ -44,29 +48,18 @@ Page({
     });
 
     if (checkLoginName && checkPassword) {
-      request(
-      bindAccount,
-      {
+      request( bindAccount, {
         'login_name': loginName,
         password,
         unionid
-      },
-      "POST")
+      }, "POST")
       .then(res => {
-        const authToken = res.data.auth_token;
-        const expiredTime = res.data.expired_time;
-        wx.setStorage({
-          key: 'authToken',
-          data: authToken
+        app.setLoginSuccess({
+          ...res.data,
+          msg: '关联成功'
         });
-        wx.setStorage({
-          key: 'expiredTime',
-          data: expiredTime
-        });
-        wx.navigateTo({
-          url: "../../index/index"
-        });
-      }).catch(err => {
+       this.redirectPage();
+      }).catch(() => {
         showErrorToast('账号或密码错误');
       });
     }
@@ -74,26 +67,27 @@ Page({
 
   register: function() {
     const { unionid } = this.data;
-    request(
-    register,
-    {
+    request( register, {
       'user_info': app.globalData.userInfo,
       unionid
-    },
-    "POST")
-    .then(res => {
-      const authToken = res.data.auth_token;
-      wx.setStorage({
-        key: 'authToken',
-        data: authToken
-      });
-      wx.setStorage({
-        key: 'expiredTime',
-        data: expiredTime
-      });
-      wx.navigateTo({
-          url: "../../index/index"
+    }, "POST")
+      .then(res => {
+        if (res.data.errors) {
+          showErrorToast('注册失败，请重试');
+          return;
+        }
+        app.setLoginSuccess({
+          ...res.data,
+          msg: '注册成功'
         });
-    })
-  }
+        this.redirectPage();
+      })
+  },
+  redirectPage: function() {
+    this.timeout = setTimeout(() => {
+      wx.navigateTo({
+        url: "../../index/index"
+      });
+    }, 500);
+  },
 });

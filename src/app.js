@@ -1,6 +1,5 @@
-import { request } from "utils/util";
+import { request, showTipToast } from "utils/util";
 import { login } from "config/api";
-
 App({
   globalData: {
     isIphoneX: false,
@@ -58,11 +57,7 @@ App({
     });
   },
   login: function(userInfo, cb) {
-    wx.showToast({
-      title: '正在登录',
-      icon: 'loading',
-      duration: 2000
-    });
+    showTipToast('正在登录', 'loading');
     var encryptedData = '';
     var iv = '';
 
@@ -70,7 +65,7 @@ App({
       key: 'userInfo',
       data: userInfo
     });
-    this.globalData.userInfo = wx.getStorageSync('userInfo');
+    this.globalData.userInfo = userInfo;
 
     wx.login({
       success: (res) => {
@@ -80,26 +75,17 @@ App({
             success: (e) => {
               encryptedData = e.encryptedData;
               iv = e.iv;
-              request(
-                  login, {
-                    code: code,
-                    encrypted_data: encryptedData,
-                    iv: iv
-                  },
-                  "POST")
+              request(login, {
+                code: code,
+                encrypted_data: encryptedData,
+                iv: iv
+              }, "POST")
                 .then(res => {
-                  const authToken = res.data.auth_token;
-                  const expiredTime = res.data.expired_time;
-                  wx.setStorage({
-                    key: 'authToken',
-                    data: authToken
-                  });
-                  wx.setStorage({
-                    key: 'expiredTime',
-                    data: expiredTime
+                  this.setLoginSuccess({
+                    ...res.data,
+                    msg: '登录成功'
                   });
                   cb();
-                  this.globalData.isLogin = true;
                 })
                 .catch(err => {
                   if (err.statusCode == 401) {
@@ -118,5 +104,17 @@ App({
         }
       }
     });
+  },
+  setLoginSuccess: function ( { authToken, expiredTime, msg }) {
+    wx.setStorage({
+      key: 'authToken',
+      data: authToken
+    });
+    wx.setStorage({
+      key: 'expiredTime',
+      data: expiredTime
+    });
+    this.globalData.isLogin = true;
+    showTipToast(msg);
   }
 });

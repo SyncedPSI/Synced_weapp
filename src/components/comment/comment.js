@@ -1,5 +1,5 @@
 import { comments, ApiRootUrl } from "config/api";
-import { request, showErrorToast, showSuccessToast } from 'utils/util';
+import { request, showErrorToast, showTipToast } from 'utils/util';
 
 Component({
   properties: {
@@ -86,9 +86,9 @@ Component({
       }, 'POST')
         .then(() => {
           if (isCreateComment) {
-            showSuccessToast('评论成功');
+            showTipToast('评论成功');
           } else {
-            showSuccessToast('回复成功');
+            showTipToast('回复成功');
           }
 
           this.fetchData();
