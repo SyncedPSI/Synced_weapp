@@ -11,6 +11,14 @@
 .catalog {
   position: fixed;
   z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .28s;
+
+  &.is-show {
+    opacity: 1;
+    visibility: visible;
+  }
 
   &__bottom {
     z-index: 5;
