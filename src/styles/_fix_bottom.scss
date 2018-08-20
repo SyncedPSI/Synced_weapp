@@ -1,0 +1,36 @@
+.u-fix-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 96rpx;
+  background-color: #fff;
+  color: $black;
+  font-size: 30rpx;
+  box-shadow: 0 -2rpx 0 0 #EEEEEE;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .has-safe-padding {
+    bottom: $safe-padding-bottom;
+  }
+
+  &--bar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 20rpx;
+
+    &.is-button {
+      display: block;
+      flex: 1;
+    }
+  }
+
+  &--icon {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 8rpx;
+  }
+}

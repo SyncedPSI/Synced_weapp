@@ -8,7 +8,7 @@
     <template is="node-header" data="{{...technology}}" />
     <template wx:if="{{technology.summary != ''}}" is="node-summary" data="{{...technology}}" />
   </view>
-  <view wx:if="{{technology.desc != ''}}" class="node-block">
+  <view wx:if="{{technology.desc != ''}}" class="node-block" id="js-introduction">
       <view class="node-block__header">
         <text class="node-block__title">简介</text>
       </view>
@@ -20,4 +20,5 @@
   <template wx:if="{{technology.experts.length != 0}}" is="node-experts" data="{{experts: technology.experts}}"/>
   <template wx:if="{{technology.institutions.length != 0}}" is="node-institutions" data="{{institutions: technology.institutions}}"/>
   <settingEntry></settingEntry>
+  <catalog catalogList="{{catalogList}}"></catalog>
 </block>

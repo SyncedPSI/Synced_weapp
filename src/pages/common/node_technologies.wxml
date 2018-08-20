@@ -1,5 +1,5 @@
 <template name="node-technologies">
-  <view class="node-technology">
+  <view class="node-technology" id="js-about-technologies">
     <text class="node-technology__tip">涉及领域：</text>
     <block wx:for="{{technologies}}" wx:key="{{unique}}" wx:for-item="item">
       <block wx:if="{{item.level == 'level_1'}}">

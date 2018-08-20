@@ -1,0 +1,46 @@
+@import 'variables';
+@import 'fix_bottom';
+
+.u-container-cover {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.catalog {
+  position: fixed;
+  z-index: 5;
+
+  &__mask {
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, .1);
+  }
+
+  &__main {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 64%;
+    background-color: #fff;
+    font-size: 32rpx;
+    color: $title-black;
+  }
+
+  &__title {
+    padding: 20rpx 60rpx;
+    font-size: 36rpx;
+    color: $black;
+  }
+
+  &__item {
+    padding: 30rpx 60rpx;
+  }
+
+  &__item--hover {
+    background-color: #F9F9F9;
+  }
+}

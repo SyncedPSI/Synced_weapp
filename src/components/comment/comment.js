@@ -105,7 +105,6 @@ Component({
         })
     },
     inputFocus: function (event) {
-      console.log(event.detail.height)
       this.setData({
         keyboardHeight: event.detail.height
       });

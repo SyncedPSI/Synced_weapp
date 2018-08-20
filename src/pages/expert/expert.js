@@ -12,7 +12,15 @@ Page({
   data: {
     id: "",
     expert: {},
-    isRequestFinished: false
+    isRequestFinished: false,
+    isShowCatelog: false,
+    catalogList: [{
+      key: 'js-introduction',
+      value: '简介'
+    }, {
+      key: 'js-about-institutions',
+      value: '相关机构'
+    }]
   },
 
   onLoad: function (option) {
@@ -31,5 +39,5 @@ Page({
           isRequestFinished: true
         });
       })
-  }
+  },
 });

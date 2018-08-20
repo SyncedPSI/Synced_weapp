@@ -1,5 +1,5 @@
 <template name="node-institutions">
-  <view class="node-block">
+  <view class="node-block" id="js-about-institutions">
     <view class="node-block__header">
       <text class="node-block__title">相关机构</text>
     </view>

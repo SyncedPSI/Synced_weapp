@@ -1,0 +1,16 @@
+<view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openCatalog">
+  <view class="u-fix-bottom--bar">
+    <image class="u-fix-bottom--icon" src="/icon_png/article_catalog.png" />
+    <text>目录</text>
+  </view>
+</view>
+
+<view class="u-container-cover catalog" wx:if="{{isShowCatalog}}" catchtouchmove="move">
+  <view class="u-container-cover catalog__mask" bindtap="closeCatalog"></view>
+  <view class="catalog__main">
+    <view class="catalog__title">目录</view>
+    <block wx:for="{{catalogList}}">
+      <view class="catalog__item" hover-class="catalog__item--hover" data-target="{{item.key}}" bindtap="scrollToTarget">{{item.value}}</view>
+    </block>
+  </view>
+</view>

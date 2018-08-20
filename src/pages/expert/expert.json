@@ -3,6 +3,7 @@
     "backgroundColor": "#fff"
   },
   "usingComponents": {
-    "settingEntry": "../../components/setting_enter/setting"
+    "settingEntry": "../../components/setting_enter/setting",
+    "catalog": "../../components/catalog/catalog"
   }
 }

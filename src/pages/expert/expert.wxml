@@ -14,7 +14,7 @@
     <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
     <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
   </view>
-  <view wx:if="{{expert.desc != ''}}" class="node-block">
+  <view wx:if="{{expert.desc != ''}}" class="node-block" id="js-introduction">
       <view class="node-block__header">
         <text class="node-block__title">简介</text>
       </view>
@@ -24,5 +24,7 @@
       </view>
   </view>
   <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
+
+  <catalog catalogList="{{catalogList}}"></catalog>
   <settingEntry></settingEntry>
 </block>

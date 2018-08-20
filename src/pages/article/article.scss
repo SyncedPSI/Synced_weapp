@@ -104,6 +104,7 @@
     margin-right: 32rpx;
     position: relative;
     min-width: 180rpx;
+    vertical-align:middle;
 
     &.can_click::after {
       content: '';

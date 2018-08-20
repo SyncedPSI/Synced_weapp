@@ -12,7 +12,17 @@ Page({
   data: {
     id: "",
     technology: {},
-    isRequestFinished: false
+    isRequestFinished: false,
+    catalogList: [{
+      key: 'js-introduction',
+      value: '简介'
+    }, {
+      key: 'js-about-experts',
+      value: '相关专家'
+    }, {
+      key: 'js-about-institutions',
+      value: '相关机构'
+    }]
   },
 
   onLoad: function (option) {
