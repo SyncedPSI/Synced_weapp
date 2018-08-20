@@ -12,6 +12,7 @@ Page({
   data: {
     id: "",
     technology: {},
+    scrollTop: 0,
     isRequestFinished: false,
     catalogList: [{
       key: 'js-introduction',
@@ -41,5 +42,10 @@ Page({
           isRequestFinished: true
         });
       })
-  }
+  },
+  onPageScroll: function (event) {
+    this.setData({
+      scrollTop: event.scrollTop,
+    });
+  },
 });

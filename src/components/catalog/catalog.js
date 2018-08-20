@@ -4,13 +4,17 @@ Component({
       type: Array,
       value: []
     },
+    scrollTop: {
+      type: Number,
+      value: 0
+    },
   },
   data: {
     isShowCatalog: false,
     isIphoneX: getApp().globalData.isIphoneX,
   },
   ready: function () {
-    console.log(this.properties.catalogList)
+
   },
   detached: function () {
 
@@ -30,8 +34,9 @@ Component({
     scrollToTarget: function(event) {
       const { target } = event.target.dataset;
       wx.createSelectorQuery().select(`#${target}`).boundingClientRect((rect) => {
+        console.log(this.properties.scrollTop)
         wx.pageScrollTo({
-          scrollTop: rect.top
+          scrollTop: rect.top + this.properties.scrollTop
         });
         this.closeCatalog();
       }).exec()

@@ -12,6 +12,7 @@ Page({
   data: {
     id: "",
     expert: {},
+    scrollTop: 0,
     isRequestFinished: false,
     isShowCatelog: false,
     catalogList: [{
@@ -39,5 +40,10 @@ Page({
           isRequestFinished: true
         });
       })
+  },
+  onPageScroll: function (event) {
+    this.setData({
+      scrollTop: event.scrollTop,
+    });
   },
 });

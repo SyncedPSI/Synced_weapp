@@ -1,5 +1,5 @@
 <view class="catalog__height"></view>
-<view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openCatalog">
+<view class="u-fix-bottom catalog__bottom {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openCatalog">
   <view class="u-fix-bottom--bar">
     <image class="u-fix-bottom--icon" src="/icon_png/article_catalog.png" />
     <text>目录</text>

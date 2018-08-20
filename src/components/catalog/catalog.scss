@@ -12,6 +12,10 @@
   position: fixed;
   z-index: 5;
 
+  &__bottom {
+    z-index: 5;
+  }
+
   &__height {
     height: 96rpx;
   }
