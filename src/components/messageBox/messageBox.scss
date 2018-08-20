@@ -17,6 +17,10 @@ $bottom-height: 188rpx;
     padding-bottom: $bottom-height + $safe-padding-bottom;
   }
 
+  &__hr {
+    border-top: 1px solid $mute-black;
+  }
+
   &__item {
     padding: 0 40rpx;
     margin: 24rpx 0;

@@ -1,32 +1,11 @@
-<import src="./node.wxml"/>
-<import src="./search.wxml"/>
+<import src="./messageList.wxml"/>
 
 <view class="message-box {{isIphoneX ? 'is-iphonex' : ''}}">
   <scroll-view class="message-box__body" id="js-scroll-view" scroll-y style="height: 100%;" scroll-top="{{scrollTop}}">
     <view id="js-content">
-      <view class="message-box__item" wx:for="{{chat}}" wx:key="{{index}}">
-        <view class="message-box__inline t-left" wx:if="{{item.fromRobot}}">
-          <view class="message-box__avatar">
-            <image class="message-box__image" src="/images/logo_avatar.png" mode="aspectFill"></image>
-          </view>
-          <view>
-            <view class="message-box__content"  wx:if="{{item.message !== null}}">{{item.message}}</view>
-            <view class="message-box__content" wx:if="{{item.node !== null}}">
-              <template is="node" data="{{...item.node}}" />
-            </view>
-            <view class="message-box__content" wx:if="{{item.askBack.items.length !== 0}}">
-              <template is="search" data="{{...item.askBack}}" />
-            </view>
-          </view>
-        </view>
-
-        <view class="message-box__inline t-right" wx:else>
-          <view class="message-box__content">{{item.message}}</view>
-          <view class="message-box__avatar">
-            <image class="message-box__image" src="{{avatar}}" mode="aspectFill"></image>
-          </view>
-        </view>
-      </view>
+      <template is="list" data="{{chat: oldChat, avatar: avatar}}" />
+      <view class="message-box__hr" wx-if="{{ oldChat.length > 0 }}"></view>
+      <template is="list" data="{{chat, avatar: avatar}}" />
       <view style="height: {{keyboardHeight}}px"></view>
     </view>
   </scroll-view>
