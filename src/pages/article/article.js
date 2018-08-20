@@ -1,5 +1,5 @@
-import { request, getDateDiff, showErrorToast } from "utils/util";
-import { articleShow, login } from "config/api";
+import { request, getDateDiff, setNavigationBarTitle } from "utils/util";
+import { articleShow } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -32,7 +32,7 @@ Page({
   },
 
   onLoad: function(option) {
-    this.setNavigationBarTitle();
+    setNavigationBarTitle();
     this.getTitleHeight();
 
     const { id, title } = option;
@@ -54,12 +54,6 @@ Page({
       });
   },
 
-  setNavigationBarTitle: function(title = '') {
-    wx.setNavigationBarTitle({
-      title,
-    });
-  },
-
   getTitleHeight: function() {
     setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
@@ -72,9 +66,9 @@ Page({
     if (this.titleHeight === undefined) return;
     const { scrollTop } = event;
     if (scrollTop > this.titleHeight) {
-      this.setNavigationBarTitle(this.data.title);
+      setNavigationBarTitle(this.data.title);
     } else {
-      this.setNavigationBarTitle();
+      setNavigationBarTitle();
     }
   },
 
