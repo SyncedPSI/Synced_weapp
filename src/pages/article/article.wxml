@@ -30,7 +30,7 @@
       <view class="title">相关数据</view>
       <scroll-view scroll-x="{{true}}" style="width: 100%">
         <block wx:for="{{article.related_nodes}}" wx:key="unique">
-          <view class="node_card" wx:if="{{item.level != 'level_3'}}">
+          <view class="node_card" wx:if="{{item.level == 'level_1'}}">
             <view class="top">
               <view class="zh_name">{{item.zh_name}}</view>
               <view class="type">{{item.node_type}}</view>

@@ -12,6 +12,10 @@
   position: fixed;
   z-index: 5;
 
+  &__height {
+    height: 96rpx;
+  }
+
   &__mask {
     position: absolute;
     z-index: 1;
