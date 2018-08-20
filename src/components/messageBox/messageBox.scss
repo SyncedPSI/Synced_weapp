@@ -18,7 +18,8 @@ $bottom-height: 188rpx;
   }
 
   &__hr {
-    border-top: 1px solid $mute-black;
+    height: 20rpx;
+    background-color: #EAEAEA;
   }
 
   &__item {

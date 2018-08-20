@@ -2,22 +2,13 @@ import { request } from "utils/util";
 import { ApiRootUrl } from 'config/api';
 
 const defaultRecommend = ['机器之心', '应用案例', '猜你喜欢', '人工智能', '推荐文章'];
-const welcomeMsg = {
-  fromRobot: true,
-  message: '欢迎你加入机器之心人工智能信息服务平台',
-  askBack: {
-    items: [],
-    path: '',
-  },
-  node: null,
-};
 
 Component({
   data: {
     message: '',
-    oldChat: wx.getStorageSync('chat') || [],
-    chat: [welcomeMsg],
-    avatar: wx.getStorageSync('userInfo').avatarUrl,
+    oldChat: [],
+    chat: [],
+    avatar: '',
     scrollTop: 0,
     keyboardHeight: null,
     recommend: defaultRecommend,
@@ -25,10 +16,27 @@ Component({
     isIphoneX: getApp().globalData.isIphoneX,
   },
   ready: function() {
+    const oldChat = wx.getStorageSync('chat');
+    const avatar = wx.getStorageSync('userInfo').avatarUrl;
+    this.setData({
+      oldChat,
+      avatar,
+      chat: [{
+        fromRobot: true,
+        message: oldChat.length === 0 ? '欢迎你加入机器之心人工智能信息服务平台' : '欢迎回来',
+        askBack: {
+          items: [],
+          path: '',
+        },
+        node: null,
+      }]
+    });
+
     this.timeout = false;
     this.enableChangeFilling = true;
     wx.createSelectorQuery().in(this).select('#js-scroll-view').boundingClientRect((rect) => {
       this.scrollViewHeight = rect.height;
+      this.pageScrollToBottom();
     }).exec()
   },
   detached: function() {
