@@ -13,10 +13,11 @@ Component({
   data: {
     dailies: {},
     keys: [],
+    activeId: null,
+    activeTitle: '',
     actionSheetHidden: true,
   },
   attached: function () {
-    this.activeDailyId = null;
     this.resolveData();
   },
   detached: function () {
@@ -29,7 +30,7 @@ Component({
         const { created_at } = item;
         if (created_at === undefined) return;
 
-        const [_, date] = created_at.match(new RegExp('[0-9]{4}/([^?#]+)', 'i'));
+        const [_, date] = created_at.match(new RegExp('[0-9]{4}-([^\\s]+)', 'i'));
         if (dailies[date] === undefined) {
           dailies[date] = [];
         }
@@ -42,8 +43,10 @@ Component({
       });
     },
     openActionSheet: function (event) {
-      this.activeDailyId = event.target.dataset.id;
+      const { id, title } = event.target.dataset;
       this.setData({
+        activeId: id,
+        activeTitle: title,
         actionSheetHidden: !this.data.actionSheetHidden
       });
     },
@@ -52,14 +55,14 @@ Component({
         actionSheetHidden: true
       });
     },
-    saveCard: function(event) {
+    saveCard: function() {
       wx.navigateTo({
-        url: `../daily/screenshot/screenshot?id=${this.activeDailyId}`
+        url: `../daily/screenshoot/screenshoot?id=${this.data.activeId}`
       });
     },
     copyclip: function() {
       wx.setClipboardData({
-        data: `https://www.jiqizhixin.com/dailies/${this.activeDailyId}`,
+        data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
         success: function (res) {
           showTipToast('内容已复制');
         }

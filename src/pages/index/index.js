@@ -73,18 +73,19 @@ Page({
       this.getList(true);
     });
   },
-  onShareAppMessage: function() {
-    if (res.from === 'button') {
-      console.log(res.target);
-      // return {
-      //   title: '机器之心',
-      //   path: '/page/daily/daily'
-      // }
+  onShareAppMessage: function(event) {
+    const { from } = event;
+    if (from === 'button') {
+      const { id, title } = event.target.dataset;
+      return {
+        title,
+        path: `/page/daily/show/show?id=${id}`
+      };
     }
 
     return {
       title: '机器之心',
       path: '/page/index/index'
-    }
+    };
   },
 });

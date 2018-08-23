@@ -137,11 +137,11 @@ export const showErrorToast = (msg) => {
   })
 };
 
-export const showTipToast = (msg, icon = 'success') => {
+export const showTipToast = (msg, icon = 'success', duration = 2000) => {
   wx.showToast({
     title: msg,
     icon: icon,
-    duration: 2000
+    duration
   })
 };
 

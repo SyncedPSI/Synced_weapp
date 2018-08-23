@@ -1,0 +1,54 @@
+@import 'variables';
+@import 'fix_bottom';
+@import '../daily';
+
+
+.daily {
+  &__container {
+    background-color: #fff;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    padding-top: 40rpx;
+    overflow: hidden;
+  }
+
+  &__body {
+    border: 2rpx solid #F9F9F9;
+    padding: 50rpx 30rpx 40rpx;
+  }
+
+  &__canvas {
+    margin-bottom: 190rpx;
+  }
+}
+
+.logo {
+  text-align: center;
+  padding: 50rpx 0 0;
+  font-size: 28rpx;
+  color: $secondary-black;
+
+  &-image {
+    width: 216rpx;
+    height: 216rpx;
+  }
+}
+
+.save-btn {
+  background-color: $black;
+  color: #fff;
+  text-align: center;
+  padding: 28rpx 0;
+  border-radius: 0;
+  line-height: 1.4;
+  width: 100%;
+
+  &::after {
+    border: none;
+  }
+
+  &--container {
+    padding: 20rpx 40rpx;
+    border-top: 2rpx solid $white;
+  }
+}
