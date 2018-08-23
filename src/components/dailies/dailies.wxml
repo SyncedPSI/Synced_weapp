@@ -1,1 +1,16 @@
-<view></view>
+<view class="daily-item__container">
+  <view class="daily-item__border"></view>
+  <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
+    <view class="daily-item {{index === 0 ? 't-red' : ''}}">
+      <view class="daily-item__date">{{key}}</view>
+      <navigator url="../daily/daily?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key]}}" wx:key="{{item.id}}">
+        <view class="daily-item__title">{{item.title}}</view>
+        <view class="daily-item__content">{{item.content}}</view>
+        <view class="u-flex">
+          <text class="daily-item__create">{{item.created_at}}</text>
+          <text class="daily-item__action" bindtap="openAction">动作</text>
+        </view>
+      </navigator>
+    </view>
+  </block>
+</view>
