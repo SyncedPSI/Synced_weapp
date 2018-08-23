@@ -8,7 +8,7 @@ Page({
     hoverImageUrl: "/icons/ic_chatbot_n.svg",
     searchIconUrl: "/icons/ic_search.svg",
     list: [],
-    activeType: 'dailies',
+    activeType: 'timelines',
   },
 
   onLoad: function(options) {

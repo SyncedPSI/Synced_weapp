@@ -27,6 +27,8 @@ Component({
       const { dailies } = this.data;
       this.properties.list.forEach((item) => {
         const { created_at } = item;
+        if (created_at === undefined) return;
+
         const [_, date] = created_at.match(new RegExp('[0-9]{4}/([^?#]+)', 'i'));
         if (dailies[date] === undefined) {
           dailies[date] = [];
