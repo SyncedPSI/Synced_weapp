@@ -1,4 +1,5 @@
 <import src="../../common/page_loading.wxml"/>
+<import src="../../common/comment_bottom_bar.wxml"/>
 
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="daily__container">
@@ -13,24 +14,8 @@
   </view>
 
   <block wx:if="{{!isFetching}}">
-    <comment isShowComment="{{isShowComment}}" article_id="{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-
-    <block wx:if="{{isLogin}}">
-      <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openComment">
-        <view class="u-fix-bottom--bar">
-          <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
-          <text>评论</text>
-        </view>
-      </view>
-    </block>
-    <block wx:else>
-      <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
-        <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-          <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
-          <text>评论</text>
-        </button>
-      </view>
-    </block>
+    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
   </block>
   <settingEntry></settingEntry>
 </view>

@@ -1,0 +1,18 @@
+<template name="comment-bottom-bar">
+  <block wx:if="{{isLogin}}">
+    <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openComment">
+      <view class="u-fix-bottom--bar">
+        <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
+        <text>评论</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+      <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        <image class="u-fix-bottom--icon" src="/icon_png/article_comment.png" />
+        <text>评论</text>
+      </button>
+    </view>
+  </block>
+</template>
