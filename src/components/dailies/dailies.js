@@ -1,3 +1,5 @@
+import { showTipToast } from 'utils/util';
+
 Component({
   properties: {
     dailyList: {
@@ -8,8 +10,10 @@ Component({
   data: {
     dailies: {},
     keys: [],
+    actionSheetHidden: true,
   },
   ready: function () {
+    this.activeDailyId = null;
     const testDailies = {
       '今天': [{
         id: 1,
@@ -44,8 +48,29 @@ Component({
 
   },
   methods: {
-    openAction: function() {
-
-    }
+    openActionSheet: function (event) {
+      this.activeDailyId = event.target.dataset.id;
+      this.setData({
+        actionSheetHidden: !this.data.actionSheetHidden
+      });
+    },
+    closeActionSheet: function() {
+      this.setData({
+        actionSheetHidden: true
+      });
+    },
+    saveCard: function(event) {
+      wx.navigateTo({
+        url: `../daily/screenshot/screenshot?id=${this.activeDailyId}`
+      });
+    },
+    copyclip: function() {
+      wx.setClipboardData({
+        data: `https://www.jiqizhixin.com/dailies/${this.activeDailyId}`,
+        success: function (res) {
+          showTipToast('内容已复制');
+        }
+      });
+    },
   }
 })
