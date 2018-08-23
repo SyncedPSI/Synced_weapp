@@ -1,0 +1,4 @@
+<template name="tab">
+  <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
+  <text class="header-nav__item {{activeType === 'dailies' ? 'is-active' : ''}}" bindtap="switchType" data-type="dailies">资讯</text>
+</template>

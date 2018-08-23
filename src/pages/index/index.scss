@@ -40,26 +40,6 @@
 .header-nav {
   padding: 0 40px 0 26rpx;
 
-  &.is-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    background-color: #fff;
-    box-shadow: 0 2px 4px 0 rgba(226, 225, 225, 0.50);
-  }
-
-  &.is-fixed &__search {
-   opacity: 1;
-   visibility: visible;
-  }
-
-  &__search {
-    opacity: 0;
-    visibility: hidden;
-  }
-
   &__item {
     display: inline-block;
     font-size: 40rpx;
@@ -69,6 +49,23 @@
     &.is-active {
       color: $title-black;
     }
+  }
+
+  &.t-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #fff;
+    box-shadow: 0 2px 4px 0 rgba(226, 225, 225, 0.50);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.t-fixed.is-show {
+    opacity: 1;
+    visibility: visible;
   }
 }
 

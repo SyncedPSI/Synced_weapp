@@ -1,4 +1,5 @@
 <import src="../common/loading.wxml"/>
+<import src="./tab.wxml"/>
 
 <view class="header">
   <view class='logo'>
@@ -8,10 +9,12 @@
     <text>搜索知识</text>
     <image class="search__btn" src="{{searchIconUrl}}"></image>
   </navigator>
-  <view class="u-flex header-nav {{ scrollTop >= 220 ? 'is-fixed' : ''}}">
+  <view class="header-nav">
+    <template is="tab" data="{{activeType}}" />
+  </view>
+  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}">
     <view>
-      <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
-      <text class="header-nav__item {{activeType === 'dailies' ? 'is-active' : ''}}" bindtap="switchType" data-type="dailies">资讯</text>
+      <template is="tab" data="{{activeType}}" />
     </view>
     <navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>
   </view>
