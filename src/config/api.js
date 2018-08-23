@@ -1,6 +1,7 @@
 export const ApiRootUrl = 'https://www.jiqizhixin.com/api/v1';
 
-export const timeline =  ApiRootUrl + '/timelines';
+export const timelines = ApiRootUrl + '/timelines';
+export const dailies = ApiRootUrl + '/dailies';
 export const articleShow =  ApiRootUrl + '/articles/';
 export const expertShow =  ApiRootUrl + '/experts/';
 export const technologyShow =  ApiRootUrl + '/technologies/';

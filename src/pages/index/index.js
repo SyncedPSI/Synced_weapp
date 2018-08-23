@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { timeline } from "config/api";
+import { ApiRootUrl } from "config/api";
 
 Page({
   data: {
@@ -7,41 +7,43 @@ Page({
     logoUrl: "/images/logo.svg",
     hoverImageUrl: "/icons/ic_chatbot_n.svg",
     searchIconUrl: "/icons/ic_search.svg",
-    articles: []
+    list: [],
+    activeType: 'timelines',
   },
 
   onLoad: function(options) {
     this.page = 1;
-    this.getData();
+    this.getList();
   },
-
   scroll: function(e) {
     this.setData({
       scrollTop: e.detail.scrollTop
     });
   },
-  getData: function (isRefresh = false) {
-    return request(`${timeline}?page=${this.page}`)
+  getList: function (isRefresh = false) {
+    const { activeType } = this.data;
+    return request(`${ApiRootUrl}/${activeType}?page=${this.page}`)
       .then(res => {
         this.page += 1;
-        const { articles } = this.data;
-        const newArticles = res.data;
-        newArticles.forEach(item => {
-          item.published_at = getDateDiff(item.published_at);
-        });
+        const { list } = this.data;
+        const newList = res.data;
+
+        if (activeType === 'timelines') {
+          newList.forEach(item => {
+            item.published_at = getDateDiff(item.published_at);
+          });
+        }
 
         if (isRefresh) {
-          console.log('iiii')
           this.setData({
-            articles: newArticleList,
-            isHideLoding: true,
+            list: newList,
           });
         } else {
           this.setData({
-            articles: [...articles, ...newArticles],
+            list: [...list, ...newList],
           });
         }
-      })
+      });
   },
   onPageScroll: function (event) {
     this.setData({
@@ -49,17 +51,26 @@ Page({
     });
   },
   onReachBottom: function () {
-    this.getData();
+    this.getList();
   },
   onPullDownRefresh: function () {
     wx.showNavigationBarLoading();
 
     this.page = 1;
-    this.getData(true)
+    this.getList(true)
       .catch(() => {})
       .then(() => {
-        wx.hideNavigationBarLoading()
-        wx.stopPullDownRefresh()
+        wx.hideNavigationBarLoading();
+        wx.stopPullDownRefresh();
       });
+  },
+  switchType: function(event) {
+    const { type } = event.target.dataset;
+    this.setData({
+      activeType: type
+    }, () => {
+      this.page = 1;
+      this.getList(true);
+    });
   }
 });
