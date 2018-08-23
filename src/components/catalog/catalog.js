@@ -34,7 +34,6 @@ Component({
     scrollToTarget: function(event) {
       const { target } = event.target.dataset;
       wx.createSelectorQuery().select(`#${target}`).boundingClientRect((rect) => {
-        console.log(this.properties.scrollTop)
         wx.pageScrollTo({
           scrollTop: rect.top + this.properties.scrollTop
         });

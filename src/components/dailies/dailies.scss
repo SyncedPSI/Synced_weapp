@@ -12,10 +12,10 @@
   }
 
   &__border {
-    height: 28rpx;
-    border-left: 2rpx solid $background_color;
+    height: 24rpx;
+    border-left: 6rpx solid $background_color;
     position: absolute;
-    margin-left: -32rpx;
+    margin-left: -34rpx;
   }
 
   &.t-red {
@@ -85,8 +85,15 @@
   }
 }
 
+action-sheet-item,
+action-sheet-cancel {
+  color: $black;
+  font-size:32rpx;
+}
+
 .shared-btn {
   line-height: 1.4;
+  font-size:32rpx;
   background-color: transparent;
 
   &::after {
