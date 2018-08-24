@@ -7,7 +7,8 @@ App({
     isLogin: false,
     authToken: null,
     expiredTime: null,
-    userInfo: null
+    userInfo: null,
+    systemInfo: {},
   },
 
   onLaunch: function () {
@@ -18,12 +19,20 @@ App({
   checkSystemInfo: function() {
     wx.getSystemInfo({
       success: (res) => {
-        if (res.model.match('iPhone X') !== null) {
+        const { model, platform, screenWidth, screenHeight, windowHeight, windowWidth, pixelRatio } = res;
+        if (model.match('iPhone X') !== null) {
           this.globalData.isIphoneX = true;
         }
-        if (res.platform === 'ios') {
+        if (platform === 'ios') {
           this.globalData.isAndroid = false;
         }
+        this.globalData.systemInfo = {
+          screenWidth,
+          screenHeight,
+          windowHeight,
+          windowWidth,
+          pixelRatio,
+        };
       }
     })
   },
