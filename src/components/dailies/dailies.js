@@ -14,7 +14,7 @@ Component({
     dailies: {},
     keys: [],
     activeId: null,
-    activeTitle: '',
+    activeTitle: null,
     actionSheetHidden: true,
   },
   attached: function () {
@@ -43,7 +43,7 @@ Component({
       });
     },
     openActionSheet: function (event) {
-      const { id, title } = event.target.dataset;
+      const { id, title } = event.currentTarget.dataset;
       this.setData({
         activeId: id,
         activeTitle: title,
