@@ -8,7 +8,9 @@
         <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__content">{{item.content}}</navigator>
         <view class="u-flex">
           <text class="daily-item__create">{{item.created_at}}</text>
-          <text class="daily-item__action" bindtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">动作</text>
+          <view class="daily-item__action" bindtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
+            <image class="daily-item__img" src="/icon_png/daily_action.png" mode="cover" />
+          </view>
         </view>
       </view>
     </view>
