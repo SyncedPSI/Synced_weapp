@@ -1,17 +1,17 @@
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
-  <view class="daily__body" id="js-daily-image">
+  <view class="daily__body" id="js-daily-image" hidden="{{canvasHeight > 0}}">
     <view class="daily__title">{{daily.title}}</view>
     <view class="daily__hr"></view>
     <view class="daily__create">{{daily.created_at}}</view>
     <view class="daily__content">{{daily.content}}</view>
     <view class="logo">
-      <image class="logo-image" src="/icon_png/qrcode.png" mode="cover" />
+      <image class="logo-image" src="" mode="cover" />
       <view>长按小程序码，了解机器之心</view>
     </view>
   </view>
-  <canvas class="daily__canvas" canvas-id="js-canvas" style="width: 100%; height: {{canvasHeight}}px;"></canvas>
-
-  <view class="u-fix-bottom save-btn--container {{isIphoneX ? 'has-safe-padding' : ''}}">
-    <button class="save-btn" bindtap="saveImage">保存图片</button>
-  </view>
+  <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 </view>
+<cover-view class="u-fix-bottom save-btn--container {{isIphoneX ? 'has-safe-padding' : ''}}" hidden="{{showLoading}}">
+  <cover-view class="save-btn--border"></cover-view>
+  <button class="save-btn" bindtap="saveImage">保存图片</button>
+</cover-view>

@@ -1,4 +1,4 @@
-import { request, showTipToast, showErrorToast } from "utils/util";
+import { request, showTipToast, showErrorToast, showLoading, hideLoading } from "utils/util";
 import { dailyShow } from "config/api";
 
 const app = getApp();
@@ -9,9 +9,11 @@ Page({
     isFetching: true,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
-    canvasHeight: 0
+    canvasHeight: 0,
+    showLoading: true,
   },
   onLoad: function(option) {
+    showLoading('图片生成中');
     const { id } = option;
     this.setData({
       id,
@@ -30,16 +32,15 @@ Page({
       });
   },
   draw: function() {
-    this.paddingLeft = 15;
-    this.paddingTop = 40;
     wx.createSelectorQuery().select('#js-daily-image').boundingClientRect((rect) => {
       const { width, height } = rect;
       this.setData({
-        canvasHeight: height
+        canvasHeight: height + 20
       });
       this.width = width;
-      this.height = height;
-      this.activeHight = 0;
+      this.height = height + 20;
+      this.paddingLeft = 10;
+      this.activeHight = 40;
       this.ctx = wx.createCanvasContext('js-canvas');
       const { title, content, created_at } = this.data.daily;
 
@@ -48,24 +49,27 @@ Page({
       // bg
       this.drawBg();
       // title
-      this.drawFont(22, '#282828', title, this.paddingLeft, this.paddingTop, true, 26);
+      this.drawFont(22, '#282828', title, this.paddingLeft, this.activeHight, true, 26);
       // hr
       this.ctx.setStrokeStyle('#282828');
       const hrCenter = this.width / 2;
-      this.drawLine(hrCenter - 25, this.activeHight + 20, hrCenter + 25, this.activeHight + 20, 4);
+      this.drawLine(hrCenter - 25, this.activeHight + 24, hrCenter + 25, this.activeHight + 24, 2);
       // time
-      this.drawFont(14, '#9d9d9d', created_at, this.width / 2, this.activeHight + 44, false);
-      this.activeHight += 78;
+      this.drawFont(14, '#9d9d9d', created_at, hrCenter, this.activeHight + 56, false);
+      this.activeHight += 90;
       // content
       this.drawFont(16, '#414141', content, this.paddingLeft, this.activeHight, true, 30);
       // img
       // drawImage(dx, dy, dWidth, dHeight)
       this.ctx.drawImage('/icon_png/qrcode.png', (this.width - 108) / 2, this.activeHight + 25, 108, 108);
       // word
-      this.activeHight += 133;
-      this.drawFont(14, '#9d9d9d', '长按小程序码，了解机器之心', this.width / 2, this.activeHight + 20, false);
-
+      this.activeHight += 150;
+      this.drawFont(14, '#9d9d9d', '长按小程序码，了解机器之心', hrCenter, this.activeHight, false);
       this.ctx.draw();
+      hideLoading();
+      this.setData({
+        showLoading: false,
+      });
     }).exec();
   },
   setSquare: function() {
@@ -96,7 +100,6 @@ Page({
     for (let i = 0; i < countY; i++) {
       this.drawLine(0, i * step, this.width, i * step);
     }
-    // 需要再描一次边
   },
   drawFont: function (fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize) {
     this.ctx.setFontSize(fontSize);
@@ -130,7 +133,6 @@ Page({
     this.activeHight = y;
   },
   saveImage: function() {
-    showTipToast('图片生成中', 'loading', 50000);
     wx.canvasToTempFilePath({
       x: 0,
       y: 0,
