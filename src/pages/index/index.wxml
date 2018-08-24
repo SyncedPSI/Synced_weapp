@@ -1,6 +1,7 @@
 <import src="../common/loading.wxml"/>
 <import src="./tab.wxml"/>
 
+<nav></nav>
 <view class="header">
   <view class='logo'>
     <image src="{{logoUrl}}" mode='aspectFit'></image>
