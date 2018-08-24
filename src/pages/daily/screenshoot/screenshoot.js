@@ -39,8 +39,8 @@ Page({
       });
       this.width = width;
       this.height = height + 20;
-      this.paddingLeft = 10;
-      this.activeHight = 40;
+      this.paddingLeft = 15;
+      this.activeHight = 36;
       this.ctx = wx.createCanvasContext('js-canvas');
       const { title, content, created_at } = this.data.daily;
 
@@ -61,7 +61,7 @@ Page({
       this.drawFont(16, '#414141', content, this.paddingLeft, this.activeHight, true, 30);
       // img
       // drawImage(dx, dy, dWidth, dHeight)
-      this.ctx.drawImage('/images/qrcode.png', (this.width - 108) / 2, this.activeHight + 25, 108, 108);
+      this.ctx.drawImage('/images/qrcode.png', (this.width - 90) / 2, this.activeHight + 36, 90, 90);
       // word
       this.activeHight += 150;
       this.drawFont(14, '#9d9d9d', '长按小程序码，了解机器之心', hrCenter, this.activeHight, false);
