@@ -161,5 +161,12 @@ Page({
         showErrorToast('生成失败');
       }
     });
-  }
+  },
+  onShareAppMessage: function() {
+    const { id, daily: { title } }= this.data;
+    return {
+      title,
+      path: `/pages/daily/screenshoot/screenshoot?id=${id}&from=weapp`,
+    };
+  },
 });

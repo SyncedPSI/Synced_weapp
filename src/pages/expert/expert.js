@@ -40,4 +40,11 @@ Page({
       scrollTop: event.scrollTop,
     });
   },
+  onShareAppMessage: function() {
+    const { expert: { zh_name }, id } = this.data;
+    return {
+      title: zh_name,
+      path: `/pages/expert/expert?id=${id}&from=weapp`
+    };
+  },
 });

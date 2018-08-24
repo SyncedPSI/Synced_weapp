@@ -42,4 +42,11 @@ Page({
       scrollTop: event.scrollTop,
     });
   },
+  onShareAppMessage: function() {
+    const { technology: { zh_name }, id } = this.data;
+    return {
+      title: zh_name,
+      path: `/pages/technology/technology?id=${id}&from=weapp`
+    };
+  },
 });

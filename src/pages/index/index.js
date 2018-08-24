@@ -11,7 +11,7 @@ Page({
     activeType: 'timelines',
   },
 
-  onLoad: function(options) {
+  onLoad: function() {
     this.page = 1;
     this.getList();
   },
@@ -79,14 +79,14 @@ Page({
       const { id, title } = event.target.dataset;
       return {
         title,
-        path: `/page/daily/show/show?id=${id}`,
+        path: `/pages/daily/show/show?id=${id}&from=weapp`,
         imageUrl: '/images/shard_daily_in_index.png',
       };
     }
 
     return {
       title: '机器之心',
-      path: '/page/index/index'
+      path: '/pages/index/index?from=weapp'
     };
   },
 });

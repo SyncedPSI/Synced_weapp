@@ -1,25 +1,30 @@
 import { request, getDateDiff } from "utils/util";
 import { searchByKeyword } from "config/api";
 
-const app = getApp();
-
 Page({
   data: {
     searchIconUrl: "../../icons/ic_search.svg",
     articles: [],
     node: null,
     hasNextPage: true,
-    page: 1
+    page: 1,
+    keywords: '',
   },
-
+  onLoad: function (option) {
+    const { keywords } = option;
+    if (keywords) {
+      this.setData({
+        keywords,
+      });
+      this.fetchData(keywords);
+    }
+  },
   fetchData: function(keywords = '') {
     this.keywords = keywords;
     const { hasNextPage } = this.data;
     if (!hasNextPage || keywords === '') return;
 
-    const page = this.page;
-    request(`${searchByKeyword}${keywords}&page=${this.data.page}`
-    )
+    request(`${searchByKeyword}${keywords}&page=${this.data.page}`)
       .then(({ data }) => {
         const { articles , hasNextPage } = data;
         const card_node = data.card_node || null;
@@ -59,5 +64,11 @@ Page({
     clearTimeout(this.timer);
     this.data.page = 1;
     this.data.articles = []
-  }
+  },
+  onShareAppMessage: function() {
+    return {
+      title: `${this.keywords} - 机器之心`,
+      path: `/pages/search/search?keywords=${this.keywords}&from=weapp`,
+    };
+  },
 });

@@ -39,4 +39,11 @@ Page({
       scrollTop: event.scrollTop,
     });
   },
+  onShareAppMessage: function() {
+    const { institution: { zh_name }, id } = this.data;
+    return {
+      title: zh_name,
+      path: `/pages/institution/institution?id=${id}&from=weapp`
+    };
+  },
 });

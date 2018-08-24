@@ -50,5 +50,12 @@ Page({
         isShowComment: true
       });
     });
-  }
+  },
+  onShareAppMessage: function() {
+    const { id, daily: { title } }= this.data;
+    return {
+      title,
+      path: `/pages/daily/show/show?id=${id}&from=weapp`,
+    };
+  },
 });

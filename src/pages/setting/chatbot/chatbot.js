@@ -6,4 +6,10 @@
 Page({
   data: {
   },
+  onShareAppMessage: function() {
+    return {
+      title: '机器之心小助手',
+      path: `/pages/setting/chatbox/chatbox?from=weapp`,
+    };
+  },
 });
