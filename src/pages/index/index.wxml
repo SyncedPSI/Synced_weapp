@@ -1,20 +1,30 @@
 <import src="../common/loading.wxml"/>
+<import src="./tab.wxml"/>
 
-<view class="header_wrapper {{ scrollTop >= 160 ? 'fixed' : ''}}">
-  <view class="header">
-    <view class='logo'>
-      <image src="{{logoUrl}}" mode='aspectFit'></image>
+<view class="header">
+  <view class='logo'>
+    <image src="{{logoUrl}}" mode='aspectFit'></image>
+  </view>
+  <navigator alt="搜索" class="search_box" url="../search/search">
+    <text>搜索知识</text>
+    <image class="search__btn" src="{{searchIconUrl}}"></image>
+  </navigator>
+  <view class="header-nav">
+    <template is="tab" data="{{activeType}}" />
+  </view>
+  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}">
+    <view>
+      <template is="tab" data="{{activeType}}" />
     </view>
-    <navigator alt="搜索" class="search_box" url="../search/search">
-      <text>搜索知识</text>
-      <image class="search__btn" src="{{searchIconUrl}}"></image>
-    </navigator>
+    <navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>
   </view>
 </view>
+<!-- -->
 <view class='content_container'>
-  <view wx:for="{{articles}}" wx:key="unique">
-    <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}"></article>
-  </view>
+  <block wx:if="{{activeType === 'timelines'}}">
+    <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{list}}" wx:key="{{item.id}}"></article>
+  </block>
+  <dailies list="{{list}}" wx:else></dailies>
 </view>
 <view>
   <template is="loading" />

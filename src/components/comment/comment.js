@@ -7,7 +7,7 @@ Component({
       type: Boolean,
       value: false
     },
-    article_id: {
+    baseUrl: {
       type: String,
       value: ''
     }
@@ -30,7 +30,7 @@ Component({
 
   methods: {
     fetchData: function() {
-      request(`${ApiRootUrl}/articles/${this.properties.article_id}/comments`)
+      request(`${ApiRootUrl}${this.properties.baseUrl}/comments`)
         .then(res => {
           const { comments, count } = res.data;
           this.setData({
@@ -80,7 +80,7 @@ Component({
 
       if (content === '') return;
       const isCreateComment = this.replyCommentId === null;
-      const url = isCreateComment ? `${ApiRootUrl}/articles/${this.properties.article_id}/comments` : `${comments}/${this.replyCommentId}/reply`
+      const url = isCreateComment ? `${ApiRootUrl}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`
       request(`${url}`, {
         content
       }, 'POST')

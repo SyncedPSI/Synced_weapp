@@ -1,0 +1,26 @@
+<view class="daily-item__container">
+  <view class="daily-item__border"></view>
+  <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
+    <view class="daily-item {{index === 0 ? 't-red' : ''}}">
+      <view class="daily-item__date">{{key}}</view>
+      <view class="daily-item__inline" wx:for="{{dailies[key]}}" wx:key="{{item.id}}">
+        <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__title">{{item.title}}</navigator>
+        <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__content">{{item.content}}</navigator>
+        <view class="u-flex">
+          <text class="daily-item__create">{{item.created_at}}</text>
+          <view class="daily-item__action" bindtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
+            <image class="daily-item__img" src="/icon_png/daily_action.png" mode="cover" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
+   <action-sheet-item>
+      <button class="shared-btn" open-type="share" data-id="{{activeId}}" data-title="{{activeTitle}}" bindtap="closeActionSheet">分享给朋友</button>
+   </action-sheet-item>
+   <action-sheet-item bindtap="saveCard">生成卡片保存分享</action-sheet-item>
+   <action-sheet-item bindtap="copyclip">复制此新闻链接</action-sheet-item>
+   <action-sheet-cancel>取消</action-sheet-cancel>
+</action-sheet>

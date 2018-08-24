@@ -137,12 +137,22 @@ export const showErrorToast = (msg) => {
   })
 };
 
-export const showTipToast = (msg, icon = 'success') => {
+export const showTipToast = (msg, icon = 'success', duration = 2000) => {
   wx.showToast({
     title: msg,
     icon: icon,
-    duration: 2000
+    duration
   })
+};
+
+export const showLoading = (msg) => {
+  wx.showLoading({
+    title: msg,
+  })
+};
+
+export const hideLoading = () => {
+  wx.hideLoading();
 };
 
 export const checkValue = ({value, reg, isRequired = true, errMsg}) => {

@@ -1,0 +1,21 @@
+<import src="../../common/page_loading.wxml"/>
+<import src="../../common/comment_bottom_bar.wxml"/>
+
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
+  <view class="daily__container">
+    <view wx:if="{{isFetching}}">
+      <template is="page_loading" />
+    </view>
+
+    <view class="daily__title">{{daily.title}}</view>
+    <view class="daily__hr"></view>
+    <view class="daily__create">{{daily.created_at}}</view>
+    <view class="daily__content">{{daily.content}}</view>
+  </view>
+
+  <block wx:if="{{!isFetching}}">
+    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
+  </block>
+  <settingEntry></settingEntry>
+</view>
