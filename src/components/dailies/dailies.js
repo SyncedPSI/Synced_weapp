@@ -63,8 +63,9 @@ Component({
     copyclip: function() {
       wx.setClipboardData({
         data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
-        success: function (res) {
+        success: () => {
           showTipToast('内容已复制');
+          this.closeActionSheet();
         }
       });
     },

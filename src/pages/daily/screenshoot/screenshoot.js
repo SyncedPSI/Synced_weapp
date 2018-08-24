@@ -61,7 +61,7 @@ Page({
       this.drawFont(16, '#414141', content, this.paddingLeft, this.activeHight, true, 30);
       // img
       // drawImage(dx, dy, dWidth, dHeight)
-      this.ctx.drawImage('/icon_png/qrcode.png', (this.width - 108) / 2, this.activeHight + 25, 108, 108);
+      this.ctx.drawImage('/images/qrcode.png', (this.width - 108) / 2, this.activeHight + 25, 108, 108);
       // word
       this.activeHight += 150;
       this.drawFont(14, '#9d9d9d', '长按小程序码，了解机器之心', hrCenter, this.activeHight, false);
@@ -76,10 +76,6 @@ Page({
     this.ctx.rect(0, 0, this.width, this.height);
     this.ctx.setFillStyle('#fff');
     this.ctx.fill();
-  },
-  drawStroke: function (color, fromX, fromY, toX, toY) {
-    this.ctx.setStrokeStyle(color);
-    this.ctx.strokeRect(fromX, fromY, toX, toY);
   },
   drawLine: function(fromX, fromY, toX, toY, lineWidth = 1) {
     this.ctx.beginPath();
