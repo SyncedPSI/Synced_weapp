@@ -57,7 +57,7 @@ Component({
     },
     saveCard: function() {
       wx.navigateTo({
-        url: `../daily/screenshoot/screenshoot?id=${this.data.activeId}`
+        url: `../daily/screenshot/screenshot?id=${this.data.activeId}`
       });
     },
     copyclip: function() {

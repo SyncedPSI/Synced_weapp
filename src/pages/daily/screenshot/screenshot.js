@@ -142,7 +142,6 @@ Page({
             showTipToast('图片已保存至相册');
           },
           fail: function(error) {
-            console.log(error);
             if (error.errMsg === 'saveImageToPhotosAlbum:fail:auth denied') {
               wx.openSetting({
                 success: function(setting) {
@@ -154,10 +153,8 @@ Page({
             }
           }
         });
-        console.log(res.tempFilePath)
       },
       fail: function(error) {
-        console.log(error);
         showErrorToast('生成失败');
       }
     });
@@ -166,7 +163,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/daily/screenshoot/screenshoot?id=${id}&from=weapp`,
+      path: `/pages/daily/screenshot/screenshot?id=${id}&from=weapp`,
     };
   },
 });
