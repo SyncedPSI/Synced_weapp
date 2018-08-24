@@ -7,6 +7,7 @@ const app = getApp();
 Page({
   data: {
     id: "",
+    isFromWeapp: false,
     expert: {},
     scrollTop: 0,
     isRequestFinished: false,
@@ -21,8 +22,10 @@ Page({
   },
 
   onLoad: function (option) {
+    const { id, from } = option;
     this.setData({
-      id: option.id
+      id: id,
+      isFromWeapp: from === "weapp",
     });
     request(`${expertShow}${option.id}`)
       .then(res => {

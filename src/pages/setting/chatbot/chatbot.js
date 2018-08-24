@@ -5,6 +5,12 @@
 
 Page({
   data: {
+    isFromWeapp: false,
+  },
+  onLoad: function(option) {
+    this.setData({
+      isFromWeapp: option.from === "weapp",
+    });
   },
   onShareAppMessage: function() {
     return {

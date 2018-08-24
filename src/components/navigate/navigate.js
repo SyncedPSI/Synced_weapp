@@ -6,7 +6,7 @@ Component({
     },
     isShow: {
       type: Boolean,
-      value: false
+      value: true
     },
   },
   data: {

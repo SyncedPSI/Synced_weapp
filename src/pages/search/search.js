@@ -3,7 +3,7 @@ import { searchByKeyword } from "config/api";
 
 Page({
   data: {
-    searchIconUrl: "../../icons/ic_search.svg",
+    isFromWeapp: false,
     articles: [],
     node: null,
     hasNextPage: true,
@@ -11,10 +11,11 @@ Page({
     keywords: '',
   },
   onLoad: function (option) {
-    const { keywords } = option;
+    const { keywords, from } = option;
     if (keywords) {
       this.setData({
         keywords,
+        isFromWeapp: from === "weapp",
       });
       this.fetchData(keywords);
     }

@@ -6,6 +6,7 @@ const app = getApp();
 Page({
   data: {
     id: null,
+    isFromWeapp: false,
     isFetching: true,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
@@ -14,10 +15,11 @@ Page({
   },
   onLoad: function(option) {
     showLoading('图片生成中');
-    const { id } = option;
+    const { id, from } = option;
     this.setData({
       id,
-      isLogin: app.globalData.isLogin
+      isLogin: app.globalData.isLogin,
+      isFromWeapp: from === "weapp",
     });
 
     request(`${dailyShow}${option.id}`)
