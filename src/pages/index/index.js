@@ -79,7 +79,8 @@ Page({
       const { id, title } = event.target.dataset;
       return {
         title,
-        path: `/page/daily/show/show?id=${id}`
+        path: `/page/daily/show/show?id=${id}`,
+        imageUrl: '/images/shard_daily_in_index.png',
       };
     }
 

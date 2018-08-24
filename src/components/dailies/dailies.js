@@ -30,7 +30,7 @@ Component({
         const { created_at } = item;
         if (created_at === undefined) return;
 
-        const [_, date] = created_at.match(new RegExp('[0-9]{4}-([^\\s]+)', 'i'));
+        const [_, date] = created_at.match(new RegExp('[0-9]{4}/([^\\s]+)', 'i'));
         if (dailies[date] === undefined) {
           dailies[date] = [];
         }
