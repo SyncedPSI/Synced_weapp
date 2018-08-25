@@ -10,6 +10,7 @@ Component({
     },
   },
   data: {
+    paddingTop: getApp().globalData.systemInfo.statusBarHeight
   },
   ready: function () {
 

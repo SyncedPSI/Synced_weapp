@@ -2,9 +2,9 @@
 
 .setting-header {
   position:fixed;
-  top:0;
-  left:0;
-  right:0;
+  top: $nav-height;
+  left: 0;
+  right: 0;
   max-height: $setting-header;
   z-index: 3;
   display: flex;
