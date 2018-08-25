@@ -6,7 +6,8 @@ Component({
     },
   },
   data: {
-    user: null
+    user: null,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   attached: function () {
     this.setData({

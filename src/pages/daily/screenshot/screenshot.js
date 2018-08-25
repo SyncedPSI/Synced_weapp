@@ -113,12 +113,12 @@ Page({
   wrapText: function (text, x, y, lineHeight) {
     const maxWidth = this.width - this.paddingLeft * 2;
 
-    var arrText = text.split('');
-    var line = '';
-    for (var n = 0; n < arrText.length; n++) {
-      var testLine = line + arrText[n];
-      var metrics = this.ctx.measureText(testLine);
-      var testWidth = metrics.width;
+    const arrText = text.split('');
+    const line = '';
+    for (let n = 0; n < arrText.length; n++) {
+      const testLine = line + arrText[n];
+      const metrics = this.ctx.measureText(testLine);
+      const testWidth = metrics.width;
       if (testWidth > maxWidth && n > 0) {
         this.ctx.fillText(line, x, y);
         line = arrText[n];

@@ -1,3 +1,5 @@
+<nav></nav>
+
 <view class="account">
   <view class="account__weclome">欢迎你！</view>
   <view class="account__desc">关联已有账户或直接微信注册，获得更多优质内容</view>

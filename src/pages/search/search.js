@@ -9,6 +9,7 @@ Page({
     hasNextPage: true,
     page: 1,
     keywords: '',
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   onLoad: function (option) {
     const { keywords, from } = option;

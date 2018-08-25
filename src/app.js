@@ -32,8 +32,7 @@ App({
           screenHeight,
           windowHeight,
           windowWidth,
-          pixelRatio,
-          statusBarHeight: statusBarHeight * 2
+          statusBarHeight: statusBarHeight * pixelRatio
         };
       }
     })

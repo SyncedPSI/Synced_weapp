@@ -1,4 +1,4 @@
-<view class="global-nav">
+<view class="global-nav" style="padding-top: {{paddingTop}}rpx;">
   <view class="global-nav--url" style="padding-top: {{paddingTop}}rpx;">
     <block wx:if="{{isShow}}">
       <view class="global-nav--tap" wx:if="{{isFromWeapp}}" bindtap="goHome">
