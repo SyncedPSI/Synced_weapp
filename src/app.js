@@ -95,7 +95,7 @@ App({
                 })
                 .catch(err => {
                   if (err.statusCode == 401) {
-                    const unionid = err.data.unionid
+                    const unionid = err.data.unionid;
                     wx.navigateTo({
                       url: `../account/link/link?unionid=${unionid}`
                     })

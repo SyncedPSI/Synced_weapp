@@ -7,8 +7,8 @@
 
   &__container {
     margin-top: 40rpx;
-    border-left: 2rpx solid #eee;
-    padding: 0 40rpx 0 32rpx;
+    border-left: 3.2rpx solid #eee;
+    padding: 0 0 0 32rpx;
   }
 
   &__border {
@@ -66,6 +66,7 @@
   &__title {
     font-size: 36rpx;
     color: $black;
+    font-weight: 500;
   }
 
   &__content {

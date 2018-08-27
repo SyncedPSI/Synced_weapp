@@ -38,16 +38,17 @@
 }
 
 .header-nav {
-  padding: 0 40px 0 26rpx;
+  padding: 0 40rpx 0 26rpx;
 
   &__item {
     display: inline-block;
     font-size: 40rpx;
-    padding: 20rpx 14rpx;
+    padding: 20rpx 28rpx;
     color: $mute-black;
 
     &.is-active {
       color: $title-black;
+      font-weight: 500;
     }
   }
 
