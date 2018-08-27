@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'fix_bottom';
-@import '../daily';
 
 .daily {
   &__container {
@@ -11,28 +10,10 @@
     overflow: hidden;
   }
 
-  &__body {
-    border: 2rpx solid #F9F9F9;
-    padding: 50rpx 30rpx 0;
-    opacity: 0;
-  }
-
   &__canvas {
     margin-bottom: 190rpx;
     width: 100%;
     border: 4rpx solid #f4f4f4;
-  }
-}
-
-.logo {
-  text-align: center;
-  padding: 50rpx 0 0;
-  font-size: 28rpx;
-  color: $secondary-black;
-
-  &-image {
-    width: 216rpx;
-    height: 216rpx;
   }
 }
 

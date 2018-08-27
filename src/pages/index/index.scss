@@ -1,5 +1,9 @@
 @import 'variables';
 
+page {
+  background-color: $background-color;
+}
+
 .header {
   width: 100%;
   padding-top: 40rpx;

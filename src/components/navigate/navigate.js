@@ -13,7 +13,6 @@ Component({
     paddingTop: getApp().globalData.systemInfo.statusBarHeight
   },
   ready: function () {
-    console.log(this.data)
   },
   detached: function () {
 
