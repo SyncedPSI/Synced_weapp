@@ -25,6 +25,10 @@
     border-color: $red;
   }
 
+  &.t-red &__date {
+    font-weight: 500;
+  }
+
   &.t-red &__date::before {
     background-color: $red;
   }

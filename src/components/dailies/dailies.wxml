@@ -2,7 +2,7 @@
   <view class="daily-item__border"></view>
   <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
     <view class="daily-item {{index === 0 ? 't-red' : ''}}">
-      <view class="daily-item__date">{{key}}</view>
+      <view class="daily-item__date">{{index === 0 ? '今天' : key}}</view>
       <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key]}}" wx:key="{{item.id}}">
         <view class="daily-item__title">{{item.title}}</view>
         <view class="daily-item__content">{{item.content}}</view>
