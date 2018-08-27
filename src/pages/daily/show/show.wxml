@@ -18,5 +18,5 @@
     <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
     <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
   </block>
-  <settingEntry></settingEntry>
+  <settingEntry hasComment></settingEntry>
 </view>

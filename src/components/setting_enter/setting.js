@@ -2,8 +2,13 @@ const app = getApp();
 
 Component({
   properties: {
+    hasComment: {
+      type: Boolean,
+      value: false
+    },
   },
   data: {
+    isIphoneX: getApp().globalData.isIphoneX,
     isHidden: true,
     isLogin: null
   },
