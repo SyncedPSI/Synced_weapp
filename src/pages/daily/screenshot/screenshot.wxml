@@ -1,4 +1,4 @@
-<nav isFromWeapp="{{isFromWeapp}}"></nav>
+<nav notShow="{{true}}"></nav>
 
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="daily__body" id="js-daily-image" hidden="{{canvasHeight > 0}}">
@@ -13,6 +13,9 @@
   </view>
   <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 </view>
+
+<nav isFromWeapp="{{isFromWeapp}}"></nav>
+
 <cover-view class="u-fix-bottom save-btn--container {{isIphoneX ? 'has-safe-padding' : ''}}" hidden="{{showLoading}}">
   <cover-view class="save-btn--border"></cover-view>
   <button class="save-btn" bindtap="saveImage">保存图片</button>

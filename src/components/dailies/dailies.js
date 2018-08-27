@@ -56,6 +56,7 @@ Component({
       });
     },
     saveCard: function() {
+      this.closeActionSheet();
       wx.navigateTo({
         url: `../daily/screenshot/screenshot?id=${this.data.activeId}`
       });

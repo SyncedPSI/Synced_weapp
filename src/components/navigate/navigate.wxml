@@ -1,12 +1,11 @@
+<cover-view class="global-nav--url" style="padding-top: {{paddingTop}}px;">
+  <text wx:if="{{notShow}}"></text>
+  <cover-view class="global-nav--tap" wx:elif="{{isFromWeapp}}" bindtap="goHome">
+    <cover-image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
+  </cover-view>
+  <cover-view class="global-nav--tap" wx:else="{{isFromWeapp}}" bindtap="goBack">
+    <cover-image class="global-nav--icon" src="/icons/nav_back.png" mode="cover" />
+  </cover-view>
+</cover-view>
 <view class="global-nav" style="padding-top: {{paddingTop}}px;">
-  <view class="global-nav--url" style="padding-top: {{paddingTop}}px;">
-    <block wx:if="{{isShow}}">
-      <view class="global-nav--tap" wx:if="{{isFromWeapp}}" bindtap="goHome">
-        <image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
-      </view>
-      <view class="global-nav--tap" wx:else bindtap="goBack">
-        <image class="global-nav--icon" src="/icons/nav_back.png" mode="cover" />
-      </view>
-    </block>
-  </view>
 </view>

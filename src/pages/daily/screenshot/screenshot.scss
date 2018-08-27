@@ -2,7 +2,6 @@
 @import 'fix_bottom';
 @import '../daily';
 
-
 .daily {
   &__container {
     background-color: #fff;
@@ -14,7 +13,7 @@
 
   &__body {
     border: 2rpx solid #F9F9F9;
-    padding: 50rpx 30rpx 40rpx;
+    padding: 50rpx 30rpx 0;
     opacity: 0;
   }
 

@@ -4,16 +4,16 @@ Component({
       type: Boolean,
       value: false
     },
-    isShow: {
+    notShow: {
       type: Boolean,
-      value: true
+      value: false
     },
   },
   data: {
     paddingTop: getApp().globalData.systemInfo.statusBarHeight
   },
   ready: function () {
-
+    console.log(this.data)
   },
   detached: function () {
 
