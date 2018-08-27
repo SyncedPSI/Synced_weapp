@@ -6,6 +6,7 @@ const app = getApp();
 Page({
   data: {
     id: null,
+    navigateTitle: '',
     isFromWeapp: false,
     isFetching: true,
     isIphoneX: app.globalData.isIphoneX,
@@ -26,6 +27,7 @@ Page({
       .then(res => {
         const daily = res.data;
         this.setData({
+          navigateTitle: daily.title,
           daily,
           isFetching: false
         }, () => {

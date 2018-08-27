@@ -5,7 +5,8 @@
 
 Page({
   data: {
-    isFromWeapp: false
+    isFromWeapp: false,
+    navigateTitle: '机器之心小助手',
   },
   onLoad: function(option) {
     this.setData({

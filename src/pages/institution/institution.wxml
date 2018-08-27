@@ -3,7 +3,7 @@
 <import src="../common/node_experts.wxml"/>
 <import src="../common/node_technologies.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
   <view class="node-header">
     <template is="node-header" data="{{...institution}}" />

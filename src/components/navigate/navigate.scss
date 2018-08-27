@@ -26,4 +26,19 @@
     width: 40rpx;
     height: 40rpx;
   }
+
+  &--title {
+    position: absolute;
+    left: 50%;
+    max-width: 48%;
+    height: $nav-content-height;
+    line-height: $nav-content-height;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #000100;
+    transform: translateX(-50%);
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
 }

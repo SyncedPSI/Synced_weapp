@@ -1,6 +1,6 @@
 <import src="../common/loading.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <view class="container">
   <view class="header" style="margin-top: {{statusBarHeight}}px;">
     <view class='search_box'>

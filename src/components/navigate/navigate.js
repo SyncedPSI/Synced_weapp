@@ -8,6 +8,10 @@ Component({
       type: Boolean,
       value: false
     },
+    title: {
+      type: String,
+      value: '机器之心'
+    }
   },
   data: {
     paddingTop: getApp().globalData.systemInfo.statusBarHeight

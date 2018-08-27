@@ -163,10 +163,3 @@ export const checkValue = ({value, reg, isRequired = true, errMsg}) => {
     return true;
   }
 };
-
-export const setNavigationBarTitle = (title = '') => {
-  wx.setNavigationBarTitle({
-    title,
-  });
-};
-
