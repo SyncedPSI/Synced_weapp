@@ -7,7 +7,7 @@
       <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='搜索知识' focus="{{keywords === ''}}" type="text" value="{{keywords}}"
         confirm-type="search" bindinput='searchByKeyword' bindconfirm='search' bindblur='search'></input>
       <view class='search_button' >
-        <image src="/icon_png/ic_search.png"></image>
+        <image src="/icons/ic_search.png"></image>
       </view>
     </view>
   </view>

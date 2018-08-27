@@ -114,7 +114,7 @@ Page({
     const maxWidth = this.width - this.paddingLeft * 2;
 
     const arrText = text.split('');
-    const line = '';
+    let line = '';
     for (let n = 0; n < arrText.length; n++) {
       const testLine = line + arrText[n];
       const metrics = this.ctx.measureText(testLine);
