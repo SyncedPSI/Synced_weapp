@@ -26,8 +26,6 @@
     <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{list}}" wx:key="{{item.id}}"></article>
   </block>
   <dailies list="{{list}}" wx:else></dailies>
-</view>
-<view>
   <template is="loading" />
 </view>
 <settingEntry></settingEntry>

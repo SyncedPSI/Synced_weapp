@@ -5,7 +5,6 @@ Page({
   data: {
     scrollTop: 0,
     logoUrl: "/images/logo.svg",
-    hoverImageUrl: "/icons/ic_chatbot_n.svg",
     searchIconUrl: "/icons/ic_search.svg",
     list: [],
     activeType: 'timelines',
@@ -15,11 +14,6 @@ Page({
   onLoad: function() {
     this.page = 1;
     this.getList();
-  },
-  scroll: function(e) {
-    this.setData({
-      scrollTop: e.detail.scrollTop
-    });
   },
   getList: function (isRefresh = false) {
     const { activeType } = this.data;
@@ -67,6 +61,7 @@ Page({
   },
   switchType: function(event) {
     const { type } = event.target.dataset;
+
     this.setData({
       activeType: type
     }, () => {
