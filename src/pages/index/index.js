@@ -61,7 +61,6 @@ Page({
   },
   switchType: function(event) {
     const { type } = event.target.dataset;
-
     this.setData({
       activeType: type
     }, () => {
