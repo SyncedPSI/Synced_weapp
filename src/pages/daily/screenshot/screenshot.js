@@ -66,7 +66,6 @@ Page({
       heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 36;
       heightInfo.tapTop = heightInfo.imgTop + 90 + 7;
       this.height = heightInfo.tapTop + 14 + 30;
-      console.log(heightInfo)
 
       this.setData({
         canvasHeight: this.height
@@ -183,7 +182,7 @@ Page({
             if (error.errMsg === 'saveImageToPhotosAlbum:fail:auth denied') {
               wx.openSetting({
                 success: function(setting) {
-                  console.log(setting);
+
                 }
               });
             } else {
