@@ -19,7 +19,8 @@ App({
   checkSystemInfo: function() {
     wx.getSystemInfo({
       success: (res) => {
-        const { model, platform, screenWidth, screenHeight, windowHeight, windowWidth, pixelRatio } = res;
+        console.log(res)
+        const { model, platform, screenWidth, screenHeight, windowHeight, windowWidth, pixelRatio, statusBarHeight } = res;
         if (model.match('iPhone X') !== null) {
           this.globalData.isIphoneX = true;
         }
@@ -31,7 +32,7 @@ App({
           screenHeight,
           windowHeight,
           windowWidth,
-          pixelRatio,
+          statusBarHeight: statusBarHeight * pixelRatio
         };
       }
     })

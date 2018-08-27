@@ -1,6 +1,8 @@
 <import src="../common/page_loading.wxml"/>
 <import src="../common/comment_bottom_bar.wxml"/>
 
+<nav isFromWeapp="{{isFromWeapp}}"></nav>
+
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="article">
     <view class="title" id="js-article-title">{{title}}</view>

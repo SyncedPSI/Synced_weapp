@@ -8,6 +8,7 @@ Page({
   data: {
     id: "",
     title: "",
+    isFromWeapp: false,
     isFetching: true,
     article: {
       related_nodes: [],
@@ -35,11 +36,12 @@ Page({
     setNavigationBarTitle();
     this.getTitleHeight();
 
-    const { id, title } = option;
+    const { id, title, from } = option;
     this.setData({
       id,
       title,
-      isLogin: app.globalData.isLogin
+      isLogin: app.globalData.isLogin,
+      isFromWeapp: from === "weapp",
     });
 
     request(`${articleShow}${option.id}`)
@@ -86,7 +88,7 @@ Page({
     const { title, id } = this.data;
     return {
       title,
-      path: `/pages/article/article?id=${id}&from=weapp`
+      path: `/pages/article/article?id=${id}&title=${title}&from=weapp`
     };
   },
 });

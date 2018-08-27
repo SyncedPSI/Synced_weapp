@@ -5,6 +5,13 @@
 
 Page({
   data: {
+    isFromWeapp: false,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
+  },
+  onLoad: function(option) {
+    this.setData({
+      isFromWeapp: option.from === "weapp",
+    });
   },
   onShareAppMessage: function() {
     return {

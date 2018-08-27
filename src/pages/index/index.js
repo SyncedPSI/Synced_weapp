@@ -9,6 +9,7 @@ Page({
     searchIconUrl: "/icons/ic_search.svg",
     list: [],
     activeType: 'timelines',
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
 
   onLoad: function() {

@@ -3,18 +3,20 @@ import { searchByKeyword } from "config/api";
 
 Page({
   data: {
-    searchIconUrl: "../../icons/ic_search.svg",
+    isFromWeapp: false,
     articles: [],
     node: null,
     hasNextPage: true,
     page: 1,
     keywords: '',
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   onLoad: function (option) {
-    const { keywords } = option;
+    const { keywords, from } = option;
     if (keywords) {
       this.setData({
         keywords,
+        isFromWeapp: from === "weapp",
       });
       this.fetchData(keywords);
     }

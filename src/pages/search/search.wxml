@@ -1,12 +1,13 @@
 <import src="../common/loading.wxml"/>
 
+<nav isFromWeapp="{{isFromWeapp}}"></nav>
 <view class="container">
-  <view class="header">
+  <view class="header" style="margin-top: {{statusBarHeight}}rpx;">
     <view class='search_box'>
       <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='搜索知识' focus="{{keywords === ''}}" type="text" value="{{keywords}}"
         confirm-type="search" bindinput='searchByKeyword' bindconfirm='search' bindblur='search'></input>
       <view class='search_button' >
-        <image src="{{searchIconUrl}}"></image>
+        <image src="/icon_png/ic_search.png"></image>
       </view>
     </view>
   </view>

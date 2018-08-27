@@ -8,6 +8,7 @@ Page({
   data: {
     id: "",
     technology: {},
+    isFromWeapp: false,
     scrollTop: 0,
     isRequestFinished: false,
     catalogList: [{
@@ -23,8 +24,10 @@ Page({
   },
 
   onLoad: function (option) {
+    const { id, from } = option;
     this.setData({
-      id: option.id
+      id: id,
+      isFromWeapp: from === "weapp",
     });
     request(`${technologyShow}${option.id}`)
       .then(res => {

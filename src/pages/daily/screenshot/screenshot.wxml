@@ -1,3 +1,5 @@
+<nav isFromWeapp="{{isFromWeapp}}"></nav>
+
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="daily__body" id="js-daily-image" hidden="{{canvasHeight > 0}}">
     <view class="daily__title">{{daily.title}}</view>

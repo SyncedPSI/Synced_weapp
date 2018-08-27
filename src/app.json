@@ -20,6 +20,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
+    "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "机器之心",
     "navigationBarTextStyle":"black",

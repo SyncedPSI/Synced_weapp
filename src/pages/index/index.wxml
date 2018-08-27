@@ -1,6 +1,7 @@
 <import src="../common/loading.wxml"/>
 <import src="./tab.wxml"/>
 
+<nav isShow="{{false}}"></nav>
 <view class="header">
   <view class='logo'>
     <image src="{{logoUrl}}" mode='aspectFit'></image>
@@ -12,7 +13,7 @@
   <view class="header-nav">
     <template is="tab" data="{{activeType}}" />
   </view>
-  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}">
+  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}rpx;">
     <view>
       <template is="tab" data="{{activeType}}" />
     </view>

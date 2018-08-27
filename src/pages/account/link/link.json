@@ -3,6 +3,7 @@
     "backgroundColor": "#fff"
   },
   "usingComponents": {
+    "nav": "../../../components/navigate/navigate",
     "settingEntry": "../../../components/setting_enter/setting"
   }
 }

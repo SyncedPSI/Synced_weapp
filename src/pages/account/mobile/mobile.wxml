@@ -1,3 +1,5 @@
+<nav></nav>
+
 <view class="account">
   <view class="account__weclome">欢迎你！</view>
   <view class="account__desc">绑定手机号码，可查看更多优质内容。</view>
