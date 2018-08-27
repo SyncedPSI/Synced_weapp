@@ -1,5 +1,5 @@
-<view class="global-nav" style="padding-top: {{paddingTop}}rpx;">
-  <view class="global-nav--url" style="padding-top: {{paddingTop}}rpx;">
+<view class="global-nav" style="padding-top: {{paddingTop}}px;">
+  <view class="global-nav--url" style="padding-top: {{paddingTop}}px;">
     <block wx:if="{{isShow}}">
       <view class="global-nav--tap" wx:if="{{isFromWeapp}}" bindtap="goHome">
         <image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />

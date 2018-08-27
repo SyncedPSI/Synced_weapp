@@ -13,7 +13,7 @@
   <view class="header-nav">
     <template is="tab" data="{{activeType}}" />
   </view>
-  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}rpx;">
+  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
     <view>
       <template is="tab" data="{{activeType}}" />
     </view>
