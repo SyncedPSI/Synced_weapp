@@ -14,6 +14,7 @@ Component({
     recommend: defaultRecommend,
     enableSendMessage: false,
     isIphoneX: getApp().globalData.isIphoneX,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   ready: function() {
     const oldChat = wx.getStorageSync('chat');

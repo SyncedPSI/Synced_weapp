@@ -5,8 +5,7 @@
 
 Page({
   data: {
-    isFromWeapp: false,
-    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
+    isFromWeapp: false
   },
   onLoad: function(option) {
     this.setData({
