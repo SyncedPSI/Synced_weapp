@@ -31,10 +31,11 @@ Component({
         if (created_at === undefined) return;
 
         const [_, date] = created_at.match(new RegExp('[0-9]{4}/([^\\s]+)', 'i'));
-        if (dailies[date] === undefined) {
-          dailies[date] = [];
+        const key = `${date.replace('/', '月')}日`
+        if (dailies[key] === undefined) {
+          dailies[key] = [];
         }
-        dailies[date].push(item);
+        dailies[key].push(item);
       });
 
       this.setData({
@@ -56,6 +57,7 @@ Component({
       });
     },
     saveCard: function() {
+      this.closeActionSheet();
       wx.navigateTo({
         url: `../daily/screenshot/screenshot?id=${this.data.activeId}`
       });

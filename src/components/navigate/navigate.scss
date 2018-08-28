@@ -12,17 +12,33 @@
     z-index: 100;
     background-color: #fff;
     height: $nav-content-height;
+    display: flex;
   }
 
   &--tap {
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 22rpx;
+    padding: 0 40rpx;
   }
 
   &--icon {
-    width: 40rpx;
-    height: 40rpx;
+    width: 36rpx;
+    height: 36rpx;
+  }
+
+  &--title {
+    position: absolute;
+    left: 50%;
+    max-width: 48%;
+    height: $nav-content-height;
+    line-height: $nav-content-height;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #000100;
+    transform: translateX(-50%);
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
   }
 }

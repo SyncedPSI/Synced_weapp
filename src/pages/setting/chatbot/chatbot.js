@@ -6,7 +6,7 @@
 Page({
   data: {
     isFromWeapp: false,
-    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
+    navigateTitle: '机器之心小助手',
   },
   onLoad: function(option) {
     this.setData({

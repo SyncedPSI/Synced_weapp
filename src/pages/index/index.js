@@ -3,9 +3,8 @@ import { ApiRootUrl } from "config/api";
 
 Page({
   data: {
-    scrollTop: 0,
+    isNavFixed: false,
     logoUrl: "/images/logo.svg",
-    hoverImageUrl: "/icons/ic_chatbot_n.svg",
     searchIconUrl: "/icons/ic_search.svg",
     list: [],
     activeType: 'timelines',
@@ -14,12 +13,8 @@ Page({
 
   onLoad: function() {
     this.page = 1;
+    this.fixNavTop = 176;
     this.getList();
-  },
-  scroll: function(e) {
-    this.setData({
-      scrollTop: e.detail.scrollTop
-    });
   },
   getList: function (isRefresh = false) {
     const { activeType } = this.data;
@@ -47,9 +42,15 @@ Page({
       });
   },
   onPageScroll: function (event) {
-    this.setData({
-      scrollTop: event.scrollTop,
-    });
+    if (event.scrollTop >= this.fixNavTop) {
+      this.setData({
+        isNavFixed: true,
+      });
+    } else {
+      this.setData({
+        isNavFixed: false,
+      });
+    }
   },
   onReachBottom: function () {
     this.getList();
@@ -67,6 +68,8 @@ Page({
   },
   switchType: function(event) {
     const { type } = event.target.dataset;
+    if (type === this.data.activeType) return;
+
     this.setData({
       activeType: type
     }, () => {

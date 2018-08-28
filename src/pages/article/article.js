@@ -1,4 +1,4 @@
-import { request, getDateDiff, setNavigationBarTitle } from "utils/util";
+import { request, getDateDiff } from "utils/util";
 import { articleShow } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -6,6 +6,7 @@ const app = getApp();
 
 Page({
   data: {
+    navigateTitle: '',
     id: "",
     title: "",
     isFromWeapp: false,
@@ -33,7 +34,6 @@ Page({
   },
 
   onLoad: function(option) {
-    setNavigationBarTitle();
     this.getTitleHeight();
 
     const { id, title, from } = option;
@@ -68,10 +68,16 @@ Page({
     if (this.titleHeight === undefined) return;
     const { scrollTop } = event;
     if (scrollTop > this.titleHeight) {
-      setNavigationBarTitle(this.data.title);
+      this.setNavigationBarTitle(this.data.title);
     } else {
-      setNavigationBarTitle();
+      this.setNavigationBarTitle();
     }
+  },
+
+  setNavigationBarTitle: function(title = '') {
+    this.setData({
+      navigateTitle: title
+    });
   },
 
   getUserInfo: function(event) {

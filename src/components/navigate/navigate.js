@@ -4,16 +4,19 @@ Component({
       type: Boolean,
       value: false
     },
-    isShow: {
+    notShow: {
       type: Boolean,
-      value: true
+      value: false
     },
+    title: {
+      type: String,
+      value: '机器之心'
+    }
   },
   data: {
     paddingTop: getApp().globalData.systemInfo.statusBarHeight
   },
   ready: function () {
-
   },
   detached: function () {
 

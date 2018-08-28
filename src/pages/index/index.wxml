@@ -1,7 +1,7 @@
 <import src="../common/loading.wxml"/>
 <import src="./tab.wxml"/>
 
-<nav isShow="{{false}}"></nav>
+<nav notShow="{{true}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
 <view class="header">
   <view class='logo'>
     <image src="{{logoUrl}}" mode='aspectFit'></image>
@@ -13,7 +13,7 @@
   <view class="header-nav">
     <template is="tab" data="{{activeType}}" />
   </view>
-  <view class="u-flex header-nav t-fixed {{ scrollTop >= 180 ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}rpx;">
+  <view class="u-flex header-nav t-fixed {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
     <view>
       <template is="tab" data="{{activeType}}" />
     </view>
@@ -26,8 +26,6 @@
     <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{list}}" wx:key="{{item.id}}"></article>
   </block>
   <dailies list="{{list}}" wx:else></dailies>
-</view>
-<view>
   <template is="loading" />
 </view>
 <settingEntry></settingEntry>

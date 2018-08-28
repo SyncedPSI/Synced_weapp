@@ -2,17 +2,17 @@
   <view class="daily-item__border"></view>
   <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
     <view class="daily-item {{index === 0 ? 't-red' : ''}}">
-      <view class="daily-item__date">{{key}}</view>
-      <view class="daily-item__inline" wx:for="{{dailies[key]}}" wx:key="{{item.id}}">
-        <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__title">{{item.title}}</navigator>
-        <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__content">{{item.content}}</navigator>
+      <view class="daily-item__date">{{index === 0 ? '今天' : key}}</view>
+      <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key]}}" wx:key="{{item.id}}">
+        <view class="daily-item__title">{{item.title}}</view>
+        <view class="daily-item__content">{{item.content}}</view>
         <view class="u-flex">
           <text class="daily-item__create">{{item.created_at}}</text>
-          <view class="daily-item__action" bindtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
+          <view class="daily-item__action" catchtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
             <image class="daily-item__img" src="/icons/daily_action.png" mode="cover" />
           </view>
         </view>
-      </view>
+      </navigator>
     </view>
   </block>
 </view>

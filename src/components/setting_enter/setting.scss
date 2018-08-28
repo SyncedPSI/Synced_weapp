@@ -3,12 +3,24 @@
 .setting {
   position: fixed;
   right: 36rpx;
-  bottom: 238rpx;
+  bottom: 100rpx;
   width: 124rpx;
   height: 124rpx;
   background-color: $black;
   border-radius: 50%;
   padding: 0;
+
+  &.has-safe-padding {
+    bottom: 100rpx + $safe-padding-bottom;
+  }
+
+  &.t-has-comment {
+    bottom: 156rpx;
+  }
+
+  &.t-has-comment.has-safe-padding {
+    bottom: 156rpx + $safe-padding-bottom;
+  }
 
   &__avatar {
     width: 100%;

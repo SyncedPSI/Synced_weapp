@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'mixins';
-$bottom-height: 188rpx;
 
 .message__flex {
   display: flex;
@@ -8,13 +7,17 @@ $bottom-height: 188rpx;
 }
 
 .message-box {
-  height: 100%;
+  position: fixed;
+  top: $setting-header+$nav-content-height;
+  left: 0;
+  right: 0;
+  bottom: $chatbot-bottom-height;
+  z-index: 2;
   background-color: $background_color;
-  padding-bottom: $bottom-height;
   box-sizing: border-box;
 
   &.is-iphonex {
-    padding-bottom: $bottom-height + $safe-padding-bottom;
+    padding-bottom: $safe-padding-bottom;
   }
 
   &__hr {
@@ -87,15 +90,16 @@ $bottom-height: 188rpx;
 
   &__bottom {
     background-color: #fff;
-    height: $bottom-height;
+    height: $chatbot-bottom-height;
     width: 100%;
     position: fixed;
     bottom: 0;
+    z-index: 5;
     box-sizing: border-box;
     box-shadow: 0 -1px 0 0 rgba(226, 225, 225, 0.50);
 
     &.is-iphonex {
-      height: $bottom-height + $safe-padding-bottom;
+      height: $chatbot-bottom-height + $safe-padding-bottom;
       padding-bottom: $safe-padding-bottom;
     }
   }

@@ -1,6 +1,4 @@
-<nav isFromWeapp="{{isFromWeapp}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <myheader activeBar="chatbox"></myheader>
 
-<view class="chatbot-container" style="padding-bottom: {{statusBarHeight}}rpx;">
-  <messageBox class="chatbot"></messageBox>
-</view>
+<messageBox class="chatbot"></messageBox>

@@ -6,6 +6,7 @@ const app = getApp();
 Page({
   data: {
     id: null,
+    navigateTitle: '',
     isFromWeapp: false,
     isFetching: true,
     isIphoneX: app.globalData.isIphoneX,
@@ -26,53 +27,109 @@ Page({
       .then(res => {
         const daily = res.data;
         this.setData({
+          navigateTitle: daily.title,
           daily,
           isFetching: false
         }, () => {
-          this.draw();
+          this.getHight();
         });
       });
   },
-  draw: function() {
-    wx.createSelectorQuery().select('#js-daily-image').boundingClientRect((rect) => {
-      const { width, height } = rect;
-      this.setData({
-        canvasHeight: height + 20
-      });
+  getHight: function() {
+    wx.createSelectorQuery().select('#js-get-width').boundingClientRect((rect) => {
+      const { width } = rect;
       this.width = width;
-      this.height = height + 20;
       this.paddingLeft = 15;
-      this.activeHight = 36;
-      this.ctx = wx.createCanvasContext('js-canvas');
-      const { title, content, created_at } = this.data.daily;
 
+      this.ctx = wx.createCanvasContext('js-canvas');
+      this.ctx.setTextBaseline('top');
+      const { title, content } = this.data.daily;
+      const titleInfo = this.getWrapTextHeight({
+        text: title,
+        lineHeight: 26,
+        fontSize: 22
+      });
+      const contentInfo = this.getWrapTextHeight({
+        text: content,
+        lineHeight: 30,
+        fontSize: 16
+      });
+      // padding title-height padding hr padding create_at padding
+      // content-height padding img padding text padding
+      const heightInfo = {
+        titleTop: 30,
+        imageHeight: 90,
+      };
+
+      heightInfo.hrTop = heightInfo.titleTop + titleInfo.height + 20;
+      heightInfo.createAtTop = heightInfo.hrTop + 24;
+      heightInfo.contentTop = heightInfo.createAtTop + 14 + 20;
+      heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 36;
+      heightInfo.tapTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
+      this.height = heightInfo.tapTop + 14 + 30;
+
+      this.setData({
+        canvasHeight: this.height
+      }, () => {
+        this.draw(titleInfo, contentInfo, heightInfo);
+      });
+    }).exec();
+  },
+  draw: function (titleInfo, contentInfo, heightInfo) {
       // set ctx
       this.setSquare();
       // bg
       this.drawBg();
       // title
-      this.drawFont(22, '#282828', title, this.paddingLeft, this.activeHight, true, 26);
+      this.drawFont({
+        fontSize: 22,
+        color: '#282828',
+        text: titleInfo,
+        x: this.paddingLeft,
+        y: heightInfo.titleTop,
+        lineHeight: 26,
+        isBold: true,
+        isLastCenter: true
+      });
       // hr
       this.ctx.setStrokeStyle('#282828');
       const hrCenter = this.width / 2;
-      this.drawLine(hrCenter - 25, this.activeHight + 24, hrCenter + 25, this.activeHight + 24, 2);
+      this.drawLine(hrCenter - 25, heightInfo.hrTop, hrCenter + 25, heightInfo.hrTop, 2);
       // time
-      this.drawFont(14, '#9d9d9d', created_at, hrCenter, this.activeHight + 56, false);
-      this.activeHight += 90;
+      this.drawFont({
+        fontSize: 14,
+        color: '#9d9d9d',
+        text: this.data.daily.created_at,
+        x: hrCenter,
+        y: heightInfo.createAtTop,
+        isWrap: false,
+      });
       // content
-      this.drawFont(16, '#414141', content, this.paddingLeft, this.activeHight, true, 30);
+      this.drawFont({
+        fontSize: 16,
+        color: '#414141',
+        text: contentInfo,
+        x: this.paddingLeft,
+        y: heightInfo.contentTop,
+        lineHeight: 30,
+      });
       // img
       // drawImage(dx, dy, dWidth, dHeight)
-      this.ctx.drawImage('/images/qrcode.png', (this.width - 90) / 2, this.activeHight + 36, 90, 90);
+      this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
       // word
-      this.activeHight += 150;
-      this.drawFont(14, '#9d9d9d', '长按小程序码，了解机器之心', hrCenter, this.activeHight, false);
+      this.drawFont({
+        fontSize: 14,
+        color: '#9d9d9d',
+        text: '长按小程序码，了解机器之心',
+        x: hrCenter,
+        y: heightInfo.tapTop,
+        isWrap: false,
+      });
       this.ctx.draw();
       hideLoading();
       this.setData({
         showLoading: false,
       });
-    }).exec();
   },
   setSquare: function() {
     this.ctx.rect(0, 0, this.width, this.height);
@@ -99,20 +156,36 @@ Page({
       this.drawLine(0, i * step, this.width, i * step);
     }
   },
-  drawFont: function (fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize) {
+  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isLastCenter = false}) {
     this.ctx.setFontSize(fontSize);
     this.ctx.setFillStyle(color);
     if (isWrap) {
       this.ctx.setTextAlign('left');
-      this.wrapText(text, x, y, lineHeight);
+      const textLength = text.splitText.length;
+      text.splitText.forEach((line, index) => {
+        let start = x;
+        if (textLength === index + 1) {
+          this.ctx.setTextAlign('center');
+          start = this.width / 2;
+        }
+
+        if (isBold) {
+          this.ctx.fillText(line, start, y - 0.5);
+          this.ctx.fillText(line, start - 0.5, y);
+        }
+        this.ctx.fillText(line, start, y);
+        y += lineHeight;
+      });
     } else {
       this.ctx.setTextAlign('center');
       this.ctx.fillText(text, x, y);
     }
   },
-  wrapText: function (text, x, y, lineHeight) {
+  getWrapTextHeight: function ({text, lineHeight, fontSize}) {
+    this.ctx.setFontSize(fontSize);
     const maxWidth = this.width - this.paddingLeft * 2;
-
+    const splitText = [];
+    let height = 0;
     const arrText = text.split('');
     let line = '';
     for (let n = 0; n < arrText.length; n++) {
@@ -120,15 +193,19 @@ Page({
       const metrics = this.ctx.measureText(testLine);
       const testWidth = metrics.width;
       if (testWidth > maxWidth && n > 0) {
-        this.ctx.fillText(line, x, y);
+        splitText.push(line);
+        height += lineHeight;
         line = arrText[n];
-        y += lineHeight;
       } else {
         line = testLine;
       }
     }
-    this.ctx.fillText(line, x, y);
-    this.activeHight = y;
+    splitText.push(line);
+    height += lineHeight;
+    return {
+      splitText,
+      height,
+    }
   },
   saveImage: function() {
     wx.canvasToTempFilePath({
@@ -147,7 +224,7 @@ Page({
             if (error.errMsg === 'saveImageToPhotosAlbum:fail:auth denied') {
               wx.openSetting({
                 success: function(setting) {
-                  console.log(setting);
+
                 }
               });
             } else {

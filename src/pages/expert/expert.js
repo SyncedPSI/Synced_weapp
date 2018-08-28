@@ -1,4 +1,4 @@
-import { request, setNavigationBarTitle } from "../../utils/util";
+import { request } from "../../utils/util";
 import { expertShow } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
 
@@ -7,6 +7,7 @@ const app = getApp();
 Page({
   data: {
     id: "",
+    navigateTitle: '',
     isFromWeapp: false,
     expert: {},
     scrollTop: 0,
@@ -30,9 +31,9 @@ Page({
     request(`${expertShow}${option.id}`)
       .then(res => {
         const expert = res.data;
-        setNavigationBarTitle(expert.zh_name);
         WxParse.wxParse("expert_content", "html", res.data.desc, this, 5);
         this.setData({
+          navigateTitle: expert.zh_name,
           expert: expert,
           isRequestFinished: true
         });

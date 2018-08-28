@@ -1,6 +1,6 @@
 <import src="./messageList.wxml"/>
 
-<view class="message-box {{isIphoneX ? 'is-iphonex' : ''}}">
+<view class="message-box {{isIphoneX ? 'is-iphonex' : ''}}" style="padding-top: {{statusBarHeight}}px;">
   <scroll-view class="message-box__body" id="js-scroll-view" scroll-y style="height: 100%;" scroll-top="{{scrollTop}}">
     <view id="js-content">
       <template is="list" data="{{chat: oldChat, avatar: avatar}}" />
