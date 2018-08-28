@@ -57,14 +57,15 @@ Page({
       // padding title-height padding hr padding create_at padding
       // content-height padding img padding text padding
       const heightInfo = {
-        titleTop: 30
+        titleTop: 30,
+        imageHeight: 90,
       };
 
       heightInfo.hrTop = heightInfo.titleTop + titleInfo.height + 20;
       heightInfo.createAtTop = heightInfo.hrTop + 24;
       heightInfo.contentTop = heightInfo.createAtTop + 14 + 20;
       heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 36;
-      heightInfo.tapTop = heightInfo.imgTop + 90 + 7;
+      heightInfo.tapTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
       this.height = heightInfo.tapTop + 14 + 30;
 
       this.setData({
@@ -80,20 +81,50 @@ Page({
       // bg
       this.drawBg();
       // title
-      this.drawFont(22, '#282828', titleInfo, this.paddingLeft, heightInfo.titleTop, true, 26);
+      this.drawFont({
+        fontSize: 22,
+        color: '#282828',
+        text: titleInfo,
+        x: this.paddingLeft,
+        y: heightInfo.titleTop,
+        lineHeight: 26,
+        isBold: true,
+        isLastCenter: true
+      });
       // hr
       this.ctx.setStrokeStyle('#282828');
       const hrCenter = this.width / 2;
       this.drawLine(hrCenter - 25, heightInfo.hrTop, hrCenter + 25, heightInfo.hrTop, 2);
       // time
-      this.drawFont(14, '#9d9d9d', this.data.daily.created_at, hrCenter, heightInfo.createAtTop, false);
+      this.drawFont({
+        fontSize: 14,
+        color: '#9d9d9d',
+        text: this.data.daily.created_at,
+        x: hrCenter,
+        y: heightInfo.createAtTop,
+        isWrap: false,
+      });
       // content
-      this.drawFont(16, '#414141', contentInfo, this.paddingLeft, heightInfo.contentTop, true, 30);
+      this.drawFont({
+        fontSize: 16,
+        color: '#414141',
+        text: contentInfo,
+        x: this.paddingLeft,
+        y: heightInfo.contentTop,
+        lineHeight: 30,
+      });
       // img
       // drawImage(dx, dy, dWidth, dHeight)
-      this.ctx.drawImage('/images/qrcode.png', (this.width - 90) / 2, heightInfo.imgTop, 90, 90);
+      this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
       // word
-      this.drawFont(14, '#9d9d9d', '长按小程序码，了解机器之心', hrCenter, heightInfo.tapTop, false);
+      this.drawFont({
+        fontSize: 14,
+        color: '#9d9d9d',
+        text: '长按小程序码，了解机器之心',
+        x: hrCenter,
+        y: heightInfo.tapTop,
+        isWrap: false,
+      });
       this.ctx.draw();
       hideLoading();
       this.setData({
@@ -125,13 +156,24 @@ Page({
       this.drawLine(0, i * step, this.width, i * step);
     }
   },
-  drawFont: function (fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize) {
+  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isLastCenter = false}) {
     this.ctx.setFontSize(fontSize);
     this.ctx.setFillStyle(color);
     if (isWrap) {
       this.ctx.setTextAlign('left');
-      text.splitText.forEach((line) => {
-        this.ctx.fillText(line, x, y);
+      const textLength = text.splitText.length;
+      text.splitText.forEach((line, index) => {
+        let start = x;
+        if (textLength === index + 1) {
+          this.ctx.setTextAlign('center');
+          start = this.width / 2;
+        }
+
+        if (isBold) {
+          this.ctx.fillText(line, start, y - 0.5);
+          this.ctx.fillText(line, start - 0.5, y);
+        }
+        this.ctx.fillText(line, start, y);
         y += lineHeight;
       });
     } else {

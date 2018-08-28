@@ -3,7 +3,7 @@ import { ApiRootUrl } from "config/api";
 
 Page({
   data: {
-    scrollTop: 0,
+    isNavFixed: false,
     logoUrl: "/images/logo.svg",
     searchIconUrl: "/icons/ic_search.svg",
     list: [],
@@ -13,6 +13,7 @@ Page({
 
   onLoad: function() {
     this.page = 1;
+    this.fixNavTop = 176;
     this.getList();
   },
   getList: function (isRefresh = false) {
@@ -41,9 +42,15 @@ Page({
       });
   },
   onPageScroll: function (event) {
-    this.setData({
-      scrollTop: event.scrollTop,
-    });
+    if (event.scrollTop >= this.fixNavTop) {
+      this.setData({
+        isNavFixed: true,
+      });
+    } else {
+      this.setData({
+        isNavFixed: false,
+      });
+    }
   },
   onReachBottom: function () {
     this.getList();

@@ -42,12 +42,12 @@ page {
 }
 
 .header-nav {
-  padding: 0 40rpx 0 26rpx;
+  padding: 0 40rpx 0 0;
 
   &__item {
     display: inline-block;
     font-size: 40rpx;
-    padding: 20rpx 28rpx;
+    padding: 20rpx 28rpx 20rpx 40rpx;
     color: $mute-black;
 
     &.is-active {
@@ -58,7 +58,8 @@ page {
 
   &.t-fixed {
     position: fixed;
-    top: $nav-content-height;
+    top: ($nav-content-height - 4);
+    padding-top: 4rpx;
     left: 0;
     right: 0;
     z-index: 1;
