@@ -28,4 +28,4 @@
   <dailies list="{{list}}" wx:else></dailies>
   <template is="loading" />
 </view>
-<settingEntry></settingEntry>
+<!-- <settingEntry></settingEntry> -->

@@ -27,5 +27,5 @@
   <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
 
   <catalog catalogList="{{catalogList}}" scrollTop="{{scrollTop}}" wx:if="{{expert.level === 'level_3'}}"></catalog>
-  <settingEntry></settingEntry>
+  <!-- <settingEntry></settingEntry> -->
 </block>

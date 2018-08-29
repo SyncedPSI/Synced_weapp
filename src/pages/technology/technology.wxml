@@ -20,6 +20,6 @@
   </view>
   <template wx:if="{{technology.experts.length != 0}}" is="node-experts" data="{{experts: technology.experts}}"/>
   <template wx:if="{{technology.institutions.length != 0}}" is="node-institutions" data="{{institutions: technology.institutions}}"/>
-  <settingEntry></settingEntry>
+  <!-- <settingEntry></settingEntry> -->
   <catalog catalogList="{{catalogList}}" scrollTop="{{scrollTop}}" wx:if="{{technology.level === 'level_3'}}"></catalog>
 </block>

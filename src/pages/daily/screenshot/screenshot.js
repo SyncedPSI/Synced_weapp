@@ -164,7 +164,7 @@ Page({
       const textLength = text.splitText.length;
       text.splitText.forEach((line, index) => {
         let start = x;
-        if (textLength === index + 1) {
+        if (isLastCenter && textLength === index + 1) {
           this.ctx.setTextAlign('center');
           start = this.width / 2;
         }

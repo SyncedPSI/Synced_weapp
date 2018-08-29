@@ -24,6 +24,6 @@
       </view>
   </view>
   <template wx:if="{{institution.experts.length != 0}}" is="node-experts" data="{{experts: institution.experts}}" />
-  <settingEntry></settingEntry>
+  <!-- <settingEntry></settingEntry> -->
   <catalog catalogList="{{catalogList}}" scrollTop="{{scrollTop}}" wx:if="{{institution.level === 'level_3'}}"></catalog>
 </block>

@@ -97,7 +97,7 @@ App({
                   if (err.statusCode == 401) {
                     const unionid = err.data.unionid;
                     wx.navigateTo({
-                      url: `../account/link/link?unionid=${unionid}`
+                      url: `/pages/account/link/link?unionid=${unionid}`
                     })
                   } else {
                     showErrorToast('登录失败')

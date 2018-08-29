@@ -57,5 +57,5 @@
 
     <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
   </block>
-  <settingEntry hasComment></settingEntry>
+  <!-- <settingEntry hasComment></settingEntry> -->
 </view>
