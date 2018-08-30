@@ -8,9 +8,9 @@ Page({
   data: {
     id: "",
     navigateTitle: '',
+    scrollToView: '',
     technology: {},
     isFromWeapp: false,
-    scrollTop: 0,
     isRequestFinished: false,
     catalogList: [{
       key: 'js-introduction',
@@ -41,9 +41,10 @@ Page({
         });
       })
   },
-  onPageScroll: function (event) {
+  setScrollTarget: function (event) {
+    const { target } = event.detail;
     this.setData({
-      scrollTop: event.scrollTop,
+      scrollToView: target
     });
   },
   onShareAppMessage: function() {

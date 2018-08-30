@@ -5,25 +5,29 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
-  <view class="node-header">
-    <template is="node-header" data="{{...institution}}" />
-    <view wx:if="{{institution.website != ''}}" class="node-header__website">
-      <text>机构主页：</text>
-      <text class="node-header__link" redirect hover-class="className">{{institution.website}}</text>
-    </view>
-    <template wx:if="{{institution.summary != ''}}" is="node-summary" data="{{...institution}}" />
-    <template wx:if="{{institution.technologies}}" is="node-technologies" data="{{technologies: institution.technologies}}" />
-  </view>
-  <view wx:if="{{institution.desc != ''}}" class="node-block" id="js-introduction">
-      <view class="node-block__header">
-        <text class="node-block__title">简介</text>
+  <view class="container">
+    <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
+      <view class="node-header">
+        <template is="node-header" data="{{...institution}}" />
+        <view wx:if="{{institution.website != ''}}" class="node-header__website">
+          <text>机构主页：</text>
+          <text class="node-header__link" redirect hover-class="className">{{institution.website}}</text>
+        </view>
+        <template wx:if="{{institution.summary != ''}}" is="node-summary" data="{{...institution}}" />
+        <template wx:if="{{institution.technologies}}" is="node-technologies" data="{{technologies: institution.technologies}}" />
       </view>
-      <view class="content">
-        <import src="../../wxParse/wxParse.wxml"/>
-        <template is="wxParse" data="{{wxParseData:institution_content.nodes}}" />
+      <view wx:if="{{institution.desc != ''}}" class="node-block" id="js-introduction">
+          <view class="node-block__header">
+            <text class="node-block__title">简介</text>
+          </view>
+          <view class="content">
+            <import src="../../wxParse/wxParse.wxml"/>
+            <template is="wxParse" data="{{wxParseData:institution_content.nodes}}" />
+          </view>
       </view>
+      <template wx:if="{{institution.experts.length != 0}}" is="node-experts" data="{{experts: institution.experts}}" />
+    </scroll-view>
   </view>
-  <template wx:if="{{institution.experts.length != 0}}" is="node-experts" data="{{experts: institution.experts}}" />
   <!-- <settingEntry></settingEntry> -->
-  <catalog catalogList="{{catalogList}}" scrollTop="{{scrollTop}}" wx:if="{{institution.level === 'level_3'}}"></catalog>
+  <catalog catalogList="{{catalogList}}" wx:if="{{institution.level === 'level_3'}}"  bindscroll="setScrollTarget"></catalog>
 </block>

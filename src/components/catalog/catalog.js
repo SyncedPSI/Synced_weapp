@@ -4,10 +4,6 @@ Component({
       type: Array,
       value: []
     },
-    scrollTop: {
-      type: Number,
-      value: 0
-    },
   },
   data: {
     isShowCatalog: false,
@@ -34,12 +30,9 @@ Component({
     },
     scrollToTarget: function(event) {
       const { target } = event.target.dataset;
-      wx.createSelectorQuery().select(`#${target}`).boundingClientRect((rect) => {
-        wx.pageScrollTo({
-          scrollTop: rect.top + this.properties.scrollTop
-        });
-        this.closeCatalog();
-      }).exec()
+      if (target) {
+        this.triggerEvent('scroll', { target });
+      }
     }
   }
 })

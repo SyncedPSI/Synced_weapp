@@ -5,27 +5,31 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
-  <view class="node-header">
-    <view class="u-flex">
-      <view>
-        <template is="node-header" data="{{...expert}}" />
+  <view class="container">
+    <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
+      <view class="node-header">
+        <view class="u-flex">
+          <view>
+            <template is="node-header" data="{{...expert}}" />
+          </view>
+          <image class="node-header__avatar" src="{{expert.image_url}}" mode="cover" />
+        </view>
+        <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
+        <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
       </view>
-      <image class="node-header__avatar" src="" mode="cover" />
-    </view>
-    <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
-    <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
+      <view wx:if="{{expert.desc != ''}}" class="node-block" id="js-introduction">
+          <view class="node-block__header">
+            <text class="node-block__title">简介</text>
+          </view>
+          <view class="content">
+            <import src="../../wxParse/wxParse.wxml"/>
+            <template is="wxParse" data="{{wxParseData:expert_content.nodes}}" />
+          </view>
+      </view>
+      <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
+    </scroll-view>
   </view>
-  <view wx:if="{{expert.desc != ''}}" class="node-block" id="js-introduction">
-      <view class="node-block__header">
-        <text class="node-block__title">简介</text>
-      </view>
-      <view class="content">
-        <import src="../../wxParse/wxParse.wxml"/>
-        <template is="wxParse" data="{{wxParseData:expert_content.nodes}}" />
-      </view>
-  </view>
-  <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
 
-  <catalog catalogList="{{catalogList}}" scrollTop="{{scrollTop}}" wx:if="{{expert.level === 'level_3'}}"></catalog>
+  <catalog catalogList="{{catalogList}}" wx:if="{{expert.level === 'level_3'}}" bindscroll="setScrollTarget"></catalog>
   <!-- <settingEntry></settingEntry> -->
 </block>

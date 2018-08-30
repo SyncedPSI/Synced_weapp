@@ -10,7 +10,7 @@
   <view class="u-container-cover catalog__mask" bindtap="closeCatalog"></view>
   <view class="catalog__main" style="padding-top: {{statusBarHeight}}px">
     <view class="catalog__title">目录</view>
-    <block wx:for="{{catalogList}}">
+    <block wx:for="{{catalogList}}" wx:key="{{item.key}}">
       <view class="catalog__item" hover-class="catalog__item--hover" data-target="{{item.key}}" bindtap="scrollToTarget">{{item.value}}</view>
     </block>
   </view>

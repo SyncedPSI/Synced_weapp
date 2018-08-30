@@ -32,7 +32,7 @@
   &__avatar {
     width: 160rpx;
     height: 160rpx;
-    margin-left: 70rpx;
+    margin: 0 0 20rpx 70rpx;
   }
 
   &__summary {
@@ -60,7 +60,7 @@
 .node-technology {
   color: $title-black;
   font-size: 28rpx;
-  margin-bottom: -20rpx;
+  margin: 40rpx 0 -20rpx;
 
   &__item {
     padding: 4rpx 16rpx;
@@ -100,7 +100,7 @@
 }
 
 .node-block:last-child {
-  margin-bottom: 96rpx;
+  margin-bottom: $safe-padding-bottom;
 }
 
 .node-expert {
