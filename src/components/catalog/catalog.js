@@ -12,6 +12,7 @@ Component({
   data: {
     isShowCatalog: false,
     isIphoneX: getApp().globalData.isIphoneX,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   ready: function () {
 

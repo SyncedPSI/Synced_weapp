@@ -2,7 +2,6 @@
 @import 'fix_bottom';
 
 .u-container-cover {
-  left: 0;
   right: 0;
   top: 0;
   bottom: 0;
@@ -11,11 +10,14 @@
 .catalog {
   position: fixed;
   z-index: 5;
-  opacity: 0;
-  visibility: hidden;
-  transition: all .28s;
+  left: 100%;
+  transition: left .28s;
 
   &.is-show {
+    left: 0;
+  }
+
+  &.is-show &__mask {
     opacity: 1;
     visibility: visible;
   }
@@ -29,15 +31,18 @@
   }
 
   &__mask {
-    position: absolute;
+    position: fixed;
+    left: 0;
     z-index: 1;
     background-color: rgba(0, 0, 0, .1);
+    opacity: 0;
+    visibility: hidden;
   }
 
   &__main {
     position: absolute;
     z-index: 2;
-    top: 0;
+    top: $nav-content-height;
     bottom: 0;
     right: 0;
     width: 64%;
