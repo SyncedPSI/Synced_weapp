@@ -3,7 +3,6 @@
 @import 'common';
 @import './wxParse/wxParse.wxss';
 @import 'node';
-@import 'account';
 
 
 view {
@@ -21,7 +20,10 @@ view {
 .container {
   height: 100vh;
   position: relative;
-  background-color: $background_color;
+
+  .t-bg {
+    background-color: $background_color;
+  }
 
   scroll-view {
     height: 100%;

@@ -3,7 +3,7 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 
-<view class="container">
+<view class="container t-bg">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
     <view class="article">
       <view class="title" id="js-article-title">{{title}}</view>
