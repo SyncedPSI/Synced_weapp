@@ -22,6 +22,22 @@
     padding: 0 40rpx;
   }
 
+  &--input {
+    height: 40rpx;
+    background-color: $bg-white;
+    padding: 12px 160rpx 12rpx 28rpx;
+    color: $mute-black;
+    font-size: 28rpx;
+    display: flex;
+    border-radius: 60rpx;
+  }
+
+  &--search {
+    width: 28rpx;
+    height: 28rpx;
+    margin-right: 10rpx;
+  }
+
   &--icon {
     width: 36rpx;
     height: 36rpx;

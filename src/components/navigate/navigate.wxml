@@ -1,5 +1,11 @@
 <cover-view class="global-nav--url" style="padding-top: {{paddingTop}}px;">
   <text wx:if="{{notShow}}"></text>
+  <cover-view class="global-nav--tap" wx:if="{{isIndex}}">
+    <cover-view class="global-nav--input" bindtap="goSearch">
+      <cover-image class="global-nav--search" src="/icons/ic_search.png" mode="cover" />
+      全网搜索知识
+    </cover-view>
+  </cover-view>
   <cover-view class="global-nav--tap" wx:elif="{{isFromWeapp}}" bindtap="goHome">
     <cover-image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
   </cover-view>
@@ -8,5 +14,4 @@
   </cover-view>
   <cover-view class="global-nav--title">{{title}}</cover-view>
 </cover-view>
-<view class="global-nav" style="padding-top: {{paddingTop}}px;">
-</view>
+<view class="global-nav" style="padding-top: {{paddingTop}}px;"></view>

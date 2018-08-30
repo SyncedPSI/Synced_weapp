@@ -8,6 +8,10 @@ Component({
       type: Boolean,
       value: false
     },
+    isIndex: {
+      type: Boolean,
+      value: false
+    },
     title: {
       type: String,
       value: '机器之心'
@@ -28,6 +32,11 @@ Component({
     goHome: function() {
       wx.navigateTo({
         url: '/pages/index/index'
+      });
+    },
+    goSearch: function() {
+      wx.navigateTo({
+        url: '/pages/search/search'
       });
     }
   }

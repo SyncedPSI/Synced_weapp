@@ -1,7 +1,7 @@
 <import src="../common/loading.wxml"/>
 <import src="./tab.wxml"/>
 
-<nav notShow="{{true}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
+<nav isIndex="{{true}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
 
 <view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
   <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
