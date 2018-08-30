@@ -64,9 +64,10 @@ Page({
     }, 300);
   },
 
-  onPageScroll: function(event) {
+  scroll: function (event) {
     if (this.titleHeight === undefined) return;
-    const { scrollTop } = event;
+
+    const { scrollTop } = event.detail;
     if (scrollTop > this.titleHeight) {
       this.setNavigationBarTitle(this.data.title);
     } else {

@@ -10,7 +10,7 @@ Page({
     navigateTitle: '',
     isFromWeapp: false,
     expert: {},
-    scrollTop: 0,
+    scrollToView: '',
     isRequestFinished: false,
     isShowCatelog: false,
     catalogList: [{
@@ -39,9 +39,10 @@ Page({
         });
       })
   },
-  onPageScroll: function (event) {
+  setScrollTarget: function (event) {
+    const { target } = event.detail;
     this.setData({
-      scrollTop: event.scrollTop,
+      scrollToView: target
     });
   },
   onShareAppMessage: function() {

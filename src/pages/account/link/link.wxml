@@ -1,4 +1,4 @@
-<nav></nav>
+<nav title="关联账户"></nav>
 
 <view class="account">
   <view class="account__weclome">欢迎你！</view>
@@ -12,5 +12,5 @@
   <view class="account-register">
     <text bindtap="register">微信注册</text>
   </view>
-  <!-- <settingEntry></settingEntry> -->
 </view>
+<!-- <settingEntry></settingEntry> -->

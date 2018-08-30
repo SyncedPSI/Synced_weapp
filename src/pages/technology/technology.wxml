@@ -5,21 +5,25 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
-  <view class="node-header">
-    <template is="node-header" data="{{...technology}}" />
-    <template wx:if="{{technology.summary != ''}}" is="node-summary" data="{{...technology}}" />
-  </view>
-  <view wx:if="{{technology.desc != ''}}" class="node-block" id="js-introduction">
-      <view class="node-block__header">
-        <text class="node-block__title">简介</text>
+  <view class="container">
+    <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
+      <view class="node-header">
+        <template is="node-header" data="{{...technology}}" />
+        <template wx:if="{{technology.summary != ''}}" is="node-summary" data="{{...technology}}" />
       </view>
-      <view class="content">
-        <import src="../../wxParse/wxParse.wxml"/>
-        <template is="wxParse" data="{{wxParseData:technology_content.nodes}}" />
+      <view wx:if="{{technology.desc != ''}}" class="node-block" id="js-introduction">
+          <view class="node-block__header">
+            <text class="node-block__title">简介</text>
+          </view>
+          <view class="content">
+            <import src="../../wxParse/wxParse.wxml"/>
+            <template is="wxParse" data="{{wxParseData:technology_content.nodes}}" />
+          </view>
       </view>
+      <template wx:if="{{technology.experts.length != 0}}" is="node-experts" data="{{experts: technology.experts}}"/>
+      <template wx:if="{{technology.institutions.length != 0}}" is="node-institutions" data="{{institutions: technology.institutions}}"/>
+    </scroll-view>
   </view>
-  <template wx:if="{{technology.experts.length != 0}}" is="node-experts" data="{{experts: technology.experts}}"/>
-  <template wx:if="{{technology.institutions.length != 0}}" is="node-institutions" data="{{institutions: technology.institutions}}"/>
   <!-- <settingEntry></settingEntry> -->
-  <catalog catalogList="{{catalogList}}" scrollTop="{{scrollTop}}" wx:if="{{technology.level === 'level_3'}}"></catalog>
+  <catalog catalogList="{{catalogList}}" wx:if="{{technology.level === 'level_3'}}" bindscroll="setScrollTarget"></catalog>
 </block>

@@ -1,7 +1,7 @@
 <import src="../common/loading.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
-<view class="container">
+<view class="container t-bg">
   <view class="header" style="margin-top: {{statusBarHeight}}px;">
     <view class='search_box'>
       <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='搜索知识' focus="{{keywords === ''}}" type="text" value="{{keywords}}"
