@@ -41,11 +41,6 @@ Component({
       wx.navigateTo({
         url: '/pages/index/index'
       });
-    },
-    goSearch: function() {
-      wx.navigateTo({
-        url: '/pages/search/search'
-      });
     }
   }
 })

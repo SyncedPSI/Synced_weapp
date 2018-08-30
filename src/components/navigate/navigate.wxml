@@ -12,23 +12,23 @@
   <text wx:if="{{notShow}}"></text>
 
   <view class="global-nav--tap" wx:elif="{{isIndex}}">
-    <view class="global-nav--input" bindtap="goSearch">
+    <navigator class="global-nav--input" url="/pages/search/search">
       <image class="global-nav--search" src="/icons/ic_search.png" mode="cover" />
       全网搜索知识
-    </view>
+    </navigator>
   </view>
 
   <view class="global-nav--actions" wx:else>
-    <view class="global-nav--action" wx:if="{{isFromWeapp}}" bindtap="goHome">
-      <image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
-    </view>
-    <view class="global-nav--action" wx:else="{{isFromWeapp}}" bindtap="goBack">
+    <navigator class="global-nav--action" url="/pages/index/index" hover-class="none" wx:if="{{isFromWeapp}}">
+      <image class="global-nav--icon" src="/icons/nav_home_2.png" mode="cover" />
+    </navigator>
+    <view class="global-nav--action" bindtap="goBack" hover-class="none" wx:else="{{isFromWeapp}}">
       <image class="global-nav--icon" src="/icons/nav_back_2.png" mode="cover" />
     </view>
     <view class="global-nav--hr"></view>
-    <view class="global-nav--action" bindtap="goHome">
+    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search">
       <image class="global-nav--icon" src="/icons/nav_search.png" mode="cover" />
-    </view>
+    </navigator>
   </view>
 
   <view class="global-nav--title">{{title}}</view>

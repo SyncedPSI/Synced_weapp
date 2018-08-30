@@ -12,6 +12,8 @@
     z-index: 100;
     background-color: #fff;
     height: $nav-content-height;
+    display: flex;
+    align-items: center;
 
     &.t-has-shadow {
       box-shadow: 0 2px 4px 0 rgba(226, 225, 225, 0.50);
@@ -28,14 +30,14 @@
   &--actions {
     display: flex;
     align-items: center;
-    margin: 17rpx 0 0 14rpx;
+    margin-left: 14rpx;
     border: 2rpx solid #ebebeb;
     border-radius: 100rpx;
-    width: 208rpx;
+    width: 174rpx;
   }
 
   &--action {
-    padding: 12rpx 32rpx;
+    padding: 14rpx 22rpx;
     line-height: 1;
   }
 
@@ -57,6 +59,7 @@
     width: 28rpx;
     height: 28rpx;
     display: inline-block;
+    vertical-align: middle;
     margin-right: 10rpx;
   }
 
