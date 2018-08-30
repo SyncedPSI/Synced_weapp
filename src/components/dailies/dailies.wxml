@@ -1,5 +1,4 @@
 <view class="daily-item__container">
-  <view class="daily-item__border"></view>
   <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
     <view class="daily-item {{index === 0 ? 't-red' : ''}}">
       <view class="daily-item__date">{{index === 0 ? '今天' : key}}</view>

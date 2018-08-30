@@ -19,7 +19,7 @@ view {
   height: 100vh;
   position: relative;
 
-  .t-bg {
+  &.t-bg {
     background-color: $background_color;
   }
 
