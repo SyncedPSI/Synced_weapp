@@ -15,7 +15,7 @@
     <view class="daily__source" wx:if="{{daily.url !== null}}">
       <image src="/icons/daily_source.png" class="daily__source--img" />
       <text>新闻来源：</text>
-      <navigator class="daily__source--link" url="{{daily.url}}" redirect>{{showUrl}}</navigator>
+      <text class="daily__source--link">{{showUrl}}</text>
     </view>
   </view>
 
