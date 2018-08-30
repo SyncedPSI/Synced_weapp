@@ -12,6 +12,14 @@ Component({
       type: Boolean,
       value: false
     },
+    isDaily: {
+      type: Boolean,
+      value: false
+    },
+    hasShadow: {
+      type: Boolean,
+      value: true
+    },
     title: {
       type: String,
       value: '机器之心'

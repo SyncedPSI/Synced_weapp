@@ -13,6 +13,10 @@
     background-color: #fff;
     height: $nav-content-height;
     display: flex;
+
+    &.t-has-shadow {
+      box-shadow: 0 2px 4px 0 rgba(226, 225, 225, 0.50);
+    }
   }
 
   &--tap {
@@ -23,18 +27,17 @@
   }
 
   &--input {
-    height: 40rpx;
     background-color: $bg-white;
-    padding: 12px 160rpx 12rpx 28rpx;
+    padding: 12rpx 160rpx 12rpx 28rpx;
     color: $mute-black;
     font-size: 28rpx;
-    display: flex;
     border-radius: 60rpx;
   }
 
   &--search {
     width: 28rpx;
     height: 28rpx;
+    display: inline-block;
     margin-right: 10rpx;
   }
 

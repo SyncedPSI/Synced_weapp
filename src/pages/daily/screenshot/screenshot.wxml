@@ -5,7 +5,7 @@
   <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 </view>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<nav isDaily isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 
 <cover-view class="u-fix-bottom save-btn--container {{isIphoneX ? 'has-safe-padding' : ''}}" hidden="{{showLoading}}">
   <cover-view class="save-btn--border"></cover-view>
