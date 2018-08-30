@@ -20,6 +20,10 @@ Component({
       type: Boolean,
       value: true
     },
+    isNoSearch: {
+      type: Boolean,
+      value: false
+    },
     title: {
       type: String,
       value: '机器之心'

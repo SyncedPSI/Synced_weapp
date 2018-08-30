@@ -1,4 +1,4 @@
-<nav notShow="{{true}}"></nav>
+<nav notShow="{{true}}" isNoSearch></nav>
 
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
   <view id="js-get-width"></view>

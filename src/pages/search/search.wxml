@@ -1,6 +1,6 @@
 <import src="../common/loading.wxml"/>
 
-<nav hasShadow="{{false}}" isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<nav hasShadow="{{false}}" isNoSearch isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <view class="container t-bg">
   <view class="header" style="margin-top: {{statusBarHeight}}px;">
     <view class='search_box'>
