@@ -22,6 +22,10 @@ page {
     color: $mute-black;
     border-radius: 100rpx;
 
+    &:last-child {
+      margin-left: 48rpx;
+    }
+
     &.is-active {
       color: $title-black;
       font-weight: 500;
@@ -59,4 +63,8 @@ page {
 
 .content--list {
   padding: 0 40rpx;
+}
+
+.daily--list {
+  padding: 0 40rpx 0 30rpx;
 }

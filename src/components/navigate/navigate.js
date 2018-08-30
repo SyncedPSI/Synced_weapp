@@ -16,10 +16,10 @@ Component({
       type: Boolean,
       value: false
     },
-    hasShadow: {
-      type: Boolean,
-      value: true
-    },
+    // hasShadow: {
+    //   type: Boolean,
+    //   value: true
+    // },
     isNoSearch: {
       type: Boolean,
       value: false
@@ -30,7 +30,8 @@ Component({
     }
   },
   data: {
-    paddingTop: getApp().globalData.systemInfo.statusBarHeight
+    paddingTop: getApp().globalData.systemInfo.statusBarHeight,
+    isAndroid: getApp().globalData.isAndroid,
   },
   ready: function () {
   },

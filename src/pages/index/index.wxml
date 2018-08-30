@@ -18,7 +18,7 @@
     <template is="loading" />
   </scroll-view>
   <scroll-view scroll-y bindscrolltolower="fetchMoreData" wx:else>
-    <view class="content--list">
+    <view class="daily--list">
       <dailies list="{{dailyList}}"></dailies>
     </view>
     <template is="loading" />
