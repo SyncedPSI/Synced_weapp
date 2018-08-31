@@ -21,7 +21,6 @@ App({
   getCookies: function() {
     request(getAhoyTokens, {}, 'POST')
       .then((res) => {
-        console.log(res)
         const { ahoy_visit, ahoy_visitor } = res.data;
         wx.setStorage({
           key: 'Cookie',

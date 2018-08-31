@@ -30,12 +30,16 @@ Component({
         const { created_at } = item;
         if (created_at === undefined) return;
 
-        const [_, date] = created_at.match(new RegExp('[0-9]{4}/([^\\s]+)', 'i'));
-        const key = `${date.replace('/', '月')}日`
+        const [_, key] = created_at.match(new RegExp('^([^\\s]+)', 'i'));
         if (dailies[key] === undefined) {
-          dailies[key] = [];
+          const createDate = new Date(created_at);
+          dailies[key] = {
+            day: createDate.getDate(),
+            date: `${createDate.getFullYear()}年${createDate.getMonth() + 1}月`,
+            list: [],
+          };
         }
-        dailies[key].push(item);
+        dailies[key].list.push(item);
       });
 
       this.setData({

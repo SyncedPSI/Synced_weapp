@@ -3,60 +3,62 @@
 
 .daily-item {
   color: $secondary-black;
-  margin-bottom: 20rpx;
 
   &__container {
-    border-left: 3rpx solid #eee;
-    padding: 40rpx 0 0 32rpx;
+    border-left: 2rpx solid #eee;
+    padding: 40rpx 0 40rpx 30rpx;
+  }
+
+  &__container.t-andriod &__tip {
+    margin-top: 42rpx;
   }
 
   &.t-red {
     color: $red;
   }
 
-  &.t-red &__inline::before {
-    border-color: $red;
-  }
-
   &.t-red &__date {
     font-weight: 500;
   }
 
-  &.t-red &__date::before {
-    background-color: $red;
+  &.t-red &__tip--inner {
+    border-color: $red;
+  }
+
+  &__tip {
+    position: absolute;
+    vertical-align: middle;
+    margin-left: -30rpx;
+    margin-top: 34rpx;
+    transform: translate(-50%, -50%);
+    font-size: 42rpx;
+    border-radius: 50%;
+    border: 6rpx solid #D8D8D8;
+  }
+
+  &__tip--inner {
+    width: 10rpx;
+    height: 10rpx;
+    background-color: #fff;
+    border: 2rpx solid $secondary-black;
+    border-radius: 50%;
   }
 
   &__date {
-    font-size: 40rpx;
+    font-size: 48rpx;
     margin-bottom: 20rpx;
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      width: 20rpx;
-      height: 6rpx;
-      background-color: $secondary-black;
-      margin-left: -32rpx;
-      margin-top: 28rpx;
-    }
+  &__year {
+    font-size: 24rpx;
+    color: $title-black;
+    margin-left: 16rpx;
   }
 
   &__inline {
     margin-bottom: 40rpx;
     padding: 36rpx 24rpx;
     background-color: #fff;
-
-    &::before {
-      content: '';
-      position: absolute;
-      width: 16rpx;
-      height: 16rpx;
-      background-color: #fff;
-      border: 2rpx solid $secondary-black;
-      border-radius: 50%;
-      margin-left: -66rpx;
-      margin-top: 25rpx;
-    }
   }
 
   &__title {

@@ -1,8 +1,15 @@
-<view class="daily-item__container">
+<view class="daily-item__container {{ isAndroid ? 't-andriod' : ''}}">
   <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
     <view class="daily-item {{index === 0 ? 't-red' : ''}}">
-      <view class="daily-item__date">{{index === 0 ? '今天' : key}}</view>
-      <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key]}}" wx:key="{{item.id}}">
+      <view class="daily-item__date">
+        <view class="daily-item__tip">
+          <view class="daily-item__tip--inner"></view>
+        </view>
+
+        <text>{{dailies[key].day}}</text>
+        <text class="daily-item__year">{{dailies[key].date}}</text>
+      </view>
+      <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">
         <view class="daily-item__title">{{item.title}}</view>
         <view class="daily-item__content">{{item.content}}</view>
         <view class="u-flex">
@@ -15,6 +22,7 @@
     </view>
   </block>
 </view>
+
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
    <action-sheet-item>
       <button class="shared-btn" open-type="share" data-id="{{activeId}}" data-title="{{activeTitle}}" bindtap="closeActionSheet">分享给朋友</button>
