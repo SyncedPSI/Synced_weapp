@@ -1,5 +1,6 @@
 import { request, showTipToast } from "utils/util";
-import { login } from "config/api";
+import { login, getAhoyTokens } from "config/api";
+
 App({
   globalData: {
     isIphoneX: false,
@@ -14,12 +15,24 @@ App({
   onLaunch: function () {
     this.checkSession();
     this.checkSystemInfo();
+    this.getCookies();
   },
 
+  getCookies: function() {
+    request(getAhoyTokens, {}, 'POST')
+      .then((res) => {
+        console.log(res)
+        const { ahoy_visit, ahoy_visitor } = res.data;
+        wx.setStorage({
+          key: 'Cookie',
+          data: `ahoy_visitor=${ahoy_visitor}; ahoy_visit=${ahoy_visit};`
+        });
+      });
+  },
   checkSystemInfo: function() {
     wx.getSystemInfo({
       success: (res) => {
-        const { model, platform, screenWidth, screenHeight, windowHeight, windowWidth, pixelRatio, statusBarHeight } = res;
+        const { model, platform, screenWidth, screenHeight, windowHeight, windowWidth, statusBarHeight } = res;
         if (model.match('iPhone X') !== null) {
           this.globalData.isIphoneX = true;
         }

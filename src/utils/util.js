@@ -108,24 +108,20 @@ export const request = (url, data = {}, method = "GET") => {
 };
 
 const getHeader = () => {
+  const header = {
+    'Accept': '*/*',
+    'Content-Type': 'application/json',
+    'Cookie': wx.getStorageSync('Cookie'),
+  };
+
   try {
     const token = getApp().globalData.authToken;
     if (token) {
-      return {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-        'Authorization': `bearer ${token}`
-      }
+      header['Authorization'] = `bearer ${token}`;
     }
-    return {
-      'Content-Type': 'application/json',
-      'Accept': '*/*'
-    }
+    return header;
   } catch (e) {
-    return {
-      'Content-Type': 'application/json',
-      'Accept': '*/*'
-    }
+    return header;
   }
 };
 
