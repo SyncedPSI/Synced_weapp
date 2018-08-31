@@ -1,11 +1,11 @@
-<nav notShow="{{true}}"></nav>
+<nav notShow="{{true}}" title=""></nav>
 
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
   <view id="js-get-width"></view>
   <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 </view>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<nav isDaily isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 
 <cover-view class="u-fix-bottom save-btn--container {{isIphoneX ? 'has-safe-padding' : ''}}" hidden="{{showLoading}}">
   <cover-view class="save-btn--border"></cover-view>

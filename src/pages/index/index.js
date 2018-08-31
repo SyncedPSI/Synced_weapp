@@ -1,80 +1,91 @@
 import { request, getDateDiff } from "utils/util";
-import { ApiRootUrl } from "config/api";
+import { timelines, dailies } from "config/api";
 
 Page({
   data: {
     isNavFixed: false,
     logoUrl: "/images/logo.svg",
     searchIconUrl: "/icons/ic_search.svg",
-    list: [],
-    activeType: 'timelines',
+    articleList: [],
+    dailyList: [],
+    activeType: 'dailies',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
 
   onLoad: function() {
-    this.page = 1;
+    this.articlePage = 1;
+    this.dailyPage = 1;
     this.fixNavTop = 176;
-    this.getList();
+    this.getDailyList();
   },
-  getList: function (isRefresh = false) {
-    const { activeType } = this.data;
-    return request(`${ApiRootUrl}/${activeType}?page=${this.page}`)
+  getArticleList: function (isRefresh = false) {
+    return request(`${timelines}?page=${this.articlePage}`)
       .then(res => {
-        this.page += 1;
-        const { list } = this.data;
+        this.articlePage += 1;
+        const { articleList } = this.data;
         const newList = res.data;
-
-        if (activeType === 'timelines') {
-          newList.forEach(item => {
-            item.published_at = getDateDiff(item.published_at);
-          });
-        }
+        newList.forEach(item => {
+          item.published_at = getDateDiff(item.published_at);
+        });
 
         if (isRefresh) {
           this.setData({
-            list: newList,
+            articleList: newList,
           });
         } else {
           this.setData({
-            list: [...list, ...newList],
+            articleList: [...articleList, ...newList],
           });
         }
       });
   },
-  onPageScroll: function (event) {
-    if (event.scrollTop >= this.fixNavTop) {
-      this.setData({
-        isNavFixed: true,
+  getDailyList: function (isRefresh = false) {
+    return request(`${dailies}?page=${this.dailyPage}`)
+      .then(res => {
+        this.dailyPage += 1;
+        const { dailyList } = this.data;
+        const newList = res.data;
+
+        if (isRefresh) {
+          this.setData({
+            dailyList: newList,
+          });
+        } else {
+          this.setData({
+            dailyList: [...dailyList, ...newList],
+          });
+        }
       });
+  },
+  fetchMoreData: function () {
+    const { activeType } = this.data;
+    if (activeType === 'timelines') {
+      this.getArticleList();
     } else {
-      this.setData({
-        isNavFixed: false,
-      });
+      this.getDailyList();
     }
   },
-  onReachBottom: function () {
-    this.getList();
-  },
-  onPullDownRefresh: function () {
-    wx.showNavigationBarLoading();
+  // onPullDownRefresh: function () {
+  //   wx.showNavigationBarLoading();
 
-    this.page = 1;
-    this.getList(true)
-      .catch(() => {})
-      .then(() => {
-        wx.hideNavigationBarLoading();
-        wx.stopPullDownRefresh();
-      });
-  },
+  //   this.page = 1;
+  //   this.getList(true)
+  //     .catch(() => {})
+  //     .then(() => {
+  //       wx.hideNavigationBarLoading();
+  //       wx.stopPullDownRefresh();
+  //     });
+  // },
   switchType: function(event) {
     const { type } = event.target.dataset;
     if (type === this.data.activeType) return;
 
+    if (this.data.articleList.length === 0  && type === 'timelines') {
+      this.getArticleList();
+    }
+
     this.setData({
       activeType: type
-    }, () => {
-      this.page = 1;
-      this.getList(true);
     });
   },
   onShareAppMessage: function(event) {

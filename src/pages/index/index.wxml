@@ -1,31 +1,27 @@
 <import src="../common/loading.wxml"/>
 <import src="./tab.wxml"/>
 
-<nav notShow="{{true}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
-<view class="header">
-  <view class='logo'>
-    <image src="{{logoUrl}}" mode='aspectFit'></image>
-  </view>
-  <navigator alt="搜索" class="search_box" url="../search/search">
-    <text>搜索知识</text>
-    <image class="search__btn" src="{{searchIconUrl}}"></image>
-  </navigator>
-  <view class="header-nav">
-    <template is="tab" data="{{activeType}}" />
-  </view>
-  <view class="u-flex header-nav t-fixed {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
-    <view>
-      <template is="tab" data="{{activeType}}" />
-    </view>
-    <navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>
-  </view>
+<nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
+
+<view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
+  <text class="header-nav__item {{activeType === 'dailies' ? 'is-active' : ''}}" bindtap="switchType" data-type="dailies">资讯</text>
+  <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
+  <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
 </view>
-<!-- -->
-<view class='content_container'>
-  <block wx:if="{{activeType === 'timelines'}}">
-    <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{list}}" wx:key="{{item.id}}"></article>
-  </block>
-  <dailies list="{{list}}" wx:else></dailies>
-  <template is="loading" />
+
+<view class="content--header"></view>
+<view class="content--container">
+  <scroll-view scroll-y bindscrolltolower="fetchMoreData"wx:if="{{activeType === 'dailies'}}">
+    <view class="daily--list">
+      <dailies list="{{dailyList}}"></dailies>
+    </view>
+    <template is="loading" />
+  </scroll-view>
+  <scroll-view scroll-y bindscrolltolower="fetchMoreData" wx:else>
+    <view class="content--list">
+      <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
+    </view>
+    <template is="loading" />
+  </scroll-view>
 </view>
 <!-- <settingEntry></settingEntry> -->

@@ -31,6 +31,7 @@ Component({
     scrollToTarget: function(event) {
       const { target } = event.target.dataset;
       if (target) {
+        this.closeCatalog();
         this.triggerEvent('scroll', { target });
       }
     }

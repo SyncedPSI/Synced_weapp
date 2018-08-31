@@ -8,13 +8,30 @@ Component({
       type: Boolean,
       value: false
     },
+    isIndex: {
+      type: Boolean,
+      value: false
+    },
+    isDaily: {
+      type: Boolean,
+      value: false
+    },
+    // hasShadow: {
+    //   type: Boolean,
+    //   value: true
+    // },
+    isNoSearch: {
+      type: Boolean,
+      value: false
+    },
     title: {
       type: String,
       value: '机器之心'
     }
   },
   data: {
-    paddingTop: getApp().globalData.systemInfo.statusBarHeight
+    paddingTop: getApp().globalData.systemInfo.statusBarHeight,
+    isAndroid: getApp().globalData.isAndroid,
   },
   ready: function () {
   },

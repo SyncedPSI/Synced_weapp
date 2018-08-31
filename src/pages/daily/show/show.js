@@ -11,7 +11,8 @@ Page({
     isFetching: true,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
-    isLogin: false
+    isLogin: false,
+    showUrl: null,
   },
 
   openComment: function() {
@@ -39,10 +40,12 @@ Page({
     request(`${dailyShow}${option.id}`)
       .then(res => {
         const daily = res.data;
+        const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));
         this.setData({
           navigateTitle: daily.title,
           daily,
-          isFetching: false
+          isFetching: false,
+          showUrl: showUrl[showUrl.length - 1],
         });
       });
   },
@@ -62,4 +65,9 @@ Page({
       path: `/pages/daily/show/show?id=${id}&from=weapp`,
     };
   },
+  copySource: function() {
+    wx.setClipboardData({
+      data: this.data.daily.url,
+    });
+  }
 });

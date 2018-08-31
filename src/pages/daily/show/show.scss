@@ -7,7 +7,7 @@ page {
 
 .daily {
   &__container {
-    padding: 40rpx 60rpx 120rpx;
+    padding: 40rpx 60rpx 100rpx;
     background-color: #fff;
   }
 
@@ -35,5 +35,25 @@ page {
     color: $title-black;
     font-size: 32rpx;
     line-height: 1.8;
+  }
+
+  &__source {
+    margin-top: 28rpx;
+    color: $secondary-black;
+    font-size: 28rpx;
+    display: flex;
+    align-items: center;
+  }
+
+  &__source--img {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 8rpx;
+  }
+
+  &__source--link {
+    padding: 0 6rpx;
+    background-color: $bg-white;
+    color: $mute-black;
   }
 }

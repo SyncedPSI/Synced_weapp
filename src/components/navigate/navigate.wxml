@@ -1,12 +1,45 @@
-<cover-view class="global-nav--url" style="padding-top: {{paddingTop}}px;">
-  <text wx:if="{{notShow}}"></text>
-  <cover-view class="global-nav--tap" wx:elif="{{isFromWeapp}}" bindtap="goHome">
+<cover-view class="global-nav" style="padding-top: {{paddingTop}}px;" wx:if="{{isDaily}}">
+  <cover-view class="global-nav--tap t-simple" wx:if="{{isFromWeapp}}" bindtap="goHome">
     <cover-image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
   </cover-view>
-  <cover-view class="global-nav--tap" wx:else="{{isFromWeapp}}" bindtap="goBack">
+  <cover-view class="global-nav--tap t-simple" wx:else="{{isFromWeapp}}" bindtap="goBack">
     <cover-image class="global-nav--icon" src="/icons/nav_back.png" mode="cover" />
   </cover-view>
   <cover-view class="global-nav--title">{{title}}</cover-view>
 </cover-view>
-<view class="global-nav" style="padding-top: {{paddingTop}}px;">
+
+<view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;" wx:else>
+  <text wx:if="{{notShow}}"></text>
+
+  <view class="global-nav--tap t-search" wx:elif="{{isIndex}}">
+    <navigator class="global-nav--input" url="/pages/search/search">
+      <image class="global-nav--search" src="/icons/ic_search.png" mode="cover" />
+      全网搜索知识
+    </navigator>
+  </view>
+
+  <block wx:elif="{{isNoSearch}}">
+    <view class="global-nav--tap t-simple" wx:if="{{isFromWeapp}}" bindtap="goHome">
+      <image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
+    </view>
+    <view class="global-nav--tap t-simple" wx:else="{{isFromWeapp}}" bindtap="goBack">
+      <image class="global-nav--icon" src="/icons/nav_back.png" mode="cover" />
+    </view>
+  </block>
+
+  <view class="global-nav--actions" wx:else>
+    <navigator class="global-nav--action" url="/pages/index/index" hover-class="none" wx:if="{{isFromWeapp}}">
+      <image class="global-nav--action--icon" src="/icons/nav_home_2.png" mode="cover" />
+    </navigator>
+    <view class="global-nav--action" bindtap="goBack" hover-class="none" wx:else="{{isFromWeapp}}">
+      <image class="global-nav--action--icon" src="/icons/nav_back_2.jpg" mode="cover" />
+    </view>
+    <view class="global-nav--hr"></view>
+    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search">
+      <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="cover" />
+    </navigator>
+  </view>
+
+  <view class="global-nav--title">{{title}}</view>
 </view>
+<view class="global-nav--height" style="padding-top: {{paddingTop}}px;"></view>

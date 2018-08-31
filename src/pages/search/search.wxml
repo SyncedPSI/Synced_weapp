@@ -1,6 +1,6 @@
 <import src="../common/loading.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<nav hasShadow="{{false}}" isNoSearch isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <view class="container t-bg">
   <view class="header" style="margin-top: {{statusBarHeight}}px;">
     <view class='search_box'>
@@ -16,9 +16,7 @@
       <view hidden="{{node === null}}">
         <node id="{{node.id}}" nodeId="{{node.id}}" name="{{node.zh_name ? node.zh_name : node.en_name}}" type="{{node.type}}" summary="{{node.summary}}"></node>
       </view>
-      <view wx:for="{{articles}}" wx:key="{{item.id}}">
-        <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}"></article>
-      </view>
+      <article wx:for="{{articles}}" wx:key="{{item.id}}" id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}"></article>
     </view>
     <view hidden="{{!hasNextPage || articles.length === 0}}">
       <template is="loading" />

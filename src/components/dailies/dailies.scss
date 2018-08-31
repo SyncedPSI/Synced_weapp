@@ -7,14 +7,7 @@
 
   &__container {
     border-left: 3rpx solid #eee;
-    padding: 0 0 0 32rpx;
-  }
-
-  &__border {
-    height: 24rpx;
-    border-left: 6rpx solid $background_color;
-    position: absolute;
-    margin-left: -34rpx;
+    padding: 40rpx 0 0 32rpx;
   }
 
   &.t-red {
@@ -86,11 +79,12 @@
 
   &__action {
     color: $secondary-black;
+    padding-left: 30rpx;
   }
 
   &__img {
-    width: 42rpx;
-    height: 26rpx;
+    width: 32rpx;
+    height: 28rpx;
   }
 }
 
