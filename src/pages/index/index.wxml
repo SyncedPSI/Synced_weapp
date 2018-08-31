@@ -4,22 +4,22 @@
 <nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
 
 <view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
-  <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
   <text class="header-nav__item {{activeType === 'dailies' ? 'is-active' : ''}}" bindtap="switchType" data-type="dailies">资讯</text>
+  <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
   <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
 </view>
 
 <view class="content--header"></view>
 <view class="content--container">
-  <scroll-view scroll-y bindscrolltolower="fetchMoreData" wx:if="{{activeType === 'timelines'}}">
-    <view class="content--list">
-      <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
+  <scroll-view scroll-y bindscrolltolower="fetchMoreData"wx:if="{{activeType === 'dailies'}}">
+    <view class="daily--list">
+      <dailies list="{{dailyList}}"></dailies>
     </view>
     <template is="loading" />
   </scroll-view>
   <scroll-view scroll-y bindscrolltolower="fetchMoreData" wx:else>
-    <view class="daily--list">
-      <dailies list="{{dailyList}}"></dailies>
+    <view class="content--list">
+      <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
     </view>
     <template is="loading" />
   </scroll-view>

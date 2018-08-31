@@ -8,7 +8,7 @@ Page({
     searchIconUrl: "/icons/ic_search.svg",
     articleList: [],
     dailyList: [],
-    activeType: 'timelines',
+    activeType: 'dailies',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
 
@@ -16,7 +16,7 @@ Page({
     this.articlePage = 1;
     this.dailyPage = 1;
     this.fixNavTop = 176;
-    this.getArticleList();
+    this.getDailyList();
   },
   getArticleList: function (isRefresh = false) {
     return request(`${timelines}?page=${this.articlePage}`)
@@ -80,8 +80,8 @@ Page({
     const { type } = event.target.dataset;
     if (type === this.data.activeType) return;
 
-    if (this.data.dailyList.length === 0  && type === 'dailies') {
-      this.getDailyList();
+    if (this.data.articleList.length === 0  && type === 'timelines') {
+      this.getArticleList();
     }
 
     this.setData({
