@@ -110,10 +110,14 @@ page {
     font-weight: 600;
     font-size: 40rpx;
   }
-}
 
-.node-block:last-child {
-  padding-bottom: $safe-padding-bottom;
+  &:last-child {
+    padding-bottom: $safe-padding-bottom;
+  }
+
+  &.t-first {
+    padding-top: 40rpx;
+  }
 }
 
 .node-expert {

@@ -13,7 +13,7 @@
           <template wx:if="{{technology.summary != ''}}" is="node-summary" data="{{...technology}}" />
         </view>
       </view>
-      <view wx:if="{{technology.desc != ''}}" class="node-block" id="js-introduction">
+      <view wx:if="{{technology.desc != ''}}" class="node-block t-first" id="js-introduction">
           <view class="node-block__header">
             <text class="node-block__title">简介</text>
           </view>

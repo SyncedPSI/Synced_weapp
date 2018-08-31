@@ -17,14 +17,14 @@ page {
 
   &__item {
     display: inline-block;
-    font-size: 40rpx;
-    padding: 6rpx 32rpx 8rpx;
+    font-size: 36rpx;
+    padding: 6rpx 34rpx 8rpx;
     color: $mute-black;
     border-radius: 100rpx;
     transition: background-color .28s;
 
     &:last-child {
-      margin-left: 48rpx;
+      margin-left: 40rpx;
     }
 
     &.is-active {
