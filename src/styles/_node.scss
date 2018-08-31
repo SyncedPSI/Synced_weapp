@@ -3,26 +3,41 @@
   justify-content: space-between;
 }
 
+page {
+  background-color: $bg-white;
+}
+
 .node-header {
-  border-bottom: 2rpx solid $bg-white;
-  padding: 60rpx 40rpx;
+  padding: 40rpx;
+
+  &__container {
+    padding: 40rpx;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(226, 225, 225, 0.22);
+  }
 
   &__full {
-    font-size: 44rpx;
+    font-size: 40rpx;
+    font-weight: 500;
     color: $black;
-    margin-bottom: 20rpx;
   }
 
   &__en {
+    margin-top: 8rpx;
     font-size: 28rpx;
     color: $secondary-black;
-    margin-bottom: 28rpx;
+  }
+
+  &__icon {
+    width: 26rpx;
+    height: 26rpx;
+    margin-right: 10rpx;
   }
 
   &__website {
+    margin-top: 24rpx;
     color: $title-black;
     font-size: 28rpx;
-    margin-bottom: 24rpx;
   }
 
   &__link {
@@ -30,18 +45,19 @@
   }
 
   &__avatar {
-    width: 160rpx;
-    height: 160rpx;
+    width: 96rpx;
+    height: 96rpx;
     margin: 0 0 20rpx 70rpx;
   }
 
   &__summary {
-    margin-bottom: 40rpx;
+    margin-top: 24rpx;
     color: $title-black;
     font-size: 32rpx;
   }
 
   &__origins {
+    margin-top: 24rpx;
     color: $secondary-black;
     font-size: 28rpx;
   }
@@ -80,6 +96,7 @@
 
 .node-block {
   padding: 60rpx 40rpx 0;
+  background-color: #fff;
 
   &__header {
     border-bottom: 2rpx solid $bg-white;
@@ -95,12 +112,8 @@
   }
 }
 
-.node-block:first-child {
-  margin-top: 60rpx;
-}
-
 .node-block:last-child {
-  margin-bottom: $safe-padding-bottom;
+  padding-bottom: $safe-padding-bottom;
 }
 
 .node-expert {

@@ -8,8 +8,10 @@
   <view class="container">
     <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
       <view class="node-header">
-        <template is="node-header" data="{{...technology}}" />
-        <template wx:if="{{technology.summary != ''}}" is="node-summary" data="{{...technology}}" />
+        <view class="node-header__container">
+          <template is="node-header" data="{{...technology}}" />
+          <template wx:if="{{technology.summary != ''}}" is="node-summary" data="{{...technology}}" />
+        </view>
       </view>
       <view wx:if="{{technology.desc != ''}}" class="node-block" id="js-introduction">
           <view class="node-block__header">

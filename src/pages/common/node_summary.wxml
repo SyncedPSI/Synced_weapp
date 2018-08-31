@@ -1,6 +1,7 @@
 <template name="node-summary">
   <view class="node-header__summary">{{summary}}</view>
   <view class="node-header__origins">
+    <image class="node-header__icon" src="/icons/node_source.png" />
     <text>来源： </text>
     <block wx:for="{{summary_sources}}" wx:key="unique" wx:for-index="key">
       <text class="node-header__origin">{{key}}</text>
