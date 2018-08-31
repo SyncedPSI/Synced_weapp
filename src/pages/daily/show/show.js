@@ -1,4 +1,4 @@
-import { request } from "utils/util";
+import { request, showTipToast } from "utils/util";
 import { dailyShow } from "config/api";
 
 const app = getApp();
@@ -68,6 +68,9 @@ Page({
   copySource: function() {
     wx.setClipboardData({
       data: this.data.daily.url,
+      success: () => {
+        showTipToast('链接已复制');
+      }
     });
   }
 });

@@ -1,4 +1,4 @@
-import { request, getDateDiff } from "utils/util";
+import { request, getDateDiff, showTipToast } from "utils/util";
 import { timelines, dailies } from "config/api";
 
 Page({
@@ -125,6 +125,7 @@ Page({
       data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
       success: () => {
         this.closeActionSheet();
+        showTipToast('链接已复制');
       }
     });
   },

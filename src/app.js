@@ -15,7 +15,7 @@ App({
   onLaunch: function () {
     this.checkSession();
     this.checkSystemInfo();
-    this.getCookies();
+    // this.getCookies();
   },
 
   getCookies: function() {
