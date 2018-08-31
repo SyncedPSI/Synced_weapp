@@ -13,9 +13,6 @@ Component({
   data: {
     dailies: {},
     keys: [],
-    activeId: null,
-    activeTitle: null,
-    actionSheetHidden: true,
   },
   attached: function () {
     this.resolveData();
@@ -48,31 +45,7 @@ Component({
       });
     },
     openActionSheet: function (event) {
-      const { id, title } = event.currentTarget.dataset;
-      this.setData({
-        activeId: id,
-        activeTitle: title,
-        actionSheetHidden: !this.data.actionSheetHidden
-      });
-    },
-    closeActionSheet: function() {
-      this.setData({
-        actionSheetHidden: true
-      });
-    },
-    saveCard: function() {
-      this.closeActionSheet();
-      wx.navigateTo({
-        url: `../daily/screenshot/screenshot?id=${this.data.activeId}`
-      });
-    },
-    copyclip: function() {
-      wx.setClipboardData({
-        data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
-        success: () => {
-          this.closeActionSheet();
-        }
-      });
-    },
+      this.triggerEvent('open', { ...event.currentTarget.dataset });
+    }
   }
 })

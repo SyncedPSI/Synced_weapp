@@ -9,7 +9,10 @@ Page({
     articleList: [],
     dailyList: [],
     activeType: 'dailies',
-    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
+    activeId: null,
+    activeTitle: null,
+    actionSheetHidden: true,
   },
 
   onLoad: function() {
@@ -97,6 +100,33 @@ Page({
     if (source === 'touch') {
       this.setActiveType(currentItemId);
     }
+  },
+  openActionSheet: function (event) {
+    const { id, title } = event.detail;
+    this.setData({
+      activeId: id,
+      activeTitle: title,
+      actionSheetHidden: !this.data.actionSheetHidden
+    });
+  },
+  closeActionSheet: function() {
+    this.setData({
+      actionSheetHidden: true
+    });
+  },
+  saveCard: function() {
+    this.closeActionSheet();
+    wx.navigateTo({
+      url: `../daily/screenshot/screenshot?id=${this.data.activeId}`
+    });
+  },
+  copyclip: function() {
+    wx.setClipboardData({
+      data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
+      success: () => {
+        this.closeActionSheet();
+      }
+    });
   },
   onShareAppMessage: function(event) {
     const { from } = event;
