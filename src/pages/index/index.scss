@@ -18,9 +18,10 @@ page {
   &__item {
     display: inline-block;
     font-size: 40rpx;
-    padding: 8rpx 32rpx;
+    padding: 6rpx 32rpx 8rpx;
     color: $mute-black;
     border-radius: 100rpx;
+    transition: background-color .28s;
 
     &:last-child {
       margin-left: 48rpx;
@@ -56,6 +57,7 @@ page {
   height: calc(100vh - 196rpx);
   background-color: $background_color;
 
+  swiper,
   scroll-view {
     height: 100%;
   }

@@ -11,17 +11,23 @@
 
 <view class="content--header"></view>
 <view class="content--container">
-  <scroll-view scroll-y bindscrolltolower="fetchMoreData"wx:if="{{activeType === 'dailies'}}">
-    <view class="daily--list">
-      <dailies list="{{dailyList}}"></dailies>
-    </view>
-    <template is="loading" />
-  </scroll-view>
-  <scroll-view scroll-y bindscrolltolower="fetchMoreData" wx:else>
-    <view class="content--list">
-      <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
-    </view>
-    <template is="loading" />
-  </scroll-view>
+  <swiper current-item-id="{{activeType}}" bindchange="swiperActiveType">
+    <swiper-item item-id='dailies'>
+      <scroll-view scroll-y bindscrolltolower="fetchMoreData">
+        <view class="daily--list">
+          <dailies list="{{dailyList}}"></dailies>
+        </view>
+        <template is="loading" />
+      </scroll-view>
+    </swiper-item>
+    <swiper-item item-id="timelines">
+      <scroll-view scroll-y bindscrolltolower="fetchMoreData">
+        <view class="content--list">
+          <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" published_at="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
+        </view>
+        <template is="loading" />
+      </scroll-view>
+    </swiper-item>
+  </swiper>
 </view>
 <!-- <settingEntry></settingEntry> -->

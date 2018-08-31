@@ -76,17 +76,27 @@ Page({
   //       wx.stopPullDownRefresh();
   //     });
   // },
-  switchType: function(event) {
-    const { type } = event.target.dataset;
-    if (type === this.data.activeType) return;
-
-    if (this.data.articleList.length === 0  && type === 'timelines') {
+  setActiveType: function(type) {
+    if (this.data.articleList.length === 0 && type === 'timelines') {
       this.getArticleList();
     }
 
     this.setData({
       activeType: type
     });
+  },
+  switchType: function(event) {
+    const { type } = event.target.dataset;
+    if (type === this.data.activeType) return;
+
+    this.setActiveType(type);
+  },
+  swiperActiveType: function (event) {
+    const { currentItemId, source } = event.detail;
+
+    if (source === 'touch') {
+      this.setActiveType(currentItemId);
+    }
   },
   onShareAppMessage: function(event) {
     const { from } = event;
