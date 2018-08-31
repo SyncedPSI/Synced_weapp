@@ -8,9 +8,8 @@
       <template is="page_loading" />
     </view>
 
+    <view class="daily__create">AI Daily 快讯 · {{daily.created_at}}</view>
     <view class="daily__title">{{daily.title}}</view>
-    <view class="daily__hr"></view>
-    <view class="daily__create">{{daily.created_at}}</view>
     <view class="daily__content">{{daily.content}}</view>
     <view class="daily__source" wx:if="{{daily.url !== null}}">
       <image src="/icons/daily_source.png" class="daily__source--img" />

@@ -7,27 +7,20 @@ page {
 
 .daily {
   &__container {
-    padding: 40rpx 60rpx 100rpx;
+    padding: 40rpx 40rpx 100rpx;
     background-color: #fff;
   }
 
+  &__create {
+    font-size: 28rpx;
+    color: $secondary-black;
+  }
+
   &__title {
+    margin-top: 24rpx;
     font-size: 44rpx;
     font-weight: 500;
     color: $black;
-    text-align: center;
-  }
-
-  &__hr {
-    margin: 40rpx auto;
-    width: 100rpx;
-    border: 4rpx solid $black;
-  }
-
-  &__create {
-    text-align: center;
-    font-size: 28rpx;
-    color: $mute-black;
   }
 
   &__content {
