@@ -1,8 +1,8 @@
 <cover-view class="global-nav" style="padding-top: {{paddingTop}}px;" wx:if="{{isDaily}}">
-  <cover-view class="global-nav--tap" wx:if="{{isFromWeapp}}" bindtap="goHome">
+  <cover-view class="global-nav--tap t-simple" wx:if="{{isFromWeapp}}" bindtap="goHome">
     <cover-image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
   </cover-view>
-  <cover-view class="global-nav--tap" wx:else="{{isFromWeapp}}" bindtap="goBack">
+  <cover-view class="global-nav--tap t-simple" wx:else="{{isFromWeapp}}" bindtap="goBack">
     <cover-image class="global-nav--icon" src="/icons/nav_back.png" mode="cover" />
   </cover-view>
   <cover-view class="global-nav--title">{{title}}</cover-view>
@@ -19,10 +19,10 @@
   </view>
 
   <block wx:elif="{{isNoSearch}}">
-    <view class="global-nav--tap" wx:if="{{isFromWeapp}}" bindtap="goHome">
+    <view class="global-nav--tap t-simple" wx:if="{{isFromWeapp}}" bindtap="goHome">
       <image class="global-nav--icon" src="/icons/nav_home.png" mode="cover" />
     </view>
-    <view class="global-nav--tap" wx:else="{{isFromWeapp}}" bindtap="goBack">
+    <view class="global-nav--tap t-simple" wx:else="{{isFromWeapp}}" bindtap="goBack">
       <image class="global-nav--icon" src="/icons/nav_back.png" mode="cover" />
     </view>
   </block>
