@@ -66,7 +66,6 @@ Component({
       wx.setClipboardData({
         data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
         success: () => {
-          showTipToast('内容已复制');
           this.closeActionSheet();
         }
       });

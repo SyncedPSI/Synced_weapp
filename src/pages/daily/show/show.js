@@ -65,4 +65,9 @@ Page({
       path: `/pages/daily/show/show?id=${id}&from=weapp`,
     };
   },
+  copySource: function() {
+    wx.setClipboardData({
+      data: this.data.daily.url,
+    });
+  }
 });
