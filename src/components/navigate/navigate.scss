@@ -74,10 +74,16 @@
     height: 40rpx;
     width: 100%;
     background-color: $bg-white;
-    padding: 12rpx 160rpx 12rpx 28rpx;
+    padding: 12rpx 28rpx;
     color: $mute-black;
     font-size: 28rpx;
     border-radius: 60rpx;
+  }
+
+  &--input.t-button {
+    height: 64rpx;
+    line-height: 1.6;
+    text-align: left;
   }
 
   &--search {

@@ -1,3 +1,5 @@
+const app = getApp();
+
 Component({
   properties: {
     isFromWeapp: {
@@ -30,10 +32,14 @@ Component({
     }
   },
   data: {
-    paddingTop: getApp().globalData.systemInfo.statusBarHeight,
-    isAndroid: getApp().globalData.isAndroid,
+    paddingTop: app.globalData.systemInfo.statusBarHeight,
+    isAndroid: app.globalData.isAndroid,
+    isLogin: false
   },
   ready: function () {
+    this.setData({
+      isLogin: app.globalData.isLogin,
+    });
   },
   detached: function () {
 
@@ -46,6 +52,14 @@ Component({
       wx.navigateTo({
         url: '/pages/index/index'
       });
-    }
+    },
+    getUserInfo: function (event) {
+      app.login(event.detail.userInfo, () => {
+        this.setData({
+          isLogin: true,
+          isShowComment: true
+        });
+      });
+    },
   }
 })

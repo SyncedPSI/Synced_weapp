@@ -10,12 +10,15 @@
 
 <view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;" wx:else>
   <text wx:if="{{notShow}}"></text>
-
   <view class="global-nav--tap t-search" wx:elif="{{isIndex}}">
-    <navigator class="global-nav--input" url="/pages/search/search">
+    <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{isLogin}}">
       <image class="global-nav--search" src="/icons/ic_search.png" mode="cover" />
       全网搜索知识
     </navigator>
+    <button class="global-nav--input t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
+      <image class="global-nav--search" src="/icons/ic_search.png" mode="cover" />
+      全网搜索知识
+    </button>
   </view>
 
   <block wx:elif="{{isNoSearch}}">
@@ -35,9 +38,13 @@
       <image class="global-nav--action--icon" src="/icons/nav_back_2.jpg" mode="cover" />
     </view>
     <view class="global-nav--hr"></view>
-    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search">
+
+    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search" wx:if="{{isLogin}}">
       <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="cover" />
     </navigator>
+    <button class="global-nav--action t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
+      <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="cover" />
+    </button>
   </view>
 
   <view class="global-nav--title">{{title}}</view>
