@@ -6,8 +6,6 @@ App({
     isIphoneX: false,
     isAndroid: true,
     isLogin: false,
-    authToken: null,
-    expiredTime: null,
     userInfo: null,
     systemInfo: {},
   },
@@ -52,20 +50,25 @@ App({
   checkSession: function() {
     wx.checkSession({
       success: () => {
-        this.globalData.authToken = wx.getStorageSync('authToken');
-        this.globalData.expiredTime = wx.getStorageSync('expiredTime');
-        const { authToken, expiredTime } = this.globalData;
+        const expiredTime = wx.getStorageSync('expiredTime');
+        const timeDistance = expiredTime - parseInt(new Date().getTime() / 1000);
+        if (timeDistance < 0) {
+          this.setLoginFailed();
+          return;
+        }
+
+        const authToken = wx.getStorageSync('authToken');
         if (authToken) {
-          request(login, {}, "POST")
+          request(login, {}, 'POST')
             .then(() => {
-              const remain_hours = (expiredTime - parseInt(new Date().getTime() / 1000)) / 3600;
+              const remain_hours = timeDistance / 3600;
               if (remain_hours > 1.5) {
                 this.globalData.isLogin = true;
               } else {
                 this.globalData.isLogin = false;
               }
             }).catch(() => {
-              this.globalData.isLogin = false;
+              this.setLoginFailed();
             })
         } else {
           this.globalData.isLogin = false;
@@ -76,6 +79,7 @@ App({
       }
     });
   },
+
   login: function(userInfo, cb) {
     if (userInfo === undefined) return;
 
@@ -136,5 +140,10 @@ App({
     });
     this.globalData.isLogin = true;
     showTipToast(msg);
-  }
+  },
+  setLoginFailed: function() {
+    wx.removeStorageSync('authToken');
+    wx.removeStorageSync('expiredTime');
+    this.globalData.isLogin = false;
+  },
 });

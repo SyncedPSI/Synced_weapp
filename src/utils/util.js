@@ -115,7 +115,7 @@ const getHeader = () => {
   };
 
   try {
-    const token = getApp().globalData.authToken;
+    const token = wx.getStorageSync('authToken');
     if (token) {
       header['Authorization'] = `bearer ${token}`;
     }
