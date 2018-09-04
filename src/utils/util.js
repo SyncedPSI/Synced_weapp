@@ -111,9 +111,8 @@ const getHeader = () => {
   const header = {
     'Accept': '*/*',
     'Content-Type': 'application/json',
+    'Cookie': wx.getStorageSync('Cookie'),
   };
-
-  // 'Cookie': wx.getStorageSync('Cookie'),
 
   try {
     const token = getApp().globalData.authToken;
