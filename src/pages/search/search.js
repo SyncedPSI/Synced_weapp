@@ -4,7 +4,7 @@ import { searchByKeyword } from "config/api";
 Page({
   data: {
     isFromWeapp: false,
-    navigateTitle: '搜索 - 机器之心',
+    navigateTitle: '搜索',
     articles: [],
     node: null,
     hasNextPage: true,
