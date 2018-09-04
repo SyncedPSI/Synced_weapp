@@ -51,4 +51,13 @@ Page({
       path: `/pages/institution/institution?id=${id}&from=weapp`
     };
   },
+  copyclip: function (event) {
+    wx.setClipboardData({
+      data: event.target.dataset.url,
+      success: () => {
+        this.closeActionSheet();
+        showTipToast('链接已复制');
+      }
+    });
+  },
 });

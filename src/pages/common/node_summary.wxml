@@ -3,8 +3,8 @@
   <view class="node-header__origins">
     <image class="node-header__icon" src="/icons/node_source.png" />
     <text>来源： </text>
-    <block wx:for="{{summary_sources}}" wx:key="unique" wx:for-index="key">
-      <text class="node-header__origin">{{key}}</text>
+    <block wx:for="{{summary_sources}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
+      <text class="node-header__origin" bindtap="copyclip" data-url="{{value}}">{{key}}</text>
     </block>
   </view>
 </template>

@@ -1,8 +1,6 @@
-import { request } from "../../utils/util";
+import { request, showTipToast } from "../../utils/util";
 import { technologyShow } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
-
-const app = getApp();
 
 Page({
   data: {
@@ -53,5 +51,13 @@ Page({
       title: zh_name,
       path: `/pages/technology/technology?id=${id}&from=weapp`
     };
+  },
+  copyclip: function (event) {
+    wx.setClipboardData({
+      data: event.target.dataset.url,
+      success: () => {
+        showTipToast('链接已复制');
+      }
+    });
   },
 });
