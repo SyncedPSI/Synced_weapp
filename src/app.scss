@@ -7,6 +7,10 @@ view {
   overflow: hidden;
 }
 
+button::after {
+  border: none;
+}
+
 // page {
 //   background-color: $background-color;
 // }

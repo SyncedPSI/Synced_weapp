@@ -10,7 +10,7 @@ page {
   left: 0;
   right: 0;
   z-index: 1;
-  padding: 12rpx 0;
+  padding: 16rpx 0;
   text-align: center;
   background-color: #fff;
   box-shadow: 0 2px 4px 0 rgba(226, 225, 225, 0.50);
@@ -18,7 +18,7 @@ page {
   &__item {
     display: inline-block;
     font-size: 36rpx;
-    padding: 6rpx 34rpx 8rpx;
+    padding: 8rpx 34rpx;
     color: $mute-black;
     border-radius: 100rpx;
     transition: background-color .28s;
@@ -81,8 +81,4 @@ action-sheet-cancel {
   line-height: 1.4;
   font-size:32rpx;
   background-color: transparent;
-
-  &::after {
-    border: none;
-  }
 }

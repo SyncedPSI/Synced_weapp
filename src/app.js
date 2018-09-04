@@ -77,6 +77,8 @@ App({
     });
   },
   login: function(userInfo, cb) {
+    if (userInfo === undefined) return;
+
     showTipToast('正在登录', 'loading');
     var encryptedData = '';
     var iv = '';
