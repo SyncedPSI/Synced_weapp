@@ -8,7 +8,7 @@ Component({
       type: String,
       value: "none"
     },
-    published_at: {
+    publishedAt: {
       type: String,
       value: "none"
     },

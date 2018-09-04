@@ -20,7 +20,7 @@
             <view class="author">{{article.author.name}}</view>
             <view wx-hidden="{{article.copyright === '' || article.copyright === undefined || article.copyright === null}}" class="copyright">{{article.copyright}}</view>
           </view>
-          <view class="right">{{article.published_at}}</view>
+          <view class="right">{{article.publishedAt}}</view>
         </view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>
