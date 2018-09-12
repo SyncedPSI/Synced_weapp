@@ -49,19 +49,10 @@ page {
   }
 }
 
-.content--header {
-  height: 98rpx;
-}
-
-.content--container {
-  // nav height + tabbar height
-  height: calc(100vh - 196rpx);
-  background-color: $background_color;
-
-  swiper,
-  scroll-view {
-    height: 100%;
-  }
+.content-container {
+  height: 100%;
+  padding-top: 98rpx;
+  box-sizing: border-box;
 }
 
 .content--list {

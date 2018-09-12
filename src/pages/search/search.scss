@@ -40,7 +40,12 @@
   }
 }
 
+.content-container {
+  height: 100%;
+  padding-top: 98rpx;
+  box-sizing: border-box;
+}
+
 .search__container {
   padding: 0 40rpx 32rpx;
-  margin-top: 100rpx;
 }
