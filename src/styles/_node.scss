@@ -112,8 +112,8 @@
     font-size: 40rpx;
   }
 
-  &:last-child {
-    padding-bottom: $safe-padding-bottom;
+  &:nth-last-child(2) {
+    padding-bottom: $safe-padding-bottom + 30;
   }
 
   &.t-first {
