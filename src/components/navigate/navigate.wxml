@@ -8,9 +8,10 @@
   <cover-view class="global-nav--title">{{title}}</cover-view>
 </cover-view>
 
+<view wx:if="{{notShow}}"></view>
+
 <view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;" wx:else>
-  <text wx:if="{{notShow}}"></text>
-  <view class="global-nav--tap t-search" wx:elif="{{isIndex}}">
+  <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
     <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{isLogin}}">
       <image class="global-nav--search" src="/icons/ic_search.png" mode="cover" />
       探索机器之心
@@ -50,4 +51,4 @@
   <view class="global-nav--title">{{title}}</view>
 </view>
 
-<view class="global-nav--height" wx-if="{{hasHeaderHeight}}"></view>
+<view class="global-nav--height" style="padding-top: {{paddingTop}}px" wx-if="{{hasHeaderHeight}}"></view>
