@@ -182,26 +182,29 @@ Page({
     }
   },
   getWrapTextHeight: function ({text, lineHeight, fontSize}) {
+    const splitArr = text.split(/\n\r/);
     this.ctx.setFontSize(fontSize);
     const maxWidth = this.width - this.paddingLeft * 2;
     const splitText = [];
     let height = 0;
-    const arrText = text.split('');
-    let line = '';
-    for (let n = 0; n < arrText.length; n++) {
-      const testLine = line + arrText[n];
-      const metrics = this.ctx.measureText(testLine);
-      const testWidth = metrics.width;
-      if (testWidth > maxWidth && n > 0) {
-        splitText.push(line);
-        height += lineHeight;
-        line = arrText[n];
-      } else {
-        line = testLine;
+    for (let i = 0; i < splitArr.length; i++) {
+      const arrText = splitArr[i].split('');
+      let line = '';
+      for (let n = 0; n < arrText.length; n++) {
+        const testLine = line + arrText[n];
+        const metrics = this.ctx.measureText(testLine);
+        const testWidth = metrics.width;
+        if (testWidth > maxWidth && n > 0) {
+          splitText.push(line);
+          height += lineHeight;
+          line = arrText[n];
+        } else {
+          line = testLine;
+        }
       }
+      splitText.push(line);
+      height += lineHeight;
     }
-    splitText.push(line);
-    height += lineHeight;
     return {
       splitText,
       height,
