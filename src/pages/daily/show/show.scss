@@ -28,6 +28,7 @@ page {
     color: $title-black;
     font-size: 32rpx;
     line-height: 1.8;
+    white-space: pre-line;
   }
 
   &__source {
