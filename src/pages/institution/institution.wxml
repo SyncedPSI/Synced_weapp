@@ -5,7 +5,7 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
-  <view class="container">
+  <view class="u-container" style="padding-top: {{statusBarHeight}}px">
     <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
       <view class="node-header">
         <view class="node-header__container">
@@ -26,15 +26,16 @@
         </view>
       </view>
       <view wx:if="{{institution.desc != ''}}" class="node-block t-first" id="js-introduction">
-          <view class="node-block__header">
-            <text class="node-block__title">简介</text>
-          </view>
-          <view class="content">
-            <import src="../../wxParse/wxParse.wxml"/>
-            <template is="wxParse" data="{{wxParseData:institution_content.nodes}}" />
-          </view>
+        <view class="node-block__header">
+          <text class="node-block__title">简介</text>
+        </view>
+        <view class="content">
+          <import src="../../wxParse/wxParse.wxml"/>
+          <template is="wxParse" data="{{wxParseData:institution_content.nodes}}" />
+        </view>
       </view>
       <template wx:if="{{institution.experts.length != 0}}" is="node-experts" data="{{experts: institution.experts}}" />
+      <view class="catalog-height"></view>
     </scroll-view>
   </view>
   <!-- <settingEntry></settingEntry> -->

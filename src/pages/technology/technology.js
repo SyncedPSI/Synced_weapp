@@ -2,6 +2,7 @@ import { request, showTipToast } from "../../utils/util";
 import { technologyShow } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
 
+const app = getApp();
 Page({
   data: {
     id: "",
@@ -10,6 +11,7 @@ Page({
     technology: {},
     isFromWeapp: false,
     isRequestFinished: false,
+    statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     catalogList: [{
       key: 'js-introduction',
       value: '简介'

@@ -3,12 +3,13 @@
   justify-content: space-between;
 }
 
-page {
-  background-color: $bg-white;
+.catalog-height {
+  height: $catalog-height;
 }
 
 .node-header {
   padding: 40rpx;
+  background-color: $bg-white;
 
   &__container {
     padding: 40rpx;

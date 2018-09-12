@@ -12,6 +12,7 @@ Page({
     institution: {},
     scrollToView: '',
     isRequestFinished: false,
+    statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     catalogList: [{
       key: 'js-introduction',
       value: '简介'
