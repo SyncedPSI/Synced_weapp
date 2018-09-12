@@ -6,7 +6,7 @@
   <view class='search_box'>
     <input placeholder-style='color: #9d9d9d; font-weight: 200;' placeholder='探索机器之心' focus="{{keywords === ''}}" type="text" value="{{keywords}}"
       confirm-type="search" bindinput='searchByKeyword' bindconfirm='search' bindblur='search'></input>
-    <view class='search_button' >
+    <view class='search_button' bindtap="refresh">
       <image src="/icons/ic_search.png"></image>
     </view>
   </view>
@@ -14,7 +14,7 @@
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreData" enable-back-to-top>
+    <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
       <view class="search__container">
         <block wx:if="{{node !== null}}">
           <node id="{{node.id}}" nodeId="{{node.id}}" name="{{node.zh_name ? node.zh_name : node.en_name}}" type="{{node.type}}" summary="{{node.summary}}"></node>

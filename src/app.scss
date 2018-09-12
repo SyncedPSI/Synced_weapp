@@ -31,16 +31,9 @@ button::after {
   padding-bottom: $safe-padding-bottom;
 }
 
-// TODO: will delete
-.container {
-  height: 100vh;
-  position: relative;
-
-  &.t-bg {
-    background-color: $background_color;
-  }
-
-  scroll-view {
-    height: 100%;
-  }
+// can i use
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
 }
