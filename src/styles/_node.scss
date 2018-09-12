@@ -3,12 +3,13 @@
   justify-content: space-between;
 }
 
-page {
-  background-color: $bg-white;
+.catalog-height {
+  height: $catalog-height;
 }
 
 .node-header {
   padding: 40rpx;
+  background-color: $bg-white;
 
   &__container {
     padding: 40rpx;
@@ -111,8 +112,8 @@ page {
     font-size: 40rpx;
   }
 
-  &:last-child {
-    padding-bottom: $safe-padding-bottom;
+  &:nth-last-child(2) {
+    padding-bottom: $safe-padding-bottom + 30;
   }
 
   &.t-first {

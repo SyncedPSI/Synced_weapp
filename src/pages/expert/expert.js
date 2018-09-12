@@ -13,6 +13,7 @@ Page({
     scrollToView: '',
     isRequestFinished: false,
     isShowCatelog: false,
+    statusBarHeight: app.globalData.systemInfo.statusBarHeight,
     catalogList: [{
       key: 'js-introduction',
       value: '简介'

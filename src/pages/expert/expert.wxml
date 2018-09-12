@@ -5,7 +5,7 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
-  <view class="container">
+  <view class="u-container" style="padding-top: {{statusBarHeight}}px">
     <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
       <view class="node-header">
         <view class="node-header__container">
@@ -29,6 +29,7 @@
           </view>
       </view>
       <template wx:if="{{expert.institutions.length != 0}}" is="node-institutions" data="{{institutions: expert.institutions}}" />
+      <view class="catalog-height"></view>
     </scroll-view>
   </view>
 

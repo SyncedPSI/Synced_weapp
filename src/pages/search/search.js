@@ -1,4 +1,4 @@
-import { request, getDateDiff } from "utils/util";
+import { request } from "utils/util";
 import { searchByKeyword } from "config/api";
 
 Page({
@@ -8,12 +8,13 @@ Page({
     articles: [],
     node: null,
     hasNextPage: true,
-    page: 1,
     keywords: '',
+    scrollTop: 0,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   onLoad: function (option) {
     const { keywords, from } = option;
+    this.page = 1;
     if (keywords) {
       this.setData({
         keywords,
@@ -22,20 +23,22 @@ Page({
       this.fetchData(keywords);
     }
   },
-  fetchData: function(keywords = '') {
+  fetchData: function(keywords = '', isRefresh = false) {
     this.keywords = keywords;
-    const { hasNextPage } = this.data;
-    if (!hasNextPage || keywords === '') return;
+    if (keywords === '') return;
+    if (!isRefresh && !this.data.hasNextPage) return;
 
-    request(`${searchByKeyword}${keywords}&page=${this.data.page}`)
+    request(`${searchByKeyword}${keywords}&page=${this.page}`)
       .then(({ data }) => {
-        const { articles , hasNextPage } = data;
+        const { articles, hasNextPage } = data;
         const card_node = data.card_node || null;
+        const oldArticles = isRefresh ? [] : this.data.articles;
+
+        this.page += 1;
         this.setData({
-          articles: this.data.articles.concat(articles),
+          articles: [...oldArticles, ...articles],
           hasNextPage: hasNextPage,
           node: card_node,
-          page: this.data.page + 1
         })
       })
       .catch(() => {
@@ -49,24 +52,34 @@ Page({
 
   search: function(event) {
     this.clearTimer();
-    this.fetchData(event.detail.value);
+    this.setData({
+      scrollTop: 0,
+    }, () => {
+      this.fetchData(event.detail.value, true);
+    })
   },
 
+  refresh: function() {
+    this.clearTimer();
+    this.setData({
+      scrollTop: 0,
+    }, () => {
+      this.fetchData(this.keywords, true);
+    });
+  },
   searchByKeyword: function(event) {
     const { value } = event.detail;
 
     this.clearTimer();
     this.timer = setTimeout(() => {
-      this.fetchData(value);
+      this.fetchData(value. true);
     }, 2000);
 
     return value;
   },
-
   clearTimer: function() {
     clearTimeout(this.timer);
-    this.data.page = 1;
-    this.data.articles = []
+    this.page = 1;
   },
   onShareAppMessage: function() {
     return {

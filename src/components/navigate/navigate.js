@@ -22,6 +22,10 @@ Component({
     //   type: Boolean,
     //   value: true
     // },
+    hasHeaderHeight: {
+      type: Boolean,
+      value: false
+    },
     isNoSearch: {
       type: Boolean,
       value: false

@@ -1,7 +1,7 @@
 <import src="../../common/page_loading.wxml"/>
 <import src="../../common/comment_bottom_bar.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="daily__container">
     <view wx:if="{{isFetching}}">

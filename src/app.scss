@@ -11,96 +11,29 @@ button::after {
   border: none;
 }
 
-// page {
-//   background-color: $background-color;
-// }
-
-.has-safe-padding {
-  padding-bottom: $safe-padding-bottom;
-}
-
-.container {
-  height: 100vh;
-  position: relative;
+.u-container {
+  // $nav-content-height: 98rpx
+  height: calc(100vh - 98rpx);
+  margin-top: $nav-content-height;
+  box-sizing: border-box;
 
   &.t-bg {
     background-color: $background_color;
   }
 
+  swiper,
   scroll-view {
     height: 100%;
   }
 }
 
+.has-safe-padding {
+  padding-bottom: $safe-padding-bottom;
+}
+
+// can i use
 ::-webkit-scrollbar {
   width: 0;
   height: 0;
   color: transparent;
-}
-
-.u-loadmore {
-  &__spinner {
-    text-align: center;
-    padding: 40rpx 20rpx;
-  }
-
-  &__bounce {
-    width: 28rpx;
-    height: 28rpx;
-    background-color: $black;
-    margin: 0 10rpx;
-    border-radius: 100%;
-    display: inline-block;
-    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
-  }
-
-  &__bounce1 {
-    animation-delay: -0.32s;
-  }
-
-  &__bounce2 {
-    animation-delay: -0.16s;
-  }
-
-  @keyframes sk-bouncedelay {
-    0%,
-    80%,
-    100% {
-      -webkit-transform: scale(0);
-      transform: scale(0);
-    }
-    40% {
-      -webkit-transform: scale(1);
-      transform: scale(1);
-    }
-  }
-}
-
-.page-loading {
-  &__bounce {
-    width: 76%;
-    height: 20rpx;
-    background-color: $bg-white;
-    margin: 20rpx 0;
-    animation: pl-bouncedelay 1.4s infinite;
-  }
-
-  &__bounce1 {
-    animation-delay: -0.32s;
-  }
-
-  &__bounce2 {
-    animation-delay: -0.16s;
-  }
-
-  @keyframes pl-bouncedelay {
-    0%,
-    80%,
-    100% {
-      width: 76%;
-    }
-    40% {
-      width: 20%;
-    }
-  }
 }

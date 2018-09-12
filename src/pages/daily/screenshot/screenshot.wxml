@@ -1,4 +1,4 @@
-<nav notShow="{{true}}" title=""></nav>
+<nav notShow="{{true}}" title="" hasHeaderHeight></nav>
 
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
   <view id="js-get-width"></view>
