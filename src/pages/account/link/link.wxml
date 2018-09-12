@@ -1,4 +1,4 @@
-<nav title="关联账户"></nav>
+<nav title="关联账户" hasHeaderHeight></nav>
 
 <view class="account">
   <view class="account__weclome">欢迎你！</view>

@@ -1,4 +1,4 @@
-<nav title="绑定手机号"></nav>
+<nav title="绑定手机号" hasHeaderHeight></nav>
 
 <view class="account">
   <view class="account__weclome">欢迎你！</view>
