@@ -49,4 +49,5 @@
 
   <view class="global-nav--title">{{title}}</view>
 </view>
-<view class="global-nav--height" style="padding-top: {{paddingTop}}px;"></view>
+
+<view class="global-nav--height" wx-if="{{hasHeaderHeight}}"></view>

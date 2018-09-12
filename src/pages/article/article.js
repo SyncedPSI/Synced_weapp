@@ -16,6 +16,7 @@ Page({
     },
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isLogin: false
   },
 
