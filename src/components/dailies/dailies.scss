@@ -6,7 +6,7 @@
 
   &__container {
     border-left: 2rpx solid #eee;
-    padding: 40rpx 0 40rpx 30rpx;
+    padding: 40rpx 0 40rpx 24rpx;
   }
 
   &__container.t-andriod &__tip {
@@ -28,7 +28,7 @@
   &__tip {
     position: absolute;
     vertical-align: middle;
-    margin-left: -30rpx;
+    margin-left: -24rpx;
     margin-top: 34rpx;
     transform: translate(-50%, -50%);
     font-size: 42rpx;

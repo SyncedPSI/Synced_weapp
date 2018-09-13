@@ -1,5 +1,5 @@
 import { request, showTipToast, showErrorToast, showLoading, hideLoading } from "utils/util";
-import { dailyShow } from "config/api";
+import { dailyDetail } from "config/api";
 
 const app = getApp();
 
@@ -23,7 +23,7 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${dailyShow}${option.id}`)
+    request(`${dailyDetail}${option.id}`)
       .then(res => {
         const daily = res.data;
         this.setData({
@@ -188,7 +188,7 @@ Page({
     const splitText = [];
     let height = 0;
     for (let i = 0; i < splitArr.length; i++) {
-      const arrText = splitArr[i].split('');
+      const arrText = splitArr[i].trim().split('');
       let line = '';
       for (let n = 0; n < arrText.length; n++) {
         const testLine = line + arrText[n];

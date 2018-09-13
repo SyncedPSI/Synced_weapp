@@ -1,0 +1,41 @@
+<import src="../common/page_loading.wxml"/>
+<import src="../common/comment_bottom_bar.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+
+<view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
+  <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+    <image src="{{topic.cover_image_url}}" class="topic__cover" hidden="{{topic.cover_image_url === undefined || topic.cover_image_url === null}}" />
+    <view class="article">
+      <view wx:if="{{isFetching}}">
+        <template is="page_loading" />
+      </view>
+
+      <block wx:if="{{!isFetching}}">
+        <view class="title" id="js-topic-title">{{topic.title}}</view>
+        <view class="info">
+          <view class="left">
+            <view class="avatar">
+              <image wx:if="{{topic.author.avatar_url}}" src="{{topic.author.avatar_url}}" mode="aspectFill"></image>
+            </view>
+            <view class="author">{{topic.author.name}}</view>
+            <view wx-hidden="{{topic.copyright === '' || topic.copyright === undefined || topic.copyright === null}}" class="copyright">{{topic.copyright}}</view>
+          </view>
+          <view class="right">{{topic.publishedAt}}</view>
+        </view>
+        <view class="content">
+          <import src="../../wxParse/wxParse.wxml"/>
+          <template is="wxParse" data="{{wxParseData:topic_content.nodes}}" />
+        </view>
+      </block>
+    </view>
+
+    <block wx:if="{{!isFetching}}">
+      <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+
+      <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
+    </block>
+    <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
+  </scroll-view>
+  <!-- <settingEntry hasComment></settingEntry> -->
+</view>

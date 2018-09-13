@@ -74,3 +74,28 @@ action-sheet-cancel {
   font-size:32rpx;
   background-color: transparent;
 }
+
+.banner {
+  &--container {
+    padding: 40rpx 0 0 24rpx;
+    border-left: 2rpx solid #eee;
+    position: relative;
+  }
+
+  &--image {
+    display: block;
+    height: 260rpx;
+  }
+
+  &--time {
+    position: absolute;
+    z-index: 2;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    bottom: 82rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 32rpx;
+  }
+}

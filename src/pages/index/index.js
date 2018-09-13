@@ -1,11 +1,11 @@
 import { request, getDateDiff, showTipToast } from "utils/util";
-import { timelines, dailies } from "config/api";
+import { timelines, dailies, morningDaily } from "config/api";
 
 Page({
   data: {
     isNavFixed: false,
-    logoUrl: "/images/logo.svg",
     searchIconUrl: "/icons/ic_search.svg",
+    morningUrl: '/images/morning_daily.svg',
     articleList: [],
     dailyList: [],
     activeType: 'dailies',
@@ -13,13 +13,32 @@ Page({
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
+    morningDailyId: null,
+    todayDate: ''
   },
 
   onLoad: function() {
     this.articlePage = 1;
     this.dailyPage = 1;
     this.fixNavTop = 176;
+
+
+    this.getMorningDaily();
     this.getDailyList();
+  },
+  getMorningDaily: function() {
+    request(morningDaily)
+      .then(res => {
+        const today = new Date();
+        const todayDate = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
+
+        if (res.data != null) {
+          this.setData({
+            todayDate,
+            morningDailyId: res.data.id
+          });
+        }
+      });
   },
   getArticleList: function (isRefresh = false) {
     return request(`${timelines}?page=${this.articlePage}`)

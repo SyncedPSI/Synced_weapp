@@ -1,0 +1,74 @@
+@import 'variables';
+
+.article {
+  padding: 0 40rpx;
+  background-color: $white;
+  padding-bottom: 100rpx;
+  min-height: 100vh;
+
+  .title {
+    font-size: 44rpx;
+    line-height: 60rpx;
+    color: $black;
+    margin-top: 40rpx;
+    margin-bottom: 24rpx;
+    font-weight: 500;
+  }
+
+  .info {
+    display: flex;
+    margin-bottom: 40rpx;
+
+    .left {
+      display: flex;
+      flex: 2;
+      vertical-align: middle;
+
+      .avatar {
+        display: inline-block;
+        height: 40rpx;
+        width: 40rpx;
+        vertical-align: middle;
+        border-radius: 50%;
+        border: 1px solid $bg-white;
+
+        image {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .author {
+        display: inline-block;
+        margin-left: 20rpx;
+        margin-right: 16rpx;
+        font-size: 28rpx;
+        line-height: 40rpx;
+        vertical-align: middle;
+      }
+
+      .copyright {
+        display: inline-block;
+        font-size: 24rpx;
+        background-color: $red;
+        line-height: 36rpx;
+        color: $white;
+        padding-right: 18rpx;
+        padding-left: 18rpx;
+        border-radius: 20rpx;
+        font-weight: 300;
+        height: 36rpx;
+        margin-top: 2rpx;
+      }
+    }
+
+    .right {
+      display: inline-block;
+      text-align: right;
+      flex: 1;
+      color: $light_gray;
+      font-size: 28rpx;
+      vertical-align: middle;
+    }
+  }
+}

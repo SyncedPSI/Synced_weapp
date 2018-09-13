@@ -1,5 +1,5 @@
 import { request } from "../../utils/util";
-import { expertShow } from "../../config/api";
+import { expertDetail } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
 
 const app = getApp();
@@ -29,7 +29,7 @@ Page({
       id: id,
       isFromWeapp: from === "weapp",
     });
-    request(`${expertShow}${option.id}`)
+    request(`${expertDetail}${option.id}`)
       .then(res => {
         const expert = res.data;
         WxParse.wxParse("expert_content", "html", res.data.desc, this, 5);
