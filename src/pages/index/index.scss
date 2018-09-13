@@ -79,11 +79,22 @@ action-sheet-cancel {
   &--container {
     padding: 40rpx 0 0 24rpx;
     border-left: 2rpx solid #eee;
+    position: relative;
   }
 
   &--image {
-    width: 100%;
+    display: block;
     height: 260rpx;
     background-color: #000;
+  }
+
+  &--time {
+    position: absolute;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    bottom: 20%;
+    text-align: center;
+    color: #fff;
   }
 }

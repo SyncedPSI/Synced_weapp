@@ -14,20 +14,27 @@ Page({
     activeTitle: null,
     actionSheetHidden: true,
     morningDailyId: null,
+    todayDate: ''
   },
 
   onLoad: function() {
     this.articlePage = 1;
     this.dailyPage = 1;
     this.fixNavTop = 176;
+
+
     this.getMorningDaily();
     this.getDailyList();
   },
   getMorningDaily: function() {
     request(morningDaily)
       .then(res => {
+        const today = new Date();
+        const todayDate = `${today.getMonth() + 1}.${today.getDate()}`;
+
         if (res.data != null) {
           this.setData({
+            todayDate,
             morningDailyId: res.data.id
           });
         }
