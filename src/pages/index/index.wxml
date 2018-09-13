@@ -15,6 +15,9 @@
       <swiper-item item-id='dailies'>
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="daily--list">
+            <navigator class="banner--container" url="/topics/id" redirect hover-class="none" wx-if="{{morningDaily !== null}}">
+              <image class="banner--image" src="" />
+            </navigator>
             <dailies list="{{dailyList}}" bindopen="openActionSheet"></dailies>
           </view>
           <template is="loading" />

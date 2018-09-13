@@ -1,5 +1,5 @@
 import { request, getDateDiff, showTipToast } from "utils/util";
-import { timelines, dailies } from "config/api";
+import { timelines, dailies, morningDaily } from "config/api";
 
 Page({
   data: {
@@ -13,13 +13,25 @@ Page({
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
+    morningDaily: null,
   },
 
   onLoad: function() {
     this.articlePage = 1;
     this.dailyPage = 1;
     this.fixNavTop = 176;
+    this.getMorningDaily();
     this.getDailyList();
+  },
+  getMorningDaily: function() {
+    request(morningDaily)
+      .then(res => {
+        if (res.data != null) {
+          this.setData({
+            morningDaily: res.data
+          });
+        }
+      });
   },
   getArticleList: function (isRefresh = false) {
     return request(`${timelines}?page=${this.articlePage}`)
