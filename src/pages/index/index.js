@@ -4,8 +4,8 @@ import { timelines, dailies, morningDaily } from "config/api";
 Page({
   data: {
     isNavFixed: false,
-    logoUrl: "/images/logo.svg",
     searchIconUrl: "/icons/ic_search.svg",
+    morningUrl: '/images/morning_daily.svg',
     articleList: [],
     dailyList: [],
     activeType: 'dailies',
@@ -30,7 +30,7 @@ Page({
     request(morningDaily)
       .then(res => {
         const today = new Date();
-        const todayDate = `${today.getMonth() + 1}.${today.getDate()}`;
+        const todayDate = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
 
         if (res.data != null) {
           this.setData({

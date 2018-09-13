@@ -85,16 +85,17 @@ action-sheet-cancel {
   &--image {
     display: block;
     height: 260rpx;
-    background-color: #000;
   }
 
   &--time {
     position: absolute;
+    z-index: 2;
     bottom: 30%;
     left: 0;
     right: 0;
-    bottom: 20%;
+    bottom: 82rpx;
     text-align: center;
     color: #fff;
+    font-size: 32rpx;
   }
 }
