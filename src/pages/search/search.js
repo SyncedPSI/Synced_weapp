@@ -69,11 +69,7 @@ Page({
   },
   searchByKeyword: function(event) {
     const { value } = event.detail;
-
-    this.clearTimer();
-    this.timer = setTimeout(() => {
-      this.fetchData(value. true);
-    }, 2000);
+    this.keywords = value;
 
     return value;
   },
