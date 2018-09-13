@@ -1,5 +1,4 @@
 <import src="../common/loading.wxml"/>
-<import src="./tab.wxml"/>
 
 <nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
 
