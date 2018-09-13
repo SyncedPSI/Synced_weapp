@@ -188,7 +188,7 @@ Page({
     const splitText = [];
     let height = 0;
     for (let i = 0; i < splitArr.length; i++) {
-      const arrText = splitArr[i].split('');
+      const arrText = splitArr[i].trim().split('');
       let line = '';
       for (let n = 0; n < arrText.length; n++) {
         const testLine = line + arrText[n];
