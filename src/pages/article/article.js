@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { articleShow } from "config/api";
+import { articleDetail } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -45,7 +45,7 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${articleShow}${option.id}`)
+    request(`${articleDetail}${option.id}`)
       .then(res => {
         const article = res.data;
         article.published_at = getDateDiff(res.data.published_at);

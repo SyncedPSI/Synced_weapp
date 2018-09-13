@@ -1,5 +1,5 @@
 import { request } from "../../utils/util";
-import { institutionShow } from "../../config/api";
+import { institutionDetail } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
 
 const app = getApp();
@@ -28,7 +28,7 @@ Page({
       id: id,
       isFromWeapp: from === "weapp",
     });
-    request(`${institutionShow}${option.id}`)
+    request(`${institutionDetail}${option.id}`)
       .then(res => {
         const institution = res.data;
         WxParse.wxParse("institution_content", "html", res.data.desc, this, 5);

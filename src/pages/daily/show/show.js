@@ -1,5 +1,5 @@
 import { request, showTipToast } from "utils/util";
-import { dailyShow } from "config/api";
+import { dailyDetail } from "config/api";
 
 const app = getApp();
 
@@ -37,7 +37,7 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${dailyShow}${option.id}`)
+    request(`${dailyDetail}${option.id}`)
       .then(res => {
         const daily = res.data;
         const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));

@@ -1,5 +1,5 @@
 import { request, showTipToast } from "../../utils/util";
-import { technologyShow } from "../../config/api";
+import { technologyDetail } from "../../config/api";
 const WxParse = require("../../wxParse/wxParse.js");
 
 const app = getApp();
@@ -30,7 +30,7 @@ Page({
       id: id,
       isFromWeapp: from === "weapp",
     });
-    request(`${technologyShow}${option.id}`)
+    request(`${technologyDetail}${option.id}`)
       .then(res => {
         const technology = res.data;
         WxParse.wxParse("technology_content", "html", res.data.desc, this, 5);
