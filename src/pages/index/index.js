@@ -13,7 +13,7 @@ Page({
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
-    morningDaily: null,
+    morningDailyId: null,
   },
 
   onLoad: function() {
@@ -28,7 +28,7 @@ Page({
       .then(res => {
         if (res.data != null) {
           this.setData({
-            morningDaily: res.data
+            morningDailyId: res.data.id
           });
         }
       });

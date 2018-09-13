@@ -2,5 +2,10 @@
 @import 'content';
 @import 'fix_bottom';
 @import 'page_loading';
-@import 'article';
+@import 'article_content';
 
+.topic__cover {
+  display: block;
+  width: 100%;
+  height: 400rpx;
+}

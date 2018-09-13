@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { articleDetail } from "config/api";
+import { topicDetail } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -11,9 +11,7 @@ Page({
     title: "",
     isFromWeapp: false,
     isFetching: true,
-    article: {
-      related_nodes: [],
-    },
+    topic: {},
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
@@ -35,31 +33,31 @@ Page({
   },
 
   onLoad: function(option) {
-    this.getTitleHeight();
 
-    const { id, title, from } = option;
+    const { id, from } = option;
     this.setData({
       id,
-      title,
       isLogin: app.globalData.isLogin,
       isFromWeapp: from === "weapp",
     });
 
-    request(`${articleDetail}${option.id}`)
+    request(`${topicDetail}${option.id}`)
       .then(res => {
-        const article = res.data;
-        article.published_at = getDateDiff(res.data.published_at);
-        WxParse.wxParse("article_content", "html", res.data.content, this, 5);
+        const topic = res.data;
+        topic.publishedAt = getDateDiff(res.data.published_at);
+        WxParse.wxParse("topic_content", "html", res.data.content, this, 5);
         this.setData({
-          article,
+          topic,
           isFetching: false
+        }, () => {
+          this.getTitleHeight();
         });
       });
   },
 
   getTitleHeight: function() {
     setTimeout(() => {
-      wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
+      wx.createSelectorQuery().select('#js-topic-title').boundingClientRect((rect) => {
         this.titleHeight = (rect.height + 16);
       }).exec();
     }, 300);
@@ -96,7 +94,7 @@ Page({
     const { title, id } = this.data;
     return {
       title,
-      path: `/pages/article/article?id=${id}&title=${title}&from=weapp`
+      path: `/pages/topic/topic?id=${id}&title=${title}&from=weapp`
     };
   },
 });

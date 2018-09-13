@@ -48,7 +48,7 @@ Page({
     request(`${articleDetail}${option.id}`)
       .then(res => {
         const article = res.data;
-        article.published_at = getDateDiff(res.data.published_at);
+        article.publishedAt = getDateDiff(res.data.published_at);
         WxParse.wxParse("article_content", "html", res.data.content, this, 5);
         this.setData({
           article,
