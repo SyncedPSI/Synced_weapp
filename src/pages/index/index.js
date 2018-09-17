@@ -7,21 +7,20 @@ Page({
     searchIconUrl: "/icons/ic_search.svg",
     morningUrl: '/images/morning_daily.svg',
     articleList: [],
-    dailyList: [],
     activeType: 'dailies',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
     morningDailyId: null,
-    todayDate: ''
+    todayDate: '',
+    dailies: {}
   },
 
   onLoad: function() {
     this.articlePage = 1;
     this.dailyPage = 1;
     this.fixNavTop = 176;
-
 
     this.getMorningDaily();
     this.getDailyList();
@@ -65,18 +64,8 @@ Page({
     return request(`${dailies}?page=${this.dailyPage}`)
       .then(res => {
         this.dailyPage += 1;
-        const { dailyList } = this.data;
-        const newList = res.data;
-
-        if (isRefresh) {
-          this.setData({
-            dailyList: newList,
-          });
-        } else {
-          this.setData({
-            dailyList: [...dailyList, ...newList],
-          });
-        }
+        const list = res.data;
+        this.resolveDailyList(list, isRefresh);
       });
   },
   fetchMoreData: function () {
@@ -86,6 +75,29 @@ Page({
     } else {
       this.getDailyList();
     }
+  },
+  resolveDailyList: function(list, isRefresh = false) {
+    const dailies = isRefresh  ? {} : this.data.dailies;
+
+    list.forEach((item) => {
+      const { created_at } = item;
+      if (created_at === undefined) return;
+
+      const [_, key] = created_at.match(new RegExp('^([^\\s]+)', 'i'));
+      if (dailies[key] === undefined) {
+        const createDate = new Date(created_at);
+        dailies[key] = {
+          day: createDate.getDate(),
+          date: `${createDate.getFullYear()}年${createDate.getMonth() + 1}月`,
+          list: [],
+        };
+      }
+      dailies[key].list.push(item);
+    });
+
+    this.setData({
+      dailies
+    });
   },
   // onPullDownRefresh: function () {
   //   wx.showNavigationBarLoading();
