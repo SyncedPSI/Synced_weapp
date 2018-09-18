@@ -36,7 +36,7 @@
     </swiper>
   </view>
 </view>
-<!-- <settingEntry></settingEntry> -->
+<settingEntry></settingEntry>
 
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
    <action-sheet-item>

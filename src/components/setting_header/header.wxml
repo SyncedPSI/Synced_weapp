@@ -4,14 +4,13 @@
     <text>{{user.nickName}}</text>
   </view>
   <view class="setting-header__list">
-    <!-- <navigator class="setting-header__item {{ activeBar === 'index' ? 'is-active' : '' }}" url=""{{ activeBar === 'chatbox' ? '' : '../index/index' }}" hover-class="none">
+    <!-- <navigator class="setting-header__item {{ activeBar === 'index' ? 'is-active' : '' }}" url="{{ activeBar === 'index' ? '' : '../index/index' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_collection.png" mode="cover" />
-    </navigator>
-    <navigator class="setting-header__item {{ activeBar === 'pending' ? 'is-active' : '' }}" url=""{{ activeBar === 'chatbox' ? '' : '../pending/pending' }}" hover-class="none">
+    </navigator> -->
+    <navigator class="setting-header__item {{ activeBar === 'pending' ? 'is-active' : '' }}" url="{{ activeBar === 'pending' ? '' : '../pending/pending' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_delayread.png" mode="cover" />
       <text class="setting-header__count">16</text>
     </navigator>
-    -->
     <navigator class="setting-header__item {{ activeBar === 'chatbox' ? 'is-active' : '' }}" url="{{ activeBar === 'chatbox' ? '' : '../chatbot/chatbot' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_message.png" mode="cover" />
     </navigator>

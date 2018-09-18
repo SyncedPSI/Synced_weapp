@@ -26,5 +26,5 @@
       </view>
     </scroll-view>
   </view>
-  <!-- <settingEntry></settingEntry> -->
+  <settingEntry></settingEntry>
 </view>

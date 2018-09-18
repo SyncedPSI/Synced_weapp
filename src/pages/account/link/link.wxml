@@ -13,4 +13,4 @@
     <text bindtap="register">微信注册</text>
   </view>
 </view>
-<!-- <settingEntry></settingEntry> -->
+<settingEntry></settingEntry>
