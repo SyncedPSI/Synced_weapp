@@ -100,11 +100,11 @@ Page({
       return; //右滑
     }
 
-    let distance = clientX - startX;
-    if (maxRightBtnWidth < -distance) {
-      distance = -maxRightBtnWidth;
+    let distance = startX - clientX;
+    if (maxRightBtnWidth < distance) {
+      distance = maxRightBtnWidth;
     }
-    articles[index].txtStyle = `left: ${distance}px`;
+    articles[index].txtStyle = `right: ${distance}px`;
     this.setData({
       articles,
     });
@@ -116,10 +116,10 @@ Page({
     const index = event.currentTarget.dataset.index;
     const { clientX, clientY } = event.changedTouches[0];
     const { startX, startY, articles, maxRightBtnWidth } = this.data;
-    const distance = clientX - startX;
+    const distance = startX - clientX;
     articles[index].txtStyle = '';
 
-    if (maxRightBtnWidth < -distance) {
+    if (maxRightBtnWidth < distance) {
       articles[index].isOpenBtn = true;
     }
 
@@ -129,4 +129,17 @@ Page({
       articles,
     });
   },
+
+  deleteArticle: function(event) {
+    const { index } = event.currentTarget.dataset;
+    const { articles } = this.data;
+    const newArticles = [
+      ...articles.slice(0, index),
+      ...articles.slice(index + 1)
+    ];
+
+    this.setData({
+      articles: newArticles,
+    });
+  }
 })

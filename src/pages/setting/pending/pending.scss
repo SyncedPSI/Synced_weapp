@@ -29,7 +29,11 @@ page {
     z-index: 3;
     overflow: hidden;
     background-color: #fff;
-    transition: left .28s;
+    transition: right .28s;
+
+    &.is-open {
+      right: 160rpx;
+    }
   }
 
   &--btn {

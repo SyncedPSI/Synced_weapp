@@ -2,12 +2,12 @@
 <myheader activeBar="pending"></myheader>
 
 <view class="pending--container">
-  <view class="pending--item {{item.isOpenBtn ? 'is-open' : ''}}" wx:for="{{articles}}" wx:key="{{id}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <view class="pending--item" wx:for="{{articles}}" wx:key="{{id}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
       <view class="pending--inline">
-        <view style="{{item.txtStyle}}" class="pending--content">
+        <view style="{{item.txtStyle}}" class="pending--content {{item.isOpenBtn ? 'is-open' : ''}}">
           <text>这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字这里是很多文字</text>
         </view>
-        <view class="pending--btn">
+        <view class="pending--btn" bindtap="deleteArticle" data-index="{{index}}">
           <image class="pending--icon" src="/icons/delete.png" mode="cover" />
           <text>删除</text>
         </view>
