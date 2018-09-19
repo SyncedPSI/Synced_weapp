@@ -20,20 +20,6 @@ Page({
     isLogin: false
   },
 
-  openComment: function() {
-    this.switchComment(true);
-  },
-
-  closeComment: function() {
-    this.switchComment(false);
-  },
-
-  switchComment: function(status) {
-    this.setData({
-      isShowComment: status
-    });
-  },
-
   onLoad: function(options) {
     this.scrollTop = 0;
     this.getTitleHeight();
@@ -101,7 +87,6 @@ Page({
       }).exec();
      }, 300);
   },
-
   getTitleHeight: function() {
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
@@ -109,6 +94,24 @@ Page({
         clearTimeout(this.timeout);
       }).exec();
     }, 300);
+  },
+
+  openComment: function () {
+    this.switchComment(true);
+  },
+
+  closeComment: function () {
+    this.switchComment(false);
+  },
+
+  switchComment: function (status) {
+    this.setData({
+      isShowComment: status
+    });
+  },
+
+  addRead: function() {
+    // request
   },
 
   scroll: function (event) {

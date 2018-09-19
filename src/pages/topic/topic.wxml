@@ -37,5 +37,5 @@
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <!-- <settingEntry hasComment></settingEntry> -->
+  <settingEntry hasComment></settingEntry>
 </view>
