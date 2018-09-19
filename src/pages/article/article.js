@@ -49,21 +49,19 @@ Page({
   },
 
   onHide: function() {
-    console.log('hide');
     this.sendProgess();
   },
 
   onUnload: function () {
-    console.log('unload');
     this.sendProgess();
   },
 
   getProgress: function() {
-     const { screenHeight } = getApp().globalData.systemInfo;
+    const { screenHeight } = getApp().globalData.systemInfo;
     const offsetTop = this.scrollTop + screenHeight;
 
     let progress = 0;
-    if (this.scrollTop) {
+    if (this.scrollTop === 0) {
       progress = 0;
     } else if (offsetTop > this.contentHeight) {
       progress = 100;
@@ -79,11 +77,7 @@ Page({
       return;
     }
 
-    // send ajax
-    // request(`${articleDetail}${this.articleId}`)
-    //   .then(() => {
-    //     console.log(schedule)
-    //   })
+    this.addRead();
   },
 
   getContentHeight: function() {
@@ -117,7 +111,7 @@ Page({
     });
   },
 
-  addRead: function() {
+  addRead: function () {
     request(readLater, {
       content_id: this.articleId,
       content_type: "Article",
