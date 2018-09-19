@@ -34,10 +34,13 @@ Page({
     });
   },
 
-  onLoad: function(option) {
+  onLoad: function(options) {
+    this.scrollTop = 0;
     this.getTitleHeight();
 
-    const { id, title, from } = option;
+    const { id, title, from, read_later } = options;
+    this.read_later = read_later;
+    this.articleId = id;
     this.setData({
       id,
       title,
@@ -45,7 +48,7 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${articleDetail}${option.id}`)
+    request(`${articleDetail}${options.id}`)
       .then(res => {
         const article = res.data;
         article.publishedAt = getDateDiff(res.data.published_at);
@@ -53,14 +56,57 @@ Page({
         this.setData({
           article,
           isFetching: false
+        }, () => {
+          this.getContentHeight();
         });
       });
   },
 
+  onHide: function() {
+    console.log('hide');
+    this.sendSchedule();
+  },
+
+  onUnload: function () {
+    console.log('unload');
+    this.sendSchedule();
+  },
+
+  sendSchedule: function() {
+    if (this.scrollTop === 0 || !this.read_later) {
+      return;
+    }
+
+    const { screenHeight } = getApp().globalData.systemInfo;
+    const offsetTop = this.scrollTop + screenHeight;
+    let schedule = 0;
+    if (offsetTop > this.contentHeight) {
+      schedule = 100;
+    } else {
+      schedule = parseInt(offsetTop * 100 / this.contentHeight);
+    }
+
+    // send ajax
+    // request(`${articleDetail}${this.articleId}`)
+    //   .then(() => {
+    //     console.log(schedule)
+    //   })
+  },
+
+  getContentHeight: function() {
+    this.timeout = setTimeout(() => {
+      wx.createSelectorQuery().select('#js-article-content').boundingClientRect((rect) => {
+        this.contentHeight = rect.height;
+        clearTimeout(this.timeout);
+      }).exec();
+     }, 300);
+  },
+
   getTitleHeight: function() {
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
         this.titleHeight = (rect.height + 16);
+        clearTimeout(this.timeout);
       }).exec();
     }, 300);
   },
@@ -69,6 +115,7 @@ Page({
     if (this.titleHeight === undefined) return;
 
     const { scrollTop } = event.detail;
+    this.scrollTop = scrollTop;
     if (scrollTop > this.titleHeight) {
       this.setNavigationBarTitle(this.data.title);
     } else {

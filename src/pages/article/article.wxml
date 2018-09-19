@@ -22,7 +22,7 @@
           </view>
           <view class="right">{{article.publishedAt}}</view>
         </view>
-        <view class="content">
+        <view class="content" id="js-article-content">
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
         </view>
