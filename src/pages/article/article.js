@@ -22,6 +22,8 @@ Page({
 
   onLoad: function(options) {
     this.scrollTop = 0;
+    this.contentHeight = null;
+    this.clientHeight = getApp().globalData.systemInfo.screenHeight - this.data.statusBarHeight;
     this.getTitleHeight();
 
     const { id, title, from, read_later } = options;
@@ -57,8 +59,8 @@ Page({
   },
 
   getProgress: function() {
-    const { screenHeight } = getApp().globalData.systemInfo;
-    const offsetTop = this.scrollTop + screenHeight;
+    if (this.contentHeight === null) return 0;
+    const offsetTop = this.scrollTop + this.clientHeight;
 
     let progress = 0;
     if (this.scrollTop === 0) {
@@ -83,7 +85,9 @@ Page({
   getContentHeight: function() {
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-content').boundingClientRect((rect) => {
-        this.contentHeight = rect.height;
+        const { height, top } = rect;
+        this.contentHeight = height;
+        this.clientHeight -= top;
         clearTimeout(this.timeout);
       }).exec();
      }, 300);
@@ -92,7 +96,6 @@ Page({
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
         this.titleHeight = (rect.height + 16);
-        clearTimeout(this.timeout);
       }).exec();
     }, 300);
   },
