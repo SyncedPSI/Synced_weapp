@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    articles: [{id: 1}, {id: 2}],
+    articleList: [],
     startX: 0,
     startY: 0,
     maxRightBtnWidth: 80,
