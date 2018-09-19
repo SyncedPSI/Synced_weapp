@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { articleDetail } from "config/api";
+import { articleDetail, addReadLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -50,26 +50,33 @@ Page({
 
   onHide: function() {
     console.log('hide');
-    this.sendSchedule();
+    this.sendProgess();
   },
 
   onUnload: function () {
     console.log('unload');
-    this.sendSchedule();
+    this.sendProgess();
   },
 
-  sendSchedule: function() {
-    if (this.scrollTop === 0 || !this.read_later) {
-      return;
+  getProgress: function() {
+     const { screenHeight } = getApp().globalData.systemInfo;
+    const offsetTop = this.scrollTop + screenHeight;
+
+    let progress = 0;
+    if (this.scrollTop) {
+      progress = 0;
+    } else if (offsetTop > this.contentHeight) {
+      progress = 100;
+    } else {
+      progress = parseInt(offsetTop * 100 / this.contentHeight);
     }
 
-    const { screenHeight } = getApp().globalData.systemInfo;
-    const offsetTop = this.scrollTop + screenHeight;
-    let schedule = 0;
-    if (offsetTop > this.contentHeight) {
-      schedule = 100;
-    } else {
-      schedule = parseInt(offsetTop * 100 / this.contentHeight);
+    return progress;
+  },
+
+  sendProgess: function() {
+    if (this.scrollTop === 0 || !this.read_later) {
+      return;
     }
 
     // send ajax
@@ -111,7 +118,11 @@ Page({
   },
 
   addRead: function() {
-    // request
+    request(addReadLater, {
+      content_id: this.articleId,
+      content_type: "Article",
+      progress: this.getProgress()
+    }, 'POST')
   },
 
   scroll: function (event) {
