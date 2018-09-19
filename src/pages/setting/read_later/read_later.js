@@ -19,7 +19,6 @@ Page({
         list.forEach(item => {
           item.updatedAt = getDateDiff(item.updated_at);
         });
-
         this.setData({
           list
         });

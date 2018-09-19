@@ -11,8 +11,8 @@
       <image class="setting-header__icon" src="/icons/me_delayread.png" mode="cover" />
       <text class="setting-header__count">{{readLastersCount}}</text>
     </navigator>
-    <navigator class="setting-header__item {{ activeBar === 'chatbox' ? 'is-active' : '' }}" url="{{ activeBar === 'chatbox' ? '' : '../chatbot/chatbot' }}" hover-class="none">
+    <!-- <navigator class="setting-header__item {{ activeBar === 'chatbox' ? 'is-active' : '' }}" url="{{ activeBar === 'chatbox' ? '' : '../chatbot/chatbot' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_message.png" mode="cover" />
-    </navigator>
+    </navigator>  -->
   </view>
 </view>
