@@ -15,6 +15,14 @@ Component({
     articleId: {
       type: String,
       value: ""
+    },
+    query: {
+      type: String,
+      value: ""
+    },
+    isInner: {
+      type: Boolean,
+      value: false
     }
   }
 });

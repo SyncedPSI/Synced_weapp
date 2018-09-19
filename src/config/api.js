@@ -15,3 +15,5 @@ export const login = ApiRootUrl + '/login/';
 export const register = ApiRootUrl + '/register/';
 export const searchByKeyword = ApiRootUrl + '/search?type=for_weapp&keywords=';
 export const comments = ApiRootUrl + '/comments';
+export const readLaterCount = ApiRootUrl + '/read_laters/count';
+export const readLater = ApiRootUrl + '/read_laters';

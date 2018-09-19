@@ -6,6 +6,10 @@
   margin: 32rpx 0;
   position: relative;
 
+  &.is-inner {
+    margin: 0;
+  }
+
   &.is-node::after {
     content: '';
     position: absolute;

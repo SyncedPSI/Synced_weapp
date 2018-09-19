@@ -20,7 +20,7 @@
                 <text>{{todayDate}}</text>
               </view>
             </navigator>
-            <dailies list="{{dailyList}}" bindopen="openActionSheet"></dailies>
+            <dailies dailies="{{dailies}}" bindopen="openActionSheet"></dailies>
           </view>
           <template is="loading" />
         </scroll-view>
@@ -36,7 +36,7 @@
     </swiper>
   </view>
 </view>
-<!-- <settingEntry></settingEntry> -->
+<settingEntry></settingEntry>
 
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
    <action-sheet-item>

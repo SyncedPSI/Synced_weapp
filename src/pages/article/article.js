@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { articleDetail } from "config/api";
+import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -20,24 +20,15 @@ Page({
     isLogin: false
   },
 
-  openComment: function() {
-    this.switchComment(true);
-  },
-
-  closeComment: function() {
-    this.switchComment(false);
-  },
-
-  switchComment: function(status) {
-    this.setData({
-      isShowComment: status
-    });
-  },
-
-  onLoad: function(option) {
+  onLoad: function(options) {
+    this.scrollTop = 0;
+    this.contentHeight = null;
+    this.clientHeight = getApp().globalData.systemInfo.screenHeight - this.data.statusBarHeight;
     this.getTitleHeight();
 
-    const { id, title, from } = option;
+    const { id, title, from, read_later } = options;
+    this.read_later = read_later;
+    this.articleId = id;
     this.setData({
       id,
       title,
@@ -45,7 +36,7 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${articleDetail}${option.id}`)
+    request(`${articleDetail}${options.id}`)
       .then(res => {
         const article = res.data;
         article.publishedAt = getDateDiff(res.data.published_at);
@@ -53,22 +44,89 @@ Page({
         this.setData({
           article,
           isFetching: false
+        }, () => {
+          this.getContentHeight();
         });
       });
   },
 
+  onHide: function() {
+    this.sendProgess();
+  },
+
+  onUnload: function () {
+    this.sendProgess();
+  },
+
+  getProgress: function() {
+    if (this.contentHeight === null) return 0;
+    const offsetTop = this.scrollTop + this.clientHeight;
+
+    let progress = 0;
+    if (this.scrollTop === 0) {
+      progress = 0;
+    } else if (offsetTop > this.contentHeight) {
+      progress = 100;
+    } else {
+      progress = parseInt(offsetTop * 100 / this.contentHeight);
+    }
+
+    return progress;
+  },
+
+  sendProgess: function() {
+    if (this.scrollTop === 0 || !this.read_later) {
+      return;
+    }
+
+    this.addRead();
+  },
+
+  getContentHeight: function() {
+    this.timeout = setTimeout(() => {
+      wx.createSelectorQuery().select('#js-article-content').boundingClientRect((rect) => {
+        const { height, top } = rect;
+        this.contentHeight = height;
+        this.clientHeight -= top;
+        clearTimeout(this.timeout);
+      }).exec();
+     }, 300);
+  },
   getTitleHeight: function() {
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
         this.titleHeight = (rect.height + 16);
       }).exec();
     }, 300);
   },
 
+  openComment: function () {
+    this.switchComment(true);
+  },
+
+  closeComment: function () {
+    this.switchComment(false);
+  },
+
+  switchComment: function (status) {
+    this.setData({
+      isShowComment: status
+    });
+  },
+
+  addRead: function () {
+    request(readLater, {
+      content_id: this.articleId,
+      content_type: "Article",
+      progress: this.getProgress()
+    }, 'POST')
+  },
+
   scroll: function (event) {
     if (this.titleHeight === undefined) return;
 
     const { scrollTop } = event.detail;
+    this.scrollTop = scrollTop;
     if (scrollTop > this.titleHeight) {
       this.setNavigationBarTitle(this.data.title);
     } else {

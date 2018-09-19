@@ -22,7 +22,7 @@
           </view>
           <view class="right">{{article.publishedAt}}</view>
         </view>
-        <view class="content">
+        <view class="content" id="js-article-content">
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
         </view>
@@ -56,9 +56,32 @@
     <block wx:if="{{!isFetching}}">
       <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
 
-      <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
+      <block wx:if="{{isLogin}}">
+        <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+          <view class="u-fix-bottom--bar" bindtap="addRead">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
+            <text>稍后阅读</text>
+          </view>
+          <view class="u-fix-bottom--bar" bindtap="openComment">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
+            <text>评论</text>
+          </view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+          <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
+            <text>稍后阅读</text>
+          </button>
+          <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
+            <text>评论</text>
+          </button>
+        </view>
+      </block>
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <!-- <settingEntry hasComment></settingEntry> -->
+  <settingEntry hasComment></settingEntry>
 </view>

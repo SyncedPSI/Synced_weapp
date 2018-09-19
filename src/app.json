@@ -14,7 +14,7 @@
     "pages/setting/collection/collection",
     "pages/setting/card/card",
     "pages/setting/comment/comment",
-    "pages/setting/pending/pending",
+    "pages/setting/read_later/read_later",
     "pages/setting/chatbot/chatbot",
     "pages/setting/index/index",
     "pages/logs/logs"

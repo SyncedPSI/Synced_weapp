@@ -34,5 +34,5 @@
   </view>
 
   <catalog catalogList="{{catalogList}}" wx:if="{{expert.level === 'level_3'}}" bindscroll="setScrollTarget"></catalog>
-  <!-- <settingEntry></settingEntry> -->
+  <settingEntry></settingEntry>
 </block>

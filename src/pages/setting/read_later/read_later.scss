@@ -1,0 +1,59 @@
+@import 'variables';
+
+page {
+  background-color: $background_color;
+  min-height: 100%;
+}
+
+.readlater {
+  &--container {
+    padding: ($setting-header + 16rpx) 0 $safe-padding-bottom;
+  }
+
+  &--item {
+    padding: 0 40rpx;
+    margin: 32rpx 0;
+    position: relative;
+  }
+
+  &--inline {
+    background-color: #fff;
+    position: relative;
+    z-index: 3;
+    transition: right .28s;
+
+    &.is-open {
+      right: 160rpx;
+    }
+  }
+
+  &--btn {
+    position: absolute;
+    right: 40rpx;
+    top: 0;
+    bottom: 0;
+    width: 160rpx;
+    font-size: 32rpx;
+    text-align: center;
+    background-color: $red;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    z-index: 0;
+  }
+
+  &--icon {
+    width: 48rpx;
+    height: 48rpx;
+  }
+
+  &--none {
+    color: $mute-black;
+    font-size: 28rpx;
+    text-align: center;
+    margin-top: 144rpx;
+  }
+}
+
