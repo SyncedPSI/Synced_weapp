@@ -19,6 +19,10 @@ Component({
     query: {
       type: String,
       value: ""
+    },
+    isInner: {
+      type: Boolean,
+      value: false
     }
   }
 });

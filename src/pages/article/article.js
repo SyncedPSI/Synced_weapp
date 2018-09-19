@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { articleDetail, addReadLater } from "config/api";
+import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -118,7 +118,7 @@ Page({
   },
 
   addRead: function() {
-    request(addReadLater, {
+    request(readLater, {
       content_id: this.articleId,
       content_type: "Article",
       progress: this.getProgress()

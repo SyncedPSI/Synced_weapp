@@ -1,96 +1,98 @@
-Page({
+import { request, getDateDiff } from "utils/util";
+import { readLater } from "config/api";
 
-  /**
-   * 页面的初始数据
-   */
+Page({
   data: {
-    articleList: [],
+    list: [],
     startX: 0,
     startY: 0,
     maxRightBtnWidth: 80,
   },
+  onLoad: function () {
+    this.getList();
+  },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  getList: function() {
+    request(readLater)
+      .then((res) => {
+        const list = res.data;
+        list.forEach(item => {
+          item.updatedAt = getDateDiff(item.updated_at);
+        });
 
+        this.setData({
+          list
+        });
+      })
   },
 
   touchStart: function(event) {
-
-    // 开始触摸时 重置所有的删除
-    // 判断是否只有一个触摸点
-    // 记录触摸的坐标
-    const { articles } = this.data;
-    articles.forEach((item) => {
+    const { list } = this.data;
+    list.forEach((item) => {
       item.isOpenBtn = false;
     });
     const { clientX, clientY } = event.changedTouches[0];
     this.setData({
-      articles,
+      list,
       startX: clientX,
       startY: clientY,
     });
   },
 
   touchMove: function(event) {
-    // const index = event.currentTarget.dataset.index,//当前索引
-    // 得到start 的x y
-    // 得到滑动变化的坐标
-    // 滑动角度？？？ angle = that.angle({ X: startX, Y: startY }, { X: touchMoveX, Y: touchMoveY });
-    // 判断 左滑还是右滑
     const index = event.currentTarget.dataset.index;
-    const { clientX, clientY } = event.changedTouches[0];
-    const { startX, startY, articles, maxRightBtnWidth } = this.data;
+    const { clientX } = event.changedTouches[0];
+    const { startX, list, maxRightBtnWidth } = this.data;
     if (clientX > startX) {
-      articles[index].txtStyle = '';
+      list[index].txtStyle = '';
       this.setData({
-        articles,
+        list,
       });
-      return; //右滑
+      return; // right slide
     }
 
     let distance = startX - clientX;
     if (maxRightBtnWidth < distance) {
       distance = maxRightBtnWidth;
     }
-    articles[index].txtStyle = `right: ${distance}px`;
+    list[index].txtStyle = `right: ${distance}px`;
     this.setData({
-      articles,
+      list,
     });
   },
 
   touchEnd: function(event) {
-    // 得到结束的触摸点位置
-    // 滑动距离和删除按钮的长度相比 是显示 还是不显示
     const index = event.currentTarget.dataset.index;
-    const { clientX, clientY } = event.changedTouches[0];
-    const { startX, startY, articles, maxRightBtnWidth } = this.data;
+    const { clientX } = event.changedTouches[0];
+    const { startX, list, maxRightBtnWidth } = this.data;
     const distance = startX - clientX;
-    articles[index].txtStyle = '';
+    list[index].txtStyle = '';
 
     if (maxRightBtnWidth < distance) {
-      articles[index].isOpenBtn = true;
+      list[index].isOpenBtn = true;
     }
 
     this.setData({
       startX: 0,
       startY: 0,
-      articles,
+      list,
     });
   },
 
-  deleteArticle: function(event) {
-    const { index } = event.currentTarget.dataset;
-    const { articles } = this.data;
-    const newArticles = [
-      ...articles.slice(0, index),
-      ...articles.slice(index + 1)
-    ];
+  deleteItem: function(event) {
+    const { id, index } = event.currentTarget.dataset;
 
-    this.setData({
-      articles: newArticles,
-    });
+    request(`${readLater}/${id}`, {}, 'DELETE')
+      .then(() => {
+        const { list } = this.data;
+        const newList = [
+          ...list.slice(0, index),
+          ...list.slice(index + 1)
+        ];
+
+        this.setData({
+          list: newList,
+        });
+      })
   }
 })
