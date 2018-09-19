@@ -15,6 +15,10 @@ Component({
     articleId: {
       type: String,
       value: ""
+    },
+    query: {
+      type: String,
+      value: ""
     }
   }
 });
