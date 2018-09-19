@@ -1,5 +1,5 @@
 <block hidden="{{isHidden}}">
-  <navigator url="../setting/chatbot/chatbot" class="setting {{hasComment ? 't-has-comment' : ''}} {{isIphoneX ? 'has-safe-padding' : ''}}" wx:if="{{isLogin}}" hover-class="none">
+  <navigator url="/pages/setting/pending/pending" class="setting {{hasComment ? 't-has-comment' : ''}} {{isIphoneX ? 'has-safe-padding' : ''}}" wx:if="{{isLogin}}" hover-class="none">
     <image class="setting__avatar" src="/icons/ic_chatbot_h.png" mode="cover" />
   </navigator>
 
