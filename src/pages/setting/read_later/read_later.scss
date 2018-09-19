@@ -7,7 +7,7 @@ page {
 
 .readlater {
   &--container {
-    padding: $setting-header 0 $safe-padding-bottom;
+    padding: ($setting-header + 16rpx) 0 $safe-padding-bottom;
   }
 
   &--item {
@@ -47,6 +47,13 @@ page {
   &--icon {
     width: 48rpx;
     height: 48rpx;
+  }
+
+  &--none {
+    color: $mute-black;
+    font-size: 28rpx;
+    text-align: center;
+    margin-top: 144rpx;
   }
 }
 

@@ -2,6 +2,9 @@
 <myheader activeBar="read_later"></myheader>
 
 <view class="readlater--container">
+  <view class="readlater--none" wx-if="{{list.length === 0}}">
+    <text>还未添加任何可待读的文章  </text>
+  </view>
   <view class="readlater--item" wx:for="{{list}}" wx:key="{{item.id}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
     <view class="readlater--inline {{item.isOpenBtn ? 'is-open' : ''}}" style="{{item.txtStyle}}">
       <article articleId="{{item.content.id}}" title="{{item.content.title}}" category="{{item.content.category}}"
