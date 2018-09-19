@@ -1,0 +1,15 @@
+<nav title="稍后阅读" isNoSearch hasHeaderHeight></nav>
+<myheader activeBar="read_later"></myheader>
+
+<view class="read_later--container">
+  <view class="read_later--item" wx:for="{{articles}}" wx:key="{{id}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+      <view class="read_later--inline  {{item.isOpenBtn ? 'is-open' : ''}}" style="{{item.txtStyle}}"  wx:for="{{articleList}}" wx:key="{{item.id}}">
+        <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" publishedAt="{{item.published_at}}" query="{{item.schedule === '100%' ? '' : '&read_later=true'}}"></article>
+      </view>
+      <view class="read_later--btn" bindtap="deleteArticle" data-index="{{index}}">
+        <image class="read_later--icon" src="/icons/delete.png" mode="cover" />
+        <text>删除</text>
+      </view>
+  </view>
+</view>
+

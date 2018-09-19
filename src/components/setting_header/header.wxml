@@ -7,7 +7,7 @@
     <!-- <navigator class="setting-header__item {{ activeBar === 'index' ? 'is-active' : '' }}" url="{{ activeBar === 'index' ? '' : '../index/index' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_collection.png" mode="cover" />
     </navigator> -->
-    <navigator class="setting-header__item {{ activeBar === 'pending' ? 'is-active' : '' }}" url="{{ activeBar === 'pending' ? '' : '../pending/pending' }}" hover-class="none">
+    <navigator class="setting-header__item {{ activeBar === 'read_later' ? 'is-active' : '' }}" url="{{ activeBar === 'read_later' ? '' : '../read_later/read_later' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_delayread.png" mode="cover" />
       <text class="setting-header__count">{{readLastersCount}}</text>
     </navigator>
