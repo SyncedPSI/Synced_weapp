@@ -1,4 +1,4 @@
-import { request, getDateDiff } from "utils/util";
+import { request, getDateDiff, showTipToast } from "utils/util";
 import { readLater } from "config/api";
 
 Page({
@@ -88,10 +88,10 @@ Page({
           ...list.slice(0, index),
           ...list.slice(index + 1)
         ];
-
         this.setData({
           list: newList,
         });
+        showTipToast('删除成功');
       })
   }
 })
