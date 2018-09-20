@@ -1,4 +1,4 @@
-import { request, getDateDiff } from "utils/util";
+import { request, getDateDiff, showTipToast } from "utils/util";
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -116,10 +116,14 @@ Page({
 
   addRead: function () {
     request(readLater, {
-      content_id: this.articleId,
-      content_type: "Article",
-      progress: this.getProgress()
-    }, 'POST')
+      read_later: {
+        content_id: this.articleId,
+        content_type: "Article",
+        progress: this.getProgress()
+      }
+    }, 'POST').then(() => {
+      showTipToast('添加成功');
+    })
   },
 
   scroll: function (event) {
