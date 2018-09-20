@@ -1,4 +1,4 @@
-import { request } from "utils/util";
+import { request, showErrorToast } from "utils/util";
 import { searchByKeyword } from "config/api";
 
 Page({
@@ -40,32 +40,19 @@ Page({
           hasNextPage: hasNextPage,
           node: card_node,
         })
-      })
-      .catch(() => {
-        this.clearTimer();
-      })
+      });
   },
 
   fetchMoreData: function() {
     this.fetchData(this.keywords);
   },
 
-  search: function(event) {
-    this.clearTimer();
-    this.setData({
-      scrollTop: 0,
-    }, () => {
-      this.fetchData(event.detail.value, true);
-    })
+  search: function() {
+    this.reSearch();
   },
 
   refresh: function() {
-    this.clearTimer();
-    this.setData({
-      scrollTop: 0,
-    }, () => {
-      this.fetchData(this.keywords, true);
-    });
+    this.reSearch();
   },
   searchByKeyword: function(event) {
     const { value } = event.detail;
@@ -73,9 +60,13 @@ Page({
 
     return value;
   },
-  clearTimer: function() {
-    clearTimeout(this.timer);
+  reSearch: function() {
     this.page = 1;
+    this.setData({
+      scrollTop: 0,
+    }, () => {
+      this.fetchData(this.keywords, true);
+    })
   },
   onShareAppMessage: function() {
     return {

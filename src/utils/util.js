@@ -80,33 +80,6 @@ export const getDateDiff = dateStr => {
   }
 };
 
-export const request = (url, data = {}, method = "GET") => {
-  return new Promise(function (resolve, reject) {
-    wx.request({
-      url: url,
-      data: {
-        ...data,
-      },
-      method: method,
-      header: getHeader(),
-      success: (res) => {
-        if (res.statusCode == 200) {
-          resolve(res);
-        } else {
-          reject(res);
-        }
-      },
-      fail: (err) => {
-        wx.showToast({
-          title: '服务器未响应',
-          icon: 'loading',
-          duration: 2000
-        });
-      }
-    })
-  });
-};
-
 const getHeader = () => {
   const header = {
     'Accept': '*/*',
@@ -158,4 +131,30 @@ export const checkValue = ({value, reg, isRequired = true, errMsg}) => {
   } else {
     return true;
   }
+};
+
+export const request = (url, data = {}, method = "GET") => {
+  return new Promise(function (resolve, reject) {
+    wx.request({
+      url: url,
+      data: {
+        ...data,
+      },
+      method: method,
+      header: getHeader(),
+      success: (res) => {
+        if (res.statusCode == 200) {
+          resolve(res);
+        } else if (res.statusCode == 500) {
+          showErrorToast('服务器错误');
+          reject(res);
+        } else {
+          reject(res);
+        }
+      },
+      fail: () => {
+        showTipToast('服务器未响应', 'loading');
+      }
+    })
+  });
 };
