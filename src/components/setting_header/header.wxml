@@ -1,18 +1,18 @@
 <view class="setting-header" style="margin-top: {{statusBarHeight}}px;">
   <view class="setting-header__user">
-    <image class="setting-header__avatar" src="{{user.avatarUrl}}" mode="cover" />
+    <image class="setting-header__avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
     <text>{{user.nickName}}</text>
   </view>
   <view class="setting-header__list">
     <!-- <navigator class="setting-header__item {{ activeBar === 'index' ? 'is-active' : '' }}" url="{{ activeBar === 'index' ? '' : '../index/index' }}" hover-class="none">
-      <image class="setting-header__icon" src="/icons/me_collection.png" mode="cover" />
+      <image class="setting-header__icon" src="/icons/me_collection.png" mode="aspectFill" />
     </navigator> -->
     <navigator class="setting-header__item {{ activeBar === 'read_later' ? 'is-active' : '' }}" url="{{ activeBar === 'read_later' ? '' : '../read_later/read_later' }}" hover-class="none">
-      <image class="setting-header__icon" src="/icons/me_delayread.png" mode="cover" />
+      <image class="setting-header__icon" src="/icons/me_delayread.png" mode="aspectFill" />
       <text class="setting-header__count">{{readLastersCount}}</text>
     </navigator>
     <!-- <navigator class="setting-header__item {{ activeBar === 'chatbox' ? 'is-active' : '' }}" url="{{ activeBar === 'chatbox' ? '' : '../chatbot/chatbot' }}" hover-class="none">
-      <image class="setting-header__icon" src="/icons/me_message.png" mode="cover" />
+      <image class="setting-header__icon" src="/icons/me_message.png" mode="aspectFill" />
     </navigator>  -->
   </view>
 </view>

@@ -13,7 +13,7 @@
             <view>
               <template is="node-header" data="{{...institution}}" />
             </view>
-            <image class="node-header__avatar" src="{{institution.image_url}}" mode="cover" />
+            <image class="node-header__avatar" src="{{institution.image_url}}" mode="aspectFill" />
           </view>
 
           <view wx:if="{{institution.website != ''}}" class="node-header__website">

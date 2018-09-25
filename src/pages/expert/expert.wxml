@@ -13,7 +13,7 @@
             <view>
               <template is="node-header" data="{{...expert}}" />
             </view>
-            <image class="node-header__avatar" src="{{expert.image_url}}" mode="cover" />
+            <image class="node-header__avatar" src="{{expert.image_url}}" mode="aspectFill" />
           </view>
           <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
           <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>

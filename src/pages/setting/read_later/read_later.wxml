@@ -11,7 +11,7 @@
         publishedAt="{{item.updatedAt}}" query="{{item.progress === '100' ? '' : '&read_later=true'}}" isInner></article>
     </view>
     <view class="readlater--btn" bindtap="deleteItem" data-id="{{item.id}}" data-index="{{index}}">
-      <image class="readlater--icon" src="/icons/delete.png" mode="cover" />
+      <image class="readlater--icon" src="/icons/delete.png" mode="aspectFill" />
       <text>删除</text>
     </view>
   </view>

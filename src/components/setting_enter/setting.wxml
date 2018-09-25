@@ -1,9 +1,9 @@
 <block hidden="{{isHidden}}">
   <navigator url="/pages/setting/read_later/read_later" class="setting {{hasComment ? 't-has-comment' : ''}} {{isIphoneX ? 'has-safe-padding' : ''}}" wx:if="{{isLogin}}" hover-class="none">
-    <image class="setting__avatar" src="/icons/ic_chatbot_h.png" mode="cover" />
+    <image class="setting__avatar" src="/icons/ic_chatbot_h.png" mode="aspectFill" />
   </navigator>
 
   <button class="setting {{hasComment ? 't-has-comment' : ''}} {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" wx:else>
-    <image class="setting__avatar" src="/icons/ic_chatbot_n.png" mode="cover" />
+    <image class="setting__avatar" src="/icons/ic_chatbot_n.png" mode="aspectFill" />
   </button>
 </block>

@@ -15,7 +15,7 @@
         <view class="u-flex">
           <text class="daily-item__create">{{item.created_at}}</text>
           <view class="daily-item__action" catchtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
-            <image class="daily-item__img" src="/icons/daily_action.png" mode="cover" />
+            <image class="daily-item__img" src="/icons/daily_action.png" mode="aspectFill" />
           </view>
         </view>
       </navigator>

@@ -1,7 +1,7 @@
 <template name="node">
   <navigator url="../../{{nodeType}}/{{nodeType}}?id={{id}}" class="message-node">
     <block wx-if="{{nodeType !== 'expert'}}">
-      <img class="message-node__logo" mode="cover" src="{{image_url}}" wx-if="{{nodeType === 'institution'}}"></img>
+      <img class="message-node__logo" mode="aspectFill" src="{{image_url}}" wx-if="{{nodeType === 'institution'}}"></img>
       <view class="message__flex">
         <text class="message-node__title">{{zh_name}}</text>
         <text class="message-node__type">{{type}}</text>
@@ -13,7 +13,7 @@
           <text class="message-node__title">{{zh_name}}</text>
           <text class="message-node__type">{{type}}</text>
         </view>
-        <img class="message-node__avatar" mode="cover" src="{{image_url}}"></img>
+        <img class="message-node__avatar" mode="aspectFill" src="{{image_url}}"></img>
       </view>
     </block>
     <view class="message-node__desc">{{summary}}</view>
