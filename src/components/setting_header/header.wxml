@@ -9,7 +9,7 @@
     </navigator> -->
     <navigator class="setting-header__item {{ activeBar === 'read_later' ? 'is-active' : '' }}" url="{{ activeBar === 'read_later' ? '' : '../read_later/read_later' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_delayread.png" mode="aspectFill" />
-      <text class="setting-header__count">{{readLastersCount}}</text>
+      <text class="setting-header__count" hidden="{{readLastersCount === 0}}">{{readLastersCount}}</text>
     </navigator>
     <!-- <navigator class="setting-header__item {{ activeBar === 'chatbox' ? 'is-active' : '' }}" url="{{ activeBar === 'chatbox' ? '' : '../chatbot/chatbot' }}" hover-class="none">
       <image class="setting-header__icon" src="/icons/me_message.png" mode="aspectFill" />
