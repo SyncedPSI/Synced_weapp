@@ -6,6 +6,10 @@ Component({
       type: Boolean,
       value: false
     },
+    pageLogin: {
+      type: Boolean,
+      value: false,
+    }
   },
   data: {
     isIphoneX: getApp().globalData.isIphoneX,

@@ -33,6 +33,10 @@ Component({
     title: {
       type: String,
       value: '机器之心'
+    },
+    pageLogin: {
+      type: Boolean,
+      value: false,
     }
   },
   data: {

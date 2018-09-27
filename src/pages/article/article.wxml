@@ -1,7 +1,7 @@
 <import src="../common/page_loading.wxml"/>
 <import src="../common/comment_bottom_bar.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"  pageLogin="{{isLogin}}"></nav>
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
@@ -83,5 +83,5 @@
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <settingEntry hasComment></settingEntry>
+  <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
 </view>

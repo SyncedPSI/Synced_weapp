@@ -1,7 +1,7 @@
 <import src="../../common/page_loading.wxml"/>
 <import src="../../common/comment_bottom_bar.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="daily__container">
     <view wx:if="{{isFetching}}">
@@ -22,5 +22,5 @@
     <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
     <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
   </block>
-  <settingEntry hasComment></settingEntry>
+  <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
 </view>

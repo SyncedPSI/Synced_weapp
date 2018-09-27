@@ -12,7 +12,7 @@
 
 <view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;" wx:else>
   <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
-    <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{isLogin}}">
+    <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
       <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
       探索机器之心
     </navigator>
@@ -40,7 +40,7 @@
     </view>
     <view class="global-nav--hr"></view>
 
-    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search" wx:if="{{isLogin}}">
+    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
       <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="aspectFill" />
     </navigator>
     <button class="global-nav--action t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
