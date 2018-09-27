@@ -145,12 +145,18 @@ Page({
   },
 
   getUserInfo: function(event) {
-    // event.detail.userInfo
-    app.login(event.detail.userInfo, () => {
-      this.setData({
+    const { detail: { userInfo }, target: { dataset } } = event;
+
+    app.login(userInfo, () => {
+      const newData = {
         isLogin: true,
-        isShowComment: true
-      });
+      };
+      if (dataset.type === 'comment') {
+        newData.isShowComment = true;
+      } else if (dataset.type === 'read') {
+        this.addRead();
+      }
+      this.setData(newData);
     });
   },
 

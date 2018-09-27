@@ -70,11 +70,11 @@
       </block>
       <block wx:else>
         <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
-          <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="read">
             <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
             <text>稍后阅读</text>
           </button>
-          <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+          <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="comment">
             <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
             <text>评论</text>
           </button>
