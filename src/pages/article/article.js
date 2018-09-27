@@ -21,6 +21,7 @@ Page({
   },
 
   onLoad: function(options) {
+    this.isReadFinish = false;
     this.scrollTop = 0;
     this.contentHeight = null;
     this.clientHeight = getApp().globalData.systemInfo.screenHeight - this.data.statusBarHeight;
@@ -51,11 +52,11 @@ Page({
   },
 
   onHide: function() {
-    this.sendProgess();
+    this.sendProgress();
   },
 
   onUnload: function () {
-    this.sendProgess();
+    this.sendProgress();
   },
 
   getProgress: function() {
@@ -74,8 +75,8 @@ Page({
     return progress;
   },
 
-  sendProgess: function() {
-    if (this.scrollTop === 0 || !this.read_later) {
+  sendProgress: function() {
+    if (this.isReadFinish || this.scrollTop === 0 || !this.read_later) {
       return;
     }
 
@@ -137,6 +138,11 @@ Page({
       this.setNavigationBarTitle(this.data.title);
     } else {
       this.setNavigationBarTitle();
+    }
+    if (!this.isReadFinish && this.getProgress() === 100) {
+      this.sendProgress();
+      this.isReadFinish =  true;
+      showTipToast('已读完', 500);
     }
   },
 
