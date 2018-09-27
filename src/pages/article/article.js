@@ -79,7 +79,7 @@ Page({
       return;
     }
 
-    this.addRead();
+    this.addRead(false);
   },
 
   getContentHeight: function() {
@@ -114,7 +114,7 @@ Page({
     });
   },
 
-  addRead: function () {
+  addRead: function (isShowTip = true) {
     request(readLater, {
       read_later: {
         content_id: this.articleId,
@@ -122,7 +122,9 @@ Page({
         progress: this.getProgress()
       }
     }, 'POST').then(() => {
-      showTipToast('添加成功');
+      if (isShowTip) {
+        showTipToast('添加成功');
+      }
     })
   },
 
@@ -154,7 +156,7 @@ Page({
       if (dataset.type === 'comment') {
         newData.isShowComment = true;
       } else if (dataset.type === 'read') {
-        this.addRead();
+        this.addRead(false);
       }
       this.setData(newData);
     });
