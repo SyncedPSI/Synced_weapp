@@ -235,7 +235,7 @@ Page({
             showTipToast('图片已保存至相册');
           },
           fail: (error) => {
-            if (error.errMsg === 'saveImageToPhotosAlbum:fail:auth denied') {
+            if (error.errMsg.match('auth den')) {
               showErrorToast('无权访问相册');
               this.openActionSheet();
             } else {
@@ -244,7 +244,7 @@ Page({
           }
         });
       },
-      fail: function(error) {
+      fail: function() {
         showErrorToast('生成失败');
       }
     });
