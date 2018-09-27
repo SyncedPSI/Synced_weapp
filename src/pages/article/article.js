@@ -139,7 +139,7 @@ Page({
     } else {
       this.setNavigationBarTitle();
     }
-    if (!this.isReadFinish && this.getProgress() === 100) {
+    if (this.read_later && !this.isReadFinish && this.getProgress() === 100) {
       this.sendProgress();
       this.isReadFinish =  true;
       showTipToast('已读完', 500);
