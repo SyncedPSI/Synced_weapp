@@ -63,18 +63,6 @@ page {
   padding: 0 40rpx 0 30rpx;
 }
 
-action-sheet-item,
-action-sheet-cancel {
-  color: $black;
-  font-size:32rpx;
-}
-
-.shared-btn {
-  line-height: 1.4;
-  font-size:32rpx;
-  background-color: transparent;
-}
-
 .banner {
   &--container {
     padding: 40rpx 0 0 24rpx;

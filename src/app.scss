@@ -37,3 +37,15 @@ button::after {
   height: 0;
   color: transparent;
 }
+
+action-sheet-item,
+action-sheet-cancel {
+  color: $black;
+  font-size: 32rpx;
+
+  button {
+    line-height: 1.4;
+    font-size: 32rpx;
+    background-color: transparent;
+  }
+}

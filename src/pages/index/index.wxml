@@ -40,7 +40,7 @@
 
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
    <action-sheet-item>
-      <button class="shared-btn" open-type="share" data-id="{{activeId}}" data-title="{{activeTitle}}" bindtap="closeActionSheet">分享给朋友</button>
+      <button open-type="share" data-id="{{activeId}}" data-title="{{activeTitle}}" bindtap="closeActionSheet">分享给朋友</button>
    </action-sheet-item>
    <action-sheet-item bindtap="saveCard">生成卡片保存分享</action-sheet-item>
    <action-sheet-item bindtap="copyclip">复制此新闻链接</action-sheet-item>

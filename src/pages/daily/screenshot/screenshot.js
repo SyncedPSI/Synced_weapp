@@ -13,6 +13,7 @@ Page({
     isLogin: false,
     canvasHeight: 0,
     showLoading: true,
+    actionSheetHidden: true,
   },
   onLoad: function(option) {
     showLoading('图片生成中');
@@ -210,6 +211,16 @@ Page({
       height,
     }
   },
+  openActionSheet: function () {
+    this.setData({
+      actionSheetHidden: false
+    });
+  },
+  closeActionSheet: function () {
+    this.setData({
+      actionSheetHidden: true
+    });
+  },
   saveImage: function() {
     wx.canvasToTempFilePath({
       x: 0,
@@ -217,19 +228,16 @@ Page({
       width: this.width,
       height: this.height,
       canvasId: 'js-canvas',
-      success: function (res) {
+      success: (res) => {
         wx.saveImageToPhotosAlbum({
           filePath: res.tempFilePath,
           success: function () {
             showTipToast('图片已保存至相册');
           },
-          fail: function(error) {
+          fail: (error) => {
             if (error.errMsg === 'saveImageToPhotosAlbum:fail:auth denied') {
-              wx.openSetting({
-                success: function(setting) {
-
-                }
-              });
+              showErrorToast('无权访问相册');
+              this.openActionSheet();
             } else {
               showErrorToast('保存失败');
             }
