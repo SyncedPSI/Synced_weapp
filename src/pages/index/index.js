@@ -5,7 +5,6 @@ Page({
   data: {
     isNavFixed: false,
     searchIconUrl: "/icons/ic_search.svg",
-    morningUrl: '/images/morning_daily.svg',
     articleList: [],
     activeType: 'dailies',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
