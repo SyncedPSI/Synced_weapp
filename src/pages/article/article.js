@@ -125,6 +125,9 @@ Page({
     }, 'POST').then(() => {
       if (isShowTip) {
         showTipToast('添加成功');
+        this.setData({
+          'article.is_read_later': true
+        })
       }
     })
   },
