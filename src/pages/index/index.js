@@ -78,7 +78,7 @@ Page({
   resolveDailyList: function(data, isRefresh = false) {
     let dailies = {};
     let dayDaily = {};
-    if (isRefresh) {
+    if (!isRefresh) {
       dailies = this.data.dailies;
       dayDaily = this.data.dayDaily;
     }
