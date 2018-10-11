@@ -9,6 +9,15 @@
         <text>{{dailies[key].day}}</text>
         <text class="daily-item__year">{{dailies[key].date}}</text>
       </view>
+      <!-- 日报 -->
+      <navigator class="daily-item__inline t-topic" wx-if="{{dayDaily[key] !== undefined && index !== 0}}" url="../topic/topic?id={{dayDaily[key].id}}">
+        <view class="daily-topic__header">
+          <view class="daily-topic__hr"></view>
+          <image class="daily-topic__text" src="{{topicImage}}" mode="aspectFill" />
+        </view>
+        <view class="daily-item__title">{{dayDaily[key].title}}</view>
+      </navigator>
+
       <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">
         <view class="daily-item__title">{{item.title}}</view>
         <view class="daily-item__content">{{item.content}}</view>

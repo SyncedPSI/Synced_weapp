@@ -20,7 +20,7 @@
                 <text>{{todayDate}}</text>
               </view>
             </navigator>
-            <dailies dailies="{{dailies}}" bindopen="openActionSheet"></dailies>
+            <dailies dailies="{{dailies}}" dayDaily="{{dayDaily}}" bindopen="openActionSheet"></dailies>
           </view>
           <template is="loading" />
         </scroll-view>
