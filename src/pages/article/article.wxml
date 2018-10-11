@@ -58,10 +58,15 @@
 
       <block wx:if="{{isLogin}}">
         <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
-          <view class="u-fix-bottom--bar" bindtap="addRead">
+          <view class="u-fix-bottom--bar is-disabled" wx:if="{{article.is_read_later}}">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_readed.png" />
+            <text>已添加待读</text>
+          </view>
+          <view class="u-fix-bottom--bar" bindtap="addRead" wx:else>
             <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
             <text>稍后阅读</text>
           </view>
+
           <view class="u-fix-bottom--bar" bindtap="openComment">
             <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
             <text>评论</text>

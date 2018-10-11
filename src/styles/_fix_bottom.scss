@@ -26,6 +26,10 @@
       display: block;
       flex: 1;
     }
+
+    &.is-disabled {
+      color: $mute-black;
+    }
   }
 
   &--icon {

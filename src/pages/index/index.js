@@ -5,7 +5,6 @@ Page({
   data: {
     isNavFixed: false,
     searchIconUrl: "/icons/ic_search.svg",
-    morningUrl: '/images/morning_daily.svg',
     articleList: [],
     activeType: 'dailies',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
@@ -14,7 +13,8 @@ Page({
     actionSheetHidden: true,
     morningDailyId: null,
     todayDate: '',
-    dailies: {}
+    dailies: {},
+    dayDaily: {},
   },
 
   onLoad: function() {
@@ -64,8 +64,7 @@ Page({
     return request(`${dailies}?page=${this.dailyPage}`)
       .then(res => {
         this.dailyPage += 1;
-        const list = res.data;
-        this.resolveDailyList(list, isRefresh);
+        this.resolveDailyList(res.data, isRefresh);
       });
   },
   fetchMoreData: function () {
@@ -76,13 +75,20 @@ Page({
       this.getDailyList();
     }
   },
-  resolveDailyList: function(list, isRefresh = false) {
-    const dailies = isRefresh  ? {} : this.data.dailies;
+  resolveDailyList: function(data, isRefresh = false) {
+    let dailies = {};
+    let dayDaily = {};
+    if (!isRefresh) {
+      dailies = this.data.dailies;
+      dayDaily = this.data.dayDaily;
+    }
 
+    const { dailies: list, morning_topics: topicList } = data;
     list.forEach((item) => {
       const { created_at } = item;
       if (created_at === undefined) return;
 
+      // key format: 2018/9/21
       const [_, key] = created_at.match(new RegExp('^([^\\s]+)', 'i'));
       if (dailies[key] === undefined) {
         const createDate = new Date(created_at);
@@ -95,8 +101,18 @@ Page({
       dailies[key].list.push(item);
     });
 
+    topicList.forEach((item) => {
+      const { published_at } = item;
+      if (published_at === undefined) return;
+
+       // key format: 2018/9/21
+       const [_, key] = published_at.match(new RegExp('^([^\\s]+)', 'i'));
+       dayDaily[key] = item;
+    });
+
     this.setData({
-      dailies
+      dailies,
+      dayDaily
     });
   },
   // onPullDownRefresh: function () {

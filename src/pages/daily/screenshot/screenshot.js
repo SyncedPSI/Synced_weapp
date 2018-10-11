@@ -63,7 +63,7 @@ Page({
       };
 
       heightInfo.hrTop = heightInfo.titleTop + titleInfo.height + 20;
-      heightInfo.createAtTop = heightInfo.hrTop + 24;
+      heightInfo.createAtTop = heightInfo.hrTop + 22;
       heightInfo.contentTop = heightInfo.createAtTop + 14 + 20;
       heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 36;
       heightInfo.tapTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
