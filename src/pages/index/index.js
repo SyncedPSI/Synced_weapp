@@ -29,11 +29,10 @@ Page({
     request(morningDaily)
       .then(({data}) => {
         if (data != null) {
-          const today = new Date(data.published_at);
-          const morningDailyDate = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
+          const { id, published_at } = data;
           this.setData({
-            morningDailyDate,
-            morningDailyId: data.id
+            morningDailyDate: published_at,
+            morningDailyId: id
           });
         }
       });
