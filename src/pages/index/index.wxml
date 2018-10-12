@@ -14,10 +14,10 @@
       <swiper-item item-id='dailies'>
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="daily--list">
-            <navigator class="banner--container" url="../topic/topic?id={{morningDailyId}}" hover-class="none" wx-if="{{morningDailyId !== null}}">
+            <navigator class="banner--container" url="../topic/topic?id={{morningDaily.id}}" hover-class="none" wx-if="{{morningDaily !== null}}">
               <image class="banner--image" src="/images/morning_daily.png" mode="aspectFill" />
               <view class="banner--time">
-                <text>{{morningDailyDate}}</text>
+                <text>{{morningDaily.published_at}}</text>
               </view>
             </navigator>
             <dailies dailies="{{dailies}}" dayDaily="{{dayDaily}}" bindopen="openActionSheet"></dailies>

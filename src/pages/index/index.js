@@ -11,8 +11,7 @@ Page({
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
-    morningDailyId: null,
-    morningDailyDate: '',
+    morningDaily: null,
     dailies: {},
     dayDaily: {},
   },
@@ -29,10 +28,8 @@ Page({
     request(morningDaily)
       .then(({data}) => {
         if (data != null) {
-          const { id, published_at } = data;
           this.setData({
-            morningDailyDate: published_at,
-            morningDailyId: id
+            morningDaily: data,
           });
         }
       });
