@@ -5,7 +5,7 @@
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
-    <image src="/images/topic_morning_bg.png" class="topic__cover" mode="aspectFill" />
+    <image src="{{topic.cover_image_url}}" class="topic__cover" mode="aspectFill" />
     <view class="article">
       <view wx:if="{{isFetching}}">
         <template is="page_loading" />

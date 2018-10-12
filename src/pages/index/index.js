@@ -12,7 +12,7 @@ Page({
     activeTitle: null,
     actionSheetHidden: true,
     morningDailyId: null,
-    todayDate: '',
+    morningDailyDate: '',
     dailies: {},
     dayDaily: {},
   },
@@ -27,14 +27,13 @@ Page({
   },
   getMorningDaily: function() {
     request(morningDaily)
-      .then(res => {
-        const today = new Date();
-        const todayDate = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
-
-        if (res.data != null) {
+      .then(({data}) => {
+        if (data != null) {
+          const today = new Date(data.published_at);
+          const morningDailyDate = `${today.getFullYear()}.${today.getMonth() + 1}.${today.getDate()}`;
           this.setData({
-            todayDate,
-            morningDailyId: res.data.id
+            morningDailyDate,
+            morningDailyId: data.id
           });
         }
       });

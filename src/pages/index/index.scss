@@ -73,13 +73,14 @@ page {
   &--image {
     display: block;
     height: 260rpx;
+    width: 100%;
   }
 
   &--time {
     position: absolute;
     z-index: 2;
     bottom: 26%;
-    left: 0;
+    left: 24rpx;
     right: 0;
     text-align: center;
     color: #fff;
