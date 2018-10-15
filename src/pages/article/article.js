@@ -24,7 +24,7 @@ Page({
     this.isReadFinish = false;
     this.scrollTop = 0;
     this.contentHeight = null;
-    this.clientHeight = getApp().globalData.systemInfo.screenHeight - this.data.statusBarHeight;
+    this.clientHeight = getApp().globalData.systemInfo.screenHeight + this.data.statusBarHeight;
     this.getTitleHeight();
 
     const { id, title, from, read_later, progress } = options;
@@ -88,8 +88,7 @@ Page({
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-content').boundingClientRect((rect) => {
         const { height, top } = rect;
-        this.contentHeight = height;
-        this.clientHeight -= top;
+        this.contentHeight = height - top;
         clearTimeout(this.timeout);
       }).exec();
      }, 300);
