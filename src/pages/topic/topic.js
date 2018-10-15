@@ -47,6 +47,7 @@ Page({
         topic.publishedAt = getDateDiff(res.data.published_at);
         WxParse.wxParse("topic_content", "html", res.data.content, this, 5);
         this.setData({
+          navigateTitle: topic.title,
           topic,
           isFetching: false
         }, () => {
@@ -62,24 +63,6 @@ Page({
       }).exec();
     }, 300);
   },
-
-  scroll: function (event) {
-    if (this.titleHeight === undefined) return;
-
-    const { scrollTop } = event.detail;
-    if (scrollTop > this.titleHeight) {
-      this.setNavigationBarTitle(this.data.title);
-    } else {
-      this.setNavigationBarTitle();
-    }
-  },
-
-  setNavigationBarTitle: function(title = '') {
-    this.setData({
-      navigateTitle: title
-    });
-  },
-
   getUserInfo: function(event) {
     // event.detail.userInfo
     app.login(event.detail.userInfo, () => {

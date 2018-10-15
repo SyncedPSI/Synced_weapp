@@ -4,7 +4,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" pageLogin="{{isLogin}}"></nav>
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+  <scroll-view scroll-y="{{true}}">
     <image src="{{topic.cover_image_url}}" class="topic__cover" mode="aspectFill" />
     <view class="article">
       <view wx:if="{{isFetching}}">
