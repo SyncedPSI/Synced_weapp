@@ -8,47 +8,47 @@
   <cover-view class="global-nav--title">{{title}}</cover-view>
 </cover-view>
 
-<view wx:if="{{notShow}}"></view>
+<block wx:if="{{!notShow}}">
+  <view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;">
+    <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
+      <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
+        <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
+        探索机器之心
+      </navigator>
+      <button class="global-nav--input t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
+        <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
+        探索机器之心
+      </button>
+    </view>
 
-<view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;" wx:else>
-  <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
-    <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
-      <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
-      探索机器之心
-    </navigator>
-    <button class="global-nav--input t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
-      <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
-      探索机器之心
-    </button>
+    <block wx:elif="{{isNoSearch}}">
+      <view class="global-nav--tap t-simple" wx:if="{{isFromWeapp}}" bindtap="goHome">
+        <image class="global-nav--icon" src="/icons/nav_home.png" mode="aspectFill" />
+      </view>
+      <view class="global-nav--tap t-simple" wx:else="{{isFromWeapp}}" bindtap="goBack">
+        <image class="global-nav--icon" src="/icons/nav_back.png" mode="aspectFill" />
+      </view>
+    </block>
+
+    <view class="global-nav--actions" wx:else>
+      <navigator class="global-nav--action" url="/pages/index/index" hover-class="none" wx:if="{{isFromWeapp}}">
+        <image class="global-nav--action--icon" src="/icons/nav_home_2.png" mode="aspectFill" />
+      </navigator>
+      <view class="global-nav--action" bindtap="goBack" hover-class="none" wx:else="{{isFromWeapp}}">
+        <image class="global-nav--action--icon" src="/icons/nav_back_2.jpg" mode="aspectFill" />
+      </view>
+      <view class="global-nav--hr"></view>
+
+      <navigator class="global-nav--action" hover-class="none" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
+        <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="aspectFill" />
+      </navigator>
+      <button class="global-nav--action t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
+        <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="aspectFill" />
+      </button>
+    </view>
+
+    <view class="global-nav--title">{{title}}</view>
   </view>
-
-  <block wx:elif="{{isNoSearch}}">
-    <view class="global-nav--tap t-simple" wx:if="{{isFromWeapp}}" bindtap="goHome">
-      <image class="global-nav--icon" src="/icons/nav_home.png" mode="aspectFill" />
-    </view>
-    <view class="global-nav--tap t-simple" wx:else="{{isFromWeapp}}" bindtap="goBack">
-      <image class="global-nav--icon" src="/icons/nav_back.png" mode="aspectFill" />
-    </view>
-  </block>
-
-  <view class="global-nav--actions" wx:else>
-    <navigator class="global-nav--action" url="/pages/index/index" hover-class="none" wx:if="{{isFromWeapp}}">
-      <image class="global-nav--action--icon" src="/icons/nav_home_2.png" mode="aspectFill" />
-    </navigator>
-    <view class="global-nav--action" bindtap="goBack" hover-class="none" wx:else="{{isFromWeapp}}">
-      <image class="global-nav--action--icon" src="/icons/nav_back_2.jpg" mode="aspectFill" />
-    </view>
-    <view class="global-nav--hr"></view>
-
-    <navigator class="global-nav--action" hover-class="none" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
-      <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="aspectFill" />
-    </navigator>
-    <button class="global-nav--action t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
-      <image class="global-nav--action--icon" src="/icons/nav_search.png" mode="aspectFill" />
-    </button>
-  </view>
-
-  <view class="global-nav--title">{{title}}</view>
-</view>
+</block>
 
 <view class="global-nav--height" style="padding-top: {{paddingTop}}px" wx-if="{{hasHeaderHeight}}"></view>
