@@ -10,7 +10,6 @@ Component({
   },
   data: {
     user: null,
-    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     readLastersCount: 0,
   },
   attached: function () {
