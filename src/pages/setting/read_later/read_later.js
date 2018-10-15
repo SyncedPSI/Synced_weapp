@@ -7,6 +7,7 @@ Page({
     startX: 0,
     startY: 0,
     maxRightBtnWidth: 80,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
   },
   onLoad: function () {
     this.getList();

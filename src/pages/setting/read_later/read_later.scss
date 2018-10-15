@@ -2,12 +2,23 @@
 
 page {
   background-color: $background_color;
-  min-height: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .readlater {
   &--container {
-    padding: ($setting-header + 16rpx) 0 $safe-padding-bottom;
+    // $setting-header + $nav-content-height
+    height: calc(100vh - 120rpx - 98rpx);
+    margin-top: $setting-header;
+
+    scroll-view {
+      height: 100%;
+    }
+  }
+
+  &--safe {
+    height: $safe-padding-bottom;
   }
 
   &--item {

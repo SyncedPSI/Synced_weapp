@@ -6,8 +6,12 @@
   margin: 32rpx 0;
   position: relative;
 
-  &.is-inner {
+  &.t-inner {
     margin: 0;
+  }
+
+  &.t-finish {
+    opacity: .5;
   }
 
   &.is-node::after {

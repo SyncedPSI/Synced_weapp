@@ -20,9 +20,9 @@ Component({
       type: String,
       value: ""
     },
-    isInner: {
-      type: Boolean,
-      value: false
+    className: {
+      type: String,
+      value: ''
     }
   }
 });
