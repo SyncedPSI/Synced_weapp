@@ -27,12 +27,13 @@ Page({
     this.clientHeight = getApp().globalData.systemInfo.screenHeight - this.data.statusBarHeight;
     this.getTitleHeight();
 
-    const { id, title, from, read_later } = options;
-    this.read_later = read_later;
+    const { id, title, from, read_later, progress } = options;
+    this.isProgress = progress;
     this.articleId = id;
     this.setData({
       id,
       title,
+      isFromReadLater: read_later,
       isLogin: app.globalData.isLogin,
       isFromWeapp: from === "weapp",
     });
@@ -76,7 +77,7 @@ Page({
   },
 
   sendProgress: function() {
-    if (this.isReadFinish || this.scrollTop === 0 || !this.read_later) {
+    if (this.isReadFinish || this.scrollTop === 0 || !this.isProgress) {
       return;
     }
 
@@ -142,7 +143,7 @@ Page({
     } else {
       this.setNavigationBarTitle();
     }
-    if (this.read_later && !this.isReadFinish && this.getProgress() === 100) {
+    if (this.isProgress && !this.isReadFinish && this.getProgress() === 100) {
       this.sendProgress();
       this.isReadFinish =  true;
       showTipToast('已读完', 500);

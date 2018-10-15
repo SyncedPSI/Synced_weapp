@@ -8,7 +8,7 @@
   <view class="readlater--item" wx:for="{{list}}" wx:key="{{item.id}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
     <view class="readlater--inline {{item.isOpenBtn ? 'is-open' : ''}}" style="{{item.txtStyle}}">
       <article articleId="{{item.content.id}}" title="{{item.content.title}}" category="{{item.content.category}}"
-        publishedAt="{{item.updatedAt}}" query="{{item.progress === '100' ? '' : '&read_later=true'}}" isInner></article>
+        publishedAt="{{item.updatedAt}}" query="{{item.progress === '100' ? '&read_later=true' : '&read_later=true&progress=true'}}" isInner></article>
     </view>
     <view class="readlater--btn" bindtap="deleteItem" data-id="{{item.id}}" data-index="{{index}}">
       <image class="readlater--icon" src="/icons/delete.png" mode="aspectFill" />
