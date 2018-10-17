@@ -99,8 +99,11 @@
 .daily-topic {
   &__header {
     display: flex;
+    align-items: center;
     margin-top: -4rpx;
     margin-bottom: 37rpx;
+    font-size: 32rpx;
+    color: $black;
   }
 
   &__hr {

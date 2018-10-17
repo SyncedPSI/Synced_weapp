@@ -14,7 +14,6 @@ Component({
   },
   data: {
     keys: [],
-    topicImage: "/images/daily_featured.svg"
   },
   attached: function () {
     this.resolveData();

@@ -13,7 +13,7 @@
       <navigator class="daily-item__inline t-topic" wx-if="{{dayDaily[key] !== undefined && index !== 0}}" url="../topic/topic?id={{dayDaily[key].id}}">
         <view class="daily-topic__header">
           <view class="daily-topic__hr"></view>
-          <image class="daily-topic__text" src="{{topicImage}}" mode="aspectFill" />
+          <text>每日精选</text>
         </view>
         <view class="daily-item__title">{{dayDaily[key].title}}</view>
       </navigator>

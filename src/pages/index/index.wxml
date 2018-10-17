@@ -15,7 +15,7 @@
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="daily--list">
             <navigator class="banner--container" url="../topic/topic?id={{morningDaily.id}}" hover-class="none" wx-if="{{morningDaily !== null}}">
-              <image class="banner--image" src="/images/morning_daily.png" mode="aspectFill" />
+              <image class="banner--image" src="/images/morning_daily.jpg" mode="aspectFill" />
               <view class="banner--time">
                 <text>{{morningDaily.published_at}}</text>
               </view>
