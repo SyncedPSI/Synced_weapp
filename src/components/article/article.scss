@@ -20,12 +20,18 @@
   }
 
   &--category {
+    flex-shrink: 0;
+    margin-left: 12rpx;
     padding: 2rpx 12rpx;
     background-color: $bg-white;
   }
 
   &--author {
     color: $secondary-black;
-    margin-right: 36rpx;
+    margin-right: 24rpx;
+    max-width: 40%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
