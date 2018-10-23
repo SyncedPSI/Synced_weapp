@@ -1,7 +1,7 @@
 <navigator class="card_wrapper {{className}}" url="/pages/article/article?id={{articleId}}&title={{title}}{{query}}">
   <view class="title">{{title}}</view>
   <view class="article--flex article--bottom">
-    <view class="article--flex">
+    <view class="article--flex article--left">
       <image class="article--avatar" src="{{author.avatar_url}}" mode="aspectFill"></image>
       <text class="article--author">{{author.nickname}}</text>
       <text>{{publishedAt}}</text>

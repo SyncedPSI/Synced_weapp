@@ -12,6 +12,10 @@
     font-size: 28rpx;
   }
 
+  &--left {
+    flex-grow: 1;
+  }
+
   &--avatar {
     width: 40rpx;
     height: 40rpx;
