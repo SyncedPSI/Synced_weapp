@@ -28,7 +28,7 @@
       <swiper-item item-id="timelines">
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="content--list">
-            <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
+            <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
           </view>
           <template is="loading" />
         </scroll-view>

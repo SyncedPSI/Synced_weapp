@@ -1,1 +1,31 @@
 @import '../style/card';
+
+.article {
+  &--flex {
+    display: flex;
+    align-items: center;
+  }
+
+  &--bottom {
+    justify-content: space-between;
+    color: $mute-black;
+    font-size: 28rpx;
+  }
+
+  &--avatar {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 12rpx;
+    border-radius: 50%;
+  }
+
+  &--category {
+    padding: 2rpx 12rpx;
+    background-color: $bg-white;
+  }
+
+  &--author {
+    color: $secondary-black;
+    margin-right: 36rpx;
+  }
+}

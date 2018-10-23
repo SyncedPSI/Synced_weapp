@@ -16,6 +16,13 @@ Component({
       type: String,
       value: ""
     },
+    author: {
+      type: Object,
+      value: {
+        avatar_url: '',
+        nickname: ''
+      }
+    },
     query: {
       type: String,
       value: ""
