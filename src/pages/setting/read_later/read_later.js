@@ -18,7 +18,7 @@ Page({
       .then((res) => {
         const list = res.data;
         list.forEach(item => {
-          item.updatedAt = getDateDiff(item.updated_at);
+          item.content.updatedAt = getDateDiff(item.content.published_at);
         });
         this.setData({
           list
