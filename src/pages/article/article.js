@@ -149,6 +149,10 @@ Page({
     }
   },
 
+  shareArticle: function() {
+
+  },
+
   setNavigationBarTitle: function(title = '') {
     this.setData({
       navigateTitle: title
