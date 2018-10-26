@@ -16,11 +16,12 @@ Page({
       related_nodes: [],
     },
     hiddenShared: true,
-    commentStr: null,
+    commentStr: '李飞飞重返斯坦福后的大动作：开启「以人为中心的AI计划」',
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
-    isLogin: false
+    isLogin: false,
+    userInfo: null
   },
 
   onLoad: function(options) {
@@ -40,6 +41,7 @@ Page({
       isFromReadLater: read_later,
       isLogin: app.globalData.isLogin,
       isFromWeapp: from === "weapp",
+      userInfo: wx.getStorageSync('userInfo')
     });
 
     request(`${articleDetail}${options.id}`)
@@ -197,6 +199,7 @@ Page({
     app.login(userInfo, () => {
       const newData = {
         isLogin: true,
+        userInfo,
       };
       const { type } = dataset;
       if (type === 'comment') {

@@ -155,14 +155,10 @@
     font-weight: 500;
   }
 
-  &__forward {
+  &__commentstr {
     font-size: 24rpx;
-    margin: 36rpx 0 62rpx;
-
-    &.t-comment {
-      margin: 18rpx 0;
-      padding: 0 20rpx;
-    }
+    margin: 24rpx 0;
+    padding: 0 8rpx;
   }
 
   &__center {
@@ -216,8 +212,15 @@
   }
 
   &__quot {
-    width: 30rpx;
-    height: 28rpx;
+    &.t-small {
+      width: 30rpx;
+      height: 30rpx;
+    }
+
+    &.t-large {
+      width: 40rpx;
+      height: 40rpx;
+    }
 
     &.t-left {
       margin-left: -4rpx;
@@ -225,6 +228,10 @@
 
     &.t-right {
       margin-right: -4px;
+    }
+
+    &.t-large.t-right {
+      margin-top: -20rpx;
     }
   }
 
@@ -246,4 +253,23 @@
     height: 32rpx;
     margin-right: 18rpx;
   }
+
+  &__user {
+    position: absolute;
+    margin-left: 8rpx;
+    margin-top: -36rpx;
+  }
+
+  &__avatar {
+    width: 24rpx;
+    height: 24rpx;
+    margin-right: 10rpx;
+    border-radius: 50%;
+  }
+
+  &__username {
+    font-size: 20rpx;
+    color: $secondary-black;
+  }
+
 }
