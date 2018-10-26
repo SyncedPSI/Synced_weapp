@@ -38,6 +38,7 @@ Component({
         this.setData({
           isLogin: true
         });
+        this.triggerEvent('successloginevent');
       });
     }
   }

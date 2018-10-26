@@ -11,9 +11,12 @@ Page({
     title: "",
     isFromWeapp: false,
     isFetching: true,
+    logoUrl: '/images/logo.svg',
     article: {
       related_nodes: [],
     },
+    hiddenShared: true,
+    commentStr: null,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
@@ -105,8 +108,15 @@ Page({
     this.switchComment(true);
   },
 
-  closeComment: function () {
+  closeComment: function (event) {
     this.switchComment(false);
+
+    const { commentStr } = event.detail;
+    if (commentStr) {
+      this.setData({
+        commentStr
+      });
+    }
   },
 
   switchComment: function (status) {
@@ -149,8 +159,18 @@ Page({
     }
   },
 
-  shareArticle: function() {
+  toggleShare: function (status) {
+    this.setData({
+      hiddenShared: status
+    });
+  },
 
+  openShared: function() {
+    this.toggleShare(false)
+  },
+
+  closeShared: function() {
+    this.toggleShare(true);
   },
 
   setNavigationBarTitle: function(title = '') {
@@ -173,6 +193,16 @@ Page({
       }
       this.setData(newData);
     });
+  },
+  successLogin: function() {
+    this.setData({
+      isLogin: true
+    })
+  },
+
+  sharedArticle: function() {
+    this.closeShared();
+    this.onShareAppMessage();
   },
 
   onShareAppMessage: function() {

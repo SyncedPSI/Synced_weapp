@@ -76,3 +76,170 @@
     }
   }
 }
+
+.container--cover {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.u-fix-bottom--bar {
+  padding: 0;
+  width: 33.33%;
+  justify-content: center;
+}
+
+.article-shared {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  &__mask {
+    position: absolute;
+    background-color: rgba(black, .2);
+  }
+
+  &__main {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 40rpx;
+    background-color: #fff;
+  }
+
+  &__close {
+    width: 40rpx;
+    height: 40rpx;
+    position: absolute;
+    top: 16rpx;
+    right: 40rpx;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 64%;
+    margin: 0 auto;
+    border-radius: 10rpx;
+    box-shadow: 0 1px 7px 0 rgba(40, 40, 40, 0.10);
+  }
+
+  &__logo {
+    position: absolute;
+    top: 24rpx;
+    left: 28rpx;
+    width: 90rpx;
+    height: 32rpx;
+  }
+
+  &__cover {
+    width: 100%;
+    height: 228rpx;
+    background-color: #EEEEEE;
+  }
+
+  &__content {
+    padding: 26rpx 28rpx 0;
+    color: $black;
+  }
+
+  &__title {
+    font-size: 28rpx;
+    font-weight: 500;
+  }
+
+  &__forward {
+    font-size: 24rpx;
+    margin: 36rpx 0 62rpx;
+
+    &.t-comment {
+      margin: 20rpx 0;
+      padding: 0 20rpx;
+    }
+  }
+
+  &__center {
+    text-align: center;
+  }
+
+  &__qrcode {
+    width: 128rpx;
+    height: 128rpx;
+    margin-top: 28rpx;
+  }
+
+  &__tip {
+    color: $secondary-black;
+    margin: 24rpx 0 28rpx;
+    font-size: 24rpx;
+  }
+
+  &__footer {
+    margin-top: 68rpx;
+    box-shadow: 0 -1px 0 0 #EEEEEE;
+  }
+
+  &__action {
+    line-height: 1;
+    text-align: center;
+    padding: 28rpx;
+    font-size: 30rpx;
+    color: $black;
+    width: 50%;
+  }
+
+  &__footer--icon {
+    width: 42rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-right: 12rpx;
+
+    &.t-load {
+      width: 26rpx;
+    }
+  }
+
+  &__action--hr {
+    border-left: 1px solid $bg-white;
+  }
+
+  &__commment {
+    padding: 6rpx 0 28rpx;
+    overflow: visible;
+  }
+
+  &__quot {
+    width: 30rpx;
+    height: 28rpx;
+
+    &.t-left {
+      margin-left: -4rpx;
+    }
+
+    &.t-right {
+      margin-right: -4px;
+    }
+  }
+
+  &__right {
+    text-align: right;
+    overflow: visible;
+  }
+
+  &__textarea {
+    background-color: $bg-white;
+    font-size: 40rpx;
+    color: $mute-black;
+    text-align: center;
+    padding: 60rpx;
+  }
+
+  &__opion {
+    width: 32rpx;
+    height: 32rpx;
+    margin-right: 18rpx;
+  }
+}
