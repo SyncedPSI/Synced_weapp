@@ -24,6 +24,7 @@ Page({
   },
 
   onLoad: function(options) {
+    this.needOpenShare = false;
     this.isReadFinish = false;
     this.scrollTop = 0;
     this.contentHeight = null;
@@ -117,6 +118,11 @@ Page({
         commentStr
       });
     }
+
+    if (this.needOpenShare) {
+      this.needOpenShare = false;
+      this.openShared();
+    }
   },
 
   switchComment: function (status) {
@@ -176,6 +182,7 @@ Page({
   openCommentInShared: function() {
     this.closeShared();
     this.openComment();
+    this.needOpenShare = true;
   },
 
   setNavigationBarTitle: function(title = '') {
