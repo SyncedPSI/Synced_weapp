@@ -173,6 +173,11 @@ Page({
     this.toggleShare(true);
   },
 
+  openCommentInShared: function() {
+    this.closeShared();
+    this.openComment();
+  },
+
   setNavigationBarTitle: function(title = '') {
     this.setData({
       navigateTitle: title
