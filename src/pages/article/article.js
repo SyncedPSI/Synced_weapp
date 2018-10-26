@@ -198,10 +198,13 @@ Page({
       const newData = {
         isLogin: true,
       };
-      if (dataset.type === 'comment') {
+      const { type } = dataset;
+      if (type === 'comment') {
         newData.isShowComment = true;
-      } else if (dataset.type === 'read') {
+      } else if (type === 'read') {
         this.addRead(false);
+      } else if (type === 'share') {
+        this.openCommentInShared();
       }
       this.setData(newData);
     });
