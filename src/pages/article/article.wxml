@@ -73,6 +73,10 @@
             <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
             <text>评论</text>
           </view>
+          <view class="u-fix-bottom--bar" bindtap="openShared">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
+            <text>分享</text>
+          </view>
         </view>
       </block>
       <block wx:else>
@@ -85,10 +89,81 @@
             <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
             <text>评论</text>
           </button>
+          <view class="u-fix-bottom--bar" bindtap="openShared">
+            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
+            <text>分享</text>
+          </view>
         </view>
       </block>
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
+  <settingEntry hasComment pageLogin="{{isLogin}}" bindsuccessloginevent="successLogin"></settingEntry>
 </view>
+
+<view class="container--cover article-shared" hidden="{{hiddenShared}}">
+  <view class="container--cover article-shared__mask" catchtap="closeShared"></view>
+  <view class="article-shared__main">
+    <canvas class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+    <image class="article-shared__close" src="/icons/article_close.png" catchtap="closeShared"></image>
+    <view class="article-shared__wrapper">
+      <view class="article-shared__cover--mask"></view>
+      <image class="article-shared__logo" src="/images/logo_white.png" />
+      <image class="article-shared__cover" src="{{article.cover_image_url}}" />
+      <view class="article-shared__content">
+        <view class="article-shared__title">李飞飞重返斯坦福后的大动作：开启「以人为中心的AI计划」</view>
+
+        <view class="article-shared__commment">
+          <block wx:if="{{!isLogin || commentStr === null}}">
+            <image class="article-shared__quot t-small t-left" src="/icons/article_mark_left.png" />
+
+            <button class="article-shared__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
+              <image class="article-shared__opion" src="/icons/article_share_comment.png" />
+              <text>添加你的观点</text>
+            </button>
+
+            <view class="article-shared__textarea" wx:else catchtap="openCommentInShared">
+              <image class="article-shared__opion" src="/icons/article_share_comment.png" />
+              <text>添加你的观点</text>
+            </view>
+            <view class="article-shared__right">
+              <image class="article-shared__quot t-small t-right" src="/icons/article_mark_right.png" />
+            </view>
+          </block>
+
+          <block wx:else>
+            <image class="article-shared__quot t-large t-left" src="/icons/article_mark_left.png" />
+            <view class="u-flex article-shared__user">
+              <image class="article-shared__avatar" src="{{userInfo.avatarUrl}}" />
+              <text class="article-shared__username">{{userInfo.nickName}}</text>
+            </view>
+            <view class="article-shared__commentstr">{{commentStr}}</view>
+             <view class="article-shared__right">
+              <image class="article-shared__quot t-large t-right" src="/icons/article_mark_right.png" />
+            </view>
+          </block>
+
+        </view>
+
+        <view class="article-shared__center">
+          <image class="article-shared__qrcode" src="/images/qrcode.png" />
+          <view class="article-shared__tip">长按小程序码，阅读原文</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="article-shared__footer u-flex {{isIphoneX ? 'has-safe-padding' : ''}}">
+      <button class="article-shared__action" open-type="share" bindtap="sharedArticle">
+        <image class="article-shared__footer--icon" src="/icons/article_wechat.png" />
+        <text>分享给朋友</text>
+      </button>
+      <view class="article-shared__action">
+        <view class="article-shared__action--hr" bindtap="drawImgae">
+          <image class="article-shared__footer--icon t-load" src="/icons/article_download.png" />
+          <text>生成海报</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

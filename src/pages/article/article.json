@@ -3,6 +3,7 @@
   "usingComponents": {
     "comment": "../../components/comment/comment",
     "settingEntry": "../../components/setting_enter/setting",
-    "nav": "../../components/navigate/navigate"
+    "nav": "../../components/navigate/navigate",
+    "album-setting": "../../components/album_setting/setting"
   }
 }

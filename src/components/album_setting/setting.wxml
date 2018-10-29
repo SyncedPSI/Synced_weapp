@@ -1,0 +1,6 @@
+<cover-view class="action-sheet" hidden="{{hidden}}" bindchange="closeActionSheet">
+  <cover-view class="action-sheet__container">
+    <button class="action-sheet__btn" open-type="openSetting" bindtap="closeActionSheet">授权设置</button>
+    <cover-view class="action-sheet__cancel" bindtap="closeActionSheet">取消</cover-view>
+  </cover-view>
+</cover-view>

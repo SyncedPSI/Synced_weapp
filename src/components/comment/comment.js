@@ -101,7 +101,7 @@ Component({
             content: ''
           });
           this.replyCommentId = null;
-          this.triggerEvent('closecommentevent');
+          this.triggerEvent('closecommentevent', {commentStr: content});
         })
     },
     inputFocus: function (event) {

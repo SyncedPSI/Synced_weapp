@@ -21,9 +21,10 @@
     align-items: center;
     height: 100%;
     padding: 0 20rpx;
+    font-size: 30rpx;
 
     &.is-button {
-      display: block;
+      justify-content: center;
       flex: 1;
     }
 
