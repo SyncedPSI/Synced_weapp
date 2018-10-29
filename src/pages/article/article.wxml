@@ -106,12 +106,12 @@
   <view class="article-shared__main">
     <image class="article-shared__close" src="/icons/article_close.png" catchtap="closeShared"></image>
 
-    <view class="article-shared__wrapper" hidden="{{!showCanvas}}">
-      <view id="js-get-width"></view>
+    <view class="article-shared__wrapper" hidden="{{hiddenCanvas}}">
       <canvas class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
     </view>
 
-    <view class="article-shared__wrapper" hidden="{{showCanvas}}">
+    <view class="article-shared__wrapper" hidden="{{!hiddenCanvas}}">
+      <view id="js-get-width"></view>
       <view class="article-shared__cover--mask"></view>
       <image class="article-shared__logo" src="/images/logo_white.png" />
       <image class="article-shared__cover" src="{{article.cover_image_url}}" />

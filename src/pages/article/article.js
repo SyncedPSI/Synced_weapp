@@ -1,4 +1,4 @@
-import { request, getDateDiff, showTipToast, showLoading, hideLoading } from "utils/util";
+import { request, getDateDiff, showTipToast, showLoading, hideLoading, showErrorToast } from "utils/util";
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -15,14 +15,14 @@ Page({
       related_nodes: [],
     },
     hiddenShared: true,
-    commentStr: '李飞飞重返斯坦福后的大动作：开启「以人为中心的AI计划」',
+    commentStr: null,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isLogin: false,
     userInfo: null,
     canvasHeight: 0,
-    showCanvas: false,
+    hiddenCanvas: true,
     actionSheetHidden: true,
   },
 
@@ -115,12 +115,9 @@ Page({
 
   closeComment: function (event) {
     this.switchComment(false);
-    console.log(event)
-
-    const { commentStr } = event.detail;
-    if (commentStr) {
+    if (event.detail && event.detail.commentStr) {
       this.setData({
-        commentStr
+        commentStr: event.detail.commentStr
       });
     }
 
@@ -252,25 +249,25 @@ Page({
       const heightInfo = {
         coverTop: 0,
         titleTop: 114 + 14,
-        qrcodeHeight: 64.8,
+        qrcodeHeight: 64,
       };
 
       let descInfo = null;
       if (this.data.commentStr === null) {
         descInfo = this.getWrapTextHeight({
           text: this.data.article.description,
-          lineHeight: 26,
+          lineHeight: 17,
           fontSize: 12,
           maxWidth: this.width - 20 * 2
         });
 
         heightInfo.descTop = heightInfo.titleTop + titleInfo.height + 20;
-        heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 37.2;
+        heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 34;
       } else {
         // 头像 加 评论
         descInfo = this.getWrapTextHeight({
           text: this.data.commentStr,
-          lineHeight: 26,
+          lineHeight: 17,
           fontSize: 12,
           maxWidth: this.width - 20 * 2
         });
@@ -280,7 +277,7 @@ Page({
         heightInfo.userTop = _contentTop + 27.9;
         heightInfo.descTop = _contentTop + 44;
         heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 10;
-        heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 26.2;
+        heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 26;
       }
 
       heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 12;
@@ -297,15 +294,17 @@ Page({
   draw: function (titleInfo, descInfo, heightInfo) {
     const hrCenter = this.width / 2;
 
+    this.ctx.setFillStyle('#fff');
+    this.ctx.fillRect(0, 0, this.width, this.height);
+
     wx.downloadFile({
       url: this.data.article.cover_image_url,
       success: (res) => {
         if (res.statusCode === 200) {
           // cover
           this.ctx.drawImage(res.tempFilePath, 0, 0, this.width, 114);
-          this.ctx.rect(0, 0, this.width, 114);
           this.ctx.setFillStyle('rgba(0, 0, 0, .3)');
-          this.ctx.fill()
+          this.ctx.fillRect(0, 0, this.width, 114);
           this.ctx.drawImage('/images/logo_white.png', 14, 12, 45, 16);
           // title
           this.drawFont({
@@ -385,38 +384,49 @@ Page({
       isWrap: false,
     });
 
-    this.ctx.draw();
-    this.setData({
-      showCanvas: false,
-    })
-    hideLoading();
-
-    wx.canvasToTempFilePath({
-      x: 0,
-      y: 0,
-      width: this.width,
-      height: this.height,
-      canvasId: 'js-canvas',
-      success: (res) => {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success: function () {
-            showTipToast('图片已保存至相册');
+    this.toggleHiddenCanvas(false, () => {
+      hideLoading();
+      console.log(this.width, this.height)
+      this.ctx.draw(false, () => {
+        wx.canvasToTempFilePath({
+          x: 0,
+          y: 0,
+          width: this.width,
+          height: this.height,
+          canvasId: 'js-canvas',
+          success: (res) => {
+            wx.saveImageToPhotosAlbum({
+              filePath: res.tempFilePath,
+              success: function () {
+                showTipToast('图片已保存至相册');
+              },
+              fail: (error) => {
+                if (error.errMsg.match('auth den')) {
+                  showErrorToast('无权访问相册');
+                  this.closeShared();
+                  this.openActionSheet();
+                } else {
+                  showErrorToast('保存失败');
+                }
+              }
+            });
           },
-          fail: (error) => {
-            if (error.errMsg.match('auth den')) {
-              showErrorToast('无权访问相册');
-              this.openActionSheet();
-            } else {
-              showErrorToast('保存失败');
-            }
+          fail: function (msg) {
+            console.log(msg)
+            showErrorToast('生成失败');
+          },
+          complete: () => {
+            this.toggleHiddenCanvas(true);
           }
         });
-      },
-      fail: function () {
-        showErrorToast('生成失败');
-      }
+      });
     });
+  },
+
+  toggleHiddenCanvas: function(status, cb) {
+     this.setData({
+       hiddenCanvas: status,
+     }, cb);
   },
 
   drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isLastCenter = false}) {
