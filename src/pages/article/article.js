@@ -2,8 +2,6 @@ import { request, getDateDiff, showTipToast, showLoading, hideLoading, showError
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
-const app = getApp();
-
 Page({
   data: {
     navigateTitle: '',
@@ -17,7 +15,7 @@ Page({
     hiddenShared: true,
     commentStr: null,
     isShowComment: false,
-    isIphoneX: app.globalData.isIphoneX,
+    isIphoneX: getApp().globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isLogin: false,
     userInfo: null,
@@ -41,7 +39,7 @@ Page({
       id,
       title,
       isFromReadLater: read_later,
-      isLogin: app.globalData.isLogin,
+      isLogin: getApp().globalData.isLogin,
       isFromWeapp: from === "weapp",
       userInfo: wx.getStorageSync('userInfo')
     });
@@ -196,7 +194,7 @@ Page({
   getUserInfo: function(event) {
     const { detail: { userInfo }, target: { dataset } } = event;
 
-    app.login(userInfo, () => {
+    getApp().login(userInfo, () => {
       const newData = {
         isLogin: true,
         userInfo,
@@ -233,67 +231,65 @@ Page({
 
    drawImgae: function() {
     showLoading('图片生成中');
-    wx.createSelectorQuery().select('#js-get-width').boundingClientRect((rect) => {
-      const { width } = rect;
-      this.width = width;
-      this.paddingLeft = 14;
-      this.ctx = wx.createCanvasContext('js-canvas');
-      this.ctx.setTextBaseline('top');
+    this.width = getApp().globalData.systemInfo.screenWidth * 0.64;
+    this.paddingLeft = 14;
+    this.ctx = wx.createCanvasContext('js-canvas');
+    this.ctx.setTextBaseline('top');
 
-      const titleInfo = this.getWrapTextHeight({
-        text: this.data.article.title,
-        lineHeight: 20,
-        fontSize: 14
+    const titleInfo = this.getWrapTextHeight({
+      text: this.data.article.title,
+      lineHeight: 20,
+      fontSize: 14
+    });
+
+    const heightInfo = {
+      coverTop: 0,
+      titleTop: 114 + 14,
+      qrcodeHeight: 64,
+    };
+
+    let descInfo = null;
+    if (this.data.commentStr === null) {
+      descInfo = this.getWrapTextHeight({
+        text: this.data.article.description,
+        lineHeight: 17,
+        fontSize: 12,
+        maxWidth: this.width - 20 * 2
       });
 
-      const heightInfo = {
-        coverTop: 0,
-        titleTop: 114 + 14,
-        qrcodeHeight: 64,
-      };
-
-      let descInfo = null;
-      if (this.data.commentStr === null) {
-        descInfo = this.getWrapTextHeight({
-          text: this.data.article.description,
-          lineHeight: 17,
-          fontSize: 12,
-          maxWidth: this.width - 20 * 2
-        });
-
-        heightInfo.descTop = heightInfo.titleTop + titleInfo.height + 20;
-        heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 34;
-      } else {
-        // 头像 加 评论
-        descInfo = this.getWrapTextHeight({
-          text: this.data.commentStr,
-          lineHeight: 17,
-          fontSize: 12,
-          maxWidth: this.width - 20 * 2
-        });
-
-        const _contentTop = heightInfo.titleTop + titleInfo.height;
-        heightInfo.leftMarkTop = _contentTop + 17;
-        heightInfo.userTop = _contentTop + 27.9;
-        heightInfo.descTop = _contentTop + 44;
-        heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 10;
-        heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 26;
-      }
-
-      heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 12;
-      this.height = heightInfo.tipTop + 17 + 16;
-
-      this.setData({
-        canvasHeight: this.height
-      }, () => {
-        this.draw(titleInfo, descInfo, heightInfo);
+      heightInfo.descTop = heightInfo.titleTop + titleInfo.height + 20;
+      heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 34;
+    } else {
+      // 头像 加 评论
+      descInfo = this.getWrapTextHeight({
+        text: this.data.commentStr,
+        lineHeight: 17,
+        fontSize: 12,
+        maxWidth: this.width - 20 * 2
       });
-    }).exec();
+
+      const _contentTop = heightInfo.titleTop + titleInfo.height;
+      heightInfo.leftMarkTop = _contentTop + 17;
+      heightInfo.userTop = _contentTop + 27.9;
+      heightInfo.descTop = _contentTop + 44;
+      heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 10;
+      heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 26;
+    }
+
+    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 12;
+    this.height = heightInfo.tipTop + 17 + 16;
+
+    this.setData({
+      canvasHeight: this.height
+    }, () => {
+      this.draw(titleInfo, descInfo, heightInfo);
+    });
   },
 
   draw: function (titleInfo, descInfo, heightInfo) {
     const hrCenter = this.width / 2;
 
+    this.ctx.clearRect(0, 0, this.width, this.height)
     this.ctx.setFillStyle('#fff');
     this.ctx.fillRect(0, 0, this.width, this.height);
 
@@ -386,7 +382,6 @@ Page({
 
     this.toggleHiddenCanvas(false, () => {
       hideLoading();
-      console.log(this.width, this.height)
       this.ctx.draw(false, () => {
         wx.canvasToTempFilePath({
           x: 0,

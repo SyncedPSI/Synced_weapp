@@ -111,7 +111,6 @@
     </view>
 
     <view class="article-shared__wrapper" hidden="{{!hiddenCanvas}}">
-      <view id="js-get-width"></view>
       <view class="article-shared__cover--mask"></view>
       <image class="article-shared__logo" src="/images/logo_white.png" />
       <image class="article-shared__cover" src="{{article.cover_image_url}}" />
