@@ -106,9 +106,14 @@
   <view class="article-shared__main">
     <image class="article-shared__close" src="/icons/article_close.png" catchtap="closeShared"></image>
 
-    <view class="article-shared__wrapper">
+    <view class="article-shared__wrapper" hidden="{{!showCanvas}}">
+      <view id="js-get-width"></view>
+      <canvas class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+    </view>
+
+    <view class="article-shared__wrapper" hidden="{{showCanvas}}">
       <view class="article-shared__cover--mask"></view>
-      <image class="article-shared__logo" src="{{logoUrl}}" />
+      <image class="article-shared__logo" src="/images/logo_white.png" />
       <image class="article-shared__cover" src="{{article.cover_image_url}}" />
       <view class="article-shared__content">
         <view class="article-shared__title">李飞飞重返斯坦福后的大动作：开启「以人为中心的AI计划」</view>
@@ -131,7 +136,7 @@
             </view>
           </block>
 
-          <view wx:else>
+          <block wx:else>
             <image class="article-shared__quot t-large t-left" src="/icons/article_mark_left.png" />
             <view class="u-flex article-shared__user">
               <image class="article-shared__avatar" src="{{userInfo.avatarUrl}}" />
@@ -141,7 +146,7 @@
              <view class="article-shared__right">
               <image class="article-shared__quot t-large t-right" src="/icons/article_mark_right.png" />
             </view>
-          </view>
+          </block>
 
         </view>
 
@@ -158,7 +163,7 @@
         <text>分享给朋友</text>
       </button>
       <view class="article-shared__action">
-        <view class="article-shared__action--hr">
+        <view class="article-shared__action--hr" bindtap="drawImgae">
           <image class="article-shared__footer--icon t-load" src="/icons/article_download.png" />
           <text>生成海报</text>
         </view>
@@ -166,3 +171,4 @@
     </view>
   </view>
 </view>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

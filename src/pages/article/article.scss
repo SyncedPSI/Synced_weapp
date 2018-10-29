@@ -257,7 +257,7 @@
   &__user {
     position: absolute;
     margin-left: 8rpx;
-    margin-top: -36rpx;
+    margin-top: -24rpx;
   }
 
   &__avatar {
@@ -272,4 +272,8 @@
     color: $secondary-black;
   }
 
+  &__canvas {
+    width: 100%;
+    border-radius: 10rpx;
+  }
 }
