@@ -104,13 +104,9 @@
 <view class="container--cover article-shared" hidden="{{hiddenShared}}">
   <view class="container--cover article-shared__mask" catchtap="closeShared"></view>
   <view class="article-shared__main">
+    <canvas class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
     <image class="article-shared__close" src="/icons/article_close.png" catchtap="closeShared"></image>
-
-    <view class="article-shared__wrapper" hidden="{{hiddenCanvas}}">
-      <canvas class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-    </view>
-
-    <view class="article-shared__wrapper" hidden="{{!hiddenCanvas}}">
+    <view class="article-shared__wrapper">
       <view class="article-shared__cover--mask"></view>
       <image class="article-shared__logo" src="/images/logo_white.png" />
       <image class="article-shared__cover" src="{{article.cover_image_url}}" />

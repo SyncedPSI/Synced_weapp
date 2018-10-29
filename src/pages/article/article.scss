@@ -273,8 +273,8 @@
   }
 
   &__canvas {
-    width: 100%;
-    border-radius: 10rpx;
-    background-color: #fff;
+    width: 64%;
+    position: absolute;
+    left: 10000rpx;
   }
 }

@@ -20,7 +20,6 @@ Page({
     isLogin: false,
     userInfo: null,
     canvasHeight: 0,
-    hiddenCanvas: true,
     actionSheetHidden: true,
   },
 
@@ -229,7 +228,7 @@ Page({
     };
   },
 
-   drawImgae: function() {
+  drawImgae: function() {
     showLoading('图片生成中');
     this.width = getApp().globalData.systemInfo.screenWidth * 0.64;
     this.paddingLeft = 14;
@@ -299,8 +298,9 @@ Page({
         if (res.statusCode === 200) {
           // cover
           this.ctx.drawImage(res.tempFilePath, 0, 0, this.width, 114);
-          this.ctx.setFillStyle('rgba(0, 0, 0, .3)');
+          this.ctx.setFillStyle('rgba(40, 40, 40, 0.3)');
           this.ctx.fillRect(0, 0, this.width, 114);
+          this.ctx.setFillStyle('#fff');
           this.ctx.drawImage('/images/logo_white.png', 14, 12, 45, 16);
           // title
           this.drawFont({
@@ -380,48 +380,37 @@ Page({
       isWrap: false,
     });
 
-    this.toggleHiddenCanvas(false, () => {
-      hideLoading();
-      this.ctx.draw(false, () => {
-        wx.canvasToTempFilePath({
-          x: 0,
-          y: 0,
-          width: this.width,
-          height: this.height,
-          canvasId: 'js-canvas',
-          success: (res) => {
-            wx.saveImageToPhotosAlbum({
-              filePath: res.tempFilePath,
-              success: function () {
-                showTipToast('图片已保存至相册');
-              },
-              fail: (error) => {
-                if (error.errMsg.match('auth den')) {
-                  showErrorToast('无权访问相册');
-                  this.closeShared();
-                  this.openActionSheet();
-                } else {
-                  showErrorToast('保存失败');
-                }
+    hideLoading();
+    this.ctx.draw(false, () => {
+      wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width: this.width,
+        height: this.height,
+        canvasId: 'js-canvas',
+        success: (res) => {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+            success: function () {
+              showTipToast('图片已保存至相册');
+            },
+            fail: (error) => {
+              if (error.errMsg.match('auth den')) {
+                showErrorToast('无权访问相册');
+                this.closeShared();
+                this.openActionSheet();
+              } else {
+                showErrorToast('保存失败');
               }
-            });
-          },
-          fail: function (msg) {
-            console.log(msg)
-            showErrorToast('生成失败');
-          },
-          complete: () => {
-            this.toggleHiddenCanvas(true);
-          }
-        });
+            }
+          });
+        },
+        fail: function (msg) {
+          console.log(msg)
+          showErrorToast('生成失败');
+        }
       });
     });
-  },
-
-  toggleHiddenCanvas: function(status, cb) {
-     this.setData({
-       hiddenCanvas: status,
-     }, cb);
   },
 
   drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isLastCenter = false}) {
