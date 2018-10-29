@@ -111,7 +111,7 @@
       <image class="article-shared__logo" src="/images/logo_white.png" />
       <image class="article-shared__cover" src="{{article.cover_image_url}}" />
       <view class="article-shared__content">
-        <view class="article-shared__title">李飞飞重返斯坦福后的大动作：开启「以人为中心的AI计划」</view>
+        <view class="article-shared__title">{{article.title}}</view>
 
         <view class="article-shared__commment">
           <block wx:if="{{!isLogin || commentStr === null}}">

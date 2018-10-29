@@ -109,10 +109,10 @@
   }
 
   &__close {
-    width: 40rpx;
-    height: 40rpx;
+    width: 28rpx;
+    height: 28rpx;
     position: absolute;
-    top: 16rpx;
+    top: 26rpx;
     right: 40rpx;
   }
 
@@ -209,25 +209,31 @@
   &__commment {
     padding-top: 24rpx;
     overflow: visible;
+    font-size: 0;
   }
 
   &__quot {
     &.t-small {
       width: 30rpx;
-      height: 30rpx;
+      height: 26rpx;
     }
 
     &.t-large {
       width: 40rpx;
-      height: 40rpx;
+      height: 34.6rpx;
     }
 
     &.t-left {
       margin-left: -4rpx;
+      margin-bottom: 4rpx;
     }
 
     &.t-right {
-      margin-right: -4px;
+      margin-right: -4rpx;
+    }
+
+    &.t-small.t-right {
+      margin-top: 4rpx;
     }
 
     &.t-large.t-right {
@@ -257,7 +263,7 @@
   &__user {
     position: absolute;
     margin-left: 8rpx;
-    margin-top: -24rpx;
+    margin-top: -16rpx;
   }
 
   &__avatar {
@@ -273,7 +279,7 @@
   }
 
   &__canvas {
-    width: 64%;
+    width: 100%;
     position: absolute;
     left: 10000rpx;
   }

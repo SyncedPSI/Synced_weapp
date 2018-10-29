@@ -230,30 +230,30 @@ Page({
 
   drawImgae: function() {
     showLoading('图片生成中');
-    this.width = getApp().globalData.systemInfo.screenWidth * 0.64;
-    this.paddingLeft = 14;
+    this.width = getApp().globalData.systemInfo.screenWidth;
+    this.paddingLeft = 24;
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
 
     const titleInfo = this.getWrapTextHeight({
       text: this.data.article.title,
-      lineHeight: 20,
-      fontSize: 14
+      lineHeight: 30,
+      fontSize: 22,
     });
 
     const heightInfo = {
       coverTop: 0,
-      titleTop: 114 + 14,
-      qrcodeHeight: 64,
+      coverHeight: 190,
+      titleTop: 190 + 20,
+      qrcodeHeight: 90,
     };
 
     let descInfo = null;
     if (this.data.commentStr === null) {
       descInfo = this.getWrapTextHeight({
         text: this.data.article.description,
-        lineHeight: 17,
-        fontSize: 12,
-        maxWidth: this.width - 20 * 2
+        lineHeight: 28,
+        fontSize: 17
       });
 
       heightInfo.descTop = heightInfo.titleTop + titleInfo.height + 20;
@@ -262,21 +262,21 @@ Page({
       // 头像 加 评论
       descInfo = this.getWrapTextHeight({
         text: this.data.commentStr,
-        lineHeight: 17,
-        fontSize: 12,
-        maxWidth: this.width - 20 * 2
+        lineHeight: 28,
+        fontSize: 17,
+        maxWidth: this.width - 33 * 2
       });
 
       const _contentTop = heightInfo.titleTop + titleInfo.height;
-      heightInfo.leftMarkTop = _contentTop + 17;
-      heightInfo.userTop = _contentTop + 27.9;
-      heightInfo.descTop = _contentTop + 44;
-      heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 10;
-      heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 26;
+      heightInfo.leftMarkTop = _contentTop + 19;
+      heightInfo.userTop = _contentTop + 33;
+      heightInfo.descTop = _contentTop + 59;
+      heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
+      heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 36;
     }
 
-    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 12;
-    this.height = heightInfo.tipTop + 17 + 16;
+    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 10;
+    this.height = heightInfo.tipTop + 20 + 36;
 
     this.setData({
       canvasHeight: this.height
@@ -297,19 +297,19 @@ Page({
       success: (res) => {
         if (res.statusCode === 200) {
           // cover
-          this.ctx.drawImage(res.tempFilePath, 0, 0, this.width, 114);
+          this.ctx.drawImage(res.tempFilePath, 0, 0, this.width, heightInfo.coverHeight);
           this.ctx.setFillStyle('rgba(40, 40, 40, 0.3)');
-          this.ctx.fillRect(0, 0, this.width, 114);
+          this.ctx.fillRect(0, 0, this.width, heightInfo.coverHeight);
           this.ctx.setFillStyle('#fff');
-          this.ctx.drawImage('/images/logo_white.png', 14, 12, 45, 16);
+          this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
           // title
           this.drawFont({
-            fontSize: 14,
+            fontSize: 22,
             color: '#282828',
             text: titleInfo,
             x: this.paddingLeft,
             y: heightInfo.titleTop,
-            lineHeight: 20,
+            lineHeight: 30,
             isBold: true,
             isLastCenter: false
           });
@@ -318,38 +318,39 @@ Page({
           if (this.data.commentStr === null) {
             // title
             this.drawFont({
-              fontSize: 12,
+              fontSize: 17,
               color: '#282828',
               text: descInfo,
               x: this.paddingLeft,
               y: heightInfo.descTop,
-              lineHeight: 17,
+              lineHeight: 28,
               isBold: false,
               isLastCenter: false
             });
             this.drawOther(heightInfo, hrCenter);
           } else {
             const markHeight = 20;
-            const avatarHeight = 12;
+            const markWidth = 26;
+            const avatarHalfHeight = 10;
             // left mark
-            this.ctx.drawImage('/icons/article_mark_left.png', this.paddingLeft, heightInfo.leftMarkTop, markHeight, markHeight);
-            this.ctx.drawImage('/icons/article_mark_right.png', this.width - this.paddingLeft * 2 - markHeight, heightInfo.rightMarkTop, markHeight, markHeight);
+            this.ctx.drawImage('/icons/article_mark_left.png', this.paddingLeft, heightInfo.leftMarkTop, markWidth, markHeight);
+            this.ctx.drawImage('/icons/article_mark_right.png', this.width - this.paddingLeft * 2 - markHeight, heightInfo.rightMarkTop, markWidth, markHeight);
             this.drawFont({
-              fontSize: 10,
+              fontSize: 14,
               color: '#717171',
               text: this.data.userInfo.nickName,
-              x: 20 + avatarHeight * 2 + 5,
-              y: heightInfo.userTop,
+              x: 33 + avatarHalfHeight * 4 + 5,
+              y: heightInfo.userTop + 3,
               isWrap: false,
             });
 
             this.drawFont({
-              fontSize: 12,
+              fontSize: 17,
               color: '#282828',
               text: descInfo,
-              x: 20,
+              x: 33,
               y: heightInfo.descTop,
-              lineHeight: 17,
+              lineHeight: 28,
               isBold: false,
               isLastCenter: false
             });
@@ -358,9 +359,13 @@ Page({
               success: (res) => {
                 if (res.statusCode === 200) {
                   // cover
-                  this.ctx.drawImage(res.tempFilePath, 20, heightInfo.userTop, avatarHeight, avatarHeight);
+                  this.ctx.save();
+                  this.ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
+                  this.ctx.clip();
+                  this.ctx.drawImage(res.tempFilePath, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
+                  this.ctx.restore();
+                  this.drawOther(heightInfo, hrCenter);
                 }
-                this.drawOther(heightInfo, hrCenter);
               }
             });
           }
@@ -372,7 +377,7 @@ Page({
     // qrocde + tip
     this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.qrcodeHeight) / 2, heightInfo.qrcodeTop, heightInfo.qrcodeHeight, heightInfo.qrcodeHeight);
     this.drawFont({
-      fontSize: 12,
+      fontSize: 14,
       color: '#717171',
       text: '长按小程序码，阅读原文',
       x: hrCenter,
