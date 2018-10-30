@@ -1,7 +1,6 @@
 <nav notShow="{{true}}" title="" hasHeaderHeight></nav>
 
 <view class="daily__container {{isIphoneX ? 'has-safe-padding' : ''}}">
-  <view id="js-get-width"></view>
   <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 </view>
 

@@ -37,82 +37,71 @@ Page({
       });
   },
   getHight: function() {
-    wx.createSelectorQuery().select('#js-get-width').boundingClientRect((rect) => {
-      const { width } = rect;
-      this.width = width;
-      this.paddingLeft = 15;
+    this.width = getApp().globalData.systemInfo.screenWidth - 40;
+    this.paddingLeft = 20;
 
-      this.ctx = wx.createCanvasContext('js-canvas');
-      this.ctx.setTextBaseline('top');
-      const { title, content } = this.data.daily;
-      const titleInfo = this.getWrapTextHeight({
-        text: title,
-        lineHeight: 26,
-        fontSize: 22
-      });
-      const contentInfo = this.getWrapTextHeight({
-        text: content,
-        lineHeight: 30,
-        fontSize: 16
-      });
-      // padding title-height padding hr padding create_at padding
-      // content-height padding img padding text padding
-      const heightInfo = {
-        titleTop: 30,
-        imageHeight: 90,
-      };
+    this.ctx = wx.createCanvasContext('js-canvas');
+    this.ctx.setTextBaseline('top');
+    const { title, content } = this.data.daily;
+    const titleInfo = this.getWrapTextHeight({
+      text: title,
+      lineHeight: 30,
+      fontSize: 22
+    });
+    const contentInfo = this.getWrapTextHeight({
+      text: content,
+      lineHeight: 28,
+      fontSize: 17
+    });
 
-      heightInfo.hrTop = heightInfo.titleTop + titleInfo.height + 20;
-      heightInfo.createAtTop = heightInfo.hrTop + 22;
-      heightInfo.contentTop = heightInfo.createAtTop + 14 + 20;
-      heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 36;
-      heightInfo.tapTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
-      this.height = heightInfo.tapTop + 14 + 30;
+    const heightInfo = {
+      bannerHeight: 185,
+      imageHeight: 90,
+    };
+    heightInfo.createAtTop = heightInfo.bannerHeight - 15 - 14;
+    heightInfo.titleTop = heightInfo.createAtTop - titleInfo.height + 4;
+    heightInfo.contentTop = heightInfo.bannerHeight + 20;
+    heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 22;
+    heightInfo.tipTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
+    this.height = heightInfo.tipTop + 14 + 30;
 
-      this.setData({
-        canvasHeight: this.height
-      }, () => {
-        this.draw(titleInfo, contentInfo, heightInfo);
-      });
-    }).exec();
+    this.setData({
+      canvasHeight: this.height
+    }, () => {
+      this.draw(titleInfo, contentInfo, heightInfo);
+    });
   },
   draw: function (titleInfo, contentInfo, heightInfo) {
       // set ctx
       this.setSquare();
-      // bg
-      this.drawBg();
+      this.ctx.drawImage('/images/daily_banner.png', 0, 0, this.width, heightInfo.bannerHeight);
       // title
       this.drawFont({
         fontSize: 22,
-        color: '#282828',
+        color: '#fff',
         text: titleInfo,
         x: this.paddingLeft,
         y: heightInfo.titleTop,
         lineHeight: 26,
         isBold: true,
-        isLastCenter: true
       });
-      // hr
-      this.ctx.setStrokeStyle('#282828');
-      const hrCenter = this.width / 2;
-      this.drawLine(hrCenter - 25, heightInfo.hrTop, hrCenter + 25, heightInfo.hrTop, 2);
       // time
       this.drawFont({
         fontSize: 14,
-        color: '#9d9d9d',
+        color: '#f2f2f2',
         text: this.data.daily.created_at,
-        x: hrCenter,
+        x: this.paddingLeft,
         y: heightInfo.createAtTop,
         isWrap: false,
       });
       // content
       this.drawFont({
-        fontSize: 16,
-        color: '#414141',
+        fontSize: 17,
+        color: '#282828',
         text: contentInfo,
         x: this.paddingLeft,
         y: heightInfo.contentTop,
-        lineHeight: 30,
+        lineHeight: 28,
       });
       // img
       // drawImage(dx, dy, dWidth, dHeight)
@@ -120,11 +109,12 @@ Page({
       // word
       this.drawFont({
         fontSize: 14,
-        color: '#9d9d9d',
+        color: '#717171',
         text: '长按小程序码，了解机器之心',
-        x: hrCenter,
-        y: heightInfo.tapTop,
+        x: this.width / 2,
+        y: heightInfo.tipTop,
         isWrap: false,
+        isCenter: true,
       });
       this.ctx.draw();
       hideLoading();
@@ -144,41 +134,23 @@ Page({
     this.ctx.lineTo(toX, toY);
     this.ctx.stroke();
   },
-  drawBg: function() {
-    this.ctx.setStrokeStyle('#f9f9f9');
-    const step = 10;
-    const countX = this.width / step;
-    const countY = this.height / step;
-    for (let i = 0; i < countX; i++) {
-      this.drawLine(i * step, 0, i * step, this.height);
-    }
-
-    for (let i = 0; i < countY; i++) {
-      this.drawLine(0, i * step, this.width, i * step);
-    }
-  },
-  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isLastCenter = false}) {
+  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isCenter = false}) {
     this.ctx.setFontSize(fontSize);
     this.ctx.setFillStyle(color);
     if (isWrap) {
       this.ctx.setTextAlign('left');
-      const textLength = text.splitText.length;
-      text.splitText.forEach((line, index) => {
-        let start = x;
-        if (isLastCenter && textLength === index + 1) {
-          this.ctx.setTextAlign('center');
-          start = this.width / 2;
-        }
-
+      text.splitText.forEach((line) => {
         if (isBold) {
-          this.ctx.fillText(line, start, y - 0.5);
-          this.ctx.fillText(line, start - 0.5, y);
+          this.ctx.fillText(line, x, y - 0.5);
+          this.ctx.fillText(line, x - 0.5, y);
         }
-        this.ctx.fillText(line, start, y);
+        this.ctx.fillText(line, x, y);
         y += lineHeight;
       });
     } else {
-      this.ctx.setTextAlign('center');
+      if (isCenter){
+        this.ctx.setTextAlign('center');
+      }
       this.ctx.fillText(text, x, y);
     }
   },

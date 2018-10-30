@@ -311,7 +311,6 @@ Page({
             y: heightInfo.titleTop,
             lineHeight: 30,
             isBold: true,
-            isLastCenter: false
           });
 
           // content
@@ -325,7 +324,6 @@ Page({
               y: heightInfo.descTop,
               lineHeight: 28,
               isBold: false,
-              isLastCenter: false
             });
             this.drawOther(heightInfo, hrCenter);
           } else {
@@ -352,7 +350,6 @@ Page({
               y: heightInfo.descTop,
               lineHeight: 28,
               isBold: false,
-              isLastCenter: false
             });
             wx.downloadFile({
               url: this.data.userInfo.avatarUrl,
@@ -418,24 +415,17 @@ Page({
     });
   },
 
-  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isLastCenter = false}) {
+  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false}) {
     this.ctx.setFontSize(fontSize);
     this.ctx.setFillStyle(color);
     if (isWrap) {
       this.ctx.setTextAlign('left');
-      const textLength = text.splitText.length;
-      text.splitText.forEach((line, index) => {
-        let start = x;
-        if (isLastCenter && textLength === index + 1) {
-          this.ctx.setTextAlign('center');
-          start = this.width / 2;
-        }
-
+      text.splitText.forEach((line) => {
         if (isBold) {
-          this.ctx.fillText(line, start, y - 0.5);
-          this.ctx.fillText(line, start - 0.5, y);
+          this.ctx.fillText(line, x, y - 0.5);
+          this.ctx.fillText(line, x - 0.5, y);
         }
-        this.ctx.fillText(line, start, y);
+        this.ctx.fillText(line, x, y);
         y += lineHeight;
       });
     } else {
