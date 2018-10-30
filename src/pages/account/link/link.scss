@@ -1,1 +1,25 @@
 @import 'account';
+
+.account {
+  padding-bottom: 80rpx;
+
+  &__hr {
+    font-size: 40rpx;
+    color: $mute-black;
+    text-align: center;
+    margin: 52rpx 0;
+  }
+
+  &__wechat {
+    width: 42rpx;
+    height: 32rpx;
+    margin-right: 10rpx;
+  }
+}
+
+.account-form__wechat {
+  background-color: $grass;
+  font-size: 36rpx;
+  margin-top: 40rpx;
+  justify-content: center;
+}

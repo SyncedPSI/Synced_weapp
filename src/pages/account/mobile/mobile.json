@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "nav": "../../../components/navigate/navigate",
-    "settingEntry": "../../../components/setting_enter/setting"
+    "nav": "../../../components/navigate/navigate"
   }
 }

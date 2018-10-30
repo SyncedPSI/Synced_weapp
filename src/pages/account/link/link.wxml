@@ -1,16 +1,21 @@
-<nav title="关联账户" hasHeaderHeight></nav>
+<nav title="登录账户" hasHeaderHeight></nav>
 
 <view class="account">
-  <view class="account__weclome">欢迎你！</view>
-  <view class="account__desc">关联已有账户或直接微信注册，获得更多优质内容</view>
+  <view class="account__weclome">已有账号</view>
+  <view class="account__desc">如果您已在机器之心官网注册账号，请关联登陆</view>
 
   <view class="account-form">
     <input class="account-form__input" placeholder="手机号/邮箱账号" bindinput="bindLoginNameInput" type="text" confirm-type="next"/>
     <input class="account-form__input" placeholder="密码" bindinput="bindPasswordInput" password="{{true}}" />
     <button class="account-form__btn account-form__submmit"  bindtap="submitForm">登录</button>
   </view>
-  <view class="account-register">
-    <text bindtap="register">微信注册</text>
-  </view>
+
+  <view class="account__hr">or</view>
+  <view class="account__weclome">新用户</view>
+  <view class="account__desc">新用户可直接使用微信登录，获取更多优质内容</view>
+
+  <button class="u-flex account-form__btn account-form__wechat"  bindtap="register">
+    <image class="account__wechat" src="../../../icons/wechat_white.png" />
+    <text>新用户快速登录</text>
+  </button>
 </view>
-<settingEntry></settingEntry>
