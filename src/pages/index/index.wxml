@@ -15,9 +15,10 @@
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="daily--list">
             <navigator class="banner--container" url="../topic/topic?id={{morningDaily.id}}" hover-class="none" wx-if="{{morningDaily !== null}}">
-              <image class="banner--image" src="/images/morning_daily.jpg" mode="aspectFill" />
-              <view class="banner--time">
-                <text>{{morningDaily.published_at}}</text>
+              <image class="banner--image" src="/images/morning_daily.png" mode="aspectFill" />
+              <view class="banner--text">
+                <view class="banner--title">AI每日精选</view>
+                <view class="banner--time">{{morningDaily.published_at}}</view>
               </view>
             </navigator>
             <dailies dailies="{{dailies}}" dayDaily="{{dayDaily}}" bindopen="openActionSheet"></dailies>

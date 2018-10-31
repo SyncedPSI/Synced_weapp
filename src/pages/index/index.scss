@@ -76,14 +76,26 @@ page {
     width: 100%;
   }
 
-  &--time {
+  &--text {
     position: absolute;
     z-index: 2;
-    bottom: 26%;
+    top: 120rpx;
     left: 24rpx;
     right: 0;
     text-align: center;
     color: #fff;
-    font-size: 32rpx;
+    line-height: 1;
+  }
+
+  &--title {
+    font-size: 50rpx;
+    font-weight: bold;
+    margin-bottom: 22rpx;
+    letter-spacing: 8rpx;
+  }
+
+  &--time {
+    font-size: 28rpx;
+    font-weight: 500;
   }
 }
