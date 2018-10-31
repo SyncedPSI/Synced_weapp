@@ -8,6 +8,7 @@ export const articleDetail = ApiRootUrl + '/articles/';
 export const dailyDetail = ApiRootUrl + '/dailies/';
 export const topicDetail = ApiRootUrl + '/topics/';
 export const expertDetail =  ApiRootUrl + '/experts/';
+export const resourceDetail =  ApiRootUrl + '/resources/';
 export const technologyDetail =  ApiRootUrl + '/technologies/';
 export const institutionDetail =  ApiRootUrl + '/institutions/';
 export const bindAccount = ApiRootUrl + '/bind_account/';

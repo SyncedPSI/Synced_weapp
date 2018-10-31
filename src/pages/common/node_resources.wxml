@@ -1,0 +1,21 @@
+<template name="node-only-list">
+  <view class="node-block" id="js-about-institutions">
+    <view class="node-block__header">
+      <text class="node-block__title">相关{{typeName}}</text>
+    </view>
+    <view class="node-institution">
+      <block wx:if="{{isLink}}">
+        <navigator url="{{link}}?id={{item.id}}" class="node-institution__title" wx:for="{{list}}" wx:key="{{item.id}}">
+          <text class="node-institution__list-circle" decode="{{true}}">•&nbsp;&nbsp;</text>
+          <text>{{item.name}}</text>
+        </navigator>
+      </block>
+      <block wx:else>
+        <view class="node-institution__title" wx:for="{{list}}" wx:key="{{item.id}}">
+          <text class="node-institution__list-circle" decode="{{true}}">•&nbsp;&nbsp;</text>
+          <text>{{item.name}}</text>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>

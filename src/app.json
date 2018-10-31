@@ -8,6 +8,7 @@
     "pages/daily/screenshot/screenshot",
     "pages/institution/institution",
     "pages/expert/expert",
+    "pages/resource/resource",
     "pages/technology/technology",
     "pages/account/mobile/mobile",
     "pages/account/link/link",

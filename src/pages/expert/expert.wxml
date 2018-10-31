@@ -16,7 +16,7 @@
             <image class="node-header__avatar" src="{{expert.image_url}}" mode="aspectFill" />
           </view>
           <template wx:if="{{expert.summary != ''}}" is="node-summary" data="{{...expert}}" />
-          <template wx:if="{{expert.technologies}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
+          <template wx:if="{{expert.technologies.length != 0}}" is="node-technologies" data="{{technologies: expert.technologies}}"/>
         </view>
       </view>
       <view wx:if="{{expert.desc != ''}}" class="node-block t-first" id="js-introduction">

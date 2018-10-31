@@ -3,7 +3,7 @@
     <view class="node-block__header">
       <text class="node-block__title">相关机构</text>
     </view>
-    <view class="node-institution">
+    <view class="node-institution t-padding">
       <block wx:for="{{institutions}}" wx:for-item="item" wx:key="unique">
         <block wx:if="{{item.level == 'level_1'}}">
           <view class="node-institution__title">
