@@ -50,8 +50,8 @@ Page({
     });
     const contentInfo = this.getWrapTextHeight({
       text: content,
-      lineHeight: 28,
-      fontSize: 17
+      lineHeight: 30,
+      fontSize: 16
     });
 
     const heightInfo = {
@@ -96,12 +96,12 @@ Page({
       });
       // content
       this.drawFont({
-        fontSize: 17,
-        color: '#282828',
+        fontSize: 16,
+        color: '#414141',
         text: contentInfo,
         x: this.paddingLeft,
         y: heightInfo.contentTop,
-        lineHeight: 28,
+        lineHeight: 30,
       });
       // img
       // drawImage(dx, dy, dWidth, dHeight)
