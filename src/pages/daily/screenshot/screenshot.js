@@ -1,4 +1,5 @@
-import { request, showTipToast, showErrorToast, showLoading, hideLoading } from "utils/util";
+import { request, showLoading, hideLoading } from "utils/util";
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
 const app = getApp();
@@ -17,12 +18,8 @@ Page({
   },
   onLoad: function(option) {
     showLoading('图片生成中');
-    const { id, from } = option;
-    this.setData({
-      id,
-      isLogin: app.globalData.isLogin,
-      isFromWeapp: from === "weapp",
-    });
+    this.ctx = wx.createCanvasContext('js-canvas');
+    this.ctx.setTextBaseline('top');
 
     request(`${dailyDetail}${option.id}`)
       .then(res => {
@@ -35,20 +32,27 @@ Page({
           this.getHight();
         });
       });
+    const { id, from } = option;
+    this.setData({
+      id,
+      isLogin: app.globalData.isLogin,
+      isFromWeapp: from === "weapp",
+    });
   },
   getHight: function() {
     this.width = getApp().globalData.systemInfo.screenWidth - 40;
     this.paddingLeft = 20;
-
-    this.ctx = wx.createCanvasContext('js-canvas');
-    this.ctx.setTextBaseline('top');
+    const maxWidth = this.width - this.paddingLeft * 2;
     const { title, content } = this.data.daily;
-    const titleInfo = this.getWrapTextHeight({
+    const titleInfo = getWrapTextHeight({
+      ctx: this.ctx,
+      maxWidth,
       text: title,
       lineHeight: 30,
-      fontSize: 22
     });
-    const contentInfo = this.getWrapTextHeight({
+    const contentInfo = getWrapTextHeight({
+      ctx: this.ctx,
+      maxWidth,
       text: content,
       lineHeight: 30,
       fontSize: 16
@@ -73,11 +77,11 @@ Page({
   },
   draw: function (titleInfo, contentInfo, heightInfo) {
       // set ctx
-      this.setSquare();
+      setBg(this.ctx, this.width, this.height);
       this.ctx.drawImage('/images/daily_banner.png', 0, 0, this.width, heightInfo.bannerHeight);
       // title
-      this.drawFont({
-        fontSize: 22,
+      drawMultiLines({
+        ctx: this.ctx,
         color: '#fff',
         text: titleInfo,
         x: this.paddingLeft,
@@ -86,16 +90,17 @@ Page({
         isBold: true,
       });
       // time
-      this.drawFont({
+      drawOneLine({
+        ctx: this.ctx,
         fontSize: 14,
         color: '#f2f2f2',
         text: this.data.daily.created_at,
         x: this.paddingLeft,
         y: heightInfo.createAtTop,
-        isWrap: false,
       });
       // content
-      this.drawFont({
+      drawMultiLines({
+        ctx: this.ctx,
         fontSize: 16,
         color: '#414141',
         text: contentInfo,
@@ -107,13 +112,13 @@ Page({
       // drawImage(dx, dy, dWidth, dHeight)
       this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
       // word
-      this.drawFont({
+      drawOneLine({
+        ctx: this.ctx,
         fontSize: 14,
         color: '#717171',
         text: '长按小程序码，了解机器之心',
         x: this.width / 2,
         y: heightInfo.tipTop,
-        isWrap: false,
         isCenter: true,
       });
       this.ctx.draw();
@@ -121,67 +126,6 @@ Page({
       this.setData({
         showLoading: false,
       });
-  },
-  setSquare: function() {
-    this.ctx.rect(0, 0, this.width, this.height);
-    this.ctx.setFillStyle('#fff');
-    this.ctx.fill();
-  },
-  drawLine: function(fromX, fromY, toX, toY, lineWidth = 1) {
-    this.ctx.beginPath();
-    this.ctx.setLineWidth(lineWidth)
-    this.ctx.moveTo(fromX, fromY);
-    this.ctx.lineTo(toX, toY);
-    this.ctx.stroke();
-  },
-  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false, isCenter = false}) {
-    this.ctx.setFontSize(fontSize);
-    this.ctx.setFillStyle(color);
-    if (isWrap) {
-      this.ctx.setTextAlign('left');
-      text.splitText.forEach((line) => {
-        if (isBold) {
-          this.ctx.fillText(line, x, y - 0.5);
-          this.ctx.fillText(line, x - 0.5, y);
-        }
-        this.ctx.fillText(line, x, y);
-        y += lineHeight;
-      });
-    } else {
-      if (isCenter){
-        this.ctx.setTextAlign('center');
-      }
-      this.ctx.fillText(text, x, y);
-    }
-  },
-  getWrapTextHeight: function ({text, lineHeight, fontSize}) {
-    const splitArr = text.split(/\n\r/);
-    this.ctx.setFontSize(fontSize);
-    const maxWidth = this.width - this.paddingLeft * 2;
-    const splitText = [];
-    let height = 0;
-    for (let i = 0; i < splitArr.length; i++) {
-      const arrText = splitArr[i].trim().split('');
-      let line = '';
-      for (let n = 0; n < arrText.length; n++) {
-        const testLine = line + arrText[n];
-        const metrics = this.ctx.measureText(testLine);
-        const testWidth = metrics.width;
-        if (testWidth > maxWidth && n > 0) {
-          splitText.push(line);
-          height += lineHeight;
-          line = arrText[n];
-        } else {
-          line = testLine;
-        }
-      }
-      splitText.push(line);
-      height += lineHeight;
-    }
-    return {
-      splitText,
-      height,
-    }
   },
   openActionSheet: function () {
     this.setData({
@@ -194,31 +138,8 @@ Page({
     });
   },
   saveImage: function() {
-    wx.canvasToTempFilePath({
-      x: 0,
-      y: 0,
-      width: this.width,
-      height: this.height,
-      canvasId: 'js-canvas',
-      success: (res) => {
-        wx.saveImageToPhotosAlbum({
-          filePath: res.tempFilePath,
-          success: function () {
-            showTipToast('图片已保存至相册');
-          },
-          fail: (error) => {
-            if (error.errMsg.match('auth den')) {
-              showErrorToast('无权访问相册');
-              this.openActionSheet();
-            } else {
-              showErrorToast('保存失败');
-            }
-          }
-        });
-      },
-      fail: function() {
-        showErrorToast('生成失败');
-      }
+    saveImage(this.width, this.height, () => {
+      this.openActionSheet();
     });
   },
   onShareAppMessage: function() {
