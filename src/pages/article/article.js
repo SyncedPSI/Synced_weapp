@@ -285,6 +285,12 @@ Page({
     });
   },
 
+  drawFail: function (msg) {
+    console.log('download cover fail', msg);
+    hideLoading();
+    showErrorToast('生成失败,请重试');
+  },
+
   draw: function (titleInfo, descInfo, heightInfo) {
     const hrCenter = this.width / 2;
 
@@ -366,7 +372,12 @@ Page({
               }
             });
           }
+        } else {
+          this.drawFail(res);
         }
+      },
+      fail: (error) => {
+        this.drawFail(error);
       }
     })
   },
