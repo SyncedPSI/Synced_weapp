@@ -1,4 +1,5 @@
 import { request, getDateDiff, showTipToast, showLoading, hideLoading, showErrorToast } from "utils/util";
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -234,11 +235,13 @@ Page({
     this.paddingLeft = 24;
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
+    const maxWidth = this.width - this.paddingLeft * 2;
 
-    const titleInfo = this.getWrapTextHeight({
+    const titleInfo = getWrapTextHeight({
+      ctx: this.ctx,
+      maxWidth,
       text: this.data.article.title,
       lineHeight: 30,
-      fontSize: 22,
     });
 
     const heightInfo = {
@@ -250,7 +253,9 @@ Page({
 
     let descInfo = null;
     if (this.data.commentStr === null) {
-      descInfo = this.getWrapTextHeight({
+      descInfo = getWrapTextHeight({
+        maxWidth,
+        ctx: this.ctx,
         text: this.data.article.description,
         lineHeight: 28,
         fontSize: 17
@@ -260,7 +265,8 @@ Page({
       heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 34;
     } else {
       // 头像 加 评论
-      descInfo = this.getWrapTextHeight({
+      descInfo = getWrapTextHeight({
+        ctx: this.ctx,
         text: this.data.commentStr,
         lineHeight: 28,
         fontSize: 17,
@@ -293,10 +299,8 @@ Page({
 
   draw: function (titleInfo, descInfo, heightInfo) {
     const hrCenter = this.width / 2;
-
-    this.ctx.clearRect(0, 0, this.width, this.height)
-    this.ctx.setFillStyle('#fff');
-    this.ctx.fillRect(0, 0, this.width, this.height);
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    setBg(this.ctx, this.width, this.height);
 
     wx.downloadFile({
       url: this.data.article.cover_image_url,
@@ -309,9 +313,8 @@ Page({
           this.ctx.setFillStyle('#fff');
           this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
           // title
-          this.drawFont({
-            fontSize: 22,
-            color: '#282828',
+          drawMultiLines({
+            ctx: this.ctx,
             text: titleInfo,
             x: this.paddingLeft,
             y: heightInfo.titleTop,
@@ -322,14 +325,13 @@ Page({
           // content
           if (this.data.commentStr === null) {
             // title
-            this.drawFont({
+            drawMultiLines({
+              ctx: this.ctx,
               fontSize: 17,
-              color: '#282828',
               text: descInfo,
               x: this.paddingLeft,
               y: heightInfo.descTop,
               lineHeight: 28,
-              isBold: false,
             });
             this.drawOther(heightInfo, hrCenter);
           } else {
@@ -339,29 +341,28 @@ Page({
             // left mark
             this.ctx.drawImage('/icons/article_mark_left.png', this.paddingLeft, heightInfo.leftMarkTop, markWidth, markHeight);
             this.ctx.drawImage('/icons/article_mark_right.png', this.width - this.paddingLeft * 2 - markHeight, heightInfo.rightMarkTop, markWidth, markHeight);
-            this.drawFont({
+            drawOneLine({
+              ctx: this.ctx,
               fontSize: 14,
               color: '#717171',
               text: this.data.userInfo.nickName,
               x: 33 + avatarHalfHeight * 4 + 5,
               y: heightInfo.userTop + 3,
-              isWrap: false,
             });
 
-            this.drawFont({
+            drawMultiLines({
+              ctx: this.ctx,
               fontSize: 17,
-              color: '#282828',
               text: descInfo,
               x: 33,
               y: heightInfo.descTop,
               lineHeight: 28,
-              isBold: false,
             });
             wx.downloadFile({
               url: this.data.userInfo.avatarUrl,
               success: (res) => {
                 if (res.statusCode === 200) {
-                  // cover
+                  // avatar
                   this.ctx.save();
                   this.ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
                   this.ctx.clip();
@@ -384,94 +385,24 @@ Page({
   drawOther: function (heightInfo, hrCenter) {
     // qrocde + tip
     this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.qrcodeHeight) / 2, heightInfo.qrcodeTop, heightInfo.qrcodeHeight, heightInfo.qrcodeHeight);
-    this.drawFont({
+    drawOneLine({
+      ctx: this.ctx,
       fontSize: 14,
       color: '#717171',
       text: '长按小程序码，阅读原文',
       x: hrCenter,
       y: heightInfo.tipTop,
-      isWrap: false,
+      isCenter: true,
     });
 
     hideLoading();
     this.ctx.draw(false, () => {
-      wx.canvasToTempFilePath({
-        x: 0,
-        y: 0,
-        width: this.width,
-        height: this.height,
-        canvasId: 'js-canvas',
-        success: (res) => {
-          wx.saveImageToPhotosAlbum({
-            filePath: res.tempFilePath,
-            success: function () {
-              showTipToast('图片已保存至相册');
-            },
-            fail: (error) => {
-              if (error.errMsg.match('auth den')) {
-                showErrorToast('无权访问相册');
-                this.closeShared();
-                this.openActionSheet();
-              } else {
-                showErrorToast('保存失败');
-              }
-            }
-          });
-        },
-        fail: function (msg) {
-          console.log(msg)
-          showErrorToast('生成失败');
-        }
-      });
+      saveImage(this.width, this.height, () => {
+        this.openActionSheet();
+      })
     });
   },
 
-  drawFont: function ({ fontSize, color, text, x, y, isWrap = true, lineHeight = fontSize, isBold = false}) {
-    this.ctx.setFontSize(fontSize);
-    this.ctx.setFillStyle(color);
-    if (isWrap) {
-      this.ctx.setTextAlign('left');
-      text.splitText.forEach((line) => {
-        if (isBold) {
-          this.ctx.fillText(line, x, y - 0.5);
-          this.ctx.fillText(line, x - 0.5, y);
-        }
-        this.ctx.fillText(line, x, y);
-        y += lineHeight;
-      });
-    } else {
-      this.ctx.setTextAlign('center');
-      this.ctx.fillText(text, x, y);
-    }
-  },
-  getWrapTextHeight: function ({text, lineHeight, fontSize, maxWidth = this.width - this.paddingLeft * 2}) {
-    const splitArr = text.split(/\n\r/);
-    this.ctx.setFontSize(fontSize);
-    const splitText = [];
-    let height = 0;
-    for (let i = 0; i < splitArr.length; i++) {
-      const arrText = splitArr[i].trim().split('');
-      let line = '';
-      for (let n = 0; n < arrText.length; n++) {
-        const testLine = line + arrText[n];
-        const metrics = this.ctx.measureText(testLine);
-        const testWidth = metrics.width;
-        if (testWidth > maxWidth && n > 0) {
-          splitText.push(line);
-          height += lineHeight;
-          line = arrText[n];
-        } else {
-          line = testLine;
-        }
-      }
-      splitText.push(line);
-      height += lineHeight;
-    }
-    return {
-      splitText,
-      height,
-    }
-  },
   openActionSheet: function () {
     this.setData({
       actionSheetHidden: false
