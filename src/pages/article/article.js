@@ -362,7 +362,7 @@ Page({
               url: this.data.userInfo.avatarUrl,
               success: (res) => {
                 if (res.statusCode === 200) {
-                  // cover
+                  // avatar
                   this.ctx.save();
                   this.ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
                   this.ctx.clip();

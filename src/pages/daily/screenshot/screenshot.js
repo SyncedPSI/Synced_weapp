@@ -109,9 +109,7 @@ Page({
         lineHeight: 30,
       });
       // img
-      // drawImage(dx, dy, dWidth, dHeight)
       this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
-      // word
       drawOneLine({
         ctx: this.ctx,
         fontSize: 14,

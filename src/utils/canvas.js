@@ -1,5 +1,9 @@
 import { showTipToast, showErrorToast } from './util';
 
+const isPunctuation = (char) => {
+  return (char === '，' || char === '。')
+};
+
 export const setBg = (ctx, width, height, color = '#fff') => {
   ctx.setFillStyle(color);
   ctx.fillRect(0, 0, width, height);
@@ -10,16 +14,26 @@ export const getWrapTextHeight = ({ctx, maxWidth, text, lineHeight, fontSize = 2
   ctx.setFontSize(fontSize);
   const splitText = [];
   let height = 0;
-  for (let i = 0; i < splitArr.length; i++) {
+  const length = splitArr.length;
+
+  for (let i = 0; i < length; i++) {
     const arrText = splitArr[i].trim().split('');
     let line = '';
     for (let n = 0; n < arrText.length; n++) {
-      const testLine = line + arrText[n];
+      const currentChar = arrText[n];
+      const testLine = line + currentChar;
       const testWidth = ctx.measureText(testLine).width;
       if (testWidth > maxWidth && n > 0) {
-        splitText.push(line);
+        if (isPunctuation(currentChar)) {
+          const lastIndex = line.length - 1;
+          const last = line[lastIndex];
+          splitText.push(line.slice(0, lastIndex));
+          line = last + currentChar;
+        } else {
+          splitText.push(line);
+          line = currentChar;
+        }
         height += lineHeight;
-        line = arrText[n];
       } else {
         line = testLine;
       }
