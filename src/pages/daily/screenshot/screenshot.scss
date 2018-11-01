@@ -3,7 +3,7 @@
 
 .daily {
   &__container {
-    background-color: #fff;
+    background-color: $background_color;
     padding-left: 40rpx;
     padding-right: 40rpx;
     padding-top: 40rpx;
@@ -13,7 +13,6 @@
   &__canvas {
     margin-bottom: 190rpx;
     width: 100%;
-    border: 4rpx solid #f4f4f4;
   }
 }
 
