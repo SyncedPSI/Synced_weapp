@@ -346,7 +346,7 @@ Page({
               fontSize: 14,
               color: '#717171',
               text: this.data.userInfo.nickName,
-              x: 33 + avatarHalfHeight * 4 + 5,
+              x: 33 + avatarHalfHeight * 2 + 5,
               y: heightInfo.userTop + 3,
             });
 
