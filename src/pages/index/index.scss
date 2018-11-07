@@ -11,28 +11,49 @@ page {
   left: 0;
   right: 0;
   z-index: 1;
-  padding: 16rpx 0;
-  text-align: center;
+  padding: 10rpx 0;
   background-color: #fff;
-  box-shadow: 0 2px 4px 0 rgba(226, 225, 225, 0.50);
 
   &__item {
     display: inline-block;
-    font-size: 36rpx;
-    padding: 8rpx 34rpx;
-    color: $mute-black;
+    font-size: 48rpx;
+    padding: 0 30rpx;
+    color: #D0D0D0;
     border-radius: 100rpx;
-    transition: background-color .28s;
-
-    &:last-child {
-      margin-left: 40rpx;
-    }
 
     &.is-active {
-      color: $title-black;
+      color: #121212;
+      font-size: 60rpx;
       font-weight: 500;
-      background-color: $bg-white;
     }
+  }
+}
+
+.article-nav {
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 2rpx 20px 3rpx;
+  z-index: 10;
+
+  &__item {
+    color: #D0D0D0;
+    font-size: 30rpx;
+    font-weight: 500;
+    padding: 2rpx 22rpx;
+    transition: background-color .28s;
+    border-radius: 50rpx;
+
+    &.is-active {
+      background-color: $bg-white;
+      color: #121212;
+    }
+  }
+
+  &__height {
+    height: 100rpx;
   }
 }
 
@@ -57,45 +78,4 @@ page {
 
 .content--list {
   padding: 0 40rpx;
-}
-
-.daily--list {
-  padding: 0 40rpx 0 30rpx;
-}
-
-.banner {
-  &--container {
-    padding: 40rpx 0 0 24rpx;
-    border-left: 2rpx solid #eee;
-    position: relative;
-  }
-
-  &--image {
-    display: block;
-    height: 260rpx;
-    width: 100%;
-  }
-
-  &--text {
-    position: absolute;
-    z-index: 2;
-    top: 120rpx;
-    left: 24rpx;
-    right: 0;
-    text-align: center;
-    color: #fff;
-    line-height: 1;
-  }
-
-  &--title {
-    font-size: 50rpx;
-    font-weight: bold;
-    margin-bottom: 22rpx;
-    letter-spacing: 8rpx;
-  }
-
-  &--time {
-    font-size: 28rpx;
-    font-weight: 500;
-  }
 }

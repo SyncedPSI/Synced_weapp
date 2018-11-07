@@ -1,18 +1,26 @@
 import { request, getDateDiff } from "utils/util";
-import { timelines, dailies, morningDaily } from "config/api";
+import { timelines, dailies } from "config/api";
 
 Page({
   data: {
     isNavFixed: false,
     searchIconUrl: "/icons/ic_search.svg",
     articleList: [],
-    activeType: 'dailies',
+    activeType: 'timelines',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
-    morningDaily: null,
+    scrollTop: 0,
     dailies: {},
+    activeCategory: 'all',
+    category: [
+      { en: 'all', zh: '全部' },
+      { en: 'industry', zh: '产业' },
+      { en: 'practice', zh: '工程' },
+      { en: 'theory', zh: '理论' },
+      { en: 'basic', zh: '入门' },
+    ]
   },
 
   onLoad: function() {
@@ -20,18 +28,15 @@ Page({
     this.dailyPage = 1;
     this.fixNavTop = 176;
 
-    this.getMorningDaily();
-    this.getDailyList();
+    this.getArticleList();
   },
-  getMorningDaily: function() {
-    request(morningDaily)
-      .then(({data}) => {
-        if (data != null) {
-          this.setData({
-            morningDaily: data,
-          });
-        }
-      });
+  switchCategory: function(event) {
+    this.setData({
+      activeCategory: event.target.dataset.type,
+      scrollTop: 0,
+    });
+    this.articlePage = 1;
+    this.getArticleList(true);
   },
   getArticleList: function (isRefresh = false) {
     return request(`${timelines}?page=${this.articlePage}`)
