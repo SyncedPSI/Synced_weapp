@@ -31,17 +31,26 @@
     "backgroundColor": "#f6f6f6"
   },
   "tabBar": {
+    "color": "#D4D4D4",
+    "selectedColor": "#000000",
+    "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/trend/trend",
+        "iconPath": "icons/tab_trend.png",
+        "selectedIconPath": "icons/tab_trend_active.png",
         "text": "动态"
       },
       {
         "pagePath": "pages/daily/daily",
+        "iconPath": "icons/tab_daily.png",
+        "selectedIconPath": "icons/tab_daily_active.png",
         "text": "快讯"
       },
       {
         "pagePath": "pages/index/index",
+        "iconPath": "icons/tab_article.png",
+        "selectedIconPath": "icons/tab_article_active.png",
         "text": "文章"
       }
     ]
