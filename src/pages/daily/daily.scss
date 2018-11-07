@@ -23,18 +23,16 @@
 
 .daily-item {
   color: $secondary-black;
+  overflow: visible;
 
   &__container {
     border-left: 2rpx solid #eee;
     padding: 40rpx 0 40rpx 24rpx;
+    overflow: visible;
 
     &:first-child {
       padding-top: 0;
     }
-  }
-
-  &__container.t-andriod &__tip {
-    margin-top: 42rpx;
   }
 
   &.t-red &__day {
@@ -69,7 +67,7 @@
   }
 
   &__date {
-    margin: 0 0 12rpx -28rpx;
+    margin: 0 0 40rpx -28rpx;
   }
 
   &__day {
@@ -90,13 +88,8 @@
   }
 
   &__inline {
-    padding: 28rpx 8rpx 24rpx 18rpx;
-    border-bottom: 2rpx solid $bg-white;
+    padding: 0 8rpx 60rpx 18rpx;
     background-color: #fff;
-
-    &:last-child {
-      border-bottom: none;
-    }
 
     &.t-topic {
       padding-bottom: 36rpx;
@@ -107,6 +100,18 @@
     font-size: 36rpx;
     color: #121212;
     font-weight: 500;
+    position: relative;
+    overflow: visible;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: -42rpx;
+      top: 24rpx;
+      width: 16rpx;
+      height: 2rpx;
+      background-color: $red;
+    }
   }
 
   &__content {

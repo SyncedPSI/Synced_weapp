@@ -6,7 +6,7 @@
     <scroll-view scroll-y bindscrolltolower="getDailyList">
       <view class="daily--title">快讯</view>
       <view class="daily--list">
-        <view class="daily-item__container {{ isAndroid ? 't-andriod' : ''}}">
+        <view class="daily-item__container">
           <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
             <view class="daily-item {{index === 0 ? 't-red' : ''}}">
               <view class="daily-item__tip">
