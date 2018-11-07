@@ -1,6 +1,10 @@
 @import 'variables';
 @import 'common';
 
+.content-container {
+  height: 100%;
+}
+
 .daily-item {
   color: $secondary-black;
 
@@ -93,29 +97,5 @@
   &__img {
     width: 44rpx;
     height: 44rpx;
-  }
-}
-
-.daily-topic {
-  &__header {
-    display: flex;
-    align-items: center;
-    margin-top: -4rpx;
-    margin-bottom: 37rpx;
-    font-size: 32rpx;
-    color: $black;
-  }
-
-  &__hr {
-    width: 6rpx;
-    height: 32rpx;
-    margin-right: 13rpx;
-    background-color: $red;
-    border-radius: 2rpx;
-  }
-
-  &__text {
-    width: 136rpx;
-    height: 32rpx;
   }
 }

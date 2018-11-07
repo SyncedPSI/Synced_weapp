@@ -1,4 +1,4 @@
-import { request, getDateDiff, showTipToast } from "utils/util";
+import { request, getDateDiff } from "utils/util";
 import { timelines, dailies, morningDaily } from "config/api";
 
 Page({
@@ -13,7 +13,6 @@ Page({
     actionSheetHidden: true,
     morningDaily: null,
     dailies: {},
-    dayDaily: {},
   },
 
   onLoad: function() {
@@ -72,13 +71,12 @@ Page({
   },
   resolveDailyList: function(data, isRefresh = false) {
     let dailies = {};
-    let dayDaily = {};
     if (!isRefresh) {
       dailies = this.data.dailies;
       dayDaily = this.data.dayDaily;
     }
 
-    const { dailies: list, morning_topics: topicList } = data;
+    const { dailies: list } = data;
     list.forEach((item) => {
       const { created_at } = item;
       if (created_at === undefined) return;
@@ -96,18 +94,8 @@ Page({
       dailies[key].list.push(item);
     });
 
-    topicList.forEach((item) => {
-      const { published_at } = item;
-      if (published_at === undefined) return;
-
-       // key format: 2018/9/21
-       const [_, key] = published_at.match(new RegExp('^([^\\s]+)', 'i'));
-       dayDaily[key] = item;
-    });
-
     this.setData({
-      dailies,
-      dayDaily
+      dailies
     });
   },
   // onPullDownRefresh: function () {
@@ -143,45 +131,7 @@ Page({
       this.setActiveType(currentItemId);
     }
   },
-  openActionSheet: function (event) {
-    const { id, title } = event.detail;
-    this.setData({
-      activeId: id,
-      activeTitle: title,
-      actionSheetHidden: !this.data.actionSheetHidden
-    });
-  },
-  closeActionSheet: function() {
-    this.setData({
-      actionSheetHidden: true
-    });
-  },
-  saveCard: function() {
-    this.closeActionSheet();
-    wx.navigateTo({
-      url: `../daily/screenshot/screenshot?id=${this.data.activeId}`
-    });
-  },
-  copyclip: function() {
-    wx.setClipboardData({
-      data: `https://www.jiqizhixin.com/dailies/${this.data.activeId}`,
-      success: () => {
-        this.closeActionSheet();
-        showTipToast('链接已复制');
-      }
-    });
-  },
-  onShareAppMessage: function(event) {
-    const { from } = event;
-    if (from === 'button') {
-      const { id, title } = event.target.dataset;
-      return {
-        title,
-        path: `/pages/daily/show/show?id=${id}&from=weapp`,
-        imageUrl: '/images/shard_daily_in_index.png',
-      };
-    }
-
+  onShareAppMessage: function() {
     return {
       title: '机器之心',
       path: '/pages/index/index?from=weapp'

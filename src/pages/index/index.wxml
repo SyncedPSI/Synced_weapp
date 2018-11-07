@@ -21,7 +21,7 @@
                 <view class="banner--time">{{morningDaily.published_at}}</view>
               </view>
             </navigator>
-            <dailies dailies="{{dailies}}" dayDaily="{{dayDaily}}" bindopen="openActionSheet"></dailies>
+
           </view>
           <template is="loading" />
         </scroll-view>
