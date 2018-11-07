@@ -4,17 +4,17 @@
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
     <scroll-view scroll-y bindscrolltolower="getDailyList">
+      <view class="daily--title">快讯</view>
       <view class="daily--list">
         <view class="daily-item__container {{ isAndroid ? 't-andriod' : ''}}">
           <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
             <view class="daily-item {{index === 0 ? 't-red' : ''}}">
+              <view class="daily-item__tip">
+                <view class="daily-item__tip--inner"></view>
+              </view>
               <view class="daily-item__date">
-                <view class="daily-item__tip">
-                  <view class="daily-item__tip--inner"></view>
-                </view>
-
-                <text>{{dailies[key].day}}</text>
-                <text class="daily-item__year">{{dailies[key].date}}</text>
+                <view class="daily-item__three"></view>
+                <view class="daily-item__day">{{dailies[key].day}}</view>
               </view>
 
               <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">

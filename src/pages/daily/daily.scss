@@ -1,8 +1,24 @@
 @import 'variables';
 @import 'common';
+@import 'load_more';
 
 .content-container {
   height: 100%;
+}
+
+.daily {
+  &--title {
+    padding: 0 20px;
+    margin: 30rpx 0 68rpx;
+    font-size: 60rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &--list {
+    padding: 0 24px 0 20px;
+    box-sizing: border-box;
+  }
 }
 
 .daily-item {
@@ -11,18 +27,22 @@
   &__container {
     border-left: 2rpx solid #eee;
     padding: 40rpx 0 40rpx 24rpx;
+
+    &:first-child {
+      padding-top: 0;
+    }
   }
 
   &__container.t-andriod &__tip {
     margin-top: 42rpx;
   }
 
-  &.t-red {
-    color: $red;
+  &.t-red &__day {
+    background-color: #121212;
   }
 
-  &.t-red &__date {
-    font-weight: 500;
+  &.t-red &__three {
+    border-right-color: #121212;
   }
 
   &.t-red &__tip--inner {
@@ -33,7 +53,7 @@
     position: absolute;
     vertical-align: middle;
     margin-left: -24rpx;
-    margin-top: 34rpx;
+    margin-top: 26rpx;
     transform: translate(-50%, -50%);
     font-size: 42rpx;
     border-radius: 50%;
@@ -49,20 +69,34 @@
   }
 
   &__date {
-    font-size: 48rpx;
-    margin-bottom: 20rpx;
+    margin: 0 0 12rpx -28rpx;
   }
 
-  &__year {
-    font-size: 24rpx;
-    color: $title-black;
-    margin-left: 16rpx;
+  &__day {
+    color: #fff;
+    display: inline-block;
+    font-size: 28rpx;
+    background-color: #a8a8a8;
+    padding: 4rpx 8rpx 8rpx 0;
+  }
+
+  &__three {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border-width: 26rpx;
+    border-style: solid;
+    border-color: transparent #a8a8a8 transparent transparent;
   }
 
   &__inline {
-    margin-bottom: 40rpx;
-    padding: 36rpx 24rpx 0;
+    padding: 28rpx 8rpx 24rpx 18rpx;
+    border-bottom: 2rpx solid $bg-white;
     background-color: #fff;
+
+    &:last-child {
+      border-bottom: none;
+    }
 
     &.t-topic {
       padding-bottom: 36rpx;
@@ -71,13 +105,13 @@
 
   &__title {
     font-size: 36rpx;
-    color: $black;
+    color: #121212;
     font-weight: 500;
   }
 
   &__content {
     font-size: 32rpx;
-    margin: 30rpx 0 0;
+    margin: 24rpx 0 28rpx;
     color: $title-black;
     line-height: 1.75;
     white-space: pre-line;
@@ -88,14 +122,9 @@
     font-size: 28rpx;
   }
 
-  &__action {
-    color: $secondary-black;
-    height: 44rpx;
-    padding: 30rpx 0 36rpx 30rpx;
-  }
-
   &__img {
-    width: 44rpx;
-    height: 44rpx;
+    display: block;
+    width: 60rpx;
+    height: 60rpx;
   }
 }

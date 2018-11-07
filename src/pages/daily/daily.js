@@ -38,8 +38,7 @@ Page({
       if (dailies[key] === undefined) {
         const createDate = new Date(created_at);
         dailies[key] = {
-          day: createDate.getDate(),
-          date: `${createDate.getFullYear()}年${createDate.getMonth() + 1}月`,
+          day: `${createDate.getMonth() + 1}月${createDate.getDate()}日`,
           list: [],
         };
       }
