@@ -9,48 +9,27 @@
 .daily {
   &--title {
     padding: 0 20px;
-    margin: 30rpx 0 68rpx;
+    margin-top: 30rpx;
     font-size: 60rpx;
     font-weight: 500;
     color: #121212;
   }
 
   &--list {
-    padding: 0 24px 0 20px;
+    padding: 68rpx 48rpx 0 40rpx;
     box-sizing: border-box;
   }
 }
 
 .daily-item {
+  border-left: 2rpx solid #eee;
   color: $secondary-black;
   overflow: visible;
 
-  &__container {
-    border-left: 2rpx solid #eee;
-    padding: 40rpx 0 40rpx 24rpx;
-    overflow: visible;
-
-    &:first-child {
-      padding-top: 0;
-    }
-  }
-
-  &.t-red &__day {
-    background-color: #121212;
-  }
-
-  &.t-red &__three {
-    border-right-color: #121212;
-  }
-
-  &.t-red &__tip--inner {
-    border-color: $red;
-  }
-
   &__tip {
     position: absolute;
+    z-index: 3;
     vertical-align: middle;
-    margin-left: -24rpx;
     margin-top: 26rpx;
     transform: translate(-50%, -50%);
     font-size: 42rpx;
@@ -67,7 +46,26 @@
   }
 
   &__date {
-    margin: 0 0 40rpx -28rpx;
+    margin-bottom: 40rpx;
+    overflow: visible;
+  }
+
+  &__date.t-red {
+    position: relative;
+    top: -26rpx;
+    margin-bottom: 14rpx;
+  }
+
+  &__date.t-red &__day {
+    background-color: #121212;
+  }
+
+  &__date.t-red &__three {
+    border-right-color: #121212;
+  }
+
+  &__date.t-red &__tip--inner {
+    border-color: $red;
   }
 
   &__day {
@@ -75,7 +73,8 @@
     display: inline-block;
     font-size: 28rpx;
     background-color: #a8a8a8;
-    padding: 4rpx 8rpx 8rpx 0;
+    padding: 0 8rpx 0 0;
+    line-height: 52rpx;
   }
 
   &__three {
@@ -88,11 +87,20 @@
   }
 
   &__inline {
-    padding: 0 8rpx 60rpx 18rpx;
+    padding: 0 0 60rpx 42rpx;
     background-color: #fff;
 
     &.t-topic {
       padding-bottom: 36rpx;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      margin: 28rpx 0 0 -42rpx;
+      width: 16rpx;
+      height: 2rpx;
+      background-color: $red;
     }
   }
 
@@ -100,18 +108,6 @@
     font-size: 36rpx;
     color: #121212;
     font-weight: 500;
-    position: relative;
-    overflow: visible;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: -42rpx;
-      top: 24rpx;
-      width: 16rpx;
-      height: 2rpx;
-      background-color: $red;
-    }
   }
 
   &__content {

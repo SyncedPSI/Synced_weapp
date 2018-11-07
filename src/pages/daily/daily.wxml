@@ -6,30 +6,28 @@
     <scroll-view scroll-y bindscrolltolower="getDailyList">
       <view class="daily--title">快讯</view>
       <view class="daily--list">
-        <view class="daily-item__container">
-          <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
-            <view class="daily-item {{index === 0 ? 't-red' : ''}}">
+        <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
+          <view class="daily-item">
+            <view class="daily-item__date {{index === 0 ? 't-red' : ''}}">
               <view class="daily-item__tip">
                 <view class="daily-item__tip--inner"></view>
               </view>
-              <view class="daily-item__date">
-                <view class="daily-item__three"></view>
-                <view class="daily-item__day">{{dailies[key].day}}</view>
-              </view>
-
-              <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">
-                <view class="daily-item__title">{{item.title}}</view>
-                <view class="daily-item__content">{{item.content}}</view>
-                <view class="u-flex">
-                  <text class="daily-item__create">{{item.created_at}}</text>
-                  <view class="daily-item__action" catchtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
-                    <image class="daily-item__img" src="/icons/daily_action.png" mode="aspectFill" />
-                  </view>
-                </view>
-              </navigator>
+              <view class="daily-item__three"></view>
+              <view class="daily-item__day">{{dailies[key].day}}</view>
             </view>
-          </block>
-        </view>
+
+            <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">
+              <view class="daily-item__title">{{item.title}}</view>
+              <view class="daily-item__content">{{item.content}}</view>
+              <view class="u-flex">
+                <text class="daily-item__create">{{item.created_at}}</text>
+                <view class="daily-item__action" catchtap="openActionSheet" data-id="{{item.id}}" data-title="{{item.title}}">
+                  <image class="daily-item__img" src="/icons/daily_action.png" mode="aspectFill" />
+                </view>
+              </view>
+            </navigator>
+          </view>
+        </block>
       </view>
       <template is="loading" />
     </scroll-view>
