@@ -2,7 +2,7 @@
 @import 'load_more';
 
 page {
-  background-color: $background-color;
+  background-color: #fff;
 }
 
 .header-nav {
@@ -53,7 +53,68 @@ page {
   }
 
   &__height {
-    height: 100rpx;
+    height: 140rpx;
+  }
+}
+
+.article-item {
+  margin-bottom: 60rpx;
+  display: flex;
+
+  &__cover {
+    width: 192rpx;
+    height: 112rpx;
+    margin-right: 32rpx;
+    flex-shrink: 0;
+    background-color: #f6f6f6;
+  }
+
+  &__right {
+    flex-grow: 1;
+  }
+
+  &__title {
+    font-size: 34rpx;
+    color: #121212;
+    font-weight: 500;
+    font-weight: 500;
+    margin-bottom: 26rpx;
+  }
+
+  &__footer {
+    font-size: 24rpx;
+    color: #a8a8a8;
+  }
+
+  &__left {
+    flex-grow: 1;
+    justify-content: flex-start;
+    margin-right: 40rpx;
+  }
+
+  &__avatar {
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 8rpx;
+    border-radius: 50%;
+  }
+
+  &__author {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__bold {
+    font-weight: 500;
+  }
+
+  &__time {
+    margin-left: 40rpx;
+  }
+
+  &__shrink {
+    flex-shrink: 0;
   }
 }
 

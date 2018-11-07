@@ -18,7 +18,21 @@
           </view>
           <view class="article-nav__height"></view>
           <view class="content--list">
-            <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
+            <view class="article-item" wx:for="{{articleList}}" wx:key="{{item.id}}">
+              <image class="article-item__cover" src="{{article.cover_url}}" />
+              <view class="article-item__right">
+                <view class="article-item__title">{{item.title}}</view>
+                <view class="u-flex article-item__footer">
+                  <view class="u-flex article-item__left">
+                    <image class="article-item__avatar" src="{{item.author.avatar_url}}" />
+                    <text class="article-item__bold article-item__author">{{item.author.nickname}}</text>
+                    <text class="article-item__time article-item__shrink">{{item.published_at}}</text>
+                  </view>
+                  <text class="article-item__bold article-item__shrink">#{{item.category}}</text>
+                </view>
+              </view>
+            </view>
+            <!-- <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article> -->
           </view>
           <template is="loading" />
         </scroll-view>
