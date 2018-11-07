@@ -4,6 +4,8 @@
     "pages/search/search",
     "pages/article/article",
     "pages/topic/topic",
+    "pages/trend/trend",
+    "pages/daily/daily",
     "pages/daily/show/show",
     "pages/daily/screenshot/screenshot",
     "pages/institution/institution",
@@ -27,5 +29,21 @@
     "navigationBarTitleText": "机器之心",
     "navigationBarTextStyle":"black",
     "backgroundColor": "#f6f6f6"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/trend/trend",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/daily/daily",
+        "text": "快讯"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "文章"
+      }
+    ]
   }
 }
