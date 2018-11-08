@@ -68,9 +68,13 @@
     border-color: $red;
   }
 
+  &__day, &__three {
+    vertical-align: middle;
+    display: inline-block;
+  }
+
   &__day {
     color: #fff;
-    display: inline-block;
     font-size: 28rpx;
     background-color: #a8a8a8;
     padding: 0 8rpx 0 0;
@@ -80,7 +84,6 @@
   &__three {
     width: 0;
     height: 0;
-    display: inline-block;
     border-width: 26rpx;
     border-style: solid;
     border-color: transparent #a8a8a8 transparent transparent;

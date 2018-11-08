@@ -17,20 +17,22 @@ page {
     color: #121212;
   }
 
+  &__create {
+    font-size: 28rpx;
+    color: #a8a8a8;
+    margin: 28rpx 0 60rpx;
+  }
+
   &__content {
-    margin-top: 40rpx;
     color: $title-black;
     font-size: 32rpx;
     line-height: 1.75;
     white-space: pre-line;
   }
 
-  &__footer {
+  &__source {
     margin-top: 34rpx;
     font-size: 28rpx;
-  }
-
-  &__source {
     color: $secondary-black;
     display: flex;
     align-items: center;
@@ -46,9 +48,5 @@ page {
     padding: 0 6rpx;
     background-color: $bg-white;
     color: $mute-black;
-  }
-
-  &__create {
-    color: #a8a8a8;
   }
 }

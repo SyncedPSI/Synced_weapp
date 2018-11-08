@@ -7,7 +7,6 @@
 .article {
   padding: 60rpx 60rpx 0;
   background-color: $white;
-  padding-bottom: 100rpx;
   min-height: 100vh;
 
   .title {
@@ -29,7 +28,7 @@
 
 
   &__container {
-    padding: 80rpx 60rpx;
+    padding: 80rpx 60rpx 12rpx 60rpx;
   }
 
   &__left {
