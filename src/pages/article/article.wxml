@@ -1,11 +1,11 @@
 <import src="../common/page_loading.wxml"/>
 <import src="../common/comment_bottom_bar.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"  pageLogin="{{isLogin}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow pageLogin="{{isLogin}}"></nav>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
-    <view class="article" id="js-article-content">
+    <view class="u-detail-padding article" id="js-article-content">
       <view class="title" id="js-article-title">{{title}}</view>
       <view wx:if="{{isFetching}}">
         <template is="page_loading" />
@@ -34,8 +34,8 @@
           </view>
         </navigator>
       </view>
-
       <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+
       <block wx:if="{{isLogin}}">
         <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
           <block wx:if="{{isFromReadLater !== 'true'}}">

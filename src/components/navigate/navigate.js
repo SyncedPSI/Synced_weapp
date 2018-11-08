@@ -18,10 +18,10 @@ Component({
       type: Boolean,
       value: false
     },
-    // hasShadow: {
-    //   type: Boolean,
-    //   value: true
-    // },
+    hasShadow: {
+      type: Boolean,
+      value: false
+    },
     hasHeaderHeight: {
       type: Boolean,
       value: false

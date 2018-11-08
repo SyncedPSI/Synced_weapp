@@ -1,13 +1,10 @@
 @import 'variables';
 @import 'fix_bottom';
 
-page {
-  background-color: $background_color;
-}
-
 .daily {
   &__container {
-    padding: 64rpx 60rpx 80rpx;
+    padding-top: 64rpx;
+    padding-bottom: 80rpx;
     background-color: #fff;
   }
 
