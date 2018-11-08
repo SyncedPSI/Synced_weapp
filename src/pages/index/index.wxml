@@ -25,7 +25,7 @@
                 <view class="u-flex article-item__footer">
                   <view class="u-flex article-item__left">
                     <image class="article-item__avatar" src="{{item.author.avatar_url}}" />
-                    <text class="article-item__bold article-item__author">{{item.author.nickname}}</text>
+                    <text class="article-item__bold u-text-limit--one">{{item.author.nickname}}</text>
                     <text class="article-item__time article-item__shrink">{{item.published_at}}</text>
                   </view>
                   <text class="article-item__bold article-item__shrink">#{{item.category}}</text>

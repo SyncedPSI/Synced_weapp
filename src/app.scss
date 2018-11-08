@@ -49,3 +49,9 @@ action-sheet-cancel {
     background-color: transparent;
   }
 }
+
+.u-text-limit--one {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
