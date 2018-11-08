@@ -38,20 +38,17 @@
       {
         "pagePath": "pages/trend/trend",
         "iconPath": "icons/tab_trend.png",
-        "selectedIconPath": "icons/tab_trend_active.png",
-        "text": "动态"
+        "selectedIconPath": "icons/tab_trend_active.png"
       },
       {
         "pagePath": "pages/daily/daily",
         "iconPath": "icons/tab_daily.png",
-        "selectedIconPath": "icons/tab_daily_active.png",
-        "text": "快讯"
+        "selectedIconPath": "icons/tab_daily_active.png"
       },
       {
         "pagePath": "pages/index/index",
         "iconPath": "icons/tab_article.png",
-        "selectedIconPath": "icons/tab_article_active.png",
-        "text": "文章"
+        "selectedIconPath": "icons/tab_article_active.png"
       }
     ]
   }
