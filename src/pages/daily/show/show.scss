@@ -7,34 +7,31 @@ page {
 
 .daily {
   &__container {
-    padding: 40rpx 40rpx 100rpx;
+    padding: 64rpx 60rpx 80rpx;
     background-color: #fff;
   }
 
-  &__create {
-    font-size: 28rpx;
-    color: $secondary-black;
-  }
-
   &__title {
-    margin-top: 24rpx;
     font-size: 44rpx;
     font-weight: 500;
-    color: $black;
+    color: #121212;
   }
 
   &__content {
     margin-top: 40rpx;
     color: $title-black;
     font-size: 32rpx;
-    line-height: 1.8;
+    line-height: 1.75;
     white-space: pre-line;
   }
 
-  &__source {
-    margin-top: 28rpx;
-    color: $secondary-black;
+  &__footer {
+    margin-top: 34rpx;
     font-size: 28rpx;
+  }
+
+  &__source {
+    color: $secondary-black;
     display: flex;
     align-items: center;
   }
@@ -49,5 +46,9 @@ page {
     padding: 0 6rpx;
     background-color: $bg-white;
     color: $mute-black;
+  }
+
+  &__create {
+    color: #a8a8a8;
   }
 }

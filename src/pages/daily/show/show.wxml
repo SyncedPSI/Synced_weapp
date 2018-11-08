@@ -8,13 +8,15 @@
       <template is="page_loading" />
     </view>
 
-    <view class="daily__create">AI Daily 快讯 · {{daily.created_at}}</view>
     <view class="daily__title">{{daily.title}}</view>
     <view class="daily__content">{{daily.content}}</view>
-    <view class="daily__source" wx:if="{{daily.url !== null}}">
-      <image src="/icons/daily_source.png" class="daily__source--img" />
-      <text>新闻来源：</text>
-      <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
+    <view class="u-flex daily__footer">
+      <view class="daily__source" wx:if="{{daily.url !== null}}">
+        <image src="/icons/daily_source.png" class="daily__source--img" />
+        <text>新闻来源：</text>
+        <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
+      </view>
+      <view class="daily__create">{{daily.created_at}}</view>
     </view>
   </view>
 
