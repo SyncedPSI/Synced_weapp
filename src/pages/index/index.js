@@ -1,5 +1,5 @@
 import { request, getDateDiff } from "utils/util";
-import { timelines, reports } from "config/api";
+import { articles, reports } from "config/api";
 
 Page({
   data: {
@@ -8,7 +8,7 @@ Page({
     articleList: [],
     reportList: [],
     hasReport: true,
-    activeType: 'timelines',
+    activeType: 'articles',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     activeId: null,
     activeTitle: null,
@@ -40,7 +40,7 @@ Page({
     this.getArticleList(true);
   },
   getArticleList: function (isRefresh = false) {
-    return request(`${timelines}?page=${this.articlePage}`)
+    return request(`${articles}?page=${this.articlePage}&category=${this.data.activeCategory}`)
       .then(res => {
         this.articlePage += 1;
         const { articleList } = this.data;

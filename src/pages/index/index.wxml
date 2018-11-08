@@ -3,7 +3,7 @@
 <nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
 
 <view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
-  <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
+  <text class="header-nav__item {{activeType === 'articles' ? 'is-active' : ''}}" bindtap="switchType" data-type="articles">文章</text>
   <text class="header-nav__item {{activeType === 'reports' ? 'is-active' : ''}}" bindtap="switchType" data-type="reports">报告</text>
   <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
 </view>
@@ -11,7 +11,7 @@
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
     <swiper current-item-id="{{activeType}}" bindchange="swiperActiveType">
-      <swiper-item item-id="timelines">
+      <swiper-item item-id="articles">
         <scroll-view scroll-y bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
           <view class="u-flex article-nav">
             <view class="article-nav__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}">{{item.zh}}</view>
@@ -19,7 +19,7 @@
           <view class="article-nav__height"></view>
           <view class="content--list">
             <navigator url="/pages/article/article?id={{item.id}}&title={{item.title}}" class="article-item" wx:for="{{articleList}}" wx:key="{{item.id}}" hover-class="none">
-              <image class="article-item__cover" src="{{article.cover_url}}" />
+              <image class="article-item__cover" src="{{article.cover_image_url}}" />
               <view class="article-item__right">
                 <view class="article-item__title">{{item.title}}</view>
                 <view class="u-flex article-item__footer">
