@@ -13,6 +13,7 @@ Page({
     article: {
       related_nodes: [],
     },
+    articleOwn: null,
     hiddenShared: true,
     commentStr: null,
     isShowComment: false,
@@ -47,10 +48,13 @@ Page({
     request(`${articleDetail}${options.id}`)
       .then(res => {
         const article = res.data;
+        const articleOwn = article.column || article.author;
+
         article.publishedAt = getDateDiff(res.data.published_at);
         WxParse.wxParse("article_content", "html", res.data.content, this, 5);
         this.setData({
           article,
+          articleOwn,
           isFetching: false
         }, () => {
           this.getContentHeight();

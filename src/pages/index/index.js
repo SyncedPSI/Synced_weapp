@@ -89,7 +89,7 @@ Page({
   },
   fetchMoreData: function () {
     const { activeType } = this.data;
-    if (activeType === 'timelines') {
+    if (activeType === 'articles') {
       this.getArticleList();
     } else {
       this.getReportList();

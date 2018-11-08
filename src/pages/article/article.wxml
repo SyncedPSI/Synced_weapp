@@ -23,12 +23,12 @@
     <block wx:if="{{!isFetching}}">
       <nodes nodes="{{article.related_nodes}}" />
       <view class="article-author__container">
-        <navigator class="u-flex article-author" url="" redirect hover-class="none">
+        <navigator class="u-flex article-author" url="/pages/{{articleOwn.type}}/{{articleOwn.type}}/{{articleOwn.id}}" redirect hover-class="none">
           <view class="u-flex article-author__left">
-            <image class="article-author__avatar" src="" />
+            <image class="article-author__avatar" src="{{articleOwn.avatar_url}}" />
             <view class="article-author__right">
-              <view class="article-author__name">AI 锐见</view>
-              <view class="u-text-limit--one article-author_desc">这个家伙很懒，什么也没有...</view>
+              <view class="article-author__name">{{articleOwn.name}}</view>
+              <view class="u-text-limit--one article-author_desc">{{articleOwn.desc || '机器之心编辑'}}</view>
             </view>
             <image class="article-author__enter" />
           </view>
