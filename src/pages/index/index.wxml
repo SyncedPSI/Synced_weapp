@@ -4,7 +4,7 @@
 
 <view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
   <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
-  <text class="header-nav__item {{activeType === 'dailies' ? 'is-active' : ''}}" bindtap="switchType" data-type="dailies">报告</text>
+  <text class="header-nav__item {{activeType === 'reports' ? 'is-active' : ''}}" bindtap="switchType" data-type="reports">报告</text>
   <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
 </view>
 
@@ -37,21 +37,21 @@
           <template is="loading" />
         </scroll-view>
       </swiper-item>
-       <swiper-item item-id='dailies'>
+       <swiper-item item-id='reports'>
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="content--list">
-            <navigator class="u-flex report-item" url="" redirect hover-class="none">
+            <navigator class="u-flex report-item" url="" redirect hover-class="none" wx:for="{{reportList}}">
               <image class="report-item__cover" src="" />
               <view class="report-item__body report-item__height">
                 <view class="report-item__height">
-                  <view class="report-item__title">MACHINE INTELLIGENCE INDUSTRY BI-WEEKLY DIGEST</view>
-                  <view class="report-item__desc">The Future of Artificial Intelligenc…</view>
+                  <view class="report-item__title">{{item.title}}</view>
+                  <view class="report-item__desc">{{item.description}}</view>
                 </view>
-                <view class="report-item__time">2018/11/26</view>
+                <view class="report-item__time">{{item.created_at}}</view>
               </view>
             </navigator>
           </view>
-          <template is="loading" />
+          <template is="loading" wx:if="{{hasReport}}" />
         </scroll-view>
       </swiper-item>
     </swiper>

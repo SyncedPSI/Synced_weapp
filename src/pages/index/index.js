@@ -1,18 +1,19 @@
 import { request, getDateDiff } from "utils/util";
-import { timelines, dailies } from "config/api";
+import { timelines, reports } from "config/api";
 
 Page({
   data: {
     isNavFixed: false,
     searchIconUrl: "/icons/ic_search.svg",
     articleList: [],
+    reportList: [],
+    hasReport: true,
     activeType: 'timelines',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     activeId: null,
     activeTitle: null,
     actionSheetHidden: true,
     scrollTop: 0,
-    dailies: {},
     activeCategory: 'all',
     category: [
       { en: 'all', zh: '全部' },
@@ -25,7 +26,7 @@ Page({
 
   onLoad: function() {
     this.articlePage = 1;
-    this.dailyPage = 1;
+    this.reportPage = 1;
     this.fixNavTop = 176;
 
     this.getArticleList();
@@ -59,11 +60,31 @@ Page({
         }
       });
   },
-  getDailyList: function (isRefresh = false) {
-    return request(`${dailies}?page=${this.dailyPage}`)
+  getReportList: function (isRefresh = false) {
+    if (!this.data.hasReport) return;
+
+    return request(`${reports}?page=${this.reportPage}`)
       .then(res => {
-        this.dailyPage += 1;
-        this.resolveDailyList(res.data, isRefresh);
+        this.reportPage += 1;
+        const { reportList } = this.data;
+        const newList = res.data;
+
+        if (newList.length === 0) {
+          this.setData({
+            hasReport: false
+          });
+          return;
+        }
+
+        if (isRefresh) {
+          this.setData({
+            reportList: newList,
+          });
+        } else {
+          this.setData({
+            reportList: [...reportList, ...newList],
+          });
+        }
       });
   },
   fetchMoreData: function () {
@@ -71,37 +92,8 @@ Page({
     if (activeType === 'timelines') {
       this.getArticleList();
     } else {
-      this.getDailyList();
+      this.getReportList();
     }
-  },
-  resolveDailyList: function(data, isRefresh = false) {
-    let dailies = {};
-    if (!isRefresh) {
-      dailies = this.data.dailies;
-      dayDaily = this.data.dayDaily;
-    }
-
-    const { dailies: list } = data;
-    list.forEach((item) => {
-      const { created_at } = item;
-      if (created_at === undefined) return;
-
-      // key format: 2018/9/21
-      const [_, key] = created_at.match(new RegExp('^([^\\s]+)', 'i'));
-      if (dailies[key] === undefined) {
-        const createDate = new Date(created_at);
-        dailies[key] = {
-          day: createDate.getDate(),
-          date: `${createDate.getFullYear()}年${createDate.getMonth() + 1}月`,
-          list: [],
-        };
-      }
-      dailies[key].list.push(item);
-    });
-
-    this.setData({
-      dailies
-    });
   },
   // onPullDownRefresh: function () {
   //   wx.showNavigationBarLoading();
@@ -115,8 +107,8 @@ Page({
   //     });
   // },
   setActiveType: function(type) {
-    if (this.data.articleList.length === 0 && type === 'timelines') {
-      this.getArticleList();
+    if (this.data.reportList.length === 0 && type === 'reports') {
+      this.getReportList();
     }
 
     this.setData({
