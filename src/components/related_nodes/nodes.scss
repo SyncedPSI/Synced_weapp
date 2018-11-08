@@ -1,0 +1,74 @@
+@import 'variables';
+
+.related_nodes {
+  background-color: $background-color;
+
+  .title {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #121212;
+    padding: 0 60rpx;
+    margin: 24rpx 0 40rpx;
+  }
+
+  scroll-view {
+    display: flex;
+    white-space: nowrap;
+
+    .node_card:first-child {
+      margin-left: 60rpx;
+    }
+
+    .node_card:last-child {
+      margin-right: 60rpx;
+    }
+  }
+
+  .node_card {
+    background-color: $white;
+    padding: 20rpx 80rpx 28rpx 32rpx;
+    display: inline-block;
+    margin-right: 28rpx;
+    position: relative;
+    min-width: 180rpx;
+    vertical-align: middle;
+
+    &.can_click::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border: 14rpx solid transparent;
+      border-top-color: $red;
+      border-right-color: $red;
+    }
+
+    .top {
+      .zh_name {
+        font-size: 36rpx;
+        font-weight: 500;
+        color: $black;
+        vertical-align: middle;
+        margin-right: 16rpx;
+        display: inline-block;
+      }
+
+      .type {
+        font-size: 20rpx;
+        color: $light_gray;
+        background-color: $background_gray;
+        vertical-align: middle;
+        display: inline-block;
+        padding: 4rpx 10rpx;
+        line-height: 1.4;
+      }
+    }
+
+    .en_name {
+      font-size: 28rpx;
+      color: $light_gray;
+    }
+  }
+}

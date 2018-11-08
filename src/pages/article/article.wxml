@@ -12,16 +12,7 @@
       </view>
 
       <block wx:if="{{!isFetching}}">
-        <view class="info">
-          <view class="left">
-            <view class="avatar">
-              <image wx:if="{{article.author.avatar_url}}" src="{{article.author.avatar_url}}" mode="aspectFill"></image>
-            </view>
-            <view class="author">{{article.author.name}}</view>
-            <view wx-hidden="{{article.copyright === '' || article.copyright === undefined || article.copyright === null}}" class="copyright">{{article.copyright}}</view>
-          </view>
-          <view class="right">{{article.publishedAt}}</view>
-        </view>
+        <view class="article--time">{{article.publishedAt}}</view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
@@ -29,29 +20,7 @@
       </block>
     </view>
 
-    <block wx:if="{{article.related_nodes.length > 0}}">
-      <view class="related_nodes">
-        <view class="title">相关数据</view>
-        <scroll-view scroll-x="{{true}}" style="width: 100%">
-          <block wx:for="{{article.related_nodes}}" wx:key="unique">
-            <view class="node_card" wx:if="{{item.level == 'level_1'}}">
-              <view class="top">
-                <view class="zh_name">{{item.zh_name}}</view>
-                <view class="type">{{item.node_type}}</view>
-              </view>
-              <view class="en_name">{{item.en_name}}</view>
-            </view>
-            <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}&title={{item.zh_name ? item.zh_name : item.en_name}}" wx:else class="node_card can_click" id="{{item.node_id}}">
-              <view class="top">
-                <view class="zh_name">{{item.zh_name}}</view>
-                <view class="type">{{item.node_type}}</view>
-              </view>
-              <view class="en_name">{{item.en_name}}</view>
-            </navigator>
-          </block>
-        </scroll-view>
-      </view>
-    </block>
+    <nodes nodes="{{article.related_nodes}}" />
 
     <block wx:if="{{!isFetching}}">
       <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
