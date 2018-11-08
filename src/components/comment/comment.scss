@@ -13,7 +13,8 @@
   background-color:$background_color;
 
   &__title {
-    color: $black;
+    color: #121212;
+    font-weight: 500;
     font-size: 28rpx;
     margin: 48rpx 0 20rpx;
   }
@@ -59,6 +60,10 @@
     font-size: 28rpx;
   }
 
+  &__reply {
+    color: #121212;
+  }
+
   &__author {
     min-height: 70rpx;
   }
@@ -74,6 +79,7 @@
 
   &__from {
     color: $black;
+    font-weight: 500;
   }
 
   &__link {
@@ -83,7 +89,6 @@
   &__avatar {
     @include set-avatar-width(70rpx);
     position: absolute;
-    border: solid 1rpx #dddddd;
     margin-left: -35rpx;
   }
 
