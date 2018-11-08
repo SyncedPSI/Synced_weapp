@@ -41,20 +41,20 @@ Page({
   },
   getHight: function() {
     this.width = getApp().globalData.systemInfo.screenWidth - 40;
-    this.paddingLeft = 20;
+    this.paddingLeft = 25;
     const maxWidth = this.width - this.paddingLeft * 2;
     const { title, content } = this.data.daily;
     const titleInfo = getWrapTextHeight({
       ctx: this.ctx,
       maxWidth,
       text: title,
-      lineHeight: 30,
+      lineHeight: 33,
     });
     const contentInfo = getWrapTextHeight({
       ctx: this.ctx,
       maxWidth,
       text: content,
-      lineHeight: 30,
+      lineHeight: 28,
       fontSize: 16
     });
 
@@ -62,12 +62,12 @@ Page({
       bannerHeight: 185,
       imageHeight: 90,
     };
-    heightInfo.createAtTop = heightInfo.bannerHeight - 15 - 14;
+    heightInfo.createAtTop = heightInfo.bannerHeight - 19 - 12;
     heightInfo.titleTop = heightInfo.createAtTop - titleInfo.height + 4;
-    heightInfo.contentTop = heightInfo.bannerHeight + 20;
-    heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 22;
+    heightInfo.contentTop = heightInfo.bannerHeight + 25;
+    heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 26;
     heightInfo.tipTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
-    this.height = heightInfo.tipTop + 14 + 30;
+    this.height = heightInfo.tipTop + 14 + 25;
 
     this.setData({
       canvasHeight: this.height
@@ -86,7 +86,7 @@ Page({
         text: titleInfo,
         x: this.paddingLeft,
         y: heightInfo.titleTop,
-        lineHeight: 26,
+        lineHeight: 33,
         isBold: true,
       });
       // time
@@ -102,11 +102,11 @@ Page({
       drawMultiLines({
         ctx: this.ctx,
         fontSize: 16,
-        color: '#414141',
+        color: '#121212',
         text: contentInfo,
         x: this.paddingLeft,
         y: heightInfo.contentTop,
-        lineHeight: 30,
+        lineHeight: 28,
       });
       // img
       this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
