@@ -40,6 +40,16 @@
        <swiper-item item-id='dailies'>
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="content--list">
+            <navigator class="u-flex report-item" url="" redirect hover-class="none">
+              <image class="report-item__cover" src="" />
+              <view class="report-item__body report-item__height">
+                <view class="report-item__height">
+                  <view class="report-item__title">MACHINE INTELLIGENCE INDUSTRY BI-WEEKLY DIGEST</view>
+                  <view class="report-item__desc">The Future of Artificial Intelligenc…</view>
+                </view>
+                <view class="report-item__time">2018/11/26</view>
+              </view>
+            </navigator>
           </view>
           <template is="loading" />
         </scroll-view>

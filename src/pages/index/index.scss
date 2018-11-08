@@ -118,6 +118,51 @@ page {
   }
 }
 
+.report-item {
+  height: 286rpx;
+  margin-top: 70rpx;
+  align-items: flex-end;
+
+  &__height {
+    height: 100%;
+  }
+
+  &__cover {
+    flex-shrink: 0;
+    width: 188rpx;
+    height: 272rpx;
+    border: 2rpx solid #e7e7e7;
+    margin-right: 32rpx;
+  }
+
+  &__body {
+    flex-grow: 1;
+    box-sizing: border-box;
+    position: relative;
+    padding-bottom: 68rpx;
+  }
+
+  &__title {
+    font-size: 34rpx;
+    font-weight: 500;
+    color: #121212;
+    margin-bottom: 28rpx;
+  }
+
+  &__desc {
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
+
+  &__time {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #a8a8a8;
+    font-size: 24rpx;
+  }
+}
+
 .hover_button {
   position: fixed;
   width: 124rpx;
