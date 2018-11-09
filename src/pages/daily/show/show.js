@@ -72,5 +72,10 @@ Page({
         showTipToast('链接已复制');
       }
     });
+  },
+  sharedPage: function() {
+    wx.navigateTo({
+      url: `/pages/daily/screenshot/screenshot?id=${this.data.id}`
+    });
   }
 });
