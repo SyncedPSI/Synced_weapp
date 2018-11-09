@@ -1,0 +1,38 @@
+@import 'variables';
+@import 'content';
+@import 'node';
+
+.node--detail {
+  font-size: 32rpx;
+  color: #121212;
+}
+
+.node-trend {
+  padding-top: 80rpx;
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__item {
+    margin-top: 40rpx;
+  }
+
+  &__name {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__footer {
+    margin: 24rpx 0 20rpx;
+    color: #a8a8a8;
+    font-size: 28rpx;
+  }
+
+  &__type {
+    margin-right: 40rpx;
+  }
+}
