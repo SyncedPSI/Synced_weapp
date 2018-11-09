@@ -144,7 +144,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/daily/screenshot/screenshot?id=${id}&from=weapp`,
+      path: `/pages/dailies/share/share?id=${id}&from=weapp`,
     };
   },
 });

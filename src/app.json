@@ -6,9 +6,9 @@
     "pages/report/report",
     "pages/topic/topic",
     "pages/trend/trend",
-    "pages/daily/daily",
-    "pages/daily/show/show",
-    "pages/daily/screenshot/screenshot",
+    "pages/dailies/dailies",
+    "pages/dailies/detail/detail",
+    "pages/dailies/share/share",
     "pages/institution/institution",
     "pages/expert/expert",
     "pages/resource/resource",
@@ -42,7 +42,7 @@
         "selectedIconPath": "icons/tab_trend_active.png"
       },
       {
-        "pagePath": "pages/daily/daily",
+        "pagePath": "pages/dailies/dailies",
         "iconPath": "icons/tab_daily.png",
         "selectedIconPath": "icons/tab_daily_active.png"
       },

@@ -62,7 +62,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/daily/show/show?id=${id}&from=weapp`,
+      path: `/pages/dailies/detail/detail?id=${id}&from=weapp`,
     };
   },
   copySource: function() {
@@ -75,7 +75,7 @@ Page({
   },
   sharedPage: function() {
     wx.navigateTo({
-      url: `/pages/daily/screenshot/screenshot?id=${this.data.id}`
+      url: `/pages/dailies/share/share?id=${this.data.id}`
     });
   }
 });
