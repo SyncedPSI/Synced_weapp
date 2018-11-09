@@ -63,6 +63,10 @@
     font-size: 28rpx;
   }
 
+  &__origins--tip {
+    color: #121212;
+  }
+
   &__origin {
     border-bottom: 2rpx dashed $red;
     background-color: transparent;

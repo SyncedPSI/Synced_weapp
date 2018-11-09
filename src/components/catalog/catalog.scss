@@ -7,6 +7,26 @@
   bottom: 0;
 }
 
+.catalog-btn {
+  &__bottom {
+    position: fixed;
+    right: 20rpx;
+    bottom: 284rpx;
+    width: 88rpx;
+    height: 88rpx;
+    line-height: 88rpx;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #121212;
+    z-index: 5;
+  }
+
+  &__icon {
+    width: 40rpx;
+    height: 40rpx;
+  }
+}
+
 .catalog {
   position: fixed;
   z-index: 5;
@@ -22,12 +42,8 @@
     visibility: visible;
   }
 
-  &__bottom {
-    z-index: 5;
-  }
-
   &__bottom.has-safe-padding {
-    padding-bottom: $safe-padding-bottom;
+    margin-bottom: $safe-padding-bottom;
   }
 
   &__mask {
