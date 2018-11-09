@@ -1,5 +1,4 @@
 <import src="../common/page_loading.wxml"/>
-<import src="../common/comment_bottom_bar.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow pageLogin="{{isLogin}}"></nav>
 
@@ -20,7 +19,7 @@
       </block>
     </view>
 
-    <block wx:if="{{!isFetching}}">
+    <view wx:if="{{!isFetching}}">
       <nodes nodes="{{article.related_nodes}}" />
       <view class="article-author__container">
         <navigator class="u-flex article-author" url="/pages/{{articleOwn.type}}/{{articleOwn.type}}/{{articleOwn.id}}" redirect hover-class="none">
@@ -36,46 +35,40 @@
       </view>
       <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
 
-      <block wx:if="{{isLogin}}">
-        <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+      <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+        <block wx:if="{{isLogin}}">
           <block wx:if="{{isFromReadLater !== 'true'}}">
             <view class="u-fix-bottom--bar is-disabled" wx:if="{{article.is_read_later}}">
-              <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_readed.png" />
+              <image class="u-fix-bottom--icon" src="/icons/article_readed.png" />
               <text>已添加待读</text>
             </view>
             <view class="u-fix-bottom--bar" bindtap="addRead" wx:else>
-              <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
+              <image class="u-fix-bottom--icon" src="/icons/article_delayread.png" />
               <text>稍后阅读</text>
             </view>
           </block>
 
           <view class="u-fix-bottom--bar" bindtap="openComment">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_comment.png" />
             <text>评论</text>
           </view>
-          <view class="u-fix-bottom--bar" bindtap="openShared">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
-            <text>分享</text>
-          </view>
-        </view>
-      </block>
-      <block wx:else>
-        <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+        </block>
+        <block wx:else>
           <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="read">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_delayread.png" />
             <text>稍后阅读</text>
           </button>
           <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="comment">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_comment.png" />
             <text>评论</text>
           </button>
+        </block>
           <view class="u-fix-bottom--bar" bindtap="openShared">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_shared.png" />
             <text>分享</text>
           </view>
         </view>
-      </block>
-    </block>
+      </view>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
   <settingEntry hasComment pageLogin="{{isLogin}}" bindsuccessloginevent="successLogin"></settingEntry>
