@@ -11,11 +11,13 @@ Page({
     isLogin: false,
   },
   onLoad: function (options) {
-    request(`${reports}/${options.id}`)
+    const { id, from } = options;
+    request(`${reports}/${id}`)
       .then((res) => {
         this.setData({
           report: res.data,
           isFetching: false,
+          isFromWeapp: from === "weapp",
           isLogin: getApp().globalData.isLogin,
         })
       })
@@ -30,6 +32,10 @@ Page({
             tempFilePath: res.tempFilePath,
             success: () => {
               showTipToast('已保存');
+            },
+            fail: (error) => {
+              console.log(error);
+              showErrorToast('获取失败');
             }
           });
         } else {
@@ -41,5 +47,12 @@ Page({
         showErrorToast('获取失败');
       }
     })
-  }
+  },
+  onShareAppMessage: function() {
+    const { id, title }= this.data.report;
+    return {
+      title,
+      path: `/pages/report/report?id=${id}&from=weapp`,
+    };
+  },
 })
