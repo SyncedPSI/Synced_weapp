@@ -14,7 +14,7 @@
       <swiper-item item-id="articles">
         <scroll-view scroll-y bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
           <view class="u-flex article-nav">
-            <view class="article-nav__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}">{{item.zh}}</view>
+            <view class="article-nav__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
           </view>
           <view class="article-nav__height"></view>
           <view class="content--list">
@@ -40,7 +40,7 @@
        <swiper-item item-id='reports'>
         <scroll-view scroll-y bindscrolltolower="fetchMoreData">
           <view class="content--list">
-            <navigator class="u-flex report-item" url="" redirect hover-class="none" wx:for="{{reportList}}">
+            <navigator class="u-flex report-item" url="" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
               <image class="report-item__cover" src="" />
               <view class="report-item__body report-item__height">
                 <view class="report-item__height">
