@@ -20,13 +20,12 @@
   &__full {
     font-size: 40rpx;
     font-weight: 500;
-    color: $black;
+    color: #121212;
   }
 
   &__en {
-    margin-top: 8rpx;
     font-size: 28rpx;
-    color: $secondary-black;
+    color: #a8a8a8;
   }
 
   &__icon {
@@ -52,14 +51,15 @@
   }
 
   &__summary {
-    margin-top: 24rpx;
-    color: $title-black;
+    margin-top: 40rpx;
+    color: #121212;
     font-size: 32rpx;
   }
 
   &__origins {
     margin-top: 24rpx;
-    color: $secondary-black;
+    line-height: 1.57;
+    color: #7d7d7d;
     font-size: 28rpx;
   }
 
@@ -96,7 +96,7 @@
 }
 
 .node-block {
-  padding: 60rpx 40rpx 0;
+  padding: 80rpx 60rpx 0;
   background-color: #fff;
 
   &__header {
@@ -105,7 +105,7 @@
   }
 
   &__title {
-    display:inline-block;
+    display: inline-block;
     border-bottom: 4rpx solid $red;
     color: $black;
     font-weight: 600;
@@ -148,7 +148,7 @@
   }
 
   &__extra-name {
-    color: $title-black;
+    color: #121212;
     font-size: 32rpx;
   }
 }
