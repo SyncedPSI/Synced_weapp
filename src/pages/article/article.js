@@ -307,7 +307,7 @@ Page({
     setBg(this.ctx, this.width, this.height);
 
     wx.downloadFile({
-      url: this.data.article.cover_image_url,
+      url: `${this.data.article.cover_image_url}?imageView2/1/w/375/h/190`,
       success: (res) => {
         if (res.statusCode === 200) {
           // cover

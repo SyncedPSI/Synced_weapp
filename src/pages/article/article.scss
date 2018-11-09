@@ -96,11 +96,15 @@
   }
 
   &__close {
+    position: absolute;
+    top: 6rpx;
+    right: 20rpx;
+    padding: 20rpx;
+  }
+
+  &__close--img {
     width: 28rpx;
     height: 28rpx;
-    position: absolute;
-    top: 26rpx;
-    right: 40rpx;
   }
 
   &__wrapper {
