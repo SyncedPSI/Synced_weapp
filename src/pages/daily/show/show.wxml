@@ -4,9 +4,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="u-detail-padding daily__container">
-    <view wx:if="{{isFetching}}">
-      <template is="page_loading" />
-    </view>
+    <template is="page_loading" wx:if="{{isFetching}}" />
 
     <view class="daily__title">{{daily.title}}</view>
     <view class="daily__create">{{daily.created_at}}</view>

@@ -1,0 +1,26 @@
+<import src="../common/page_loading.wxml"/>
+<import src="../common/comment_bottom_bar.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
+  <template is="page_loading" wx:if="{{isFetching}}" />
+
+  <block wx:else>
+    <view class="report--bannner">
+      <image class="report--cover" src="" />
+    </view>
+    <view class="u-detail-padding">
+      <view class="report--title">{{report.title}}</view>
+      <view class="report--date">{{report.created_at}}</view>
+      <view class="report--desc">{{report.description}}</view>
+    </view>
+  </block>
+
+  <block wx:if="{{!isFetching}}">
+    <comment isShowComment="{{isShowComment}}" baseUrl="/reports/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
+  </block>
+</view>
+<view class="report--download">获取报告</view>
+
+<settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
