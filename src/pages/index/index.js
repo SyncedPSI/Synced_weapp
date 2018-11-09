@@ -35,12 +35,15 @@ Page({
     this.setData({
       activeCategory: event.target.dataset.type,
       scrollTop: 0,
+    }, () => {
+      this.articlePage = 1;
+      this.getArticleList(true);
     });
-    this.articlePage = 1;
-    this.getArticleList(true);
   },
   getArticleList: function (isRefresh = false) {
-    return request(`${articles}?page=${this.articlePage}&category=${this.data.activeCategory}`)
+    const { activeCategory } = this.data;
+    const queryCategory = activeCategory === 'all' ? '' : `&category=${activeCategory}`;
+    return request(`${articles}?page=${this.articlePage}${queryCategory}`)
       .then(res => {
         this.articlePage += 1;
         const { articleList } = this.data;
