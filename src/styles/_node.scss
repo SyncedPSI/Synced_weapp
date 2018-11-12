@@ -3,10 +3,6 @@
   justify-content: space-between;
 }
 
-.catalog-height {
-  height: $catalog-height;
-}
-
 .node-header {
   padding: 40rpx;
   background-color: $bg-white;
@@ -116,7 +112,7 @@
     font-size: 40rpx;
   }
 
-  &:nth-last-child(2) {
+  &:last-child {
     padding-bottom: $safe-padding-bottom + 30;
   }
 

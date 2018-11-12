@@ -8,13 +8,13 @@
         <block wx:if="{{item.level == 'level_1'}}">
           <view class="node-institution__title">
             <text class="node-institution__list-circle" decode="{{true}}">•&nbsp;&nbsp;</text>
-            <text>{{item.zh_name ? item.zh_name : item.en_name}}</text>
+            <text>{{item.full_name}}</text>
           </view>
         </block>
         <block wx:else>
           <navigator class="node-institution__title" url="../institution/institution?id={{item.id}}">
             <text class="node-institution__list-circle" decode="{{true}}">•&nbsp;&nbsp;</text>
-            <text>{{item.zh_name ? item.zh_name : item.en_name}}</text>
+            <text>{{item.full_name}}</text>
           </navigator>
         </block>
       </block>

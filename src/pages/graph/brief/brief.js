@@ -1,19 +1,21 @@
-import { request, getDateDiff, showTipToast, showLoading, hideLoading, showErrorToast } from "utils/util";
+import { request } from "utils/util";
 import { ApiRootUrl } from "config/api";
 
 Page({
   data: {
     node: null,
-     isFromWeapp: false,
+    isFromWeapp: false,
   },
   onLoad: function(options) {
     const { id, type, from } = options;
     request(`${ApiRootUrl}/${type}/${id}`)
       .then((res) => {
-        console.log(res)
+        const node = res.data;
         this.setData({
           id,
           type,
+          navigateTitle: node.full_name,
+          node: node,
           isFromWeapp: from === "weapp",
         })
       })

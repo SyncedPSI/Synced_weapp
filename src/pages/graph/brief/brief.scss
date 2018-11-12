@@ -2,13 +2,19 @@
 @import 'content';
 @import 'node';
 
+.node-header__container {
+  padding-top: 60rpx;
+  padding-bottom: 80rpx;
+  box-shadow: none;
+}
+
 .node--detail {
   font-size: 32rpx;
   color: #121212;
 }
 
 .node-trend {
-  padding-top: 80rpx;
+  padding: 80rpx 40rpx 0 40rpx;
 
   &__title {
     font-size: 32rpx;

@@ -10,8 +10,8 @@
             <image src="{{item.image_url ? item.image_url : '/images/default@1.5x.svg'}}" mode="aspectFill" />
           </view>
           <view class="node-expert__right">
-            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.zh_name ? item.zh_name : item.en_name}}</view>
-            <text class="node-expert__extra-name">{{item.zh_name ? item.en_name : ''}}</text>
+            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.full_name}}</view>
+            <text class="node-expert__extra-name">{{item.en_name}}</text>
           </view>
         </view>
       </block>
@@ -21,8 +21,8 @@
             <image src="{{item.image_url ? item.image_url : '/images/default@1.5x.svg'}}" mode="aspectFill" />
           </view>
           <view class="node-expert__right">
-            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.zh_name ? item.zh_name : item.en_name}}</view>
-            <text class="node-expert__extra-name">{{item.zh_name ? item.en_name : ''}}</text>
+            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.full_name}}</view>
+            <text class="node-expert__extra-name">{{item.en_name}}</text>
           </view>
         </navigator>
       </block>
