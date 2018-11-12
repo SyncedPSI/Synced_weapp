@@ -1,4 +1,4 @@
-import { request, getDateDiff, showTipToast, showLoading, hideLoading, showErrorToast } from "utils/util";
+import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
@@ -24,6 +24,10 @@ Page({
     request(`${ApiRootUrl}/${type}s/${id}`)
       .then(({ data }) => {
         const { articles, has_next_page, total_count, ...other } = data;
+        articles.forEach(item => {
+          item.published_at = getDateDiff(item.published_at);
+        });
+
         this.setData({
           isFromWeapp: from === "weapp",
           author: other,
@@ -46,6 +50,9 @@ Page({
         const { articles, has_next_page } = data;
 
         this.page += 1;
+        articles.forEach(item => {
+          item.published_at = getDateDiff(item.published_at);
+        });
         this.setData({
           articles: [...oldArticles, ...articles],
           hasNextPage: has_next_page,
