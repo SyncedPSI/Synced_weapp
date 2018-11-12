@@ -1,0 +1,114 @@
+@import 'variables';
+@import 'common';
+
+.container--cover {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.shared {
+  position: fixed;
+  z-index: 4;
+
+  &__mask {
+    position: absolute;
+    background-color: rgba(black, .2);
+  }
+
+  &__main {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding-top: 40rpx;
+    background-color: #fff;
+  }
+
+  &__close {
+    position: absolute;
+    top: 6rpx;
+    right: 20rpx;
+    padding: 20rpx;
+  }
+
+  &__close--img {
+    width: 28rpx;
+    height: 28rpx;
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 64%;
+    margin: 0 auto;
+    border-radius: 10rpx;
+    box-shadow: 0 1px 7px 0 rgba(40, 40, 40, 0.10);
+  }
+
+  &__cover--mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba($black, .3);
+  }
+
+  &__logo {
+    position: absolute;
+    top: 24rpx;
+    left: 28rpx;
+    width: 90rpx;
+    height: 32rpx;
+  }
+
+  &__cover,
+  &__cover--mask {
+    width: 100%;
+    height: 228rpx;
+  }
+
+  &__center {
+    text-align: center;
+  }
+
+  &__qrcode {
+    width: 128rpx;
+    height: 128rpx;
+    margin-top: 10rpx;
+  }
+
+  &__tip {
+    color: $secondary-black;
+    margin: 24rpx 0 28rpx;
+    font-size: 24rpx;
+  }
+
+  &__footer {
+    margin-top: 28rpx;
+    box-shadow: 0 -1px 0 0 #EEEEEE;
+  }
+
+  &__action {
+    line-height: 1;
+    text-align: center;
+    padding: 28rpx;
+    font-size: 30rpx;
+    color: $black;
+    width: 50%;
+  }
+
+  &__footer--icon {
+    width: 42rpx;
+    height: 32rpx;
+    vertical-align: middle;
+    margin-right: 12rpx;
+
+    &.t-load {
+      width: 26rpx;
+    }
+  }
+
+  &__action--hr {
+    border-left: 1px solid $bg-white;
+  }
+}
