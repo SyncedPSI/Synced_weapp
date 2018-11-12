@@ -61,11 +61,15 @@ export const drawMultiLines = ({ctx, fontSize = 22, color = '#282828', text, x, 
   });
 }
 
-export const drawOneLine = ({ctx, fontSize, color, text, x, y, isCenter = false}) => {
+export const drawOneLine = ({ctx, fontSize, color, text, x, y, isCenter = false, isBold = false}) => {
   ctx.setFontSize(fontSize);
   ctx.setFillStyle(color);
   if (isCenter) {
     ctx.setTextAlign('center');
+  }
+  if (isBold) {
+    ctx.fillText(line, x, y - 0.5);
+    ctx.fillText(line, x - 0.5, y);
   }
   ctx.fillText(text, x, y);
 }

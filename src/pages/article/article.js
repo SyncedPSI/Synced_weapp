@@ -402,6 +402,7 @@ Page({
     hideLoading();
     this.ctx.draw(false, () => {
       saveImage(this.width, this.height, () => {
+        this.closeShared();
         this.openActionSheet();
       })
     });

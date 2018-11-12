@@ -10,7 +10,7 @@
         <view class="author--right">
           <view class="u-flex">
             <view class="author--name">{{author.name}}</view>
-            <image class="author--share" src="/icons/daily_action.png" mode="aspectFill" />
+            <image class="author--share" src="/icons/daily_action.png" mode="aspectFill" bindtap="openShared" />
           </view>
           <view class="author--desc">{{author.description}}</view>
         </view>
@@ -37,3 +37,15 @@
   </view>
   <settingEntry></settingEntry>
 </view>
+
+<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+  <canvas slot="canvas" class="author-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+  <view slot="content">
+    <view class="author-shared__header">
+      <image class="author-shared__avatar {{type}}" src="{{author.avatar_url}}" />
+      <text class="author-shared__name">{{author.name}}</text>
+    </view>
+    <view class="author-shared__desc">{{author.description}}</view>
+  </view>
+</shared>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

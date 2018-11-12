@@ -81,3 +81,45 @@
     color: #a8a8a8;
   }
 }
+
+.author-shared {
+  &__canvas {
+    width: 100%;
+    position: absolute;
+    left: 10000rpx;
+  }
+
+  &__header {
+    padding: 4rpx 26rpx 0 26rpx;
+    height: 64rpx;
+    overflow: visible;
+    position: relative;
+  }
+
+  &__avatar {
+    @include set-avatar-width(128rpx);
+    position: absolute;
+    bottom: 0;
+    left: 26rpx;
+
+    &.column {
+      border-radius: 0;
+    }
+  }
+
+  &__name {
+    font-weight: 500;
+    font-size: 28rpx;
+    color: $black;
+    margin-left: 180rpx;
+  }
+
+  &__desc {
+    margin: 20rpx 0 24rpx;
+    padding: 0 40rpx;
+    font-size: 24rpx;
+    font-weight: 300;
+    line-height: 1.5;
+    color: $black;
+  }
+}

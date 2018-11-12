@@ -79,7 +79,7 @@
 
   &__tip {
     color: $secondary-black;
-    margin: 24rpx 0 28rpx;
+    margin: 8rpx 0 28rpx;
     font-size: 24rpx;
   }
 
@@ -89,6 +89,7 @@
   }
 
   &__action {
+    background: #fff;
     line-height: 1;
     text-align: center;
     padding: 28rpx;
