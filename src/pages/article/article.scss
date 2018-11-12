@@ -38,6 +38,11 @@
   &__avatar {
     @include set-avatar-width(100rpx);
     margin-right: 20rpx;
+    flex-shrink: 0;
+
+    &.column {
+      border-radius: 0;
+    }
   }
 
   &__right {

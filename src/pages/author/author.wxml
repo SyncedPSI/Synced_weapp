@@ -1,0 +1,39 @@
+<import src="../common/loading.wxml"/>
+
+<nav hasShadow="{{false}}" isNoSearch isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
+
+<view class="u-container" style="padding-top: {{statusBarHeight}}px">
+  <view class="content-container">
+    <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchData" scroll-top="{{scrollTop}}">
+      <view class="u-flex author--container">
+        <image class="author--avatar {{type}}" src="{{author.avatar_url}}" />
+        <view class="author--right">
+          <view class="u-flex">
+            <view class="author--name">{{author.name}}</view>
+            <image class="author--share" src="/icons/daily_action.png" mode="aspectFill" />
+          </view>
+          <view class="author--desc">{{author.description}}</view>
+        </view>
+      </view>
+      <view class="author-article">
+        <view class="author-article__count">
+          <text>共 </text>
+          <text class="author-article__highlight"> {{totalCount}} </text>
+          <text> 篇文章</text>
+        </view>
+        <view class="author-article__item" wx:for="{{articles}}" wx:key="{{item.id}}">
+          <view class="author-article__title">{{item.title}}</view>
+          <view class="u-flex author-article__footer">
+            <text>{{item.published_at}}</text>
+            <text>{{item.category}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view hidden="{{!hasNextPage || articles.length === 0}}">
+        <template is="loading" />
+      </view>
+    </scroll-view>
+  </view>
+  <settingEntry></settingEntry>
+</view>

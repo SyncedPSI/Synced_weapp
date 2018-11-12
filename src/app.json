@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/search/search",
     "pages/article/article",
+    "pages/author/author",
     "pages/report/report",
     "pages/topic/topic",
     "pages/trend/trend",
