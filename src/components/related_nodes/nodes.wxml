@@ -1,21 +1,25 @@
 <block wx:if="{{nodes.length > 0}}">
-  <view class="related_nodes">
-    <view class="title">关联数据</view>
-    <scroll-view scroll-x="{{true}}" style="width: 100%">
+  <view class="related">
+    <view class="related--title u-flex" wx:if="{{hasMore}}">
+      <text>关联数据</text>
+      <navigator class="related--more" url="">查看全部数据</navigator>
+    </view>
+    <view class="related--title u-flex" wx:else>关联数据</view>
+    <scroll-view class="related--scroll" scroll-x="{{true}}" style="width: 100%">
       <block wx:for="{{nodes}}" wx:key="unique">
-        <view class="node_card" wx:if="{{item.level == 'level_1'}}">
-          <view class="top">
-            <view class="zh_name">{{item.full_name}}</view>
-            <view class="type">{{item.node_type}}</view>
+        <view class="related--card" wx:if="{{item.level == 'level_1'}}">
+          <view>
+            <view class="related--zh">{{item.full_name}}</view>
+            <view class="related--type">{{item.node_type}}</view>
           </view>
-          <view class="en_name">{{item.en_name}}</view>
+          <view class="related--en">{{item.en_name}}</view>
         </view>
-        <navigator url="/pages/graph/brief/brief?type={{item.node_type_en}}&id={{item.node_id}}" wx:else class="node_card can_click" id="{{item.node_id}}">
-          <view class="top">
-            <view class="zh_name">{{item.full_name}}</view>
-            <view class="type">{{item.node_type}}</view>
+        <navigator url="/pages/graph/brief/brief?type={{item.node_type_en}}&id={{item.node_id}}" wx:else class="related--card can_click" id="{{item.node_id}}">
+          <view>
+            <view class="related--zh">{{item.full_name}}</view>
+            <view class="related--type">{{item.node_type}}</view>
           </view>
-          <view class="en_name">{{item.en_name}}</view>
+          <view class="related--en">{{item.en_name}}</view>
         </navigator>
       </block>
     </scroll-view>

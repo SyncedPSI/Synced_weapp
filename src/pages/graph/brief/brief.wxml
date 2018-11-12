@@ -6,13 +6,11 @@
   <view class="node-header__container">
     <template is="node-header" data="{{...node}}" />
     <view class="node-header__summary">{{node.summary}}</view>
-    <view class="u-flex">
-      <view class="node-header__origins">
-        <image class="node-header__icon" src="/icons/node_source.png" />
-        <text>来源： </text>
-        <text class="node-header__origin" bindtap="copyclip" data-url="{{summary_sources.value}}">{{summary_sources.key}}</text>
-      </view>
+    <view class="u-flex node--footer">
       <navigator class="node--detail" url="/pages/graph/detail/detail?type={{type}}&id={{id}}" hover-class="none">查看详细介绍</navigator>
+      <navigator url="">
+        <image class="node--shared" src="../../../icons/daily_action.png" />
+      </navigator>
     </view>
   </view>
   <nodes nodes="{{article.related_nodes}}" />

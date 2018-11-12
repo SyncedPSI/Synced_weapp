@@ -8,9 +8,20 @@
   box-shadow: none;
 }
 
-.node--detail {
-  font-size: 32rpx;
-  color: #121212;
+.node {
+  &--detail {
+    font-size: 32rpx;
+    color: #121212;
+  }
+
+  &--footer {
+    margin-top: 32rpx;
+  }
+
+  &--shared {
+    width: 56rpx;
+    height: 56rpx;
+  }
 }
 
 .node-trend {
