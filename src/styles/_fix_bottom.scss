@@ -1,3 +1,5 @@
+@import 'common';
+
 .u-fix-bottom {
   position: fixed;
   left: 0;
@@ -9,21 +11,17 @@
   font-weight: 500;
   font-size: 30rpx;
   box-shadow: 0 -2rpx 0 0 #EEEEEE;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  @extend .u-flex;
 
   &--bar {
-    display: flex;
-    align-items: center;
-    height: 100%;
+    @extend .u-flex;
+    justify-content: center;
+    flex: 1;
+     height: 100%;
+    line-height: 96rpx;
     padding: 0 20rpx;
     font-size: 30rpx;
-
-    &.is-button {
-      justify-content: center;
-      flex: 1;
-    }
+    font-weight: 500;
 
     &.is-disabled {
       color: $mute-black;
