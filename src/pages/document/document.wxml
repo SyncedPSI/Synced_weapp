@@ -6,13 +6,13 @@
   <template is="page_loading" wx:if="{{isFetching}}" />
 
   <block wx:else>
-    <view class="report--bannner">
-      <image class="report--cover" src="" />
+    <view class="document--bannner">
+      <image class="document--cover" src="" />
     </view>
     <view class="u-detail-padding">
-      <view class="report--title">{{report.title}}</view>
-      <view class="report--date">{{report.created_at}}</view>
-      <view class="report--desc">{{report.description}}</view>
+      <view class="document--title">{{report.title}}</view>
+      <view class="document--date">{{report.created_at}}</view>
+      <view class="document--desc">{{report.description}}</view>
     </view>
   </block>
 
@@ -21,6 +21,6 @@
     <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </block>
 </view>
-<view class="report--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">获取报告</view>
+<view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">获取报告</view>
 
 <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>

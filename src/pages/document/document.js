@@ -52,7 +52,7 @@ Page({
     const { id, title }= this.data.report;
     return {
       title,
-      path: `/pages/report/report?id=${id}&from=weapp`,
+      path: `/pages/document/document?id=${id}&from=weapp`,
     };
   },
 })
