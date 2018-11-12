@@ -102,7 +102,6 @@ Page({
       drawMultiLines({
         ctx: this.ctx,
         fontSize: 16,
-        color: '#121212',
         text: contentInfo,
         x: this.paddingLeft,
         y: heightInfo.contentTop,

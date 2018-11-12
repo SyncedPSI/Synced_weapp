@@ -285,7 +285,7 @@ Page({
       heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 36;
     }
 
-    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 10;
+    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 9;
     this.height = heightInfo.tipTop + 20 + 36;
 
     this.setData({
@@ -348,10 +348,11 @@ Page({
             drawOneLine({
               ctx: this.ctx,
               fontSize: 14,
-              color: '#717171',
+              color: '#7d7d7d',
               text: this.data.userInfo.nickName,
               x: 33 + avatarHalfHeight * 2 + 5,
               y: heightInfo.userTop + 3,
+              isBold: true,
             });
 
             drawMultiLines({
@@ -392,7 +393,7 @@ Page({
     drawOneLine({
       ctx: this.ctx,
       fontSize: 14,
-      color: '#717171',
+      color: '#7d7d7d',
       text: '长按小程序码，阅读原文',
       x: hrCenter,
       y: heightInfo.tipTop,

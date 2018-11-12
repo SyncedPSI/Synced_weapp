@@ -47,7 +47,7 @@ export const getWrapTextHeight = ({ctx, maxWidth, text, lineHeight, fontSize = 2
   }
 };
 
-export const drawMultiLines = ({ctx, fontSize = 22, color = '#282828', text, x, y, lineHeight = fontSize, isBold = false}) => {
+export const drawMultiLines = ({ctx, fontSize = 22, color = '#121212', text, x, y, lineHeight = fontSize, isBold = false}) => {
   ctx.setFontSize(fontSize);
   ctx.setFillStyle(color);
   ctx.setTextAlign('left');
