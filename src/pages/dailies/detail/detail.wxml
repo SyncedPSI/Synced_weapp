@@ -18,7 +18,7 @@
 
   <view wx:if="{{!isFetching}}">
     <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-    <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..' }}" />
+    <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </view>
   <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
 </view>

@@ -1,18 +1,11 @@
 import { request, getDateDiff } from "utils/util";
-import { articles, reports } from "config/api";
+import { articles } from "config/api";
 
 Page({
   data: {
-    isNavFixed: false,
-    searchIconUrl: "/icons/ic_search.svg",
+    // searchIconUrl: "/icons/ic_search.svg",
     articleList: [],
-    reportList: [],
-    hasReport: true,
-    activeType: 'articles',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
-    activeId: null,
-    activeTitle: null,
-    actionSheetHidden: true,
     scrollTop: 0,
     activeCategory: 'all',
     category: [
@@ -63,40 +56,8 @@ Page({
         }
       });
   },
-  getReportList: function (isRefresh = false) {
-    if (!this.data.hasReport) return;
-
-    return request(`${reports}?page=${this.reportPage}`)
-      .then(res => {
-        this.reportPage += 1;
-        const { reportList } = this.data;
-        const newList = res.data;
-
-        if (newList.length === 0) {
-          this.setData({
-            hasReport: false
-          });
-          return;
-        }
-
-        if (isRefresh) {
-          this.setData({
-            reportList: newList,
-          });
-        } else {
-          this.setData({
-            reportList: [...reportList, ...newList],
-          });
-        }
-      });
-  },
   fetchMoreData: function () {
-    const { activeType } = this.data;
-    if (activeType === 'articles') {
-      this.getArticleList();
-    } else {
-      this.getReportList();
-    }
+    this.getArticleList();
   },
   // onPullDownRefresh: function () {
   //   wx.showNavigationBarLoading();
@@ -109,28 +70,6 @@ Page({
   //       wx.stopPullDownRefresh();
   //     });
   // },
-  setActiveType: function(type) {
-    if (this.data.reportList.length === 0 && type === 'reports') {
-      this.getReportList();
-    }
-
-    this.setData({
-      activeType: type
-    });
-  },
-  switchType: function(event) {
-    const { type } = event.target.dataset;
-    if (type === this.data.activeType) return;
-
-    this.setActiveType(type);
-  },
-  swiperActiveType: function (event) {
-    const { currentItemId, source } = event.detail;
-
-    if (source === 'touch') {
-      this.setActiveType(currentItemId);
-    }
-  },
   onShareAppMessage: function() {
     return {
       title: '机器之心',

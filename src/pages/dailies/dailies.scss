@@ -1,20 +1,13 @@
 @import 'variables';
 @import 'common';
 @import 'load_more';
+@import 'mixins';
 
 .content-container {
   height: 100%;
 }
 
 .daily {
-  &--title {
-    padding: 0 20px;
-    margin-top: 30rpx;
-    font-size: 60rpx;
-    font-weight: 500;
-    color: #121212;
-  }
-
   &--list {
     padding: 68rpx 48rpx 0 40rpx;
     box-sizing: border-box;

@@ -1,5 +1,5 @@
-<import src="../common/page_loading.wxml"/>
-<import src="../common/comment_and_shared_bar.wxml"/>
+<import src="/pages/common/page_loading.wxml"/>
+<import src="/pages/common/comment_and_shared_bar.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">

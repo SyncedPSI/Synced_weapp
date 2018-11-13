@@ -3,68 +3,37 @@
 <nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
 
 <view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
-  <text class="header-nav__item {{activeType === 'articles' ? 'is-active' : ''}}" bindtap="switchType" data-type="articles">文章</text>
-  <text class="header-nav__item {{activeType === 'reports' ? 'is-active' : ''}}" bindtap="switchType" data-type="reports">报告</text>
+  <text class="u-tab-title">文章</text>
   <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
 </view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <swiper current-item-id="{{activeType}}" bindchange="swiperActiveType">
-      <swiper-item item-id="articles">
-        <scroll-view scroll-y bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
-          <view class="u-flex article-nav">
-            <view class="article-nav__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
-          </view>
-          <view class="article-nav__height"></view>
-          <view class="content--list">
-            <navigator url="/pages/article/article?id={{item.id}}&title={{item.title}}" class="article-item" wx:for="{{articleList}}" wx:key="{{item.id}}" hover-class="none">
-              <image class="article-item__cover" src="{{article.cover_image_url}}" />
-              <view class="article-item__right">
-                <view class="article-item__title">{{item.title}}</view>
-                <view class="u-flex article-item__footer">
-                  <view class="u-flex article-item__left">
-                    <image class="article-item__avatar" src="{{item.author.avatar_url}}" />
-                    <text class="article-item__bold u-text-limit--one">{{item.author.nickname}}</text>
-                    <text class="article-item__time article-item__shrink">{{item.published_at}}</text>
-                  </view>
-                  <text class="article-item__bold article-item__shrink">#{{item.category}}</text>
-                </view>
+    <scroll-view scroll-y bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
+      <view class="u-flex article-nav">
+        <view class="article-nav__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
+      </view>
+      <view class="article-nav__height"></view>
+      <view class="content--list">
+        <navigator url="/pages/article/article?id={{item.id}}&title={{item.title}}" class="article-item" wx:for="{{articleList}}" wx:key="{{item.id}}" hover-class="none">
+          <image class="article-item__cover" src="{{article.cover_image_url}}" />
+          <view class="article-item__right">
+            <view class="article-item__title">{{item.title}}</view>
+            <view class="u-flex article-item__footer">
+              <view class="u-flex article-item__left">
+                <image class="article-item__avatar" src="{{item.author.avatar_url}}" />
+                <text class="article-item__bold u-text-limit--one">{{item.author.nickname}}</text>
+                <text class="article-item__time article-item__shrink">{{item.published_at}}</text>
               </view>
-            </navigator>
-            <!-- <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article> -->
+              <text class="article-item__bold article-item__shrink">#{{item.category}}</text>
+            </view>
           </view>
-          <template is="loading" />
-        </scroll-view>
-      </swiper-item>
-       <swiper-item item-id='reports'>
-        <scroll-view scroll-y bindscrolltolower="fetchMoreData">
-          <view class="content--list">
-            <navigator class="u-flex report-item" url="/pages/document/document?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
-              <image class="report-item__cover" src="" />
-              <view class="report-item__body report-item__height">
-                <view class="report-item__height">
-                  <view class="report-item__title">{{item.title}}</view>
-                  <view class="report-item__desc">{{item.description}}</view>
-                </view>
-                <view class="report-item__time">{{item.created_at}}</view>
-              </view>
-            </navigator>
-          </view>
-          <template is="loading" wx:if="{{hasReport}}" />
-        </scroll-view>
-      </swiper-item>
-    </swiper>
+        </navigator>
+        <!-- <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article> -->
+      </view>
+      <template is="loading" />
+    </scroll-view>
   </view>
 </view>
 <settingEntry></settingEntry>
-
-<action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
-  <action-sheet-item>
-    <button open-type="share" data-id="{{activeId}}" data-title="{{activeTitle}}" bindtap="closeActionSheet">分享给朋友</button>
-  </action-sheet-item>
-  <action-sheet-item bindtap="saveCard">生成卡片保存分享</action-sheet-item>
-  <action-sheet-item bindtap="copyclip">复制此新闻链接</action-sheet-item>
-  <action-sheet-cancel>取消</action-sheet-cancel>
-</action-sheet>
 

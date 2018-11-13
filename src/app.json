@@ -4,7 +4,8 @@
     "pages/search/search",
     "pages/article/article",
     "pages/author/author",
-    "pages/document/document",
+    "pages/document/list/list",
+    "pages/document/detail/detail",
     "pages/topic/topic",
     "pages/trend/trend",
     "pages/dailies/dailies",
@@ -47,6 +48,11 @@
       },
       {
         "pagePath": "pages/index/index",
+        "iconPath": "icons/tab_article.png",
+        "selectedIconPath": "icons/tab_article_active.png"
+      },
+      {
+        "pagePath": "pages/document/list/list",
         "iconPath": "icons/tab_article.png",
         "selectedIconPath": "icons/tab_article_active.png"
       }
