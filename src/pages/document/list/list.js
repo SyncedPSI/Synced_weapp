@@ -1,11 +1,11 @@
 import { request } from "utils/util";
-import { reports } from "config/api";
+import { documents } from "config/api";
 
 Page({
   data: {
     isNavFixed: false,
     reportList: [],
-    hasReport: true,
+    hasMore: true,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     scrollTop: 0,
   },
@@ -16,28 +16,23 @@ Page({
     this.getReportList();
   },
   getReportList: function (isRefresh = false) {
-    if (!this.data.hasReport) return;
+    if (!this.data.hasMore) return;
 
-    return request(`${reports}?page=${this.reportPage}`)
+    return request(`${documents}?page=${this.page}`)
       .then(res => {
-        this.reportPage += 1;
+        this.page += 1;
         const { reportList } = this.data;
-        const newList = res.data;
-
-        if (newList.length === 0) {
-          this.setData({
-            hasReport: false
-          });
-          return;
-        }
+         const { documents, has_next_page } = res.data;
 
         if (isRefresh) {
           this.setData({
-            reportList: newList,
+            reportList: documents,
+            hasMore: true,
           });
         } else {
           this.setData({
-            reportList: [...reportList, ...newList],
+            reportList: [...reportList, ...documents],
+            hasMore: has_next_page
           });
         }
       });

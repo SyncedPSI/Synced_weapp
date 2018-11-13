@@ -2,7 +2,7 @@ export const ApiRootUrl = 'https://www.jiqizhixin.com/api/v1';
 
 export const articles = ApiRootUrl + '/articles/weapp';
 export const dailies = ApiRootUrl + '/dailies';
-export const reports = ApiRootUrl +  '/reports';
+export const documents = ApiRootUrl +  '/documents';
 // export const morningDaily = ApiRootUrl + '/topics/morning'
 export const getAhoyTokens = ApiRootUrl + '/ahoy_tokens'
 export const articleDetail = ApiRootUrl + '/articles/';

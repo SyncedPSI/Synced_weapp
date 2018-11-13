@@ -1,9 +1,9 @@
 import { request, showLoading, showTipToast, showErrorToast } from "utils/util";
-import { reports } from "config/api";
+import { documents } from "config/api";
 
 Page({
   data: {
-    report: null,
+    document: null,
     isFromWeapp: false,
     isFetching: true,
     isShowComment: false,
@@ -12,10 +12,10 @@ Page({
   },
   onLoad: function (options) {
     const { id, from } = options;
-    request(`${reports}/${id}`)
+    request(`${documents}/${id}`)
       .then((res) => {
         this.setData({
-          report: res.data,
+          document: res.data,
           isFetching: false,
           isFromWeapp: from === "weapp",
           isLogin: getApp().globalData.isLogin,
@@ -25,7 +25,7 @@ Page({
   download: function() {
     showLoading('获取中');
     wx.downloadFile({
-      url: this.data.report.file_url,
+      url: this.data.document.file_url,
       success: (res) => {
         if (res.statusCode === 200) {
           wx.saveFile({
@@ -49,7 +49,7 @@ Page({
     })
   },
   onShareAppMessage: function() {
-    const { id, title }= this.data.report;
+    const { id, title }= this.data.document;
     return {
       title,
       path: `/pages/document/document?id=${id}&from=weapp`,

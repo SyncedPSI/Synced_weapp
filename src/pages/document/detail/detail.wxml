@@ -7,17 +7,17 @@
 
   <block wx:else>
     <view class="document--bannner">
-      <image class="document--cover" src="" />
+      <image class="document--cover" src="{{document.cover_iamge_url}}" />
     </view>
     <view class="u-detail-padding">
-      <view class="document--title">{{report.title}}</view>
-      <view class="document--date">{{report.created_at}}</view>
-      <view class="document--desc">{{report.description}}</view>
+      <view class="document--title">{{document.title}}</view>
+      <view class="document--date">{{document.created_at}}</view>
+      <view class="document--desc">{{document.description}}</view>
     </view>
   </block>
 
   <block wx:if="{{!isFetching}}">
-    <comment isShowComment="{{isShowComment}}" baseUrl="/reports/{{report.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <comment isShowComment="{{isShowComment}}" baseUrl="/document/{{document.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
     <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </block>
 </view>
