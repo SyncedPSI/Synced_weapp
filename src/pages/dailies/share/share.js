@@ -112,7 +112,6 @@ Page({
         ctx: this.ctx,
         imgX: (this.width - heightInfo.imageHeight) / 2,
         imgTop: heightInfo.imgTop,
-        imgHeight: heightInfo.imageHeight,
         hrCenter: this.width / 2,
         tipTop: heightInfo.tipTop
       });

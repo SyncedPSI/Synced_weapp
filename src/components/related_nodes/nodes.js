@@ -7,6 +7,10 @@ Component({
     hasMore: {
       type: Boolean,
       value: false
+    },
+    query:{
+      type: String,
+      value: ''
     }
   },
 })

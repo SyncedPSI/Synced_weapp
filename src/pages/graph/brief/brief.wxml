@@ -29,7 +29,7 @@
       </navigator>
     </view>
   </view>
-  <nodes nodes="{{article.related_nodes}}" />
+  <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" />
 
   <view class="node-trend">
     <view class="node-trend__title">相关动态</view>

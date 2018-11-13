@@ -12,7 +12,7 @@
           </view>
         </block>
         <block wx:else>
-          <navigator class="node-institution__title" url="../institution/institution?id={{item.id}}">
+          <navigator class="node-institution__title" url="/pages/graph/brief/brief?type=institutions?id={{item.id}}">
             <text class="node-institution__list-circle" decode="{{true}}">•&nbsp;&nbsp;</text>
             <text>{{item.full_name}}</text>
           </navigator>

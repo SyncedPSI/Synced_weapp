@@ -39,7 +39,7 @@ Page({
     const { id, type }= this.data;
     return {
       title,
-      path: `/pages/graph/graph?id=${id}&type=${type}&from=weapp`,
+      path: `/pages/graph/brief/brief?id=${id}&type=${type}&from=weapp`,
     };
   },
 })
