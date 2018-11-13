@@ -4,6 +4,7 @@ import { ApiRootUrl } from "config/api";
 
 Page({
   data: {
+    logo: "/images/logo.svg",
     isFromWeapp: false,
     navigateTitle: '机器之心',
     author: null,

@@ -40,12 +40,20 @@
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <canvas slot="canvas" class="author-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-  <view slot="content">
-    <view class="author-shared__header">
-      <image class="author-shared__avatar {{type}}" src="{{author.avatar_url}}" />
-      <text class="author-shared__name">{{author.name}}</text>
-    </view>
+  <view class="author-shared__container" slot="content">
+    <image class="author-shared__avatar {{type}}" src="{{author.avatar_url}}" />
+    <image class="author-shared__logo" src="{{logo}}" />
+
+    <view class="author-shared__name">{{author.name}}</view>
+    <view class="author-shared__count">共{{totalCount}}篇文章</view>
     <view class="author-shared__desc">{{author.description}}</view>
+
+    <view class="author-shared__center">
+      <image class="author-shared__qrcode" src="/images/qrcode.png" />
+      <view class="author-shared__tip">长按小程序码，阅读原文</view>
+    </view>
+
+    <view class="author-shared__footer"></view>
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

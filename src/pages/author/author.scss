@@ -2,7 +2,6 @@
 @import 'mixins';
 @import 'load_more';
 
-
 .content-container {
   height: 100%;
   box-sizing: border-box;
@@ -89,37 +88,86 @@
     left: 10000rpx;
   }
 
-  &__header {
-    padding: 4rpx 26rpx 0 26rpx;
-    height: 64rpx;
-    overflow: visible;
+  &__container {
     position: relative;
+    padding: 120rpx 0 172rpx;
   }
 
   &__avatar {
-    @include set-avatar-width(128rpx);
+    @include set-avatar-width(268rpx);
     position: absolute;
-    bottom: 0;
-    left: 26rpx;
+    left: 0;
+    top: 0;
+    background-color: red;
+    z-index: -1;
 
     &.column {
       border-radius: 0;
     }
   }
 
+  &__logo {
+    position: absolute;
+    right: 28rpx;
+    top: 24rpx;
+    width: 100rpx;
+    height: 32rpx;
+  }
+
   &__name {
+    z-index: 3;
+    background-color: rgba(255, 255, 255, .8);
+    padding: 14rpx 20rpx;
+    width: 306rpx;
+    margin-left: 110rpx;
+    font-size: 30rpx;
     font-weight: 500;
-    font-size: 28rpx;
     color: $black;
-    margin-left: 180rpx;
+    border-radius: 50rpx 0 0 50rpx;
+    text-align: right;
+  }
+
+  &__count {
+    margin-right: 44rpx;
+    font-size: 20rpx;
+    color: #a8a8a8;
+    text-align: right;
   }
 
   &__desc {
-    margin: 20rpx 0 24rpx;
-    padding: 0 40rpx;
+    margin-top: 32rpx;
+    padding: 0 24rpx 0 176rpx;
+    box-sizing: border-box;
     font-size: 24rpx;
-    font-weight: 300;
-    line-height: 1.5;
     color: $black;
+    line-height: 1.5;
+  }
+
+  &__center {
+    position: absolute;
+    bottom: 54rpx;
+    left: 34rpx;
+    width: 126rpx;
+  }
+
+  &__qrcode {
+    width: 86rpx;
+    height: 86rpx;
+  }
+
+  &__tip {
+    margin-top: 12rpx;
+    font-size: 20rpx;
+    color: #7d7d7d;
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: -80rpx;
+    right: -80rpx;
+    width: 160rpx;
+    height: 160rpx;
+    background-color: #121212;
+    border-radius: 50%;
   }
 }
