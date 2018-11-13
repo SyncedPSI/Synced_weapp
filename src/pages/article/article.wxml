@@ -76,38 +76,47 @@
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{article.cover_image_url}}">
   <canvas slot="canvas" class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-  <view class="article-shared__content" slot="content">
-    <view class="article-shared__title">{{article.title}}</view>
+  <view slot="content">
+    <view class="article-shared__cover--mask"></view>
+    <image class="article-shared__logo" src="/images/logo_white.png" />
+    <image class="article-shared__cover" src="{{imgUrl}}" mode="aspectFill" />
+    <view class="article-shared__content">
+      <view class="article-shared__title">{{article.title}}</view>
 
-    <view class="article-shared__commment">
-      <block wx:if="{{!isLogin || commentStr === null}}">
-        <image class="article-shared__quot t-small t-left" src="/icons/article_mark_left.png"  />
+      <view class="article-shared__commment">
+        <block wx:if="{{!isLogin || commentStr === null}}">
+          <image class="article-shared__quot t-small t-left" src="/icons/article_mark_left.png"  />
 
-        <button class="article-shared__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
-          <image class="article-shared__opion" src="/icons/article_share_comment.png" />
-          <text>添加你的观点</text>
-        </button>
+          <button class="article-shared__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
+            <image class="article-shared__opion" src="/icons/article_share_comment.png" />
+            <text>添加你的观点</text>
+          </button>
 
-        <view class="article-shared__textarea" wx:else catchtap="openCommentInShared">
-          <image class="article-shared__opion" src="/icons/article_share_comment.png" />
-          <text>添加你的观点</text>
-        </view>
-        <view class="article-shared__right">
-          <image class="article-shared__quot t-small t-right" src="/icons/article_mark_right.png" />
-        </view>
-      </block>
-
-      <block wx:else>
-        <image class="article-shared__quot t-large t-left" src="/icons/article_mark_left.png" />
-        <view class="u-flex article-shared__user">
-          <image class="article-shared__avatar" src="{{userInfo.avatarUrl}}" />
-          <text class="article-shared__username">{{userInfo.nickName}}</text>
-        </view>
-        <view class="article-shared__commentstr">{{commentStr}}</view>
+          <view class="article-shared__textarea" wx:else catchtap="openCommentInShared">
+            <image class="article-shared__opion" src="/icons/article_share_comment.png" />
+            <text>添加你的观点</text>
+          </view>
           <view class="article-shared__right">
-          <image class="article-shared__quot t-large t-right" src="/icons/article_mark_right.png" />
-        </view>
-      </block>
+            <image class="article-shared__quot t-small t-right" src="/icons/article_mark_right.png" />
+          </view>
+        </block>
+
+        <block wx:else>
+          <image class="article-shared__quot t-large t-left" src="/icons/article_mark_left.png" />
+          <view class="u-flex article-shared__user">
+            <image class="article-shared__avatar" src="{{userInfo.avatarUrl}}" />
+            <text class="article-shared__username">{{userInfo.nickName}}</text>
+          </view>
+          <view class="article-shared__commentstr">{{commentStr}}</view>
+            <view class="article-shared__right">
+            <image class="article-shared__quot t-large t-right" src="/icons/article_mark_right.png" />
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="article-shared__center">
+      <image class="article-shared__qrcode" src="/images/qrcode.png" />
+      <view class="article-shared__tip">长按小程序码，阅读原文</view>
     </view>
   </view>
 </shared>

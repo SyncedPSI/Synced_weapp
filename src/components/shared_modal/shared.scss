@@ -46,42 +46,6 @@
     box-shadow: 0 1px 7px 0 rgba(40, 40, 40, 0.10);
   }
 
-  &__cover--mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba($black, .3);
-  }
-
-  &__logo {
-    position: absolute;
-    top: 24rpx;
-    left: 28rpx;
-    width: 90rpx;
-    height: 32rpx;
-  }
-
-  &__cover,
-  &__cover--mask {
-    width: 100%;
-    height: 228rpx;
-  }
-
-  &__center {
-    text-align: center;
-  }
-
-  &__qrcode {
-    width: 128rpx;
-    height: 128rpx;
-    margin-top: 10rpx;
-  }
-
-  &__tip {
-    color: #7d7d7d;
-    margin: 8rpx 0 28rpx;
-    font-size: 24rpx;
-  }
 
   &__footer {
     margin-top: 28rpx;

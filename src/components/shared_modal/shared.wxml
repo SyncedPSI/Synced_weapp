@@ -6,14 +6,7 @@
       <image class="shared__close--img" src="/icons/article_close.png"></image>
     </view>
     <view class="shared__wrapper">
-      <view class="shared__cover--mask"></view>
-      <image class="shared__logo" src="/images/logo_white.png" />
-      <image class="shared__cover" src="{{imgUrl}}" mode="aspectFill" />
       <slot name="content"></slot>
-      <view class="shared__center">
-        <image class="shared__qrcode" src="/images/qrcode.png" />
-        <view class="shared__tip">长按小程序码，阅读原文</view>
-      </view>
     </view>
 
     <view class="shared__footer u-flex {{isIphoneX ? 'has-safe-padding' : ''}}">
