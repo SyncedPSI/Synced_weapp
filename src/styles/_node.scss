@@ -77,14 +77,14 @@
 .node-technology {
   color: $title-black;
   font-size: 28rpx;
-  margin: 40rpx 0 -20rpx;
+  margin: 40rpx 0 36rpx;
+  border-top: 1px solid $bg-white;
 
   &__item {
     padding: 4rpx 16rpx;
     background-color: $bg-white;
-    color: $secondary-black;
-    margin-right: 20rpx;
-    margin-bottom: 20rpx;
+    color: #7d7d7d;
+    margin: 20rpx 20rpx 0 0;
     display: inline-block;
   }
 
@@ -159,7 +159,7 @@
   }
 
   &__title {
-    color: $black;
+    color: #121212;
     font-size: 30rpx;
     margin: 10rpx 0;
     display: block;

@@ -1,0 +1,18 @@
+<import src="/pages/common/node_technologies.wxml"/>
+
+<template name="node-property">
+  <view class="node-header__summary" wx:if="{{summary !== ''}}">{{summary}}</view>
+  <view class="node-header__website"  wx:if="{{website !== undefined}}">
+    <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
+    <text>机构主页：</text>
+    <text class="node-header__link" redirect hover-class="className">{{website}}</text>
+  </view>
+  <view class="node-header__origins"  wx:if="{{summary_sources != null}}">
+    <image class="node-header__icon" src="{{val}}/icons/node_source.png" />
+    <text class="node-header__origins--tip">来源： </text>
+    <block wx:for="{{summary_sources}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
+      <text class="node-header__origin" bindtap="copyclip" data-url="{{value}}">{{key}}</text>
+    </block>
+  </view>
+  <template wx:if="{{technologies.length != 0}}" is="node-technologies" data="{{technologies: technologies}}"/>
+</template>

@@ -1,15 +1,31 @@
 <import src="/pages/common/node_header.wxml"/>
+<import src="/pages/common/node_property.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow hasHeaderHeight></nav>
 
 <block wx:if="{{node !== null}}">
   <view class="node-header__container">
     <template is="node-header" data="{{...node}}" />
-    <view class="node-header__summary">{{node.summary}}</view>
+    <block wx:if="{{node.level === 'level_3'}}">
+      <view class="node-header__summary">{{node.summary}}</view>
+    </block>
+    <block wx:else>
+      <view id="js-content" style="height: {{isExpand ? 'auto' : '88px'}}">
+        <template is="node-property" data="{{...node}}"/>
+      </view>
+    </block>
+
     <view class="u-flex node--footer">
-      <navigator class="node--detail" url="/pages/graph/detail/detail?type={{type}}&id={{id}}" hover-class="none">查看详细介绍</navigator>
+      <navigator class="node--detail" url="/pages/graph/detail/detail?type={{type}}&id={{id}}" hover-class="none" wx:if="{{node.level === 'level_3'}}">
+        <text>查看详细介绍</text>
+        <image class="node--icon" src="/icons/see_detail.png" />
+      </navigator>
+      <view class="node--detail" bindtap="seeAll" wx:else>
+        <text>{{isExpand ? '收起全部' : '展开全部'}}</text>
+        <image class="node--icon" src="/icons/see_detail.png" />
+      </view>
       <navigator url="">
-        <image class="node--shared" src="../../../icons/daily_action.png" />
+        <image class="node--shared" src="/icons/daily_action.png" />
       </navigator>
     </view>
   </view>

@@ -5,6 +5,7 @@ Page({
   data: {
     node: null,
     isFromWeapp: false,
+    isExpand: false
   },
   onLoad: function(options) {
     const { id, type, from } = options;
@@ -19,6 +20,20 @@ Page({
           isFromWeapp: from === "weapp",
         })
       })
+  },
+  copyclip: function (event) {
+    wx.setClipboardData({
+      data: event.target.dataset.url,
+      success: () => {
+        this.closeActionSheet();
+        showTipToast('链接已复制');
+      }
+    });
+  },
+  seeAll: function() {
+    this.setData({
+      isExpand: !this.data.isExpand,
+    })
   },
   onShareAppMessage: function() {
     const { id, type }= this.data;

@@ -19,8 +19,16 @@
   }
 
   &--shared {
+    display: block;
     width: 56rpx;
     height: 56rpx;
+  }
+
+  &--icon {
+    width: 48rpx;
+    height: 48rpx;
+    margin-left: 14rpx;
+    vertical-align: bottom;
   }
 }
 
