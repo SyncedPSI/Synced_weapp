@@ -1,5 +1,5 @@
 import { request, getDateDiff, showTipToast, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -393,15 +393,12 @@ Page({
   },
   drawOther: function (heightInfo, hrCenter) {
     // qrocde + tip
-    this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.qrcodeHeight) / 2, heightInfo.qrcodeTop, heightInfo.qrcodeHeight, heightInfo.qrcodeHeight);
-    drawOneLine({
+    drawQrcode({
       ctx: this.ctx,
-      fontSize: 14,
-      color: '#7d7d7d',
-      text: '长按小程序码，阅读原文',
-      x: hrCenter,
-      y: heightInfo.tipTop,
-      isCenter: true,
+      imgX: (this.width - heightInfo.qrcodeHeight) / 2,
+      imgTop: heightInfo.qrcodeTop,
+      hrCenter,
+      tipTop: heightInfo.tipTop
     });
 
     hideLoading();

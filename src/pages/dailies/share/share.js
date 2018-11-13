@@ -1,5 +1,5 @@
 import { request, showLoading, hideLoading } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
 const app = getApp();
@@ -108,15 +108,13 @@ Page({
         lineHeight: 28,
       });
       // img
-      this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
-      drawOneLine({
+      drawQrcode({
         ctx: this.ctx,
-        fontSize: 14,
-        color: '#717171',
-        text: '长按小程序码，了解机器之心',
-        x: this.width / 2,
-        y: heightInfo.tipTop,
-        isCenter: true,
+        imgX: (this.width - heightInfo.imageHeight) / 2,
+        imgTop: heightInfo.imgTop,
+        imgHeight: heightInfo.imageHeight,
+        hrCenter: this.width / 2,
+        tipTop: heightInfo.tipTop
       });
       this.ctx.draw();
       hideLoading();

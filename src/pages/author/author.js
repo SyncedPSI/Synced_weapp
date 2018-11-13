@@ -1,5 +1,5 @@
 import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
 Page({
@@ -167,15 +167,12 @@ Page({
             lineHeight: 28,
           });
           // qrocde + tip
-          this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.qrcodeHeight) / 2, heightInfo.qrcodeTop, heightInfo.qrcodeHeight, heightInfo.qrcodeHeight);
-          drawOneLine({
+          drawQrcode({
             ctx: this.ctx,
-            fontSize: 14,
-            color: '#717171',
-            text: '长按小程序码，阅读原文',
-            x: hrCenter,
-            y: heightInfo.tipTop,
-            isCenter: true,
+            imgX: (this.width - heightInfo.qrcodeHeight) / 2,
+            imgTop: heightInfo.qrcodeTop,
+            hrCenter,
+            tipTop: heightInfo.tipTop
           });
 
           wx.downloadFile({
