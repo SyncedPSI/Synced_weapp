@@ -13,6 +13,7 @@
     "pages/dailies/share/share",
     "pages/graph/brief/brief",
     "pages/graph/detail/detail",
+    "pages/graph/related/related",
     "pages/account/mobile/mobile",
     "pages/account/link/link",
     "pages/setting/collection/collection",
