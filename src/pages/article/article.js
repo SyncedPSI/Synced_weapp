@@ -60,6 +60,7 @@ Page({
           this.getContentHeight();
         });
       });
+    this.initCanvas();
   },
 
   onHide: function() {
@@ -233,12 +234,15 @@ Page({
     };
   },
 
-  drawImgae: function() {
-    showLoading('图片生成中');
+  initCanvas: function() {
     this.width = getApp().globalData.systemInfo.screenWidth;
     this.paddingLeft = 24;
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
+  },
+
+  drawImgae: function() {
+    showLoading('图片生成中');
     const maxWidth = this.width - this.paddingLeft * 2;
 
     const titleInfo = getWrapTextHeight({
