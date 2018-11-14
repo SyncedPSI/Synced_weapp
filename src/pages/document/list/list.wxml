@@ -7,14 +7,14 @@
    <scroll-view scroll-y bindscrolltolower="fetchMoreData">
       <view class="u-tab-title">报告</view>
       <view class="content--list">
-        <navigator class="u-flex report-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
-          <image class="report-item__cover" src="{{item.cover_iamge_url}}" />
-          <view class="report-item__body report-item__height">
-            <view class="report-item__height">
-              <view class="report-item__title">{{item.title}}</view>
-              <view class="u-text-limit--two report-item__desc">{{item.description}}</view>
+        <navigator class="u-flex document\-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
+          <image class="document\-item__cover" src="{{item.cover_image_url}}" />
+          <view class="document\-item__body document\-item__height">
+            <view class="document\-item__height">
+              <view class="document\-item__title">{{item.title}}</view>
+              <view class="u-text-limit--two document\-item__desc">{{item.description}}</view>
             </view>
-            <view class="report-item__time">{{item.created_at}}</view>
+            <view class="document\-item__time">{{item.created_at}}</view>
           </view>
         </navigator>
       </view>

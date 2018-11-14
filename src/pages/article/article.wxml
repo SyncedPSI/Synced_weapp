@@ -22,7 +22,7 @@
     <view wx:if="{{!isFetching}}">
       <nodes nodes="{{article.related_nodes}}" />
       <view class="article-author__container">
-        <navigator class="u-flex article-author" url="/pages/author/author?id={{articleOwn.id}}&type={{articleOwn.type}}" redirect hover-class="none">
+        <navigator class="u-flex article-author" url="/pages/author/author?id={{articleOwn.id}}&type={{articleOwn.type}}" hover-class="none">
           <view class="u-flex article-author__left">
             <image class="article-author__avatar {{articleOwn.type}}" src="{{articleOwn.avatar_url}}" />
             <view class="article-author__right">

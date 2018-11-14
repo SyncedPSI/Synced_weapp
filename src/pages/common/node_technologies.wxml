@@ -6,7 +6,7 @@
         <text class="node-technology__item">• {{item.full_name}}</text>
       </block>
       <block wx:else>
-        <navigator class="node-technology__item" url="/pages/graph/brief/brief?type=technologies?id={{item.id}}">{{item.full_name}}</navigator>
+        <navigator class="node-technology__item" url="/pages/graph/brief/brief?type=technologies&id={{item.id}}">{{item.full_name}}</navigator>
       </block>
     </block>
   </view>

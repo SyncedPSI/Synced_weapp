@@ -33,7 +33,6 @@ Page({
   },
 
   onLoad: function(option) {
-
     const { id, from } = option;
     this.setData({
       id,

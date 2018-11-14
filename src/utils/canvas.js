@@ -47,10 +47,10 @@ export const getWrapTextHeight = ({ctx, maxWidth, text, lineHeight, fontSize = 2
   }
 };
 
-export const drawMultiLines = ({ctx, fontSize = 22, color = '#121212', text, x, y, lineHeight = fontSize, isBold = false}) => {
+export const drawMultiLines = ({ctx, fontSize = 22, color = '#121212', text, x, y, lineHeight = fontSize, isBold = false,  textAlign = 'left'}) => {
   ctx.setFontSize(fontSize);
   ctx.setFillStyle(color);
-  ctx.setTextAlign('left');
+  ctx.setTextAlign(textAlign);
   text.splitText.forEach((line) => {
     if (isBold) {
       ctx.fillText(line, x, y - 0.5);
@@ -68,8 +68,8 @@ export const drawOneLine = ({ctx, fontSize, color, text, x, y, isCenter = false,
     ctx.setTextAlign('center');
   }
   if (isBold) {
-    ctx.fillText(line, x, y - 0.5);
-    ctx.fillText(line, x - 0.5, y);
+    ctx.fillText(text, x, y - 0.5);
+    ctx.fillText(text, x - 0.5, y);
   }
   ctx.fillText(text, x, y);
 }

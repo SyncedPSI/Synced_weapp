@@ -6,18 +6,18 @@
     <block wx:for="{{experts}}" wx:for-item="item" wx:key="unique">
       <block wx:if="{{item.level == 'level_1'}}">
         <view class="node-expert">
-          <image class="node-expert__avatar" src="{{item.image_url ? item.image_url : '/images/default@1.5x.svg'}}" mode="aspectFill" />
+          <image class="node-expert__avatar" src="{{item.image_url ? item.image_url : '/images/default_expert.jpg'}}" mode="aspectFill" />
           <view class="node-expert__right">
-            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.full_name}}</view>
+            <view class="node-expert__name">{{item.full_name}}</view>
             <text class="node-expert__extra-name">{{item.en_name}}</text>
           </view>
         </view>
       </block>
       <block wx:else>
-        <navigator class="node-expert" url="/pages/graph/brief/brief?type=experts?id={{item.id}}">
-          <image class="node-expert__avatar" src="{{item.image_url ? item.image_url : '/images/default@1.5x.svg'}}" mode="aspectFill" />
+        <navigator class="node-expert" url="/pages/graph/brief/brief?type=experts&id={{item.id}}">
+          <image class="node-expert__avatar" src="{{item.image_url ? item.image_url : '/images/default_expert.jpg'}}" mode="aspectFill" />
           <view class="node-expert__right">
-            <view class="node-expert__name" url="../expert/expert?id={{item.id}}">{{item.full_name}}</view>
+            <view class="node-expert__name">{{item.full_name}}</view>
             <text class="node-expert__extra-name">{{item.en_name}}</text>
           </view>
         </navigator>

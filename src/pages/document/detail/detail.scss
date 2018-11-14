@@ -52,4 +52,13 @@
       margin-bottom: $safe-padding-bottom;
     }
   }
+
+  &--icon {
+    width: 40rpx;
+    height: 30rpx;
+    margin-right: 12rpx;
+    margin-bottom: 8rpx;
+    display: inline-block;
+    vertical-align: bottom;
+  }
 }

@@ -7,7 +7,7 @@
 
   <block wx:else>
     <view class="document--bannner">
-      <image class="document--cover" src="{{document.cover_iamge_url}}" />
+      <image class="document--cover" src="{{document.cover_image_url}}" />
     </view>
     <view class="u-detail-padding">
       <view class="document--title">{{document.title}}</view>
@@ -21,6 +21,9 @@
     <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </block>
 </view>
-<view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">获取报告</view>
+<view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">
+  <image class="document--icon" src="/icons/download.png" />
+  <text>获取报告</text>
+</view>
 
 <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
