@@ -4,7 +4,6 @@
   },
   "usingComponents": {
     "settingEntry": "../../components/setting_enter/setting",
-    "nav": "../../components/navigate/navigate",
-    "catalog": "../../components/catalog/catalog"
+    "nav": "../../components/navigate/navigate"
   }
 }

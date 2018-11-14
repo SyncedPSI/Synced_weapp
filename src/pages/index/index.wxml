@@ -1,6 +1,6 @@
 <import src="../common/loading.wxml"/>
 
-<nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
+<nav isIndex hasShadow="{{false}}" title=""></nav>
 
 <view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
   <text class="u-tab-title">文章</text>

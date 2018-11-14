@@ -85,7 +85,7 @@
 
       <view class="article-shared__commment">
         <block wx:if="{{!isLogin || commentStr === null}}">
-          <image class="article-shared__quot t-small t-left" src="/icons/article_mark_left.png"  />
+          <image class="article-shared__quot t-small t-left" src="/icons/article_mark_left.png" />
 
           <button class="article-shared__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
             <image class="article-shared__opion" src="/icons/article_share_comment.png" />

@@ -65,10 +65,12 @@
   }
 
   &__image {
+    margin-top: 10rpx;
     width: 160rpx;
     height: 150rpx;
     margin-right: 28rpx;
-    flex-shrink: 0
+    flex-shrink: 0;
+    background-color: #f6f6f6;
   }
 
   &__grow,

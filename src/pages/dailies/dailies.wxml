@@ -1,6 +1,6 @@
 <import src="../common/loading.wxml"/>
 
-<nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
+<nav isIndex hasShadow="{{false}}" title=""></nav>
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
     <scroll-view scroll-y bindscrolltolower="getDailyList">
