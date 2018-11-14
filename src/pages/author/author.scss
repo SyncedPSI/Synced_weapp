@@ -18,10 +18,6 @@
     @include set-avatar-width(136rpx);
     margin-right: 40rpx;
     flex-shrink: 0;
-
-    &.column {
-      border-radius: 0;
-    }
   }
 
   &--right {
@@ -94,16 +90,11 @@
   }
 
   &__avatar {
-    @include set-avatar-width(268rpx);
+    @include set-avatar-width(384rpx);
     position: absolute;
-    left: 0;
-    top: 0;
-    background-color: red;
+    left: -116rpx;
+    top: -116rpx;
     z-index: -1;
-
-    &.column {
-      border-radius: 0;
-    }
   }
 
   &__logo {

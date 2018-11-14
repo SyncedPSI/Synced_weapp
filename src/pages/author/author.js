@@ -9,10 +9,7 @@ Page({
     navigateTitle: '机器之心',
     author: null,
     articles: [],
-    node: null,
     hasNextPage: true,
-    keywords: '',
-    scrollTop: 0,
     hiddenShared: true,
     actionSheetHidden: true,
     isDraw: false,
@@ -95,34 +92,40 @@ Page({
     this.paddingLeft = 30;
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
-    const maxWidth = this.width - this.paddingLeft * 2;
 
     const heightInfo = {
-      coverTop: 0,
-      coverHeight: 190,
-      nameTop: 190 + 3,
-      avatarHeight: 100,
-      avatarTop: 140,
-      descTop: 255,
-      qrcodeHeight: 90,
+      avatarHeight: 300,
+      avatarTop: 0,
+      nameTop: 106,
+      qrcodeHeight: 54,
     };
 
+    const nameInfo = getWrapTextHeight({
+      maxWidth: this.width * 0.64,
+      ctx: this.ctx,
+      text: this.data.author.name,
+      fontSize: 24,
+      lineHeight: 36,
+    });
+
     const descInfo = getWrapTextHeight({
-      maxWidth,
+      maxWidth: this.width * 0.58,
       ctx: this.ctx,
       text: this.data.author.description,
       lineHeight: 28,
       fontSize: 17
     });
 
-    heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 41;
-    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 10;
-    this.height = heightInfo.tipTop + 20 + 30;
+    heightInfo.countTop = heightInfo.nameTop + nameInfo.height + 8;
+    heightInfo.descTop = heightInfo.countTop + 20 + 24;
+    this.height = heightInfo.descTop + descInfo.height + 108;
+    heightInfo.qrcodeTop = this.height - 89 - 54;
+    heightInfo.tipTop = this.height - 84;
 
     this.setData({
       canvasHeight: this.height
     }, () => {
-      this.draw(descInfo, heightInfo);
+      this.draw(nameInfo, descInfo, heightInfo);
     });
   },
 
@@ -132,80 +135,84 @@ Page({
     showErrorToast('生成失败,请重试');
   },
 
-  draw: function (descInfo, heightInfo) {
-    const hrCenter = this.width / 2;
+  draw: function (nameInfo, descInfo, heightInfo) {
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     wx.downloadFile({
-      url: `${this.data.author.cover_image_url}?imageView2/1/w/375/h/190`,
+      url: this.data.author.avatar_url + '?roundPic/radius/!50p',
       success: (res) => {
         if (res.statusCode === 200) {
           // cover
-          this.ctx.drawImage(res.tempFilePath, 0, 0, this.width, heightInfo.coverHeight);
-          this.ctx.setFillStyle('rgba(40, 40, 40, 0.3)');
-          this.ctx.fillRect(0, 0, this.width, heightInfo.coverHeight);
-          this.ctx.setFillStyle('#fff');
-          this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
+          this.ctx.drawImage(res.tempFilePath, -90, -90, heightInfo.avatarHeight, heightInfo.avatarHeight);
+          this.ctx.drawImage('/images/logo.svg', this.width - 20 - 64, 15, 64, 24);
 
-          // title
-         drawOneLine({
-           ctx: this.ctx,
-           fontSize: 22,
-           color: '#282828',
-           text: this.data.author.name,
-           x: 132,
-           y: heightInfo.nameTop,
-           isBold: true
-         });
+          // name bg
+          const bgHeight = nameInfo.height + 24;
+          this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
+          this.ctx.fillRect(133, 94, this.width * 0.64, bgHeight);
+          this.ctx.beginPath()
+          this.ctx.arc(133, 94 + bgHeight / 2, bgHeight / 2, 0.5 * Math.PI, 1.5 * Math.PI);
+          // this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
+          this.ctx.fill();
+
+          // name
+          drawMultiLines({
+            ctx: this.ctx,
+            fontSize: 24,
+            text: nameInfo,
+            x: this.width - 35,
+            y: heightInfo.nameTop,
+            isBold: true,
+            textAlign: 'right',
+          });
+
+          drawOneLine({
+            ctx: this.ctx,
+            fontSize: 14,
+            color: '#a8a8a8',
+            text: `共 ${this.data.totalCount} 篇文章`,
+            x: this.width - 35,
+            y: heightInfo.countTop,
+            isBold: true
+          });
 
           drawMultiLines({
             ctx: this.ctx,
             fontSize: 16,
             text: descInfo,
-            x: this.paddingLeft,
+            x: this.width * 0.42 - 20,
             y: heightInfo.descTop,
             lineHeight: 28,
           });
-          // qrocde + tip
-          drawQrcode({
+
+          this.ctx.drawImage('/images/qrcode.png', 42, heightInfo.qrcodeTop, 54, 54);
+          drawOneLine({
             ctx: this.ctx,
-            imgX: (this.width - heightInfo.qrcodeHeight) / 2,
-            imgTop: heightInfo.qrcodeTop,
-            hrCenter,
-            tipTop: heightInfo.tipTop
+            fontSize: 14,
+            color: '#7d7d7d',
+            text: '长按小程序码',
+            x: 30,
+            y: heightInfo.tipTop,
+          });
+          drawOneLine({
+            ctx: this.ctx,
+            fontSize: 14,
+            color: '#7d7d7d',
+            text: '了解更多文章',
+            x: 30,
+            y: heightInfo.tipTop + 16,
           });
 
-          wx.downloadFile({
-            url: this.data.author.avatar_url,
-            success: (res) => {
-              if (res.statusCode === 200) {
-                if (this.data.type === 'user') {
-                  const half = heightInfo.avatarHeight / 2;
-                  this.ctx.save();
-                  this.ctx.arc(20 + half, heightInfo.avatarTop + half, half, 0, 2 * Math.PI);
-                  this.ctx.clip();
-                  this.ctx.drawImage(res.tempFilePath, 20, heightInfo.avatarTop, heightInfo.avatarHeight, heightInfo.avatarHeight);
-                  this.ctx.restore();
-                } else {
-                  this.ctx.drawImage(res.tempFilePath, 20, heightInfo.avatarTop, heightInfo.avatarHeight, heightInfo.avatarHeight);
-                }
+          this.ctx.beginPath()
+          this.ctx.arc(this.width, this.height, 64, Math.PI, 2 * Math.PI);
+          this.ctx.setFillStyle('#282828');
+          this.ctx.fill();
 
-                this.ctx.draw(false, () => {
-                  this.setData({
-                    isDraw: true,
-                  })
-                  this.saveImage();
-                });
-              } else {
-                this.drawFail(res);
-              }
-            },
-            fail: function(error) {
-              this.drawFail(error);
-            }
+          hideLoading();
+          this.ctx.draw(false, () => {
+            this.saveImage();
           });
-
         } else {
           this.drawFail(res);
         }

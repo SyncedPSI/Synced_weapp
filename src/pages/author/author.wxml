@@ -5,34 +5,36 @@
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
     <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchData" scroll-top="{{scrollTop}}">
-      <view class="u-flex author--container">
-        <image class="author--avatar {{type}}" src="{{author.avatar_url}}" />
-        <view class="author--right">
-          <view class="u-flex">
-            <view class="author--name">{{author.name}}</view>
-            <image class="author--share" src="/icons/daily_action.png" mode="aspectFill" bindtap="openShared" />
-          </view>
-          <view class="author--desc">{{author.description || '机器之心编辑'}}</view>
-        </view>
-      </view>
-      <view class="author-article">
-        <view class="author-article__count">
-          <text>共 </text>
-          <text class="author-article__highlight"> {{totalCount}} </text>
-          <text> 篇文章</text>
-        </view>
-        <view class="author-article__item" wx:for="{{articles}}" wx:key="{{item.id}}">
-          <view class="author-article__title">{{item.title}}</view>
-          <view class="u-flex author-article__footer">
-            <text>{{item.published_at}}</text>
-            <text>{{item.category}}</text>
+      <block wx:if="{{author !== null}}">
+        <view class="u-flex author--container">
+          <image class="author--avatar" src="{{author.avatar_url}}" />
+          <view class="author--right">
+            <view class="u-flex">
+              <view class="author--name">{{author.name}}</view>
+              <image class="author--share" src="/icons/daily_action.png" mode="aspectFill" bindtap="openShared" />
+            </view>
+            <view class="author--desc">{{author.description || '机器之心编辑'}}</view>
           </view>
         </view>
-      </view>
+        <view class="author-article">
+          <view class="author-article__count">
+            <text>共 </text>
+            <text class="author-article__highlight"> {{totalCount}} </text>
+            <text> 篇文章</text>
+          </view>
+          <navigator class="author-article__item" wx:for="{{articles}}" wx:key="{{item.id}}" url="/pages/article/article?id={{item.id}}&title={{item.title}}">
+            <view class="author-article__title">{{item.title}}</view>
+            <view class="u-flex author-article__footer">
+              <text>{{item.published_at}}</text>
+              <text>#{{item.category}}</text>
+            </view>
+          </navigator>
+        </view>
 
-      <view hidden="{{!hasNextPage || articles.length === 0}}">
-        <template is="loading" />
-      </view>
+        <view hidden="{{!hasNextPage || articles.length === 0}}">
+          <template is="loading" />
+        </view>
+      </block>
     </scroll-view>
   </view>
   <settingEntry></settingEntry>
@@ -41,7 +43,7 @@
 <shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <canvas slot="canvas" class="author-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
   <view class="author-shared__container" slot="content">
-    <image class="author-shared__avatar {{type}}" src="{{author.avatar_url}}" />
+    <image class="author-shared__avatar" src="{{author.avatar_url}}" />
     <image class="author-shared__logo" src="{{logo}}" />
 
     <view class="author-shared__name">{{author.name}}</view>
@@ -50,7 +52,7 @@
 
     <view class="author-shared__center">
       <image class="author-shared__qrcode" src="/images/qrcode.png" />
-      <view class="author-shared__tip">长按小程序码，阅读原文</view>
+      <view class="author-shared__tip">长按小程序码了解更多文章</view>
     </view>
 
     <view class="author-shared__footer"></view>
