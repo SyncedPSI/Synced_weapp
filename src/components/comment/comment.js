@@ -1,4 +1,4 @@
-import { comments, ApiRootUrl } from "config/api";
+import { comments, ApiV1 } from "config/api";
 import { request, showErrorToast, showTipToast } from 'utils/util';
 
 Component({
@@ -30,7 +30,7 @@ Component({
 
   methods: {
     fetchData: function() {
-      request(`${ApiRootUrl}${this.properties.baseUrl}/comments`)
+      request(`${ApiV1}${this.properties.baseUrl}/comments`)
         .then(res => {
           const { comments, count } = res.data;
           this.setData({
@@ -80,7 +80,7 @@ Component({
 
       if (content === '') return;
       const isCreateComment = this.replyCommentId === null;
-      const url = isCreateComment ? `${ApiRootUrl}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`
+      const url = isCreateComment ? `${ApiV1}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`;
       request(`${url}`, {
         content
       }, 'POST')

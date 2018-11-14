@@ -1,17 +1,17 @@
-export const ApiRootUrl = 'https://www.jiqizhixin.com/api/v1';
+export const ApiV1 = 'https://www.jiqizhixin.com/api/v1';
+export const ApiRootUrl = 'https://www.jiqizhixin.com/api/v2';
 
 export const articles = ApiRootUrl + '/articles/weapp';
 export const dailies = ApiRootUrl + '/dailies';
 export const documents = ApiRootUrl +  '/documents';
-// export const morningDaily = ApiRootUrl + '/topics/morning'
-export const getAhoyTokens = ApiRootUrl + '/ahoy_tokens'
+export const getAhoyTokens = ApiV1 + '/ahoy_tokens'
 export const articleDetail = ApiRootUrl + '/articles/';
 export const dailyDetail = ApiRootUrl + '/dailies/';
 export const topicDetail = ApiRootUrl + '/topics/';
-export const bindAccount = ApiRootUrl + '/bind_account/';
-export const login = ApiRootUrl + '/login/';
-export const register = ApiRootUrl + '/register/';
+export const bindAccount = ApiV1 + '/bind_account/';
+export const login = ApiV1 + '/login/';
+export const register = ApiV1 + '/register/';
 export const searchByKeyword = ApiRootUrl + '/search?type=for_weapp&keywords=';
-export const comments = ApiRootUrl + '/comments';
-export const readLaterCount = ApiRootUrl + '/read_laters/count';
-export const readLater = ApiRootUrl + '/read_laters';
+export const comments = ApiV1 + '/comments';
+export const readLaterCount = ApiV1 + '/read_laters/count';
+export const readLater = ApiV1 + '/read_laters';
