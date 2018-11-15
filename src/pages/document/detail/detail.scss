@@ -62,3 +62,64 @@
     vertical-align: bottom;
   }
 }
+
+.document-share {
+  &__canvas {
+    width: 100%;
+    position: absolute;
+    left: 10000rpx;
+  }
+
+  &__container {
+    text-align: center;
+  }
+
+  &__header {
+    position: relative;
+    padding-top: 44rpx;
+    height: 234rpx;
+    text-align: center;
+    background-color: #f2f2f2;
+    box-shadow: 0 -6px 6px 0 rgba(18, 18, 18, 0.05) inset;
+  }
+
+  &__logo {
+    position: absolute;
+    top: 24rpx;
+    left: 28rpx;
+    width: 90rpx;
+    height: 32rpx;
+  }
+
+  &__cover {
+    width: 230rpx;
+    height: 330rpx;
+    border: 2rpx solid #e7e7e7;
+  }
+
+  &__title {
+    padding: 28rpx 28rpx 0;
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__time {
+    margin-top: 24rpx;
+    font-size: 20rpx;
+    color: #a8a8a8;
+  }
+
+  &__qrcode {
+    display: inline-block;
+    margin-top: 54rpx;
+    width: 130rpx;
+    height: 130rpx;
+  }
+
+  &__tip {
+    color: #7d7d7d;
+    font-size: 24rpx;
+    margin: 22rpx 0 60rpx;
+  }
+}
