@@ -16,7 +16,7 @@ Component({
     closeShared: function() {
       this.triggerEvent('closeevent');
     },
-    sharedArticle: function() {
+    sharedPage: function () {
       this.triggerEvent('sharedevent');
     },
     drawImgae: function() {

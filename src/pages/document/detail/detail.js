@@ -94,14 +94,11 @@ Page({
     });
   },
 
-  sharedPage: function () {
-    this.toggleShare(false)
-  },
-
   closeShared: function () {
     this.toggleShare(true);
   },
-  sharedArticle: function () {
+
+  sharedPage: function () {
     this.closeShared();
     this.onShareAppMessage();
   },

@@ -40,7 +40,7 @@
   <settingEntry></settingEntry>
 </view>
 
-<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <canvas slot="canvas" class="author-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
   <view class="author-shared__container" slot="content">
     <image class="author-shared__avatar" src="{{author.avatar_url}}" />

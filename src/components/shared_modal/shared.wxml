@@ -10,7 +10,7 @@
     </view>
 
     <view class="shared__footer u-flex {{isIphoneX ? 'has-safe-padding' : ''}}">
-      <button class="shared__action" open-type="share" bindtap="sharedArticle">
+      <button class="shared__action" open-type="share" bindtap="sharedPage">
         <image class="shared__footer--icon" src="/icons/article_wechat.png" />
         <text>分享给朋友</text>
       </button>

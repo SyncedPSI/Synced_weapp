@@ -28,7 +28,7 @@
 
 <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
 
-<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <canvas slot="canvas" class="document-share__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
   <view class="document-share__container" slot="content">
     <view class="document-share__header">
