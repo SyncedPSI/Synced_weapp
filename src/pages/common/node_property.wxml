@@ -1,7 +1,8 @@
 <import src="/pages/common/node_technologies.wxml"/>
 
 <template name="node-property">
-  <view class="node-header__website" wx:if="{{website !== undefined || website !== '' || website !== null}}">
+  <block wx:if="{{website === undefined || website === '' || website === null}}"></block>
+  <view class="node-header__website" wx:else>
     <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
     <text>机构主页：</text>
     <text class="node-header__link">{{website}}</text>

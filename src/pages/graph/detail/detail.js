@@ -82,7 +82,6 @@ Page({
     wx.setClipboardData({
       data: event.target.dataset.url,
       success: () => {
-        this.closeActionSheet();
         showTipToast('链接已复制');
       }
     });
