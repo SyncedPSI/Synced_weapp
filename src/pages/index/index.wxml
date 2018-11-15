@@ -8,7 +8,7 @@
         <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
           <swiper-item wx:for="{{slide}}" wx:key="slide-{{index}}">
             <view class="slide--content {{currentBannerIndex === index ? 'is-active' : ''}}">
-              <image class="slide--img t-{{index}}" src="{{item}}" />
+              <image class="slide--img" src="{{item}}" />
               <view class="slide--title">腾讯俞栋：定义下一代智能人机交互，从目标、挑战到实现路径</view>
             </view>
           </swiper-item>
