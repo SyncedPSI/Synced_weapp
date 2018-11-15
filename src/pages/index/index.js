@@ -28,12 +28,13 @@ Page({
     this.setData({
       activeCategory: event.target.dataset.type,
       scrollTop: 0,
+      articleList: [],
     }, () => {
       this.articlePage = 1;
-      this.getArticleList(true);
+      this.getArticleList();
     });
   },
-  getArticleList: function (isRefresh = false) {
+  getArticleList: function () {
     const { activeCategory } = this.data;
     const queryCategory = activeCategory === 'all' ? '' : `&category=${activeCategory}`;
     return request(`${articles}?page=${this.articlePage}${queryCategory}`)
@@ -45,15 +46,9 @@ Page({
           item.published_at = getDateDiff(item.published_at);
         });
 
-        if (isRefresh) {
-          this.setData({
-            articleList: newList,
-          });
-        } else {
-          this.setData({
-            articleList: [...articleList, ...newList],
-          });
-        }
+        this.setData({
+          articleList: [...articleList, ...newList],
+        });
       });
   },
   fetchMoreData: function () {
