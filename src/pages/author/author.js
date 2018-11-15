@@ -116,6 +116,7 @@ Page({
       fontSize: 17
     });
 
+    descInfo.height = Math.max(descInfo.height, 196);
     heightInfo.countTop = heightInfo.nameTop + nameInfo.height + 8;
     heightInfo.descTop = heightInfo.countTop + 20 + 24;
     this.height = heightInfo.descTop + descInfo.height + 108;
