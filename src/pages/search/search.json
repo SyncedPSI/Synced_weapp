@@ -4,6 +4,5 @@
     "node": "../../components/node/node",
     "nav": "../../components/navigate/navigate",
     "settingEntry": "../../components/setting_enter/setting"
-  },
-  "enablePullDownRefresh": true
+  }
 }
