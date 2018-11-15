@@ -10,10 +10,14 @@
     margin-bottom: 40rpx;
   }
 
+  &--cover--shadow {
+    width: 84rpx;
+    height: 22rpx;
+  }
+
   &--cover {
     height: 460rpx;
-    width: 230rpx;
-    border: 2rpx solid #e7e7e7;
+    width: 320rpx;
   }
 
   &--title {

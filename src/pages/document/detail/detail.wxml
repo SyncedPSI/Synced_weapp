@@ -7,7 +7,9 @@
 
   <block wx:else>
     <view class="document--bannner">
+      <image class="document--cover--shadow" src="/icons/document_left.png" />
       <image class="document--cover" src="{{document.cover_image_url}}" mode="aspectFill" />
+      <image class="document--cover--shadow" src="/icons/document_right.png" />
     </view>
     <view class="u-detail-padding">
       <view class="document--title">{{document.title}}</view>
