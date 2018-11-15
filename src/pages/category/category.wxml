@@ -1,0 +1,36 @@
+<import src="../common/loading.wxml"/>
+
+<nav isIndex hasShadow="{{false}}" title=""></nav>
+
+<view class="u-tab-title header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">文章</view>
+
+<view class="u-container" style="padding-top: {{statusBarHeight}}px">
+  <view class="content-container">
+    <scroll-view scroll-y bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
+      <view class="u-flex article-nav">
+        <view class="article-nav__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
+      </view>
+      <view class="article-nav__height"></view>
+      <view class="content--list">
+        <navigator url="/pages/article/article?id={{item.id}}&title={{item.title}}" class="article-item" wx:for="{{articleList}}" wx:key="{{item.id}}" hover-class="none">
+          <image class="article-item__cover" src="{{item.cover_image_url}}?imageView2/1/w/288/h/168" />
+          <view class="article-item__right">
+            <view class="article-item__title">{{item.title}}</view>
+            <view class="u-flex article-item__footer">
+              <view class="u-flex article-item__left">
+                <image class="article-item__avatar" src="{{item.author.avatar_url}}" />
+                <text class="article-item__bold u-text-limit--one">{{item.author.nickname}}</text>
+                <text class="article-item__time article-item__shrink">{{item.published_at}}</text>
+              </view>
+              <text class="article-item__bold article-item__shrink">#{{item.category}}</text>
+            </view>
+          </view>
+        </navigator>
+        <!-- <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article> -->
+      </view>
+      <template is="loading" />
+    </scroll-view>
+  </view>
+</view>
+<settingEntry></settingEntry>
+

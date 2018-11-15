@@ -7,7 +7,7 @@
     "pages/document/list/list",
     "pages/document/detail/detail",
     "pages/topic/topic",
-    "pages/trend/trend",
+    "pages/category/category",
     "pages/dailies/dailies",
     "pages/dailies/detail/detail",
     "pages/dailies/share/share",
@@ -38,7 +38,7 @@
     "backgroundColor": "#fff",
     "list": [
       {
-        "pagePath": "pages/trend/trend",
+        "pagePath": "pages/index/index",
         "iconPath": "icons/tab/trend.png",
         "selectedIconPath": "icons/tab/trend_active.png"
       },
@@ -48,7 +48,7 @@
         "selectedIconPath": "icons/tab/daily_active.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/category/category",
         "iconPath": "icons/tab/article.png",
         "selectedIconPath": "icons/tab/article_active.png"
       },

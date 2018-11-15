@@ -1,9 +1,0 @@
-{
-  "window": {
-    "backgroundColor": "#fff"
-  },
-  "usingComponents": {
-    "settingEntry": "../../components/setting_enter/setting",
-    "nav": "../../components/navigate/navigate"
-  }
-}
