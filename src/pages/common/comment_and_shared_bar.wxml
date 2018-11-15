@@ -9,7 +9,7 @@
       <text>评论</text>
     </button>
 
-    <view class="u-fix-bottom--bar" bindtap="sharedPage">
+    <view class="u-fix-bottom--bar" bindtap="openShared">
       <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
       <text>分享</text>
     </view>

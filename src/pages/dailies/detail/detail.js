@@ -73,7 +73,7 @@ Page({
       }
     });
   },
-  sharedPage: function() {
+  openShared: function () {
     wx.navigateTo({
       url: `/pages/dailies/share/share?id=${this.data.id}`
     });

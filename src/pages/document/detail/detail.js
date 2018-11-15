@@ -53,6 +53,19 @@ Page({
       }
     })
   },
+  openComment: function () {
+    this.switchComment(true);
+  },
+
+  closeComment: function () {
+    this.switchComment(false);
+  },
+
+  switchComment: function (status) {
+    this.setData({
+      isShowComment: status
+    });
+  },
   onShareAppMessage: function() {
     const { id, title }= this.data.document;
     return {
@@ -92,6 +105,10 @@ Page({
     this.setData({
       hiddenShared: status
     });
+  },
+
+  openShared: function() {
+    this.toggleShare(false);
   },
 
   closeShared: function () {
