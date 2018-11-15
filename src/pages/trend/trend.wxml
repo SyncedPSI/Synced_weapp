@@ -4,14 +4,21 @@
   <view class="content--container">
     <scroll-view scroll-y bindscrolltolower="getDailyList">
       <view class="u-tab-title">趋势</view>
-      <view class="content--body">
-        <swiper class="slide" indicator-dots indicator-color="#f6f6f6" indicator-active-color="#EB2835" autoplay>
-          <swiper-item class="slide--item" wx:for="{{slide}}" wx:key="slide-{{index}}">
-            <image class="slide--img" src="{{item}}" />
-            <view class="slide--title">腾讯俞栋：定义下一代智能人机交互，从目标、挑战到实现路径</view>
+      <view class="slide--container">
+        <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
+          <swiper-item wx:for="{{slide}}" wx:key="slide-{{index}}">
+            <view class="slide--content {{currentBannerIndex === index ? 'is-active' : ''}}">
+              <image class="slide--img t-{{index}}" src="{{item}}" />
+              <view class="slide--title">腾讯俞栋：定义下一代智能人机交互，从目标、挑战到实现路径</view>
+            </view>
           </swiper-item>
         </swiper>
+      </view>
+      <view class="slide--dots">
+        <view class="slide--dot {{currentBannerIndex === index ? 'is-active' : '' }}" wx:for="{{slide}}" wx:key="{{index}}"></view>
+      </view>
 
+      <view class="content--body">
         <view class="content--title">当下热点</view>
         <block wx:for="{{hotList}}" wx:key="list-{{index}}">
           <view class="trend-item__tip t-{{index}}">NO.{{index + 1}}</view>

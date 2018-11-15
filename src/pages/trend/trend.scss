@@ -19,29 +19,85 @@
 }
 
 .slide {
-  height: 172px!important;
-  margin: 40rpx 0 60rpx;
+  &--container {
+    margin-top: 40rpx;
+    height: 154px;
+    overflow: visible;
+  }
 
-  &--item {
-    position: absolute;
+  &--content {
+    position: relative;
+    height: 100%;
+    transition: transform 500ms;
+    transform: scale(0.86);
+
+    &.is-active {
+      transform: scale(1);
+    }
   }
 
   &--img {
     width: 100%;
     height: 100%;
     display: block;
-    background-color: black;
+
+    &.t-0 {
+      background-color: #8795a9;
+    }
+
+    &.t-2 {
+      background-color: #b7b2a5;
+    }
+
+    &.t-3 {
+      background-color: #a05054;
+    }
+
+    &.t-4 {
+      background-color: #696369;
+    }
+
+    &.t-5 {
+      background-color: #817087;
+    }
+
+    &.t-6 {
+      background-color: #715256;
+    }
+
+    &.t-1 {
+      background-color: #715256;
+    }
   }
 
   &--title {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 40rpx;
+    bottom: 20rpx;
     padding: 0 30rpx;
     font-size: 34rpx;
     font-weight: 500;
     color: #fff;
+  }
+
+  &--dots {
+    margin: 28rpx 0 60rpx;
+    text-align: center;
+    font-size: 0;
+  }
+
+  &--dot {
+    display: inline-block;
+    width: 16rpx;
+    height: 16rpx;
+    margin: 0 6rpx;
+    border-radius: 50%;
+    background-color: #e7e7e7;
+
+    &.is-active {
+      background-color: #ed2835;
+    }
   }
 }
 
