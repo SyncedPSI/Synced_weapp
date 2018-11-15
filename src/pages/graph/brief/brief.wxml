@@ -10,7 +10,8 @@
       <view class="node-header__summary">{{node.summary}}</view>
     </block>
     <block wx:else>
-      <view id="js-content" style="height: {{isExpand ? 'auto' : '88px'}}">
+      <view class="node-header__summary {{isExpand ? '' : 'u-text-limit--three'}}" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
+      <view style="height: {{isExpand ? 'auto' : '0'}}">
         <template is="node-property" data="{{...node}}"/>
       </view>
     </block>
@@ -22,7 +23,7 @@
       </navigator>
       <view class="node--detail" bindtap="seeAll" wx:else>
         <text>{{isExpand ? '收起全部' : '展开全部'}}</text>
-        <image class="node--icon" src="/icons/see_detail.png" />
+        <image class="node--icon" src="/icons/see_more.png" />
       </view>
       <navigator url="">
         <image class="node--shared" src="/icons/daily_action.png" />

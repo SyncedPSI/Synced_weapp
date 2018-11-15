@@ -13,7 +13,7 @@
       <view class="article-nav__height"></view>
       <view class="content--list">
         <navigator url="/pages/article/article?id={{item.id}}&title={{item.title}}" class="article-item" wx:for="{{articleList}}" wx:key="{{item.id}}" hover-class="none">
-          <image class="article-item__cover" src="{{item.cover_image_url}}" />
+          <image class="article-item__cover" src="{{item.cover_image_url}}?imageView2/1/w/288/h/168" />
           <view class="article-item__right">
             <view class="article-item__title">{{item.title}}</view>
             <view class="u-flex article-item__footer">

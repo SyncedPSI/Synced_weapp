@@ -27,10 +27,10 @@
             <image class="article-author__avatar {{articleOwn.type}}" src="{{articleOwn.avatar_url}}" />
             <view class="article-author__right">
               <view class="article-author__name">{{articleOwn.name}}</view>
-              <view class="u-text-limit--one article-author_desc">{{articleOwn.desc || '机器之心编辑'}}</view>
+              <view class="u-text-limit--one article-author_desc">{{articleOwn.desc}}</view>
             </view>
-            <image class="article-author__enter" />
           </view>
+          <image class="article-author__enter" src="/icons/see_detail.png" />
         </navigator>
       </view>
       <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>

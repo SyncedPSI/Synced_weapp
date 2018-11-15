@@ -32,7 +32,8 @@
   }
 
   &__left {
-
+    flex-grow: 1;
+    justify-content: flex-start;
   }
 
   &__avatar {
@@ -43,10 +44,6 @@
     &.column {
       border-radius: 0;
     }
-  }
-
-  &__right {
-
   }
 
   &__name {

@@ -12,6 +12,7 @@
       <view class="node-header">
         <view class="node-header__container">
           <template is="node-header" data="{{...node}}" />
+           <view class="node-header__summary" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
           <template is="node-property" data="{{...node}}"/>
         </view>
       </view>

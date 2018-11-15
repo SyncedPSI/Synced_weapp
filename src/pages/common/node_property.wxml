@@ -1,11 +1,10 @@
 <import src="/pages/common/node_technologies.wxml"/>
 
 <template name="node-property">
-  <view class="node-header__summary" wx:if="{{summary !== ''}}">{{summary}}</view>
-  <view class="node-header__website"  wx:if="{{website !== undefined}}">
+  <view class="node-header__website" wx:if="{{website !== undefined || website !== '' || website !== null}}">
     <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
     <text>机构主页：</text>
-    <text class="node-header__link" redirect hover-class="className">{{website}}</text>
+    <text class="node-header__link">{{website}}</text>
   </view>
   <view class="node-header__origins"  wx:if="{{summary_sources != null}}">
     <image class="node-header__icon" src="{{val}}/icons/node_source.png" />
