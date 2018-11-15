@@ -15,6 +15,10 @@ Page({
     this.getDailyList();
   },
 
+  fetchMore: function() {
+    this.getDailyList();
+  },
+
   getDailyList: function (isRefresh = false) {
     return request(`${dailies}?page=${this.dailyPage}`)
       .then(res => {

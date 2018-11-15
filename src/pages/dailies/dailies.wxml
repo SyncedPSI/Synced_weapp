@@ -3,7 +3,7 @@
 <nav isIndex hasShadow="{{false}}" title=""></nav>
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <scroll-view scroll-y bindscrolltolower="getDailyList">
+    <scroll-view scroll-y bindscrolltolower="fetchMore">
       <view class="u-tab-title">快讯</view>
       <view class="daily--list">
         <block wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
