@@ -39,23 +39,23 @@
     "list": [
       {
         "pagePath": "pages/trend/trend",
-        "iconPath": "icons/tab_trend.png",
-        "selectedIconPath": "icons/tab_trend_active.png"
+        "iconPath": "icons/tab/trend.png",
+        "selectedIconPath": "icons/tab/trend_active.png"
       },
       {
         "pagePath": "pages/dailies/dailies",
-        "iconPath": "icons/tab_daily.png",
-        "selectedIconPath": "icons/tab_daily_active.png"
+        "iconPath": "icons/tab/daily.png",
+        "selectedIconPath": "icons/tab/daily_active.png"
       },
       {
         "pagePath": "pages/index/index",
-        "iconPath": "icons/tab_article.png",
-        "selectedIconPath": "icons/tab_article_active.png"
+        "iconPath": "icons/tab/article.png",
+        "selectedIconPath": "icons/tab/article_active.png"
       },
       {
         "pagePath": "pages/document/list/list",
-        "iconPath": "icons/tab_article.png",
-        "selectedIconPath": "icons/tab_article_active.png"
+        "iconPath": "icons/tab/document.png",
+        "selectedIconPath": "icons/tab/document_active.png"
       }
     ]
   }
