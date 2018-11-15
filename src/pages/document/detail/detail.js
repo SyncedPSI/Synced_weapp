@@ -33,10 +33,10 @@ Page({
       url: this.data.document.file_url,
       success: (res) => {
         if (res.statusCode === 200) {
-          wx.saveFile({
-            tempFilePath: res.tempFilePath,
+          wx.openDocument({
+            filePath: res.tempFilePath,
             success: () => {
-              showTipToast('已保存');
+              hideLoading();
             },
             fail: (error) => {
               console.log(error);
