@@ -1,4 +1,4 @@
-import { request, showErrorToast } from "utils/util";
+import { request } from "utils/util";
 import { searchByKeyword } from "config/api";
 
 Page({
