@@ -3,7 +3,6 @@ import { documents } from "config/api";
 
 Page({
   data: {
-    isNavFixed: false,
     reportList: [],
     hasMore: true,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,

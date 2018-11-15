@@ -18,7 +18,7 @@
           </view>
         </navigator>
       </view>
-      <template is="loading" wx:if="{{hasReport}}" />
+      <template is="loading" wx:if="{{hasMore}}" />
     </scroll-view>
   </view>
 </view>
