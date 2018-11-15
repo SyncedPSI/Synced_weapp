@@ -27,7 +27,7 @@
             <image class="article-author__avatar {{articleOwn.type}}" src="{{articleOwn.avatar_url}}" />
             <view class="article-author__right">
               <view class="article-author__name">{{articleOwn.name}}</view>
-              <view class="u-text-limit--one article-author_desc">{{articleOwn.desc}}</view>
+              <view class="u-text-limit--one article-author_desc">{{articleOwn.desc || ''}}</view>
             </view>
           </view>
           <image class="article-author__enter" src="/icons/see_detail.png" />

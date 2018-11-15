@@ -13,7 +13,7 @@
               <view class="author--name">{{author.name}}</view>
               <image class="author--share" src="/icons/daily_action.png" mode="aspectFill" bindtap="openShared" />
             </view>
-            <view class="author--desc">{{author.description}}</view>
+            <view class="author--desc">{{author.description || ''}}</view>
           </view>
         </view>
         <view class="author-article">

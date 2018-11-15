@@ -63,9 +63,13 @@ Component({
     },
     getUserInfo: function (event) {
       app.login(event.detail.userInfo, () => {
-        wx.navigateTo({
-          url: '/pages/search/search'
-        });
+        this.setData({
+          isLogin: true,
+        }, () => {
+          wx.navigateTo({
+            url: '/pages/search/search'
+          });
+        })
       });
     },
   }

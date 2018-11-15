@@ -11,7 +11,7 @@ export const topicDetail = ApiRootUrl + '/topics/';
 export const bindAccount = ApiV1 + '/bind_account/';
 export const login = ApiV1 + '/login/';
 export const register = ApiV1 + '/register/';
-export const searchByKeyword = ApiRootUrl + '/search?type=for_weapp&keywords=';
+export const searchByKeyword = ApiV1 + '/search?type=for_weapp&keywords=';
 export const comments = ApiV1 + '/comments';
 export const readLaterCount = ApiV1 + '/read_laters/count';
 export const readLater = ApiV1 + '/read_laters';
