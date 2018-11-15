@@ -2,10 +2,7 @@
 
 <nav isIndex hasShadow="{{false}}" title=""></nav>
 
-<view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
-  <text class="u-tab-title">文章</text>
-  <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
-</view>
+<view class="u-tab-title header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">文章</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">

@@ -3,7 +3,6 @@ import { articles } from "config/api";
 
 Page({
   data: {
-    // searchIconUrl: "/icons/ic_search.svg",
     articleList: [],
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     scrollTop: 0,

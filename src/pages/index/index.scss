@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'load_more';
-@import 'mixins';
 
 page {
   background-color: #fff;
@@ -12,7 +11,6 @@ page {
   left: 0;
   right: 0;
   z-index: 1;
-  padding: 10rpx 0;
   background-color: #fff;
 }
 

@@ -76,7 +76,7 @@
     width: 100%;
     background-color: $bg-white;
     padding: 12rpx 28rpx;
-    color: $mute-black;
+    color: #a8a8a8;
     font-size: 28rpx;
     border-radius: 60rpx;
   }
@@ -88,10 +88,10 @@
   }
 
   &--search {
-    width: 28rpx;
-    height: 28rpx;
-    display: inline-block;
-    vertical-align: middle;
+    width: 34rpx;
+    height: 34rpx;
+    vertical-align: top;
+    margin-top: 2rpx;
     margin-right: 10rpx;
   }
 

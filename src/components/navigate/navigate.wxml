@@ -13,11 +13,11 @@
     <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
       <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
         <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
-        探索机器之心
+        <text>探索机器之心</text>
       </navigator>
       <button class="global-nav--input t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
         <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
-        探索机器之心
+        <text>探索机器之心</text>
       </button>
     </view>
 
