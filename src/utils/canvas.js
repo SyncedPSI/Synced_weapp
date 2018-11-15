@@ -1,4 +1,4 @@
-import { showTipToast, showErrorToast } from './util';
+import { showTipToast, showErrorToast, hideLoading } from './util';
 
 const isPunctuation = (char) => {
   return (char === '，' || char === '。')
@@ -114,4 +114,10 @@ export const saveImage = (width, height, authErrorCb) => {
       showErrorToast('生成失败');
     }
   });
+};
+
+export const drawFail = (msg) => {
+  console.log('download cover fail', msg);
+  hideLoading();
+  showErrorToast('生成失败,请重试');
 };

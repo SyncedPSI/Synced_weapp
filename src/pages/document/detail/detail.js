@@ -1,5 +1,5 @@
 import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail } from 'utils/canvas';
 import { documents } from "config/api";
 
 Page({
@@ -143,12 +143,6 @@ Page({
     });
   },
 
-  drawFail: function (msg) {
-    console.log('download cover fail', msg);
-    hideLoading();
-    showErrorToast('生成失败,请重试');
-  },
-
   draw: function (titleInfo, heightInfo) {
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
@@ -205,11 +199,11 @@ Page({
             this.saveImage();
           });
         } else {
-          this.drawFail(res);
+          drawFail(res);
         }
       },
       fail: (error) => {
-        this.drawFail(error);
+        drawFail(error);
       }
     })
   },

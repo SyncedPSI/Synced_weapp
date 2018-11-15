@@ -1,5 +1,5 @@
-import { request, getDateDiff, showTipToast, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
+import { request, getDateDiff, showTipToast, showLoading, hideLoading } from "utils/util";
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -299,12 +299,6 @@ Page({
     });
   },
 
-  drawFail: function (msg) {
-    console.log('download cover fail', msg);
-    hideLoading();
-    showErrorToast('生成失败,请重试');
-  },
-
   draw: function (titleInfo, descInfo, heightInfo) {
     const hrCenter = this.width / 2;
     this.ctx.clearRect(0, 0, this.width, this.height);
@@ -383,11 +377,11 @@ Page({
             });
           }
         } else {
-          this.drawFail(res);
+          drawFail(res);
         }
       },
       fail: (error) => {
-        this.drawFail(error);
+        drawFail(error);
       }
     })
   },

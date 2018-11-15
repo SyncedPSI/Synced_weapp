@@ -1,5 +1,5 @@
 import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawFail } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
 Page({
@@ -100,10 +100,11 @@ Page({
       qrcodeHeight: 54,
     };
 
+    const { author } = this.data;
     const nameInfo = getWrapTextHeight({
       maxWidth: this.width * 0.64,
       ctx: this.ctx,
-      text: this.data.author.name,
+      text: author.name,
       fontSize: 24,
       lineHeight: 36,
     });
@@ -111,7 +112,7 @@ Page({
     const descInfo = getWrapTextHeight({
       maxWidth: this.width * 0.58,
       ctx: this.ctx,
-      text: this.data.author.description,
+      text: author.description || '',
       lineHeight: 28,
       fontSize: 17
     });
@@ -128,12 +129,6 @@ Page({
     }, () => {
       this.draw(nameInfo, descInfo, heightInfo);
     });
-  },
-
-  drawFail: function (msg) {
-    console.log('download cover fail', msg);
-    hideLoading();
-    showErrorToast('生成失败,请重试');
   },
 
   draw: function (nameInfo, descInfo, heightInfo) {
@@ -215,11 +210,11 @@ Page({
             this.saveImage();
           });
         } else {
-          this.drawFail(res);
+          drawFail(res);
         }
       },
       fail: (error) => {
-        this.drawFail(error);
+        drawFail(error);
       }
     })
   },
