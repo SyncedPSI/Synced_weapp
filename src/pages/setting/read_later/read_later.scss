@@ -9,7 +9,7 @@ page {
 .readlater {
   &--container {
     // $setting-header + $nav-content-height
-    height: calc(100vh - 120rpx - 98rpx);
+    height: calc(100vh - 98rpx - 98rpx);
     margin-top: $setting-header;
 
     scroll-view {
