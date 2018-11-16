@@ -36,8 +36,12 @@
   }
 }
 
+nodes {
+  margin-bottom: 80rpx;
+}
+
 .node-trend {
-  padding: 80rpx 40rpx 0 40rpx;
+  padding: 0 40rpx;
 
   &__title {
     font-size: 32rpx;
