@@ -9,10 +9,10 @@ Page({
     activeCategory: 'all',
     category: [
       { en: 'all', zh: '全部' },
-      { en: 'industry', zh: '产业' },
-      { en: 'practice', zh: '工程' },
-      { en: 'theory', zh: '理论' },
-      { en: 'basic', zh: '入门' },
+      { en: 'industry', zh: '#产业' },
+      { en: 'practice', zh: '#工程' },
+      { en: 'theory', zh: '#理论' },
+      { en: 'basic', zh: '#入门' },
     ]
   },
 
