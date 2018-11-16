@@ -42,12 +42,14 @@ Component({
   data: {
     paddingTop: app.globalData.systemInfo.statusBarHeight,
     isAndroid: app.globalData.isAndroid,
-    isLogin: false
+    isLogin: false,
+    avatarUrl: app.globalData.userInfo && app.globalData.userInfo.avatarUrl,
   },
   ready: function () {
     this.setData({
       isLogin: app.globalData.isLogin,
     });
+    console.log(app.globalData.userInfo)
   },
   detached: function () {
 
@@ -62,12 +64,17 @@ Component({
       });
     },
     getUserInfo: function (event) {
+      let pagePath = '/pages/search/search';
+      if (event.currentTarget.dataset.type === user) {
+        pagePath = '/pages/setting/read_later/read_later';
+      }
       app.login(event.detail.userInfo, () => {
         this.setData({
           isLogin: true,
+          avatarUrl: app.globalData.userInfo.avatarUrl
         }, () => {
           wx.navigateTo({
-            url: '/pages/search/search'
+            url: pagePath
           });
         })
       });

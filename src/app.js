@@ -11,6 +11,7 @@ App({
   },
 
   onLaunch: function () {
+    this.globalData.userInfo = wx.getStorageSync('userInfo');
     this.checkSession();
     this.checkSystemInfo();
     this.getCookies();

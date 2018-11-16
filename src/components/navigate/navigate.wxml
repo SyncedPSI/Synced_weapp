@@ -11,14 +11,24 @@
 <block wx:if="{{!notShow}}">
   <view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;">
     <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
-      <navigator class="global-nav--input" url="/pages/search/search" wx:if="{{pageLogin || isLogin}}">
-        <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
-        <text>探索机器之心</text>
-      </navigator>
-      <button class="global-nav--input t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" hover-class="none" wx:else>
-        <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
-        <text>探索机器之心</text>
-      </button>
+      <block wx:if="{{pageLogin || isLogin}}">
+        <navigator  class="global-nav--user" url="/pages/setting/read_later/read_later" hover-class="none">
+          <image class="global-nav--avatar" src="{{avatarUrl}}" />
+        </navigator>
+        <navigator class="global-nav--input" url="/pages/search/search">
+          <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
+          <text>探索机器之心</text>
+        </navigator>
+      </block>
+      <block wx:else>
+        <button class="global-nav--user" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="user">
+          <image class="global-nav--avatar" src="/icons/no_login.png" />
+        </button>
+        <button class="global-nav--input t-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="search" hover-class="none">
+          <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
+          <text>探索机器之心</text>
+        </button>
+      </block>
     </view>
 
     <block wx:elif="{{isNoSearch}}">
