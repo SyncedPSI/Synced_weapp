@@ -7,7 +7,7 @@
   <view class="node-header__container">
     <template is="node-header" data="{{...node}}" />
     <block wx:if="{{node.level === 'level_3'}}">
-      <view class="node-header__summary">{{node.summary}}</view>
+      <view class="u-text-limit--three node-header__summary">{{node.summary}}</view>
     </block>
     <block wx:else>
       <view class="node-header__summary {{isExpand ? '' : 'u-text-limit--three'}}" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
