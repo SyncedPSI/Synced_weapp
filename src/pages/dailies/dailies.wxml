@@ -33,7 +33,6 @@
     </scroll-view>
   </view>
 </view>
-<settingEntry></settingEntry>
 
 <action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
   <action-sheet-item>

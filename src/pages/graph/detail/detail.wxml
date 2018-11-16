@@ -31,7 +31,6 @@
   </view>
 
   <catalog catalogList="{{catalogList}}" wx:if="{{node.level === 'level_3'}}" bindscroll="setScrollTarget"></catalog>
-  <settingEntry></settingEntry>
 </block>
 
 <!--

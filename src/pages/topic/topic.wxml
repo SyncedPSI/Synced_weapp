@@ -37,5 +37,4 @@
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
 </view>

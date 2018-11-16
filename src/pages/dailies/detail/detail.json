@@ -2,7 +2,6 @@
   "backgroundColor": "#fff",
   "usingComponents": {
     "comment": "../../../components/comment/comment",
-    "settingEntry": "../../../components/setting_enter/setting",
     "nav": "../../../components/navigate/navigate"
   }
 }

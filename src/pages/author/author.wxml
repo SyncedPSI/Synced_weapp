@@ -37,7 +37,6 @@
       </block>
     </scroll-view>
   </view>
-  <settingEntry></settingEntry>
 </view>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">

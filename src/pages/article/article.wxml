@@ -71,7 +71,6 @@
       </view>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <settingEntry hasComment pageLogin="{{isLogin}}" bindsuccessloginevent="successLogin"></settingEntry>
 </view>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{article.cover_image_url}}">

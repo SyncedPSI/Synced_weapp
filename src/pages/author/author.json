@@ -2,7 +2,6 @@
   "usingComponents": {
     "nav": "../../components/navigate/navigate",
     "shared": "../../components/shared_modal/shared",
-    "album-setting": "../../components/album_setting/setting",
-    "settingEntry": "../../components/setting_enter/setting"
+    "album-setting": "../../components/album_setting/setting"
   }
 }
