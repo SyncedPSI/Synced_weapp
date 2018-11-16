@@ -49,8 +49,8 @@
       },
       {
         "pagePath": "pages/category/category",
-        "iconPath": "icons/tab/article.png",
-        "selectedIconPath": "icons/tab/article_active.png"
+        "iconPath": "icons/tab/category.png",
+        "selectedIconPath": "icons/tab/category_active.png"
       },
       {
         "pagePath": "pages/document/list/list",
