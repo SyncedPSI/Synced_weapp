@@ -49,7 +49,6 @@ Component({
     this.setData({
       isLogin: app.globalData.isLogin,
     });
-    console.log(app.globalData.userInfo)
   },
   detached: function () {
 

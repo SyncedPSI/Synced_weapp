@@ -10,10 +10,6 @@
     margin: 0;
   }
 
-  &.t-finish {
-    opacity: .5;
-  }
-
   &.is-node::after {
     content: '';
     position: absolute;

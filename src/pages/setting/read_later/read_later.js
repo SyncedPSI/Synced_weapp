@@ -1,16 +1,16 @@
 import { request, getDateDiff, showTipToast } from "utils/util";
-import { readLater } from "config/api";
+import { readLater, readLaterCount } from "config/api";
 
 Page({
   data: {
     list: [],
-    startX: 0,
-    startY: 0,
+    isEdit: false,
     maxRightBtnWidth: 80,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
   },
   onLoad: function () {
     this.getList();
+    this.getReadLaterCount();
   },
 
   getList: function() {
@@ -26,60 +26,23 @@ Page({
       })
   },
 
-  touchStart: function(event) {
-    const { list } = this.data;
-    list.forEach((item) => {
-      item.isOpenBtn = false;
-    });
-    const { clientX, clientY } = event.changedTouches[0];
-    this.setData({
-      list,
-      startX: clientX,
-      startY: clientY,
-    });
+  getReadLaterCount: function () {
+    request(readLaterCount)
+      .then((res) => {
+        this.setData({
+          readLastersCount: res.data.count
+        });
+      })
   },
 
-  touchMove: function(event) {
-    const index = event.currentTarget.dataset.index;
-    const { clientX } = event.changedTouches[0];
-    const { startX, list, maxRightBtnWidth } = this.data;
-    if (clientX > startX) {
-      list[index].txtStyle = '';
-      this.setData({
-        list,
-      });
-      return; // right slide
-    }
-
-    let distance = startX - clientX;
-    if (maxRightBtnWidth < distance) {
-      distance = maxRightBtnWidth;
-    }
-    list[index].txtStyle = `right: ${distance}px`;
+  switchEdit: function() {
     this.setData({
-      list,
-    });
-  },
-
-  touchEnd: function(event) {
-    const index = event.currentTarget.dataset.index;
-    const { clientX } = event.changedTouches[0];
-    const { startX, list, maxRightBtnWidth } = this.data;
-    const distance = startX - clientX;
-    list[index].txtStyle = '';
-
-    if (maxRightBtnWidth < distance) {
-      list[index].isOpenBtn = true;
-    }
-
-    this.setData({
-      startX: 0,
-      startY: 0,
-      list,
+      isEdit: !this.data.isEdit
     });
   },
 
   deleteItem: function(event) {
+    console.log('klkk')
     const { id, index } = event.currentTarget.dataset;
 
     request(`${readLater}/${id}`, {}, 'DELETE')
