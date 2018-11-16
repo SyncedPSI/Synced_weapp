@@ -144,13 +144,12 @@ Page({
           this.ctx.drawImage('/images/logo.svg', this.width - 20 - 64, 15, 64, 24);
 
           // name bg
-          const bgHeight = nameInfo.height + 24;
-          this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
-          this.ctx.fillRect(133, 94, this.width * 0.64, bgHeight);
-          this.ctx.beginPath()
-          this.ctx.arc(133, 94 + bgHeight / 2, bgHeight / 2, 0.5 * Math.PI, 1.5 * Math.PI);
+          // const bgHeight = nameInfo.height + 24;
           // this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
-          this.ctx.fill();
+          // this.ctx.fillRect(133, 94, this.width * 0.64, bgHeight);
+          // this.ctx.beginPath()
+          // this.ctx.arc(133, 94 + bgHeight / 2, bgHeight / 2, 0.5 * Math.PI, 1.5 * Math.PI);
+          // this.ctx.fill();
 
           // name
           drawMultiLines({
