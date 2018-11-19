@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'load_more';
 @import 'mixins';
+@import 'has_tabbar';
 
 page {
   background-color: #fff;
@@ -49,11 +50,6 @@ page {
     color: #a8a8a8;
     font-size: 24rpx;
   }
-}
-
-.content-container {
-  height: 100%;
-  box-sizing: border-box;
 }
 
 .content--list {

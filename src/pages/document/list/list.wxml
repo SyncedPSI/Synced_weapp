@@ -1,11 +1,11 @@
 <import src="/pages/common/loading.wxml"/>
 
 <nav isIndex hasShadow="{{false}}" title=""></nav>
+<view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">报告</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
    <scroll-view scroll-y bindscrolltolower="fetchMoreData">
-      <view class="u-tab-title">报告</view>
       <view class="content--list">
         <navigator class="u-flex document\-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
           <image class="document\-item__cover" src="{{item.cover_image_url}}" />

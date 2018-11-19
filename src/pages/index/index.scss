@@ -1,11 +1,8 @@
 @import 'variables';
 @import 'common';
+@import 'has_tabbar';
 
 .content {
-  &--container {
-    height: 100%;
-  }
-
   &--title {
     font-size: 42rpx;
     color: #121212;

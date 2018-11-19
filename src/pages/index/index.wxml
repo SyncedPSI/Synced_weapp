@@ -1,9 +1,9 @@
 <nav isIndex hasShadow="{{false}}" title=""></nav>
+<view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">趋势</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
-  <view class="content--container">
+  <view class="content-container">
     <scroll-view scroll-y bindscrolltolower="getDailyList">
-      <view class="u-tab-title">趋势</view>
       <view class="slide--container">
         <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
           <swiper-item wx:for="{{slide}}" wx:key="slide-{{index}}">

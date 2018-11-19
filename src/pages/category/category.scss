@@ -1,16 +1,8 @@
 @import 'variables';
 @import 'load_more';
+@import 'has_tabbar';
 
 page {
-  background-color: #fff;
-}
-
-.header-nav {
-  position: fixed;
-  top: $nav-content-height;
-  left: 0;
-  right: 0;
-  z-index: 1;
   background-color: #fff;
 }
 
@@ -96,12 +88,6 @@ page {
   &__shrink {
     flex-shrink: 0;
   }
-}
-
-.content-container {
-  height: 100%;
-  padding-top: 98rpx;
-  box-sizing: border-box;
 }
 
 .content--list {
