@@ -24,8 +24,18 @@ Page({
     this.switchComment(true);
   },
 
-  closeComment: function() {
+  closeComment: function(event) {
     this.switchComment(false);
+    if (event.detail && event.detail.commentStr) {
+      this.setData({
+        commentStr: event.detail.commentStr
+      });
+    }
+
+    if (this.needOpenShare) {
+      this.needOpenShare = false;
+      this.openShared();
+    }
   },
 
   switchComment: function(status) {
