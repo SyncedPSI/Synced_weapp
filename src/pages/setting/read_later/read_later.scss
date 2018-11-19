@@ -59,11 +59,6 @@ page {
     background-color: #fff;
     position: relative;
     z-index: 3;
-    transition: right .28s;
-
-    &.is-open {
-      right: 160rpx;
-    }
   }
 
   &--btn {
@@ -100,7 +95,7 @@ page {
 .article {
   &--item {
     position: relative;
-    transition: left .3;
+    transition: left 500ms;
     z-index: 2;
     background-color: #fff;
   }
@@ -127,7 +122,7 @@ page {
 
   &--category {
     flex-shrink: 0;
-    margin-right: 60rpx;
+    margin-left: 60rpx;
   }
 }
 
