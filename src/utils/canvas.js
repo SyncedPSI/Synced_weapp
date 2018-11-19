@@ -151,9 +151,10 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
     url: userInfo.avatarUrl,
     success: (res) => {
       if (res.statusCode === 200) {
-        // avatar
         ctx.save();
+        ctx.setFillStyle('#fff');
         ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
+        ctx.fill();
         ctx.clip();
         ctx.drawImage(res.tempFilePath, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
         ctx.restore();

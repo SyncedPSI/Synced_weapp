@@ -20,6 +20,29 @@ Page({
     actionSheetHidden: true,
   },
 
+  onLoad: function(option) {
+    const { id, from } = option;
+    this.setData({
+      id,
+      isLogin: app.globalData.isLogin,
+      isFromWeapp: from === "weapp",
+    });
+
+    request(`${dailyDetail}${id}`)
+      .then(res => {
+        const daily = res.data;
+        const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));
+        this.setData({
+          navigateTitle: daily.title,
+          daily,
+          isFetching: false,
+          showUrl: showUrl[showUrl.length - 1],
+          userInfo: wx.getStorageSync('userInfo')
+        });
+      });
+    this.initCanvas();
+  },
+
   openComment: function() {
     this.switchComment(true);
   },
@@ -44,28 +67,6 @@ Page({
     });
   },
 
-  onLoad: function(option) {
-    const { id, from } = option;
-    this.setData({
-      id,
-      isLogin: app.globalData.isLogin,
-      isFromWeapp: from === "weapp",
-    });
-
-    request(`${dailyDetail}${option.id}`)
-      .then(res => {
-        const daily = res.data;
-        const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));
-        this.setData({
-          navigateTitle: daily.title,
-          daily,
-          isFetching: false,
-          showUrl: showUrl[showUrl.length - 1],
-          userInfo: wx.getStorageSync('userInfo')
-        });
-      });
-    this.initCanvas();
-  },
   initCanvas: function () {
     this.width = getApp().globalData.systemInfo.screenWidth;
     this.paddingLeft = 24;
