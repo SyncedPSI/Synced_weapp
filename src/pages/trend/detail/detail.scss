@@ -1,5 +1,4 @@
-@import 'variables';
-@import 'fix_bottom';
+@import '../trend';
 
 .trend {
   &--bannner {
@@ -7,10 +6,7 @@
   }
 
   &--cover {
-    display: block;
-    height: 160px;
-    width: 100%;
-    margin-bottom: 20rpx;
+    margin-bottom: 40rpx;
   }
 
   &--day {
@@ -37,34 +33,20 @@
     padding: 0 40rpx;
     font-size: 32rpx;
     color: #121212;
-    margin: 60rpx;
+    margin: 20rpx 0;
   }
 
-  &--list {
-    padding: 0 40rpx;
-  }
 }
 
 .trend-item {
-  display: block;
   padding-top: 40rpx;
-  overflow: hidden;
-
-  &:not(:last-child) {
-    border-bottom: 2rpx solid $bg-white;
-  }
 
   &__title {
-    margin: 0;
-    font-size: 36rpx;
-    color: $black;
     font-weight: normal;
+    color: $black;
   }
 
   &__desc {
     margin: 24rpx 0 40rpx;
-    font-size: 32rpx;
-    color: $secondary-black;
-    line-height: 1.63;
   }
 }
