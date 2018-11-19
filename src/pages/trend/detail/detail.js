@@ -66,9 +66,9 @@ Page({
       path: `/pages/daily/show/show?id=${id}&from=weapp`,
     };
   },
-  copySource: function() {
+  copySource: function(event) {
     wx.setClipboardData({
-      data: this.data.daily.url,
+      data: event.currentTarget.dataset.url,
       success: () => {
         showTipToast('链接已复制');
       }

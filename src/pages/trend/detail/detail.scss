@@ -1,52 +1,46 @@
 @import '../trend';
 
 .trend {
-  &--bannner {
-    position: relative;
+  &--title {
+    padding: 0 40rpx;
+    margin: 40rpx 0 60rpx;
   }
 
-  &--cover {
-    margin-bottom: 40rpx;
-  }
-
-  &--day {
-    position: absolute;
-    top: 53%;
-    left: 6.2%;
-    color: #fff;
-    font-size: 32rpx;
-    font-weight: 300;
-  }
-
-  &--type {
-    display: inline-block;
-    margin: 40rpx 0 0;
-    border-left: 6rpx solid $red;
-    background-color: $black;
-    padding: 6rpx 20rpx 6rpx 34rpx;
-    font-size: 36rpx;
-    font-weight: 500;
-    color: #fff;
+  &--list {
+    padding: 0 40rpx;
   }
 
   &--desc {
+    background-color: #f6f6f6;
+    padding: 32rpx 40rpx;
+    font-size: 32rpx;
+    line-height: 1.75;
+    color: $title-black;
+  }
+
+  &--content {
     padding: 0 40rpx;
     font-size: 32rpx;
     color: #121212;
-    margin: 20rpx 0;
+    margin-bottom: 20rpx;
   }
-
 }
 
 .trend-item {
-  padding-top: 40rpx;
+  padding-top: 60rpx;
 
   &__title {
-    font-weight: normal;
-    color: $black;
+    font-weight: 500;
+    color: #414141;
+  }
+
+  &__author {
+    color: $mute-black;
+    font-size: 28rpx;
+    margin-top: 24rpx;
   }
 
   &__desc {
-    margin: 24rpx 0 40rpx;
+    margin: 28px 0 60rpx;
   }
 }
