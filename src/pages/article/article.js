@@ -1,5 +1,5 @@
 import { request, getDateDiff, showTipToast, showLoading, hideLoading } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail, drawComment } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -337,44 +337,17 @@ Page({
             });
             this.drawOther(heightInfo, hrCenter);
           } else {
-            const markHeight = 20;
-            const markWidth = 26;
-            const avatarHalfHeight = 10;
-            // left mark
-            this.ctx.drawImage('/icons/article_mark_left.png', this.paddingLeft, heightInfo.leftMarkTop, markWidth, markHeight);
-            this.ctx.drawImage('/icons/article_mark_right.png', this.width - this.paddingLeft * 2 - markHeight, heightInfo.rightMarkTop, markWidth, markHeight);
-            drawOneLine({
+            drawComment({
               ctx: this.ctx,
-              fontSize: 14,
-              color: '#7d7d7d',
-              text: this.data.userInfo.nickName,
-              x: 33 + avatarHalfHeight * 2 + 5,
-              y: heightInfo.userTop + 3,
-              isBold: true,
-            });
-
-            drawMultiLines({
-              ctx: this.ctx,
-              fontSize: 17,
-              text: descInfo,
-              x: 33,
-              y: heightInfo.descTop,
-              lineHeight: 28,
-            });
-            wx.downloadFile({
-              url: this.data.userInfo.avatarUrl,
-              success: (res) => {
-                if (res.statusCode === 200) {
-                  // avatar
-                  this.ctx.save();
-                  this.ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
-                  this.ctx.clip();
-                  this.ctx.drawImage(res.tempFilePath, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
-                  this.ctx.restore();
-                  this.drawOther(heightInfo, hrCenter);
-                }
+              userInfo: this.data.userInfo,
+              heightInfo,
+              comment: descInfo,
+              leftMarkOffset: this.paddingLeft,
+              rightMarkOffset: this.width - this.paddingLeft * 2,
+              cb: () => {
+                this.drawOther(heightInfo, hrCenter);
               }
-            });
+            })
           }
         } else {
           drawFail(res);

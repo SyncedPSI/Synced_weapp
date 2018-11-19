@@ -6,10 +6,6 @@ Component({
     hiddenShared: {
       type: Boolean,
       value: true
-    },
-    imgUrl: {
-      type: String,
-      value: null,
     }
   },
   methods: {

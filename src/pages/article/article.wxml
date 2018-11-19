@@ -73,12 +73,12 @@
   </scroll-view>
 </view>
 
-<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{article.cover_image_url}}">
+<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}">
   <canvas slot="canvas" class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
   <view slot="content">
     <view class="article-shared__cover--mask"></view>
     <image class="article-shared__logo" src="/images/logo_white.png" />
-    <image class="article-shared__cover" src="{{imgUrl}}" mode="aspectFill" />
+    <image class="article-shared__cover" src="{{article.cover_image_url}}" mode="aspectFill" />
     <view class="article-shared__content">
       <view class="article-shared__title">{{article.title}}</view>
 

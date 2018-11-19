@@ -121,3 +121,44 @@ export const drawFail = (msg) => {
   hideLoading();
   showErrorToast('生成失败,请重试');
 };
+
+export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset, rightMarkOffset, cb}) => {
+  const markHeight = 20;
+  const markWidth = 26;
+  const avatarHalfHeight = 10;
+  // left mark
+  ctx.drawImage('/icons/article_mark_left.png', leftMarkOffset, heightInfo.leftMarkTop, markWidth, markHeight);
+  ctx.drawImage('/icons/article_mark_right.png', rightMarkOffset - markHeight, heightInfo.rightMarkTop, markWidth, markHeight);
+  drawOneLine({
+    ctx: ctx,
+    fontSize: 14,
+    color: '#7d7d7d',
+    text: userInfo.nickName,
+    x: 33 + avatarHalfHeight * 2 + 5,
+    y: heightInfo.userTop + 3,
+    isBold: true,
+  });
+
+  drawMultiLines({
+    ctx: ctx,
+    fontSize: 17,
+    text: comment,
+    x: 33,
+    y: heightInfo.descTop,
+    lineHeight: 28,
+  });
+  wx.downloadFile({
+    url: userInfo.avatarUrl,
+    success: (res) => {
+      if (res.statusCode === 200) {
+        // avatar
+        ctx.save();
+        ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
+        ctx.clip();
+        ctx.drawImage(res.tempFilePath, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
+        ctx.restore();
+        cb();
+      }
+    }
+  });
+}
