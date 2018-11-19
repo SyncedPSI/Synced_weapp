@@ -34,6 +34,10 @@
 
   <view class="node-trend">
     <view class="node-trend__title">相关动态</view>
+    <view class="none" hidden="{{trends.length > 0}}">
+      <image class="none--icon" src="{{path}}/icons/none_trend.png" />
+      <text class="none--text">暂无动态</text>
+    </view>
     <navigator class="node-trend__item" url="" hover-class="none">
       <view class="node-trend__name">Task Transfer by Preference-Based Cost Learning</view>
       <view class="u-flex node-trend__footer">

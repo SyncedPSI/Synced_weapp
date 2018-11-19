@@ -1,0 +1,18 @@
+.none {
+  margin: 60rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #121212;
+
+  &--icon {
+    width: 56rpx;
+    height: 56rpx;
+    margin-right: 20rpx;
+    vertical-align: middle;
+  }
+
+  &--text {
+    vertical-align: middle;
+    display: inline-block;
+  }
+}
