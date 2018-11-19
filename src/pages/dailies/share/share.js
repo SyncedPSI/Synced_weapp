@@ -79,6 +79,7 @@ Page({
       // set ctx
       setBg(this.ctx, this.width, this.height);
       this.ctx.drawImage('/images/daily_banner.png', 0, 0, this.width, heightInfo.bannerHeight);
+      this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
       // title
       drawMultiLines({
         ctx: this.ctx,

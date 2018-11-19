@@ -75,7 +75,7 @@
 </view>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}">
-  <canvas slot="canvas" class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+  <canvas slot="canvas" class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
   <view slot="content">
     <view class="article-shared__cover--mask"></view>
     <image class="article-shared__logo" src="/images/logo_white.png" />
@@ -83,10 +83,6 @@
     <view class="article-shared__content">
       <view class="article-shared__title">{{article.title}}</view>
       <template is="shared_center" data="{{isLogin: isLogin, commentStr: commentStr, userInfo: userInfo}}" />
-    </view>
-    <view class="article-shared__center">
-      <image class="article-shared__qrcode" src="/images/qrcode.png" />
-      <view class="article-shared__tip">长按小程序码，阅读原文</view>
     </view>
   </view>
 </shared>

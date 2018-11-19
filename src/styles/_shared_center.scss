@@ -76,4 +76,26 @@
     font-size: 20rpx;
     color: $secondary-black;
   }
+
+  &__center {
+    text-align: center;
+  }
+
+  &__qrcode {
+    width: 128rpx;
+    height: 128rpx;
+    margin-top: 10rpx;
+  }
+
+  &__tip {
+    color: #7d7d7d;
+    margin: 22rpx 0 32rpx;
+    font-size: 24rpx;
+  }
+
+  &__canvas {
+    width: 100%;
+    position: absolute;
+    left: 10000rpx;
+  }
 }

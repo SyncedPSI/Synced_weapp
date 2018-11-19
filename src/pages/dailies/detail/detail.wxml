@@ -1,5 +1,6 @@
 <import src="../../common/page_loading.wxml"/>
 <import src="../../common/comment_and_shared_bar.wxml"/>
+<import src="/pages/common/shared_center.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
@@ -21,3 +22,19 @@
     <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </view>
 </view>
+
+<shared bindcloseevent="closeShared" bindsharedevent="sharedDaily" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}">
+  <canvas slot="canvas" class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+  <view slot="content">
+    <view class="daily-shared__header">
+      <image class="daily-shared__logo" src="/images/logo_white.png" />
+      <view class="daily-shared__title">{{daily.title}}</view>
+      <view class="daily-shared__time">{{daily.created_at}}</view>
+      <image class="daily-shared__cover" src="{{path}}/images/daily_banner.png" mode="aspectFill" />
+    </view>
+    <view class="daily-shared__content">
+      <template is="shared_center" data="{{isLogin: isLogin, commentStr: commentStr, userInfo: userInfo}}" />
+    </view>
+  </view>
+</shared>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
