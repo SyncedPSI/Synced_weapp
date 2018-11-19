@@ -12,6 +12,12 @@
       </view>
 
       <block wx:if="{{!isFetching}}">
+        <view class="article-metadata"  wx:if="{{article.metadata != null}}">
+          <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
+            <view class="article-metadata__key">{{key}}</view>
+            <view class="article-metadata__value">{{value}}</view>
+          </view>
+        </view>
         <view class="article--time">{{article.publishedAt}}</view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>
