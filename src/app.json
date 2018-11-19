@@ -8,6 +8,8 @@
     "pages/document/detail/detail",
     "pages/topic/topic",
     "pages/category/category",
+    "pages/trend/detail/detail",
+    "pages/trend/related/related",
     "pages/dailies/dailies",
     "pages/dailies/detail/detail",
     "pages/dailies/share/share",

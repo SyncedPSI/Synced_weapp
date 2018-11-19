@@ -1,0 +1,34 @@
+<import src="/pages/common/page_loading.wxml"/>
+<import src="/pages/common/comment_bottom_bar.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
+  <view wx:if="{{isFetching}}">
+    <template is="page_loading" />
+  </view>
+  <block wx:else>
+    <view class="u-bg-center trend--bannner">
+      <block wx:if="{{category === 'article'}}">
+        <image class="trend--cover" src='/images/trend_task.png' />
+      </block>
+      <block wx:else>
+        <image class="trend--cover" src='/images/trend_paper.png' />
+      </block>
+    </view>
+
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class="trend--type">{{item.name}}</view>
+      <view class="trend--list">
+        <navigator url="../../daily/show/show?id=" redirect class="trend-item" wx:for="{{item.items}}" wx:for-item="daily" wx:key="{{daily}}" hover-class="none">
+          <view class="trend-item__title">450名亚马逊员工致信CEO，要求停止向警方销售面部识别软件</view>
+          <view class="trend-item__desc">一名不愿透露姓名的亚马逊员工称，有超过450名亚马逊员工联合致信CEO贝索斯，要求该公司停止向警方销售面部识别软件Rekognition，但是迄今为止尚未得</view>
+        </navigator>
+      </view>
+    </block>
+
+    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
+  </block>
+</view>
+
+

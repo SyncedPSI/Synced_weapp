@@ -1,0 +1,82 @@
+@import 'variables';
+@import 'fix_bottom';
+
+.trend {
+  &--bannner {
+    position: relative;
+  }
+
+  &--cover {
+    display: block;
+    height: 160px;
+    width: 100%;
+  }
+
+  &--day {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+
+    &.t-week {
+      left: 48rpx;
+      text-align: left;
+    }
+  }
+
+  &--day.t-week &--category {
+    font-size: 44rpx;
+  }
+
+  &--category {
+    font-size: 56rpx;
+    margin: 0 0 24rpx;
+  }
+
+  &--date {
+    font-size: 32rpx;
+    font-weight: 500;
+  }
+
+  &--type {
+    display: inline-block;
+    margin: 40rpx 0 0;
+    border-left: 6rpx solid $red;
+    background-color: $black;
+    padding: 6rpx 20rpx 6rpx 34rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  &--list {
+    padding: 0 40rpx;
+  }
+}
+
+.trend-item {
+  display: block;
+  padding-top: 40rpx;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    border-bottom: 2rpx solid $bg-white;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 36rpx;
+    color: $black;
+    font-weight: normal;
+  }
+
+  &__desc {
+    margin: 24rpx 0 40rpx;
+    font-size: 32rpx;
+    color: $secondary-black;
+    line-height: 1.63;
+  }
+}

@@ -1,0 +1,38 @@
+<import src="/pages/common/page_loading.wxml"/>
+<import src="/pages/common/comment_bottom_bar.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
+  <view wx:if="{{isFetching}}">
+    <template is="page_loading" />
+  </view>
+  <block wx:else>
+    <view class="u-bg-center trend--bannner">
+      <block wx:if="{{category === 'daily'}}">
+        <image class="trend--cover" src='/images/trend_daily.png' />
+        <view class="trend--day">第14期/10.28</view>
+      </block>
+      <block wx:else>
+        <image class="trend--cover" src='/images/trend_reference.png' />
+        <view class="trend--day">第10期/8.25-9.01</view>
+      </block>
+    </view>
+
+    <block wx:for="{{list}}" wx:key="{{index}}">
+      <view class="trend--type">{{item.name}}</view>
+      <view class="trend--list">
+        <navigator url="../../daily/show/show?id=" redirect class="trend-item" wx:for="{{item.items}}" wx:for-item="daily" wx:key="{{daily}}" hover-class="none">
+          <view class="trend-item__title">450名亚马逊员工致信CEO，要求停止向警方销售面部识别软件</view>
+          <view class="trend-item__desc">一名不愿透露姓名的亚马逊员工称，有超过450名亚马逊员工联合致信CEO贝索斯，要求该公司停止向警方销售面部识别软件Rekognition，但是迄今为止尚未得</view>
+        </navigator>
+      </view>
+    </block>
+
+    <view class="trend--desc">这是结语2016年，麻省理工学院创建了名为“道德机器”的游戏平台，通过此平台收集人类对未来人工智能可能会遇到的道德困境的不同意见。</view>
+
+    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
+  </block>
+</view>
+
+
