@@ -6,7 +6,7 @@
     <view class="u-flex readlater--title">
       <view class="u-flex">
         <text>待读列表</text>
-        <text class="readlater--count" hidden="{{readLastersCount === 0}}">{{readLastersCount}}</text>
+        <text class="readlater--count" hidden="{{readLastersCount === 0}}">{{totalCount}}</text>
       </view>
       <view class="readlater--edit" bindtap="switchEdit">
         <image class="readlater--icon" src="{{path}}/icons/readlater_edit.png" />

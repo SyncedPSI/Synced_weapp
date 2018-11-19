@@ -1,36 +1,28 @@
 import { request, getDateDiff, showTipToast } from "utils/util";
-import { readLater, readLaterCount } from "config/api";
+import { readLater, readLaterList } from "config/api";
 
 Page({
   data: {
     list: [],
+    totalCount: 0,
     isEdit: false,
     maxRightBtnWidth: 80,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
   },
   onLoad: function () {
     this.getList();
-    this.getReadLaterCount();
   },
 
   getList: function() {
-    request(readLater)
+    request(readLaterList)
       .then((res) => {
-        const list = res.data;
-        list.forEach(item => {
+        const { read_laters, count } = res.data;
+        read_laters.forEach(item => {
           item.content.updatedAt = getDateDiff(item.content.published_at);
         });
         this.setData({
-          list
-        });
-      })
-  },
-
-  getReadLaterCount: function () {
-    request(readLaterCount)
-      .then((res) => {
-        this.setData({
-          readLastersCount: res.data.count
+          list: read_laters,
+          totalCount: count
         });
       })
   },
