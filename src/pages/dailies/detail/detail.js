@@ -122,7 +122,7 @@ Page({
     this.onShareAppMessage();
   },
 
-  drawImgae: function () {
+  drawImage: function () {
     showLoading('图片生成中');
     const maxWidth = this.width - this.paddingLeft * 2;
     const { daily, commentStr } = this.data;

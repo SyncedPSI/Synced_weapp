@@ -1,12 +1,11 @@
 <view class="container--cover shared" hidden="{{hiddenShared}}">
   <view class="container--cover shared__mask" catchtap="closeShared"></view>
   <view class="shared__main">
-    <slot name="canvas"></slot>
     <view class="shared__close" catchtap="closeShared">
       <image class="shared__close--img" src="/icons/article_close.png"></image>
     </view>
     <view class="shared__wrapper">
-      <slot name="content"></slot>
+      <slot></slot>
     </view>
 
     <view class="shared__footer u-flex {{isIphoneX ? 'has-safe-padding' : ''}}">
@@ -15,7 +14,7 @@
         <text>分享给朋友</text>
       </button>
       <view class="shared__action">
-        <view class="shared__action--hr" bindtap="drawImgae">
+        <view class="shared__action--hr" bindtap="drawImage">
           <image class="shared__footer--icon t-load" src="/icons/article_download.png" />
           <text>生成海报</text>
         </view>

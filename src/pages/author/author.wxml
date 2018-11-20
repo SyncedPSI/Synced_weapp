@@ -39,9 +39,8 @@
   </view>
 </view>
 
-<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
-  <canvas slot="canvas" class="author-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-  <view class="author-shared__container" slot="content">
+<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+  <view class="author-shared__container">
     <image class="author-shared__avatar" src="{{author.avatar_url}}" />
     <image class="author-shared__logo" src="{{logo}}" />
 
@@ -58,3 +57,5 @@
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+

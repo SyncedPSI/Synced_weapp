@@ -34,9 +34,8 @@
   <image class="document--comment--icon" src="{{prePath}}/icons/fixed_comment.png" />
 </button>
 
-<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
-  <canvas slot="canvas" class="document-share__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-  <view class="document-share__container" slot="content">
+<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+  <view class="document-share__container">
     <view class="document-share__header">
       <image class="document-share__logo" src="{{logo}}" />
       <image class="document-share__cover" src="{{document.cover_image_url}}" />
@@ -49,4 +48,6 @@
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+
 

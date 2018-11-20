@@ -81,7 +81,7 @@ Page({
     this.closeShared();
     this.onShareAppMessage();
   },
-  drawImgae: function () {
+  drawImage: function () {
     showLoading('图片生成中');
     if (this.data.isDraw) {
       this.saveImage();

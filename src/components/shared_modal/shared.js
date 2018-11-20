@@ -1,7 +1,4 @@
 Component({
-  options: {
-    multipleSlots: true
-  },
   properties: {
     hiddenShared: {
       type: Boolean,
@@ -15,7 +12,7 @@ Component({
     sharedPage: function () {
       this.triggerEvent('sharedevent');
     },
-    drawImgae: function() {
+    drawImage: function() {
       this.triggerEvent('drawevent');
     },
   }
