@@ -21,7 +21,7 @@
       <view class="trend--type">大公司</view>
       <view class="trend--list">
         <block wx:for="{{card.items}}" wx:for="{{card.items}}" wx:key="{{item.id}}">
-          <navigator class="trend-item" url="/pages/daily/detail/detail?id={{item.id}}" hover-class="none" wx:if="{{item.cardable_type === 'Article'}}">
+          <navigator class="trend-item" url="/pages/daily/show/show?id={{item.id}}" hover-class="none" wx:if="{{item.cardable_type === 'Article'}}">
             <view class="trend-item__title">450名亚马逊员工致信CEO，要求停止向警方销售面部识别软件</view>
             <view class="trend-item__desc">一名不愿透露姓名的亚马逊员工称，有超过450名亚马逊员工联合致信CEO贝索斯，要求该公司停止向警方销售面部识别软件Rekognition，但是迄今为止尚未得</view>
           </navigator>

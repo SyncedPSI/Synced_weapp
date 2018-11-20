@@ -1,4 +1,4 @@
-<import src="../common/loading.wxml"/>
+<import src="/pages/common/loading.wxml"/>
 
 <nav isIndex hasShadow="{{false}}" title=""></nav>
 <view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">快讯</view>
@@ -17,7 +17,7 @@
               <view class="daily-item__day">{{dailies[key].day}}</view>
             </view>
 
-            <navigator url="../dailies/detail/detail?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">
+            <navigator url="../daily/show/show?id={{item.id}}" class="daily-item__inline" wx:for="{{dailies[key].list}}" wx:key="{{item.id}}">
               <view class="daily-item__title">{{item.title}}</view>
               <view class="u-text-limit--three daily-item__content">{{item.content}}</view>
               <view class="u-flex">

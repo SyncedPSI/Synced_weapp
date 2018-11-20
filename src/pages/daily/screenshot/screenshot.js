@@ -139,7 +139,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/dailies/share/share?id=${id}&from=weapp`,
+      path: `/pages/daily/screenshot/screenshot?id=${id}&from=weapp`,
     };
   },
 });

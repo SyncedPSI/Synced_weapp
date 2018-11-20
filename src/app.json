@@ -10,9 +10,9 @@
     "pages/category/category",
     "pages/trend/detail/detail",
     "pages/trend/related/related",
-    "pages/dailies/dailies",
-    "pages/dailies/detail/detail",
-    "pages/dailies/share/share",
+    "pages/daily/list/list",
+    "pages/daily/show/show",
+    "pages/daily/screenshot/screenshot",
     "pages/graph/brief/brief",
     "pages/graph/detail/detail",
     "pages/graph/related/related",
@@ -49,7 +49,7 @@
         "selectedIconPath": "icons/tab/trend_active.png"
       },
       {
-        "pagePath": "pages/dailies/dailies",
+        "pagePath": "pages/daily/list/list",
         "iconPath": "icons/tab/daily.png",
         "selectedIconPath": "icons/tab/daily_active.png"
       },

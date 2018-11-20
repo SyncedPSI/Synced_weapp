@@ -85,7 +85,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/dailies/detail/detail?id=${id}&from=weapp`,
+      path: `/pages/daily/show/show?id=${id}&from=weapp`,
     };
   },
   copySource: function() {

@@ -3,6 +3,6 @@
     "backgroundColor": "#fff"
   },
   "usingComponents": {
-    "nav": "../../components/navigate/navigate"
+    "nav": "../../../components/navigate/navigate"
   }
 }
