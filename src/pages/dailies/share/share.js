@@ -99,6 +99,7 @@ Page({
         x: this.paddingLeft,
         y: heightInfo.createAtTop,
       });
+
       // content
       drawMultiLines({
         ctx: this.ctx,

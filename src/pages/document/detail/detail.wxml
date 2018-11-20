@@ -13,20 +13,29 @@
     </view>
     <view class="u-detail-padding">
       <view class="document--title">{{document.title}}</view>
-      <view class="document--date">{{document.created_at}}</view>
       <view class="document--desc">{{document.description}}</view>
+      <view class="u-flex document--footer">
+        <text>{{document.created_at}}</text>
+        <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
+      </view>
     </view>
   </block>
 
   <block wx:if="{{!isFetching}}">
     <comment isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-    <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </block>
 </view>
 <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">
   <image class="document--icon" src="/icons/download.png" />
   <text>获取报告</text>
 </view>
+
+<view class="document--comment {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openComment"  wx:if="{{isLogin}}">
+  <image class="document--comment--icon" src="{{prePath}}/icons/fixed_comment.png" />
+</view>
+<button class="document--comment {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="comment"  wx:else>
+  <image class="document--comment--icon" src="{{prePath}}/icons/fixed_comment.png" />
+</button>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <canvas slot="canvas" class="document-share__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
