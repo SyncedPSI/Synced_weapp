@@ -17,6 +17,7 @@
       <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
     </view>
   </view>
+  <nodes nodes="{{daily.related_nodes}}" />
   <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment" bindsharecomment="shareComment"></comment>
   <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
 </block>

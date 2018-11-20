@@ -3,6 +3,7 @@
   "usingComponents": {
     "comment": "../../../components/comment/comment",
     "nav": "../../../components/navigate/navigate",
+    "nodes": "../../../components/related_nodes/nodes",
     "shared": "../../../components/shared_modal/shared",
     "album-setting": "../../../components/album_setting/setting"
   }
