@@ -8,7 +8,7 @@ Page({
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isExpand: false,
     trends: [],
-    hasNextPage: true,
+    isFetching: false,
   },
   onLoad: function(options) {
     const { id, type, from } = options;
@@ -27,11 +27,22 @@ Page({
     this.fetchTrends(id, type);
   },
   fetchTrends: function(id, type) {
-    // request(`${ApiRootUrl}/${type}/${id}`)
-    //   .then((res) => {
-    //     console.log(res.data)
+    if (this.data.isFetching) return;
 
-    //   })
+    this.setData({
+      isFetching: true,
+    }, () => {
+      request(`${ApiRootUrl}/${type}/${id}/flows`, {
+        page: this.page
+      }).then((res) => {
+        this.setData({
+          trends: res.data.flows,
+          isFetching: false
+        }, () => {
+          this.page += 1;
+        });
+      });
+    })
   },
   fetchMore: function () {
     const { type, id } = this.data;

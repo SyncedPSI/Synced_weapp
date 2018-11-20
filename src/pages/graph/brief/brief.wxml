@@ -36,18 +36,20 @@
 
     <view class="node-trend">
       <view class="node-trend__title">相关动态</view>
+      <!--
       <view class="none" hidden="{{trends.length > 0}}">
         <image class="none--icon" src="{{path}}/icons/none_trend.png" />
         <text class="none--text">暂无动态</text>
       </view>
-      <navigator class="node-trend__item" url="/pages/{{item.type === 'Article' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}" hover-class="none" wx:for="{{trends}}">
-        <view class="node-trend__name">Task Transfer by Preference-Based Cost Learning</view>
+      -->
+      <navigator class="node-trend__item" url="/pages/{{item.type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}" hover-class="none" wx:for="{{trends}}">
+        <view class="node-trend__name">{{item.title}}</view>
         <view class="u-flex node-trend__footer">
-          <view class="u-text-limit--one">1小时前</view>
-          <view class="node-trend__type">#资讯</view>
+          <view class="u-text-limit--one">{{item.pubdate}}</view>
+          <view class="node-trend__type">#{{item.category}}</view>
         </view>
       </navigator>
-      <template is="loading" wx:if="{{hasNextPage}}" />
+      <template is="loading" />
     </view>
   </scroll-view>
 </view>
