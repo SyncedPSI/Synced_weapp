@@ -1,8 +1,5 @@
 <import src="/pages/common/node_header.wxml"/>
-<import src="/pages/common/node_experts.wxml"/>
-<import src="/pages/common/node_institutions.wxml"/>
 <import src="/pages/common/node_property.wxml"/>
-<import src="/pages/common/node_resources.wxml"/>
 <import src="../../../wxParse/wxParse.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
@@ -24,21 +21,6 @@
             <template is="wxParse" data="{{wxParseData:node_content.nodes}}" />
           </view>
       </view>
-      <template wx:if="{{node.institutions.length != 0}}" is="node-institutions" data="{{institutions: node.institutions}}" />
-      <template wx:if="{{node.experts.length != 0}}" is="node-experts" data="{{experts: node.experts}}" />
-      <template wx:if="{{node.resources.length != 0}}" is="node-resources" data="{{resources: node.resources}}" />
     </scroll-view>
   </view>
-
-  <catalog catalogList="{{catalogList}}" wx:if="{{node.level === 'level_3'}}" bindscroll="setScrollTarget"></catalog>
 </block>
-
-<!--
-<view class="resource--ext">相关链接</view>
-  <view class="resource--source" wx:for="{{resource.ext_relationships}}" wx:key="unique" wx:for-index="key" wx:for-item="value" bindtap="copyclip" data-url="{{value}}">
-    <image src="/icons/node_source.png" class="resource--icon" />
-    <text>{{key}}：</text>
-    <text>{{value}}</text>
-  </view>
-</view>
--->

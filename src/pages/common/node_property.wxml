@@ -14,5 +14,5 @@
       <text class="node-header__origin" bindtap="copyclip" data-url="{{value}}">{{key}}</text>
     </block>
   </view>
-  <template wx:if="{{technologies.length != 0}}" is="node-technologies" data="{{technologies: technologies}}"/>
+  <template wx:if="{{technologies && technologies.length != 0}}" is="node-technologies" data="{{technologies: technologies}}"/>
 </template>
