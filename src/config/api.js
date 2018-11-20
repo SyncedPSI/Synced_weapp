@@ -15,3 +15,4 @@ export const searchByKeyword = ApiV1 + '/search?type=for_weapp&keywords=';
 export const comments = ApiV1 + '/comments';
 export const readLaterList = ApiRootUrl + '/read_laters';
 export const readLater = ApiV1 + '/read_laters';
+export const dynamics = ApiRootUrl + '/dynamics';
