@@ -24,6 +24,10 @@
     "pages/setting/read_later/read_later",
     "pages/setting/chatbot/chatbot",
     "pages/setting/index/index",
+    "pages/expert/expert",
+    "pages/institution/institution",
+    "pages/technology/technology",
+    "pages/resource/resource",
     "pages/logs/logs"
   ],
   "window":{
