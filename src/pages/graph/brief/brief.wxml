@@ -1,49 +1,53 @@
 <import src="/pages/common/node_header.wxml"/>
 <import src="/pages/common/node_property.wxml"/>
+<import src="/pages/common/loading.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow hasHeaderHeight></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
 
-<block wx:if="{{node !== null}}">
-  <view class="node-header__container">
-    <template is="node-header" data="{{...node}}" />
-    <block wx:if="{{node.level === 'level_3'}}">
-      <view class="u-text-limit--three node-header__summary">{{node.summary}}</view>
-    </block>
-    <block wx:else>
-      <view class="node-header__summary {{isExpand ? '' : 'u-text-limit--three'}}" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
-      <view style="height: {{isExpand ? 'auto' : '0'}}">
-        <template is="node-property" data="{{...node}}"/>
+<view class="u-container" style="padding-top: {{statusBarHeight}}px" wx:if="{{node !== null}}">
+  <scroll-view scroll-y bindscrolltolower="fetchMore">
+    <view class="node-header__container">
+      <template is="node-header" data="{{...node}}" />
+      <block wx:if="{{node.level === 'level_3'}}">
+        <view class="u-text-limit--three node-header__summary">{{node.summary}}</view>
+      </block>
+      <block wx:else>
+        <view class="node-header__summary {{isExpand ? '' : 'u-text-limit--three'}}" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
+        <view style="height: {{isExpand ? 'auto' : '0'}}">
+          <template is="node-property" data="{{...node}}"/>
+        </view>
+      </block>
+
+      <view class="u-flex node--footer">
+        <navigator class="node--detail" url="/pages/graph/detail/detail?type={{type}}&id={{id}}" hover-class="none" wx:if="{{node.level === 'level_3'}}">
+          <text>查看详细介绍</text>
+          <image class="node--icon" src="/icons/see_detail.png" />
+        </navigator>
+        <view class="node--detail" bindtap="seeAll" wx:else>
+          <text>{{isExpand ? '收起全部' : '展开全部'}}</text>
+          <image class="node--icon" src="/icons/see_more.png" />
+        </view>
+        <view>
+          <image class="node--shared" src="/icons/daily_action.png" />
+        </view>
       </view>
-    </block>
-
-    <view class="u-flex node--footer">
-      <navigator class="node--detail" url="/pages/graph/detail/detail?type={{type}}&id={{id}}" hover-class="none" wx:if="{{node.level === 'level_3'}}">
-        <text>查看详细介绍</text>
-        <image class="node--icon" src="/icons/see_detail.png" />
-      </navigator>
-      <view class="node--detail" bindtap="seeAll" wx:else>
-        <text>{{isExpand ? '收起全部' : '展开全部'}}</text>
-        <image class="node--icon" src="/icons/see_more.png" />
-      </view>
-      <navigator url="">
-        <image class="node--shared" src="/icons/daily_action.png" />
-      </navigator>
     </view>
-  </view>
-  <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" />
+    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" />
 
-  <view class="node-trend">
-    <view class="node-trend__title">相关动态</view>
-    <view class="none" hidden="{{trends.length > 0}}">
-      <image class="none--icon" src="{{path}}/icons/none_trend.png" />
-      <text class="none--text">暂无动态</text>
-    </view>
-    <navigator class="node-trend__item" url="/pages/{{item.type === 'Article' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}" hover-class="none">
-      <view class="node-trend__name">Task Transfer by Preference-Based Cost Learning</view>
-      <view class="u-flex node-trend__footer">
-        <view class="u-text-limit--one">1小时前</view>
-        <view class="node-trend__type">#资讯</view>
+    <view class="node-trend">
+      <view class="node-trend__title">相关动态</view>
+      <view class="none" hidden="{{trends.length > 0}}">
+        <image class="none--icon" src="{{path}}/icons/none_trend.png" />
+        <text class="none--text">暂无动态</text>
       </view>
-    </navigator>
-  </view>
-</block>
+      <navigator class="node-trend__item" url="/pages/{{item.type === 'Article' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}" hover-class="none" wx:for="{{trends}}">
+        <view class="node-trend__name">Task Transfer by Preference-Based Cost Learning</view>
+        <view class="u-flex node-trend__footer">
+          <view class="u-text-limit--one">1小时前</view>
+          <view class="node-trend__type">#资讯</view>
+        </view>
+      </navigator>
+      <template is="loading" wx:if="{{hasNextPage}}" />
+    </view>
+  </scroll-view>
+</view>

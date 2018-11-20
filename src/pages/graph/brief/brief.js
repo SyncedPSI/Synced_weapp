@@ -5,10 +5,14 @@ Page({
   data: {
     node: null,
     isFromWeapp: false,
-    isExpand: false
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
+    isExpand: false,
+    trends: [],
+    hasNextPage: true,
   },
   onLoad: function(options) {
     const { id, type, from } = options;
+    this.page = 1;
     request(`${ApiRootUrl}/${type}/${id}`)
       .then((res) => {
         const node = res.data;
@@ -19,7 +23,19 @@ Page({
           node: node,
           isFromWeapp: from === "weapp",
         })
-      })
+      });
+    this.fetchTrends(id, type);
+  },
+  fetchTrends: function(id, type) {
+    // request(`${ApiRootUrl}/${type}/${id}`)
+    //   .then((res) => {
+    //     console.log(res.data)
+
+    //   })
+  },
+  fetchMore: function () {
+    const { type, id } = this.data;
+    this.fetchTrends(id, type);
   },
   copyclip: function (event) {
     wx.setClipboardData({

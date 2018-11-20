@@ -23,7 +23,7 @@ Page({
       id: id,
       isFromWeapp: from === "weapp",
     });
-    request(`${ApiRootUrl}/${type}/${id}`)
+    request(`${ApiRootUrl}/${type}/${id}/detail`)
       .then(res => {
         const node = res.data;
         const catalogList = this.getCatalog(node);

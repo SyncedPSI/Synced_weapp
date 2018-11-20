@@ -1,11 +1,12 @@
 @import 'variables';
 @import 'content';
+@import 'load_more';
 @import '../node';
 @import 'none';
 
 .node-header__container {
   padding-top: 60rpx;
-  padding-bottom: 80rpx;
+  padding-bottom: 0;
   box-shadow: none;
 }
 
@@ -42,7 +43,7 @@ nodes {
 }
 
 .node-trend {
-  padding: 0 40rpx;
+  padding: 80rpx 40rpx 0;
 
   &__title {
     font-size: 32rpx;
