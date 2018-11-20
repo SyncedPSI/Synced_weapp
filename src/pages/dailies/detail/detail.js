@@ -122,10 +122,20 @@ Page({
     this.onShareAppMessage();
   },
 
+  shareComment: function (event) {
+    const { user, comment } = event.detail;
+    this.readyDraw(comment, user);
+  },
+
   drawImage: function () {
+    const { commentStr, userInfo } = this.data;
+    this.readyDraw(commentStr, userInfo);
+  },
+
+  readyDraw: function (commentStr, userInfo) {
     showLoading('图片生成中');
     const maxWidth = this.width - this.paddingLeft * 2;
-    const { daily, commentStr } = this.data;
+    const { daily } = this.data;
 
     const titleInfo = getWrapTextHeight({
       ctx: this.ctx,
@@ -177,12 +187,12 @@ Page({
     this.setData({
       canvasHeight: this.height
     }, () => {
-      this.draw(titleInfo, descInfo, heightInfo);
+      this.draw(titleInfo, descInfo, heightInfo, commentStr, userInfo);
     });
   },
 
-  draw: function (titleInfo, descInfo, heightInfo) {
-    const { daily, commentStr } = this.data;
+  draw: function (titleInfo, descInfo, heightInfo, commentStr, userInfo) {
+    const { daily } = this.data;
 
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
