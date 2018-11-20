@@ -32,7 +32,7 @@
         </view>
       </view>
     </view>
-    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" />
+    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore />
 
     <view class="node-trend">
       <view class="node-trend__title">相关动态</view>

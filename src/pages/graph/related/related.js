@@ -9,7 +9,7 @@ Page({
   },
   onLoad: function(options) {
     const { id, type, from } = options;
-    request(`${ApiRootUrl}/${type}/${id}`)
+    request(`${ApiRootUrl}/${type}/${id}/relations`)
       .then((res) => {
         const node = res.data;
         this.setData({
