@@ -26,7 +26,6 @@
             </view>
           </view>
         </navigator>
-        <!-- <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article> -->
       </view>
       <template is="loading" />
     </scroll-view>
