@@ -34,7 +34,7 @@
     </block>
     <view class="trend--desc">这是结语2016年，麻省理工学院创建了名为“道德机器”的游戏平台，通过此平台收集人类对未来人工智能可能会遇到的道德困境的不同意见。</view>
 
-    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
     <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
   </block>
 </view>

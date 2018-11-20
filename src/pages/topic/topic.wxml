@@ -30,7 +30,7 @@
           <template is="wxParse" data="{{wxParseData:topic_content.nodes}}" />
         </view>
       </view>
-      <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+      <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
       <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>

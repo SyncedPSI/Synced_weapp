@@ -35,7 +35,7 @@
           <image class="article-author__enter" src="/icons/see_detail.png" />
         </navigator>
       </view>
-      <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+      <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
 
       <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
         <block wx:if="{{isLogin}}">

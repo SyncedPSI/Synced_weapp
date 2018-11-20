@@ -40,7 +40,7 @@ Component({
         });
     },
     closeComment: function() {
-      this.triggerEvent('closecommentevent');
+      this.triggerEvent('closecomment');
     },
     showAllReplies: function(event) {
       const { id, index } = event.target.dataset;
@@ -68,7 +68,7 @@ Component({
       this.setData({
         placeholder: `回复${name}`
       });
-      this.triggerEvent('opencommentevent');
+      this.triggerEvent('opencomment');
     },
     bindContentInput: function (e) {
       this.setData({
@@ -101,7 +101,7 @@ Component({
             content: ''
           });
           this.replyCommentId = null;
-          this.triggerEvent('closecommentevent', {commentStr: content});
+          this.triggerEvent('closecomment', {commentStr: content});
         })
     },
     inputFocus: function (event) {

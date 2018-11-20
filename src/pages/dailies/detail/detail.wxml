@@ -17,7 +17,7 @@
       <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
     </view>
   </view>
-  <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+  <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
   <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
 </block>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>

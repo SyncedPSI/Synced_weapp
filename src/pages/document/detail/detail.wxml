@@ -18,7 +18,7 @@
       <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
     </view>
   </view>
-  <comment isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+  <comment isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
 </block>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
 
