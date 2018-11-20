@@ -3,9 +3,8 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
-  <view wx:if="{{isFetching}}">
-    <template is="page_loading" />
-  </view>
+  <template is="page_loading" wx:if="{{isFetching}}" />
+
   <block wx:else>
     <image class="trend--cover" src='/images/trend_task.png' wx:if="{{category === 'article'}}" />
     <image class="trend--cover" src='/images/trend_paper.png' wx:else />

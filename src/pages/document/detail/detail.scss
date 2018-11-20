@@ -77,9 +77,11 @@
   &--comment {
     border-radius: 50%;
     right: 40rpx;
+    padding: 0;
   }
 
   &--comment--icon {
+    display: block;
     width: 88rpx;
     height: 88rpx;
   }

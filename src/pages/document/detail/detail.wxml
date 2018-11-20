@@ -2,27 +2,26 @@
 <import src="/pages/common/comment_and_shared_bar.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
-<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
-  <template is="page_loading" wx:if="{{document === null}}" />
 
-  <block wx:else>
-    <view class="document--bannner">
-      <image class="document--cover--shadow" src="/icons/document_left.png" />
-      <image class="document--cover" src="{{document.cover_image_url}}" mode="aspectFill" />
-      <image class="document--cover--shadow" src="/icons/document_right.png" />
+<template is="page_loading" wx:if="{{document === null}}" />
+<block wx:else>
+  <view class="document--bannner">
+    <image class="document--cover--shadow" src="/icons/document_left.png" />
+    <image class="document--cover" src="{{document.cover_image_url}}" mode="aspectFill" />
+    <image class="document--cover--shadow" src="/icons/document_right.png" />
+  </view>
+  <view class="u-detail-padding">
+    <view class="document--title">{{document.title}}</view>
+    <view class="document--desc">{{document.description}}</view>
+    <view class="u-flex document--footer">
+      <text>{{document.created_at}}</text>
+      <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
     </view>
-    <view class="u-detail-padding">
-      <view class="document--title">{{document.title}}</view>
-      <view class="document--desc">{{document.description}}</view>
-      <view class="u-flex document--footer">
-        <text>{{document.created_at}}</text>
-        <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
-      </view>
-    </view>
-    <comment isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-  </block>
+  </view>
+  <comment isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+</block>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
 
-</view>
 <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">
   <image class="document--icon" src="/icons/download.png" />
   <text>获取报告</text>
