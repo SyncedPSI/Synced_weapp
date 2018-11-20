@@ -311,7 +311,6 @@ Page({
 
   draw: function (titleInfo, descInfo, heightInfo, commentStr, userInfo) {
     const { article } = this.data;
-    this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     wx.downloadFile({

@@ -13,6 +13,7 @@ Page({
     hiddenShared: true,
     actionSheetHidden: true,
     isDraw: false,
+    canvasHeight: 0,
   },
   onLoad: function (options) {
     const { id, from } = options;
@@ -156,7 +157,6 @@ Page({
   },
 
   draw: function (titleInfo, heightInfo) {
-    this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     const { document } = this.data;

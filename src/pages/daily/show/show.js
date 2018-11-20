@@ -17,6 +17,7 @@ Page({
     hiddenShared: true,
     commentStr: null,
     userInfo: null,
+    canvasHeight: 0,
     actionSheetHidden: true,
   },
 
@@ -193,7 +194,6 @@ Page({
   draw: function (titleInfo, descInfo, heightInfo, commentStr, userInfo) {
     const { daily } = this.data;
 
-    this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
     this.ctx.setTextBaseline('top');
 

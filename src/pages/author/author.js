@@ -13,6 +13,7 @@ Page({
     hiddenShared: true,
     actionSheetHidden: true,
     isDraw: false,
+    canvasHeight: 0,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
   onLoad: function (option) {
@@ -132,7 +133,6 @@ Page({
   },
 
   draw: function (nameInfo, descInfo, heightInfo) {
-    this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     const { author, totalCount } = this.data;
