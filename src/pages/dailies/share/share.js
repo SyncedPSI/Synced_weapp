@@ -9,7 +9,6 @@ Page({
     id: null,
     navigateTitle: '',
     isFromWeapp: false,
-    isFetching: true,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
     canvasHeight: 0,
@@ -27,7 +26,6 @@ Page({
         this.setData({
           navigateTitle: daily.title,
           daily,
-          isFetching: false
         }, () => {
           this.getHight();
         });

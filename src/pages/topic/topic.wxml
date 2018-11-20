@@ -7,11 +7,11 @@
   <scroll-view scroll-y="{{true}}">
     <image src="{{topic.cover_image_url}}" class="topic__cover" mode="aspectFill" />
     <view class="article">
-      <view wx:if="{{isFetching}}">
+      <view wx:if="{{topic === nulll}}">
         <template is="page_loading" />
       </view>
 
-      <block wx:if="{{!isFetching}}">
+      <block wx:else>
         <view class="title" id="js-topic-title">{{topic.title}}</view>
         <view class="info">
           <view class="left">
@@ -27,14 +27,10 @@
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:topic_content.nodes}}" />
         </view>
+        <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+        <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
       </block>
-    </view>
-
-    <block wx:if="{{!isFetching}}">
-      <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-
-      <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
-    </block>
+    </view>9
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
 </view>

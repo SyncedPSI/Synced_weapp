@@ -10,8 +10,7 @@ Page({
     id: "",
     title: "",
     isFromWeapp: false,
-    isFetching: true,
-    topic: {},
+    topic: null,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
@@ -48,7 +47,6 @@ Page({
         this.setData({
           navigateTitle: topic.title,
           topic,
-          isFetching: false
         }, () => {
           this.getTitleHeight();
         });

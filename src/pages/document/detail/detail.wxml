@@ -3,7 +3,7 @@
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
-  <template is="page_loading" wx:if="{{isFetching}}" />
+  <template is="page_loading" wx:if="{{document === null}}" />
 
   <block wx:else>
     <view class="document--bannner">
@@ -19,11 +19,9 @@
         <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
       </view>
     </view>
-  </block>
-
-  <block wx:if="{{!isFetching}}">
     <comment isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
   </block>
+
 </view>
 <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">
   <image class="document--icon" src="/icons/download.png" />

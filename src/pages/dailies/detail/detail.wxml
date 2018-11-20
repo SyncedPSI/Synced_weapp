@@ -7,20 +7,21 @@
   <view class="u-detail-padding daily__container">
     <template is="page_loading" wx:if="{{daily === null}}" />
 
-    <view class="daily__title">{{daily.title}}</view>
-    <view class="daily__create">{{daily.created_at}}</view>
-    <view class="daily__content">{{daily.content}}</view>
-    <view class="daily__source" wx:if="{{daily.url !== null}}">
-      <image src="/icons/daily_source.png" class="daily__source--img" />
-      <text>新闻来源：</text>
-      <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
-    </view>
+    <block wx:else>
+      <view class="daily__title">{{daily.title}}</view>
+      <view class="daily__create">{{daily.created_at}}</view>
+      <view class="daily__content">{{daily.content}}</view>
+      <view class="daily__source" wx:if="{{daily.url !== null}}">
+        <image src="/icons/daily_source.png" class="daily__source--img" />
+        <text>新闻来源：</text>
+        <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
+      </view>
+
+      <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+      <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
+    </block>
   </view>
 
-  <view wx:else>
-    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-    <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
-  </view>
 </view>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedDaily" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}">

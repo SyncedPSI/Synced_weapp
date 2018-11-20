@@ -6,7 +6,6 @@ Page({
   data: {
     document: null,
     isFromWeapp: false,
-    isFetching: true,
     isShowComment: false,
     isIphoneX: getApp().globalData.isIphoneX,
     isLogin: false,
@@ -21,7 +20,6 @@ Page({
       .then((res) => {
         this.setData({
           document: res.data,
-          isFetching: false,
           isFromWeapp: from === "weapp",
           isLogin: getApp().globalData.isLogin,
         })
