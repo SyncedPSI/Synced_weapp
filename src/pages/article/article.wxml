@@ -35,7 +35,7 @@
           <image class="article-author__enter" src="/icons/see_detail.png" />
         </navigator>
       </view>
-      <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
+      <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment" bindsharecomment="shareComment"></comment>
 
       <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
         <block wx:if="{{isLogin}}">
@@ -75,16 +75,14 @@
   </scroll-view>
 </view>
 
-<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImgae" hiddenShared="{{hiddenShared}}">
-  <canvas slot="canvas" class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-  <view slot="content">
-    <view class="article-shared__cover--mask"></view>
-    <image class="article-shared__logo" src="/images/logo_white.png" />
-    <image class="article-shared__cover" src="{{article.cover_image_url}}" mode="aspectFill" />
-    <view class="article-shared__content">
-      <view class="article-shared__title">{{article.title}}</view>
-      <template is="shared_center" data="{{isLogin: isLogin, commentStr: commentStr, userInfo: userInfo}}" />
-    </view>
+<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}">
+  <view class="article-shared__cover--mask"></view>
+  <image class="article-shared__logo" src="/images/logo_white.png" />
+  <image class="article-shared__cover" src="{{article.cover_image_url}}" mode="aspectFill" />
+  <view class="article-shared__content">
+    <view class="article-shared__title">{{article.title}}</view>
+    <template is="shared_center" data="{{isLogin: isLogin, commentStr: commentStr, userInfo: userInfo}}" />
   </view>
 </shared>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

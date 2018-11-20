@@ -21,7 +21,11 @@
       <view class="comment-inline__content">{{content}}</view>
       <view class="comment-inline__footer">
         <text>{{createdAt}}</text>
-        <text class="comment-inline__reply" bindtap="replyComment" data-id="{{id}}" data-name="{{to.nickname || from.nickname}}">回复</text>
+
+        <view class="u-flex">
+          <image class="comment-inline__shared" src="{{path}}/icons/article_shared.png" data-user="{{to || from}}" data-comment="{{content}}" bindtap="shareComment" wx:if="{{hasShared}}" />
+          <text class="comment-inline__reply" bindtap="replyComment" data-id="{{id}}" data-name="{{to.nickname || from.nickname}}">回复</text>
+        </view>
       </view>
     </view>
   </view>

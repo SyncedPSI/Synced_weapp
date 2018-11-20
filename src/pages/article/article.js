@@ -135,6 +135,11 @@ Page({
     });
   },
 
+  shareComment: function (event) {
+    const { user, comment } = event.detail;
+    this.readyDraw(comment, user);
+  },
+
   addRead: function (isShowTip = true) {
     request(readLater, {
       read_later: {
@@ -240,10 +245,15 @@ Page({
     this.ctx.setTextBaseline('top');
   },
 
-  drawImgae: function() {
+  drawImage: function () {
+    const { commentStr, userInfo } = this.data;
+    this.readyDraw(commentStr, userInfo);
+  },
+
+  readyDraw: function (commentStr, userInfo) {
     showLoading('图片生成中');
     const maxWidth = this.width - this.paddingLeft * 2;
-    const { article, commentStr } = this.data;
+    const { article } = this.data;
 
     const titleInfo = getWrapTextHeight({
       ctx: this.ctx,
@@ -295,12 +305,12 @@ Page({
     this.setData({
       canvasHeight: this.height
     }, () => {
-      this.draw(titleInfo, descInfo, heightInfo);
+      this.draw(titleInfo, descInfo, heightInfo, commentStr, userInfo);
     });
   },
 
-  draw: function (titleInfo, descInfo, heightInfo) {
-    const { article, commentStr } = this.data;
+  draw: function (titleInfo, descInfo, heightInfo, commentStr, userInfo) {
+    const { article } = this.data;
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
@@ -339,7 +349,7 @@ Page({
           } else {
             drawComment({
               ctx: this.ctx,
-              userInfo: userInfo,
+              userInfo,
               heightInfo,
               comment: descInfo,
               leftMarkOffset: this.paddingLeft,

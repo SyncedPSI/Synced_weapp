@@ -6,7 +6,7 @@
     <image class="none--icon" src="{{path}}/icons/none_comment.png" />
     <text class="none--text">暂无评论</text>
   </view>
-  <template is="comment_item" data="{{comments}}" />
+  <template is="comment_item" data="{{comments, hasShared}}" />
 </view>
 
 <view class="u-container-cover comment-editor" wx:if="{{isShowComment}}" catchtouchmove="move">

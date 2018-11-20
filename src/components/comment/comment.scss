@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'none';
+@import 'common';
 
 .u-container-cover {
   left: 0;
@@ -92,6 +93,13 @@
   &__hr {
     margin-right: 10rpx;
     color: $mute-black;
+  }
+
+  &__shared {
+    width: 26rpx;
+    height: 26rpx;
+    display: block;
+    margin-right: 48rpx;
   }
 }
 

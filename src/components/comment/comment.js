@@ -10,6 +10,10 @@ Component({
     baseUrl: {
       type: String,
       value: ''
+    },
+    hasShared: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -114,5 +118,8 @@ Component({
         keyboardHeight: null
       });
     },
+    shareComment: function(event) {
+      this.triggerEvent('sharecomment', event.currentTarget.dataset);
+    }
   },
 });

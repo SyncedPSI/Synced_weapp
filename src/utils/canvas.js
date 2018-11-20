@@ -134,7 +134,7 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
     ctx: ctx,
     fontSize: 14,
     color: '#7d7d7d',
-    text: userInfo.nickName,
+    text: userInfo.nickName || userInfo.nickname,
     x: 33 + avatarHalfHeight * 2 + 5,
     y: heightInfo.userTop + 3,
     isBold: true,
@@ -149,7 +149,7 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
     lineHeight: 28,
   });
   wx.downloadFile({
-    url: userInfo.avatarUrl,
+    url: userInfo.avatarUrl || userInfo.avatar_url,
     success: (res) => {
       if (res.statusCode === 200) {
         ctx.save();
