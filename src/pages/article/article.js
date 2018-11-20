@@ -98,11 +98,10 @@ Page({
   getContentHeight: function() {
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-content').boundingClientRect((rect) => {
-        const { height, top } = rect;
-        this.contentHeight = height - top;
+        this.contentHeight = rect.height;
         clearTimeout(this.timeout);
       }).exec();
-     }, 300);
+     }, 500);
   },
   getTitleHeight: function() {
     this.timeout = setTimeout(() => {

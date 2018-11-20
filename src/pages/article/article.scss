@@ -6,12 +6,12 @@
 @import 'page_loading';
 
 .article {
-  padding-top: 60rpx;
   background-color: $white;
   min-height: 100vh;
 
-  .title {
+  &--title {
     font-size: 48rpx;
+    padding: 60rpx 60rpx 0;
     color: #121212;
     font-weight: 500;
   }

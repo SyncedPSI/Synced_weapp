@@ -5,13 +5,10 @@
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
-    <view class="u-detail-padding article" id="js-article-content">
-      <view class="title" id="js-article-title">{{title}}</view>
-      <view wx:if="{{isFetching}}">
-        <template is="page_loading" />
-      </view>
-
-      <block wx:if="{{!isFetching}}">
+    <view class="article--title" id="js-article-title">{{title}}</view>
+    <template is="page_loading" wx:if="{{isFetching}}" />
+    <block wx:else>
+      <view class="u-detail-padding article" id="js-article-content">
         <view class="article-metadata"  wx:if="{{article.metadata != null}}">
           <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
             <view class="article-metadata__key">{{key}}</view>
@@ -23,10 +20,8 @@
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
         </view>
-      </block>
-    </view>
+      </view>
 
-    <view wx:if="{{!isFetching}}">
       <nodes nodes="{{article.related_nodes}}" />
       <view class="article-author__container">
         <navigator class="u-flex article-author" url="/pages/author/author?id={{articleOwn.id}}&type={{articleOwn.type}}" hover-class="none">
@@ -70,12 +65,12 @@
             <text>评论</text>
           </button>
         </block>
-          <view class="u-fix-bottom--bar" bindtap="openShared">
-            <image class="u-fix-bottom--icon" src="/icons/article_shared.png" />
-            <text>分享</text>
-          </view>
+        <view class="u-fix-bottom--bar" bindtap="openShared">
+          <image class="u-fix-bottom--icon" src="/icons/article_shared.png" />
+          <text>分享</text>
         </view>
       </view>
+    </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
 </view>
