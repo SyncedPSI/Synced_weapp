@@ -69,7 +69,7 @@ Page({
   saveCard: function() {
     this.closeActionSheet();
     wx.navigateTo({
-      url: `../dailies/share/share?id=${this.data.activeId}`
+      url: `/pages/daily/screenshot/screenshot?id=${this.data.activeId}`
     });
   },
   copyclip: function() {
@@ -87,7 +87,7 @@ Page({
       const { id, title } = event.target.dataset;
       return {
         title,
-        path: `/pages/dailies/detail/detail?id=${id}&from=weapp`,
+        path: `/pages/daily/show/show?id=${id}&from=weapp`,
         imageUrl: '/images/shard_daily_in_index.png',
       };
     }

@@ -34,5 +34,7 @@
     <template is="shared_center" data="{{isLogin: isLogin, commentStr: commentStr, userInfo: userInfo}}" />
   </view>
 </shared>
-<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<cover-view class="daily__canvas--container">
+  <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+</cover-view>

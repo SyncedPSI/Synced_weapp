@@ -70,7 +70,6 @@ Page({
     this.width = getApp().globalData.systemInfo.screenWidth;
     this.paddingLeft = 24;
     this.ctx = wx.createCanvasContext('js-canvas');
-    this.ctx.setTextBaseline('top');
   },
 
   getUserInfo: function(event) {
@@ -196,6 +195,7 @@ Page({
 
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
+    this.ctx.setTextBaseline('top');
 
     // cover
     this.ctx.drawImage('/images/daily_banner.png', 0, 0, this.width, heightInfo.coverHeight);

@@ -157,3 +157,10 @@
     border-radius: 50%;
   }
 }
+
+.shared-center__canvas {
+  width: 100%;
+  position: absolute;
+  left: 10000rpx;
+  top: 0;
+}
