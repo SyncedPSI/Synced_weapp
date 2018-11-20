@@ -1,4 +1,4 @@
-import { request, showLoading, hideLoading } from "utils/util";
+import { request, showLoading } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
@@ -118,7 +118,6 @@ Page({
         tipTop: heightInfo.tipTop
       });
       this.ctx.draw();
-      hideLoading();
       this.setData({
         showLoading: false,
       });

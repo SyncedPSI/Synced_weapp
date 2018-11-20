@@ -5,7 +5,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
   <view class="u-detail-padding daily__container">
-    <template is="page_loading" wx:if="{{isFetching}}" />
+    <template is="page_loading" wx:if="{{daily === null}}" />
 
     <view class="daily__title">{{daily.title}}</view>
     <view class="daily__create">{{daily.created_at}}</view>
@@ -17,7 +17,7 @@
     </view>
   </view>
 
-  <view wx:if="{{!isFetching}}">
+  <view wx:else>
     <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
     <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
   </view>

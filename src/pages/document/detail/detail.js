@@ -208,7 +208,6 @@ Page({
             tipTop: heightInfo.tipTop
           });
 
-          hideLoading();
           this.ctx.draw(false, () => {
             this.saveImage();
           });

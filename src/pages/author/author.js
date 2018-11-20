@@ -39,7 +39,7 @@ Page({
       });
   },
   fetchData: function() {
-    if (!this.data.hasNextPage) return;
+    if (!hasNextPage) return;
 
     const { type, id } = this.data;
     request(`${ApiRootUrl}/${type}s/${id}?page=${this.page}`)
@@ -135,8 +135,9 @@ Page({
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
+    const { author, totalCount } = this.data;
     wx.downloadFile({
-      url: this.data.author.avatar_url + '?roundPic/radius/!50p',
+      url: author.avatar_url + '?roundPic/radius/!50p',
       success: (res) => {
         if (res.statusCode === 200) {
           // cover
@@ -166,7 +167,7 @@ Page({
             ctx: this.ctx,
             fontSize: 14,
             color: '#a8a8a8',
-            text: `共 ${this.data.totalCount} 篇文章`,
+            text: `共 ${totalCount} 篇文章`,
             x: this.width - 35,
             y: heightInfo.countTop,
             isBold: true

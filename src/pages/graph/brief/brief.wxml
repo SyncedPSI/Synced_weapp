@@ -38,7 +38,7 @@
       <image class="none--icon" src="{{path}}/icons/none_trend.png" />
       <text class="none--text">暂无动态</text>
     </view>
-    <navigator class="node-trend__item" url="{{item.type === 'Article' ? '/pages/article/article' : 'dailies/show/show'}}?id={{item.id}}" hover-class="none">
+    <navigator class="node-trend__item" url="/pages/{{item.type === 'Article' ? 'article/article' : 'dailies/show/show'}}?id={{item.id}}" hover-class="none">
       <view class="node-trend__name">Task Transfer by Preference-Based Cost Learning</view>
       <view class="u-flex node-trend__footer">
         <view class="u-text-limit--one">1小时前</view>

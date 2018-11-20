@@ -1,4 +1,4 @@
-import { request, showTipToast, showLoading, hideLoading } from "utils/util";
+import { request, showTipToast, showLoading } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawComment, drawOneLine } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
@@ -9,7 +9,7 @@ Page({
     id: null,
     navigateTitle: '',
     isFromWeapp: false,
-    isFetching: true,
+    daily: null,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
@@ -35,7 +35,6 @@ Page({
         this.setData({
           navigateTitle: daily.title,
           daily,
-          isFetching: false,
           showUrl: showUrl[showUrl.length - 1],
           userInfo: wx.getStorageSync('userInfo')
         });
@@ -123,50 +122,54 @@ Page({
     this.onShareAppMessage();
   },
 
-  drawImgae: function() {
-    if (this.data.commentStr === null) {
-       wx.navigateTo({
-         url: `/pages/dailies/share/share?id=${this.data.daily.id}`
-       });
-    } else {
-      this.startDraw();
-    }
-  },
-
-  startDraw: function () {
+  drawImgae: function () {
     showLoading('图片生成中');
     const maxWidth = this.width - this.paddingLeft * 2;
+    const { daily, commentStr } = this.data;
 
     const titleInfo = getWrapTextHeight({
       ctx: this.ctx,
       maxWidth,
-      text: this.data.daily.title,
+      text: daily.title,
       lineHeight: 30,
     });
 
     const heightInfo = {
       coverTop: 0,
       coverHeight: 190,
-      titleTop: 190 - 35,
+      timeTop: 190 - 12 - 19,
       qrcodeHeight: 90,
     };
-
-    const descInfo = getWrapTextHeight({
-      ctx: this.ctx,
-      text: this.data.commentStr,
-      lineHeight: 28,
-      fontSize: 17,
-      maxWidth: this.width - 33 * 2
-    });
-
-    // heightInfo.coverHeight = 190
     heightInfo.titleTop = 190 - 35 - titleInfo.height;
-    heightInfo.timeTop = 190 - 12 - 19;
-    heightInfo.leftMarkTop = 190 + 30;
-    heightInfo.userTop = 190 + 43;
-    heightInfo.descTop = 190 + 71;
-    heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
-    heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 36;
+
+    let descInfo = null;
+    if (commentStr === null) {
+      descInfo = getWrapTextHeight({
+        ctx: this.ctx,
+        text: daily.content,
+        lineHeight: 28,
+        fontSize: 16,
+        maxWidth: this.width - 30 * 2
+      });
+
+      heightInfo.descTop = 190 + 25;
+      heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 26;
+    } else {
+      descInfo = getWrapTextHeight({
+        ctx: this.ctx,
+        text: commentStr,
+        lineHeight: 28,
+        fontSize: 17,
+        maxWidth: this.width - 33 * 2
+      });
+
+      // heightInfo.coverHeight = 190
+      heightInfo.leftMarkTop = 190 + 30;
+      heightInfo.userTop = 190 + 43;
+      heightInfo.descTop = 190 + 71;
+      heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
+      heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 36;
+    }
 
     heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 9;
     this.height = heightInfo.tipTop + 20 + 46;
@@ -179,7 +182,8 @@ Page({
   },
 
   draw: function (titleInfo, descInfo, heightInfo) {
-    const hrCenter = this.width / 2;
+    const { daily, commentStr } = this.data;
+
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
@@ -202,34 +206,46 @@ Page({
       ctx: this.ctx,
       fontSize: 13,
       color: '#f2f2f2',
-      text: this.data.daily.created_at,
+      text: daily.created_at,
       x: 24,
       y: heightInfo.timeTop,
     });
 
-    drawComment({
-      ctx: this.ctx,
-      userInfo: this.data.userInfo,
-      heightInfo,
-      comment: descInfo,
-      leftMarkOffset: this.paddingLeft,
-      rightMarkOffset: this.width - this.paddingLeft * 2,
-      cb: () => {
-        this.drawOther(heightInfo, hrCenter);
-      }
-    });
+    if (commentStr === null) {
+      drawMultiLines({
+        ctx: this.ctx,
+        text: descInfo,
+        fontSize: 16,
+        x: 30,
+        y: heightInfo.descTop,
+        lineHeight: 28,
+        color: '#121212',
+      });
+      this.drawOther(heightInfo);
+    } else {
+      drawComment({
+        ctx: this.ctx,
+        userInfo: userInfo,
+        heightInfo,
+        comment: descInfo,
+        leftMarkOffset: this.paddingLeft,
+        rightMarkOffset: this.width - this.paddingLeft * 2,
+        cb: () => {
+          this.drawOther(heightInfo);
+        }
+      });
+    }
   },
-  drawOther: function (heightInfo, hrCenter) {
+  drawOther: function (heightInfo) {
     // qrocde + tip
     drawQrcode({
       ctx: this.ctx,
       imgX: (this.width - heightInfo.qrcodeHeight) / 2,
       imgTop: heightInfo.qrcodeTop,
-      hrCenter,
+      hrCenter: this.width / 2,
       tipTop: heightInfo.tipTop
     });
 
-    hideLoading();
     this.ctx.draw(false, () => {
       saveImage(this.width, this.height, () => {
         this.closeShared();

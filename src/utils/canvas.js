@@ -85,6 +85,7 @@ export const drawQrcode = ({ctx, imgX, imgTop, hrCenter, tipTop}) => {
     y: tipTop,
     isCenter: true,
   });
+  hideLoading();
 }
 
 export const saveImage = (width, height, authErrorCb) => {

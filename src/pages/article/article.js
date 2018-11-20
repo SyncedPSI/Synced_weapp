@@ -1,4 +1,4 @@
-import { request, getDateDiff, showTipToast, showLoading, hideLoading } from "utils/util";
+import { request, getDateDiff, showTipToast, showLoading } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawFail, drawComment } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
@@ -244,11 +244,12 @@ Page({
   drawImgae: function() {
     showLoading('图片生成中');
     const maxWidth = this.width - this.paddingLeft * 2;
+    const { article, commentStr } = this.data;
 
     const titleInfo = getWrapTextHeight({
       ctx: this.ctx,
       maxWidth,
-      text: this.data.article.title,
+      text: article.title,
       lineHeight: 30,
     });
 
@@ -260,11 +261,11 @@ Page({
     };
 
     let descInfo = null;
-    if (this.data.commentStr === null) {
+    if (commentStr === null) {
       descInfo = getWrapTextHeight({
         maxWidth,
         ctx: this.ctx,
-        text: this.data.article.description,
+        text: article.description,
         lineHeight: 28,
         fontSize: 17
       });
@@ -275,7 +276,7 @@ Page({
       // 头像 加 评论
       descInfo = getWrapTextHeight({
         ctx: this.ctx,
-        text: this.data.commentStr,
+        text: commentStr,
         lineHeight: 28,
         fontSize: 17,
         maxWidth: this.width - 33 * 2
@@ -300,12 +301,12 @@ Page({
   },
 
   draw: function (titleInfo, descInfo, heightInfo) {
-    const hrCenter = this.width / 2;
+    const { article, commentStr } = this.data;
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     wx.downloadFile({
-      url: `${this.data.article.cover_image_url}?imageView2/1/w/375/h/190`,
+      url: `${article.cover_image_url}?imageView2/1/w/375/h/190`,
       success: (res) => {
         if (res.statusCode === 200) {
           // cover
@@ -325,7 +326,7 @@ Page({
           });
 
           // content
-          if (this.data.commentStr === null) {
+          if (commentStr === null) {
             // title
             drawMultiLines({
               ctx: this.ctx,
@@ -335,17 +336,17 @@ Page({
               y: heightInfo.descTop,
               lineHeight: 28,
             });
-            this.drawOther(heightInfo, hrCenter);
+            this.drawOther(heightInfo);
           } else {
             drawComment({
               ctx: this.ctx,
-              userInfo: this.data.userInfo,
+              userInfo: userInfo,
               heightInfo,
               comment: descInfo,
               leftMarkOffset: this.paddingLeft,
               rightMarkOffset: this.width - this.paddingLeft * 2,
               cb: () => {
-                this.drawOther(heightInfo, hrCenter);
+                this.drawOther(heightInfo);
               }
             })
           }
@@ -358,17 +359,16 @@ Page({
       }
     })
   },
-  drawOther: function (heightInfo, hrCenter) {
+  drawOther: function (heightInfo) {
     // qrocde + tip
     drawQrcode({
       ctx: this.ctx,
       imgX: (this.width - heightInfo.qrcodeHeight) / 2,
       imgTop: heightInfo.qrcodeTop,
-      hrCenter,
+      hrCenter: this.width / 2,
       tipTop: heightInfo.tipTop
     });
 
-    hideLoading();
     this.ctx.draw(false, () => {
       saveImage(this.width, this.height, () => {
         this.closeShared();
