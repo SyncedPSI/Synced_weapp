@@ -55,7 +55,8 @@
 </view>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
-  <view class="graph-shared" style="background-image: url('/images/graph_share_bg.png')">
+  <view class="graph-shared">
+    <image class="graph-shared__bg" src="{{path}}/images/graph_share_bg.png" mode="aspectFill" />
     <view class="graph-shared__container">
       <view class="graph-shared__title">{{node.full_name}}</view>
       <view class="graph-shared__name">{{node.en_name}}</view>
