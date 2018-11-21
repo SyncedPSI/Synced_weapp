@@ -190,7 +190,7 @@ Page({
 
   draw: function (nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo) {
     const containerWidth = this.width - 60;
-    setBg(this.ctx, this.width, this.height, '#1b181c');
+    this.ctx.drawImage('/images/graph_share_bg.png', 0, 0, this.width, this.height);
     setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, '#fff', 30, 30);
     setBg(this.ctx, containerWidth, this.height - heightInfo.headerOffset - 50, '#fff', 30, heightInfo.headerOffset + 20);
     this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.headerOffset - 5, 8, 40);
