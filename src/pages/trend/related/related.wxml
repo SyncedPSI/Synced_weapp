@@ -9,9 +9,8 @@
 
   <block wx:else>
     <view class="u-bg-center trend--bannner">
-      <image class="trend--cover" src='/images/trend_daily.png' wx:if="{{trend.category === 'daily'}}" />
-      <image class="trend--cover" src='/images/trend_reference.png' wx:else />
-      <view class="trend--day">{{trend.begin_at}}</view>
+      <image class="trend--cover" src='/images/trend_daily.jpg' wx:if="{{trend.category === 'daily'}}" />
+      <image class="trend--cover" src='/images/trend_reference.jpg' wx:else />
     </view>
     <view class="trend--desc">
       <template is="wxParse" data="{{wxParseData:trendDesc.nodes}}" />

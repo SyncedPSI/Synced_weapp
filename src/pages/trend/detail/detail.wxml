@@ -7,8 +7,8 @@
   <template is="page_loading" wx:if="{{trend === null}}" />
 
   <block wx:else>
-    <image class="trend--cover" src='/images/trend_task.png' wx:if="{{trend.category === 'article'}}" />
-    <image class="trend--cover" src='/images/trend_paper.png' wx:else />
+    <image class="trend--cover" src='/images/trend_task.jpg' wx:if="{{trend.category === 'article'}}" />
+    <image class="trend--cover" src='/images/trend_paper.jpg' wx:else />
     <view class="trend--title">{{trend.title}}</view>
     <view class="trend--desc">
       <template is="wxParse" data="{{wxParseData:trendDesc.nodes}}" />
