@@ -3,7 +3,7 @@
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <scroll-view scroll-y bindscrolltolower="getDailyList">
+    <scroll-view scroll-y>
       <view class="slide--container">
         <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
           <swiper-item wx:for="{{banners}}" wx:key="slide-{{index}}">

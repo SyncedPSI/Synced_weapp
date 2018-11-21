@@ -88,7 +88,9 @@ export const drawQrcode = ({ctx, imgX, imgTop, hrCenter, tipTop}) => {
   hideLoading();
 }
 
-export const saveImage = (width, height, authErrorCb) => {
+const noLoop = () => {};
+
+export const saveImage = (width, height, authErrorCb, successCb = noLoop) => {
   wx.canvasToTempFilePath({
     x: 0,
     y: 0,
@@ -100,6 +102,7 @@ export const saveImage = (width, height, authErrorCb) => {
         filePath: res.tempFilePath,
         success: function () {
           showTipToast('图片已保存至相册');
+          successCb();
         },
         fail: (error) => {
           if (error.errMsg.match('auth den')) {

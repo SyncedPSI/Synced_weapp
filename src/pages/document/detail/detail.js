@@ -224,6 +224,10 @@ Page({
       hideLoading();
       this.closeShared();
       this.openActionSheet();
+    }, () => {
+      this.setData({
+        isDraw: true
+      });
     })
   },
   openActionSheet: function () {

@@ -133,6 +133,7 @@ Page({
   },
 
   draw: function (nameInfo, descInfo, heightInfo) {
+    this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     const { author, totalCount } = this.data;
@@ -222,6 +223,10 @@ Page({
       hideLoading();
       this.closeShared();
       this.openActionSheet();
+    }, () => {
+      this.setData({
+        isDraw: true
+      });
     })
   },
   openActionSheet: function () {

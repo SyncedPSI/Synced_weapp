@@ -189,6 +189,7 @@ Page({
   },
 
   draw: function (nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo) {
+    this.ctx.clearRect(0, 0, this.width, this.height);
     const containerWidth = this.width - 60;
     this.ctx.drawImage('/images/graph_share_bg.png', 0, 0, this.width, this.height);
     setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, '#fff', 30, 30);
@@ -301,6 +302,10 @@ Page({
       hideLoading();
       this.closeShared();
       this.openActionSheet();
+    }, () => {
+      this.setData({
+        isDraw: true
+      });
     })
   },
   openActionSheet: function () {
