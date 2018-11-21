@@ -8,6 +8,8 @@ Page({
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isExpand: false,
     trends: [],
+    noTrends: true,
+    hasNextPage: true,
     isFetching: false,
   },
   onLoad: function(options) {
@@ -35,9 +37,12 @@ Page({
       request(`${ApiRootUrl}/${type}/${id}/flows`, {
         page: this.page
       }).then((res) => {
+        const { flows, has_next_page } = res.data;
         this.setData({
-          trends: res.data.flows,
-          isFetching: false
+          trends: flows,
+          isFetching: false,
+          hasNextPage: has_next_page,
+          noTrends: false,
         }, () => {
           this.page += 1;
         });
