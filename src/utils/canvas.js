@@ -112,7 +112,7 @@ export const saveImage = (width, height, authErrorCb) => {
       });
     },
     fail: function () {
-      showErrorToast('生成失败');
+      showErrorToast('再试一次');
     }
   });
 };

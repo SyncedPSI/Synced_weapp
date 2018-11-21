@@ -157,6 +157,7 @@ Page({
   },
 
   draw: function (titleInfo, heightInfo) {
+    this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
     const { document } = this.data;
