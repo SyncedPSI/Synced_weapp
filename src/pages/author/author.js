@@ -1,4 +1,4 @@
-import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
+import { request, getDateDiff, showLoading, hideLoading } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawFail } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
