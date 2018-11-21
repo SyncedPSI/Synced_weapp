@@ -1,4 +1,5 @@
-import { request } from "utils/util";
+import { request, showLoading, hideLoading } from "utils/util";
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
 Page({
@@ -114,133 +115,186 @@ Page({
     this.ctx.setTextBaseline('top');
 
     const heightInfo = {
-      avatarHeight: 300,
-      avatarTop: 0,
-      nameTop: 106,
-      qrcodeHeight: 54,
+      nameTop: 50,
+      qrcodeHeight: 90,
     };
 
-    const {
-      author
-    } = this.data;
+    const { node, sharedTrends } = this.data;
+    const maxWidth = this.width - 100;
     const nameInfo = getWrapTextHeight({
-      maxWidth: this.width * 0.64,
+      maxWidth,
       ctx: this.ctx,
-      text: author.name,
-      fontSize: 24,
-      lineHeight: 36,
+      text: node.full_name,
+      fontSize: 22,
+      lineHeight: 33,
     });
 
-    const descInfo = getWrapTextHeight({
-      maxWidth: this.width * 0.58,
+    const enInfo = getWrapTextHeight({
+      maxWidth,
       ctx: this.ctx,
-      text: author.description || '',
-      lineHeight: 28,
-      fontSize: 17
+      text: node.en_name,
+      fontSize: 14,
+      lineHeight: 20
     });
 
-    descInfo.height = Math.max(descInfo.height, 196);
-    heightInfo.countTop = heightInfo.nameTop + nameInfo.height + 8;
-    heightInfo.descTop = heightInfo.countTop + 20 + 24;
-    this.height = heightInfo.descTop + descInfo.height + 108;
-    heightInfo.qrcodeTop = this.height - 89 - 54;
-    heightInfo.tipTop = this.height - 84;
+    const summaryInfo = getWrapTextHeight({
+      maxWidth,
+      ctx: this.ctx,
+      text: node.summary.slice(0, 65) + '...',
+      fontSize: 14,
+      lineHeight: 22
+    });
+
+    heightInfo.enTop = heightInfo.nameTop + nameInfo.height;
+    heightInfo.summaryTop = heightInfo.enTop + enInfo.height + 12;
+    heightInfo.headerOffset = heightInfo.summaryTop + summaryInfo.height + 22;
+    heightInfo.aboutTop = heightInfo.headerOffset + 45;
+
+    let trendsInfo = null;
+    if (sharedTrends.length > 0) {
+      trendsInfo = sharedTrends.map((item) => {
+        const titleInfo =  getWrapTextHeight({
+          maxWidth,
+          ctx: this.ctx,
+          text: item.title,
+          fontSize: 16,
+          lineHeight: 24,
+        });
+        return {
+          ...titleInfo,
+          time: item.pubdate
+        }
+      });
+
+      const [first, second] = trendsInfo;
+      first.titleTop = heightInfo.aboutTop + 24 + 21;
+      first.timeTop = first.titleTop + first.height + 12;
+
+      if (second) {
+        second.titleTop = first.timeTop + 20 + 20;
+        second.timeTop = second.titleTop + second.height + 12;
+      }
+
+      heightInfo.qrcodeTop = trendsInfo[trendsInfo.length - 1].timeTop + 20 + 28;
+    } else {
+      heightInfo.qrcodeTop = heightInfo.aboutTop + 24 + 158;
+    }
+    this.height = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 55;
 
     this.setData({
       canvasHeight: this.height
     }, () => {
-      this.draw(nameInfo, descInfo, heightInfo);
+      this.draw(nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo);
     });
   },
 
-  draw: function (nameInfo, descInfo, heightInfo) {
-    setBg(this.ctx, this.width, this.height);
+  draw: function (nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo) {
+    const containerWidth = this.width - 60;
+    setBg(this.ctx, this.width, this.height, '#1b181c');
+    setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, '#fff', 30, 30);
+    setBg(this.ctx, containerWidth, this.height - heightInfo.headerOffset - 50, '#fff', 30, heightInfo.headerOffset + 20);
+    this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.headerOffset - 5, 8, 40);
+    this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.headerOffset - 5, 8, 40);
 
-    const {
-      author,
-      totalCount
-    } = this.data;
-    wx.downloadFile({
-      url: author.avatar_url + '?roundPic/radius/!50p',
-      success: (res) => {
-        if (res.statusCode === 200) {
-          // cover
-          this.ctx.drawImage(res.tempFilePath, -90, -90, heightInfo.avatarHeight, heightInfo.avatarHeight);
-          this.ctx.drawImage('/images/logo.svg', this.width - 20 - 64, 15, 64, 24);
+    drawMultiLines({
+      ctx: this.ctx,
+      fontSize: 22,
+      text: nameInfo,
+      x: 50,
+      y: heightInfo.nameTop,
+      isBold: true,
+      color: '#121212',
+      lineHeight: 33,
+    });
 
-          // name bg
-          // const bgHeight = nameInfo.height + 24;
-          // this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
-          // this.ctx.fillRect(133, 94, this.width * 0.64, bgHeight);
-          // this.ctx.beginPath()
-          // this.ctx.arc(133, 94 + bgHeight / 2, bgHeight / 2, 0.5 * Math.PI, 1.5 * Math.PI);
-          // this.ctx.fill();
+    drawMultiLines({
+      ctx: this.ctx,
+      fontSize: 14,
+      text: enInfo,
+      x: 50,
+      y: heightInfo.enTop,
+      color: '#a8a8a8',
+      lineHeight: 20
+    });
 
-          // name
-          drawMultiLines({
-            ctx: this.ctx,
-            fontSize: 24,
-            text: nameInfo,
-            x: this.width - 35,
-            y: heightInfo.nameTop,
-            isBold: true,
-            textAlign: 'right',
-          });
+    drawMultiLines({
+      ctx: this.ctx,
+      fontSize: 14,
+      text: summaryInfo,
+      x: 50,
+      y: heightInfo.summaryTop,
+      color: '#414141',
+      lineHeight: 22
+    });
 
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#a8a8a8',
-            text: `共 ${totalCount} 篇文章`,
-            x: this.width - 35,
-            y: heightInfo.countTop,
-            isBold: true
-          });
+    drawOneLine({
+      ctx: this.ctx,
+      fontSize: 16,
+      color: '#121212',
+      text: '相关动态',
+      x: 50,
+      y: heightInfo.aboutTop,
+      isBold: true,
+    });
 
-          drawMultiLines({
-            ctx: this.ctx,
-            fontSize: 16,
-            text: descInfo,
-            x: this.width * 0.42 - 20,
-            y: heightInfo.descTop,
-            lineHeight: 28,
-          });
+    const halfWidth = this.width / 2;
+    if (this.data.sharedTrends.length > 0) {
+      trendsInfo.forEach(item => {
+        drawMultiLines({
+          ctx: this.ctx,
+          fontSize: 16,
+          text: item,
+          x: 50,
+          y: item.titleTop,
+          color: '#121212',
+          lineHeight: 24,
+        });
 
-          this.ctx.drawImage('/images/qrcode.png', 42, heightInfo.qrcodeTop, 54, 54);
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#7d7d7d',
-            text: '长按小程序码',
-            x: 30,
-            y: heightInfo.tipTop,
-          });
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#7d7d7d',
-            text: '了解更多文章',
-            x: 30,
-            y: heightInfo.tipTop + 16,
-          });
+        drawOneLine({
+          ctx: this.ctx,
+          fontSize: 14,
+          color: '#a8a8a8',
+          text: item.time,
+          x: 50,
+          y: item.timeTop
+        });
+      })
+    } else {
+      const noneTop = heightInfo.aboutTop + 24 + 54;
+      this.ctx.drawImage('/icons/none_trend.png', halfWidth - 47, noneTop, 28, 28);
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 14,
+        color: '#121212',
+        text: '暂无动态',
+        x: halfWidth + 19,
+        y: noneTop + 5,
+        isCenter: true
+      });
+    }
 
-          this.ctx.beginPath()
-          this.ctx.arc(this.width, this.height, 64, Math.PI, 2 * Math.PI);
-          this.ctx.setFillStyle('#282828');
-          this.ctx.fill();
+    this.ctx.setTextAlign('left');
+    this.ctx.drawImage('/images/qrcode.png', halfWidth - 95, heightInfo.qrcodeTop, 90, 90);
+    drawOneLine({
+      ctx: this.ctx,
+      fontSize: 14,
+      color: '#7d7d7d',
+      text: '长按小程序码',
+      x: halfWidth + 5,
+      y: heightInfo.qrcodeTop + 30,
+    });
+    drawOneLine({
+      ctx: this.ctx,
+      fontSize: 14,
+      color: '#7d7d7d',
+      text: '了解更多知识',
+      x: halfWidth + 5,
+      y: heightInfo.qrcodeTop + 50,
+    });
 
-          hideLoading();
-          this.ctx.draw(false, () => {
-            this.saveImage();
-          });
-        } else {
-          drawFail(res);
-        }
-      },
-      fail: (error) => {
-        drawFail(error);
-      }
-    })
+    this.ctx.draw(false, () => {
+      this.saveImage();
+    });
   },
   saveImage: function () {
     saveImage(this.width, this.height, () => {

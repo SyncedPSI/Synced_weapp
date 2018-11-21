@@ -4,9 +4,9 @@ const isPunctuation = (char) => {
   return (char === '，' || char === '。')
 };
 
-export const setBg = (ctx, width, height, color = '#fff') => {
+export const setBg = (ctx, width, height, color = '#fff', startX = 0, startY = 0) => {
   ctx.setFillStyle(color);
-  ctx.fillRect(0, 0, width, height);
+  ctx.fillRect(startX, startY, width, height);
 };
 
 export const getWrapTextHeight = ({ctx, maxWidth, text, lineHeight, fontSize = 22}) => {

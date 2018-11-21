@@ -205,7 +205,6 @@ Page({
           this.ctx.setFillStyle('#282828');
           this.ctx.fill();
 
-          hideLoading();
           this.ctx.draw(false, () => {
             this.saveImage();
           });
