@@ -115,6 +115,7 @@
 
   &__inline {
     align-items: flex-start;
+    margin-bottom: 60rpx;
   }
 
   &__image {
@@ -129,10 +130,6 @@
   &__grow,
   &__right {
     flex-grow: 1;
-  }
-
-  &__right {
-    margin-bottom: 30rpx;
   }
 
   &__title {
