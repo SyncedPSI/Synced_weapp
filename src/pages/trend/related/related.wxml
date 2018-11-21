@@ -24,11 +24,11 @@
           <block wx:for="{{items}}" wx:key="{{item.cardable_id}}">
             <navigator class="trend-item" url="/pages/daily/show/show?id={{item.cardable_id}}" hover-class="none" wx:if="{{item.cardable_type === 'dailies'}}">
               <view class="trend-item__title">{{item.default_title}}</view>
-              <view class="trend-item__desc">{{item.default_content}}</view>
+              <view class="u-text-limit--three trend-item__desc">{{item.default_content}}</view>
             </navigator>
             <view class="trend-item" wx:else data-url="{{item.default_url}}" bindtap="copySource">
               <view class="trend-item__title">{{item.default_title}}</view>
-              <view class="trend-item__desc">{{item.default_content}}</view>
+              <view class="u-text-limit--three trend-item__desc">{{item.default_content}}</view>
             </view>
           </block>
         </view>
@@ -38,7 +38,7 @@
       <template is="wxParse" data="{{wxParseData:trendContent.nodes}}" />
     </view>
     <image class="trend--image" src="{{trend.cover_image_url}}" mode="aspectFill" wx:if="{{trend.cover_image_url !== null}}" />
-    <comment isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
+    <comment isSmallPadding isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
     <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
   </block>
 </view>

@@ -31,7 +31,7 @@
     <view class="trend--content">
       <template is="wxParse" data="{{wxParseData:trendContent.nodes}}" />
     </view>
-    <comment isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
+    <comment isSmallPadding isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
     <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
   </block>
 </view>

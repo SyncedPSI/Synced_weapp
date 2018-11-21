@@ -23,6 +23,10 @@
     font-size: 32rpx;
     color: #121212;
     margin-bottom: 20rpx;
+
+    image {
+      max-width: 100%;
+    }
   }
 }
 
@@ -41,6 +45,10 @@
   }
 
   &__desc {
-    margin: 28px 0 60rpx;
+    margin: 28rpx 0 60rpx;
+  }
+
+  &:last-child &__desc {
+    margin-bottom: 0;
   }
 }

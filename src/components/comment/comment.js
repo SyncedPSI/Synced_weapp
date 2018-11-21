@@ -14,6 +14,10 @@ Component({
     hasShared: {
       type: Boolean,
       value: false
+    },
+    isSmallPadding: {
+      type: Boolean,
+      value: false,
     }
   },
 

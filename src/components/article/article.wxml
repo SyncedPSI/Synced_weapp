@@ -4,7 +4,7 @@
     <view class="article--flex article--left">
       <image class="article--avatar" src="{{author.avatar_url}}" mode="aspectFill"></image>
       <text class="article--author">{{author.nickname}}</text>
-      <text>{{publishedAt}}</text>
+      <text class="article--time">{{publishedAt}}</text>
     </view>
     <view class="article--category">{{category}}</view>
   </view>
