@@ -4,8 +4,8 @@ import { dynamics } from "config/api";
 Page({
   data: {
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
-    banners: [1, 2, 3, 4, 5],
-    recommends: [1, 2, 3, 4, 5, 6, 7, 8],
+    banners: [],
+    recommends: [],
     currentBannerIndex: 0,
   },
   onLoad: function () {
