@@ -1,6 +1,6 @@
 import { request, showTipToast } from "utils/util";
-import { dailyDetail } from "config/api";
-
+import { trendDetail } from "config/api";
+const WxParse = require("wxParse/wxParse.js");
 const app = getApp();
 
 Page({
@@ -8,11 +8,11 @@ Page({
     id: null,
     navigateTitle: '',
     isFromWeapp: false,
-    isFetching: true,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
-    category: 'week'
+    trend: null,
+    cards: []
   },
 
   openComment: function() {
@@ -37,18 +37,18 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    // request(`${dailyDetail}${option.id}`)
-    //   .then(res => {
+    request(`${trendDetail}${option.id}`)
+      .then(res => {
+       const { content, desc, trend_cards, ...otherProps } = res.data;
+        WxParse.wxParse("trendDesc", "html", desc, this, 5);
+        WxParse.wxParse("trendContent", "html", content, this, 5);
+
         this.setData({
-          navigateTitle: '标题',
-          list: [
-            { name: '今日要闻', items: [1,2,3]},
-            { name: '产品与应用', items: [1,2,3]},
-            { name: '产品与应用', items: [1,2,3]},
-          ],
-          isFetching: false,
+          navigateTitle: otherProps.title,
+          trend: otherProps,
+          cards: trend_cards,
         });
-    //   });
+      });
   },
 
   getUserInfo: function(event) {
@@ -60,10 +60,10 @@ Page({
     });
   },
   onShareAppMessage: function() {
-    const { id, daily: { title } }= this.data;
+    const { id, trend: { title } }= this.data;
     return {
       title,
-      path: `/pages/daily/show/show?id=${id}&from=weapp`,
+      path: `/pages/trend/related/related?id=${id}&from=weapp`,
     };
   },
   copySource: function (event) {

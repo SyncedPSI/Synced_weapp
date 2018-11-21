@@ -10,7 +10,6 @@ Page({
     trend: null,
     cards: [],
     isFromWeapp: false,
-    isFetching: true,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
@@ -47,7 +46,6 @@ Page({
           navigateTitle: otherProps.title,
           trend: otherProps,
           cards: trend_cards,
-          isFetching: false,
         });
       });
   },
