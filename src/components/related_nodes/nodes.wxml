@@ -5,7 +5,7 @@
       <navigator class="related--more" url="/pages/graph/related/related{{query}}">查看全部数据</navigator>
     </view>
     <view class="related--title" wx:else>关联数据</view>
-    <view class="related--scroll">
+    <scroll-view scroll-x class="related--scroll" >
       <block wx:for="{{nodes}}" wx:key="unique">
         <view class="related--card" wx:if="{{item.level == 'level_1'}}">
           <view>
@@ -22,6 +22,6 @@
           <view class="related--en">{{item.en_name}}</view>
         </navigator>
       </block>
-    </view>
+    </scroll-view>
   </view>
 </block>

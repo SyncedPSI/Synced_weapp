@@ -5,18 +5,18 @@
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
-    <view class="article--title" id="js-article-title">{{title}}</view>
     <template is="page_loading" wx:if="{{isFetching}}" />
     <block wx:else>
-      <view class="u-detail-padding article" id="js-article-content">
-        <block wx:if="{{hasMetadata}}">
-          <view class="article-metadata"  wx:if="{{article.metadata != null}}">
-            <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
-              <view class="article-metadata__key">{{key}}</view>
-              <view class="article-metadata__value">{{value}}</view>
-            </view>
+       <view class="article--title" id="js-article-title">{{article.title}}</view>
+       <view class="article-metadata" wx:if="{{hasMetadata}}">
+        <scroll-view scroll-x class="article-metadata__scroll" wx:if="{{article.metadata != null}}">
+          <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
+            <view class="article-metadata__key">{{key}}</view>
+            <view class="article-metadata__value">{{value}}</view>
           </view>
-        </block>
+        </scroll-view>
+      </view>
+      <view class="u-detail-padding article" id="js-article-content">
         <view class="article--time">{{article.publishedAt}}</view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>

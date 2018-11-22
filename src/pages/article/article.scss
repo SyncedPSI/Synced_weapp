@@ -24,24 +24,25 @@
 }
 
 .article-metadata {
-  min-width: 100%;
-  padding: 24rpx 20rpx;
-  background-color: #f9f9f9;
-  white-space: nowrap;
-  box-sizing: border-box;
-  overflow-x: auto;
-  margin: 32rpx -60rpx 2rpx 0;
+  padding-left: 60rpx;
+  margin: 32rpx 0 2rpx;
+
+  &__scroll {
+    width: 100%;
+    padding: 24rpx 0;
+    background-color: #f9f9f9;
+    white-space: nowrap;
+  }
 
   &__item {
     display: inline-block;
     font-size: 28rpx;
-    padding-right: 40rpx;
+    padding: 0 20rpx;
     margin-right: 40rpx;
-    border-right: 2rpx solid #e7e7e7;
+    border-left: 2rpx solid #e7e7e7;
 
-    &:last-child {
-      border-right: none;
-      margin-right: 0;
+    &:first-child {
+      border-left: none;
     }
   }
 
