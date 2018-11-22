@@ -22,7 +22,7 @@
             <text class="author-article__highlight"> {{totalCount}} </text>
             <text> 篇文章</text>
           </view>
-          <navigator class="author-article__item" wx:for="{{articles}}" wx:key="{{item.id}}" url="/pages/article/article?id={{item.id}}&title={{item.title}}">
+          <navigator class="author-article__item" wx:for="{{articles}}" wx:key="{{item.id}}" url="/pages/article/article?id={{item.id}}">
             <view class="author-article__title">{{item.title}}</view>
             <view class="u-flex author-article__footer">
               <text>{{item.published_at}}</text>

@@ -1,4 +1,4 @@
-<navigator class="card_wrapper {{className}}" url="/pages/article/article?id={{articleId}}&title={{title}}{{query}}">
+<navigator class="card_wrapper {{className}}" url="/pages/article/article?id={{articleId}}{{query}}">
   <view class="title">{{title}}</view>
   <view class="article--flex article--bottom">
     <view class="article--flex article--left">

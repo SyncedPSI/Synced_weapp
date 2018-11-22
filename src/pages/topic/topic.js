@@ -74,7 +74,7 @@ Page({
     const { title, id } = this.data;
     return {
       title,
-      path: `/pages/topic/topic?id=${id}&title=${title}&from=weapp`
+      path: `/pages/topic/topic?id=${id}&from=weapp`
     };
   },
 });

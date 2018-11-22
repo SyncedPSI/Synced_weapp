@@ -8,7 +8,7 @@
         <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
           <swiper-item wx:for="{{banners}}" wx:key="slide-{{index}}">
             <navigator class="slide--content t-{{index}} {{currentBannerIndex === index ? 'is-active' : ''}}"
-              url="/pages/{{item.path}}?id={{item.content.id}}&title={{item.content.title}}">
+              url="/pages/{{item.path}}?id={{item.content.id}}">
               <image class="slide--img" src="{{item.content.cover_image_url}}" />
               <view class="slide--title">{{item.content.title}}</view>
             </navigator>

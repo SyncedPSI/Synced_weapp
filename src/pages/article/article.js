@@ -246,7 +246,7 @@ Page({
     const { title, id } = this.data;
     return {
       title,
-      path: `/pages/article/article?id=${id}&title=${title}&from=weapp`
+      path: `/pages/article/article?id=${id}&from=weapp`
     };
   },
 
