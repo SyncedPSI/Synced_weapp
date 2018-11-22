@@ -1,5 +1,5 @@
 <import src="/pages/common/page_loading.wxml"/>
-<import src="/pages/common/comment_and_shared_bar.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 
@@ -29,12 +29,7 @@
   <text>获取报告</text>
 </view>
 
-<view class="document--comment {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openComment"  wx:if="{{isLogin}}">
-  <image class="document--comment--icon" src="{{prePath}}/icons/fixed_comment.png" />
-</view>
-<button class="document--comment {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="comment"  wx:else>
-  <image class="document--comment--icon" src="{{prePath}}/icons/fixed_comment.png" />
-</button>
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <view class="shared-comment__container" wx:if="{{isSharedComment}}">

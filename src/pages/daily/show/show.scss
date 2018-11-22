@@ -1,7 +1,7 @@
 @import 'variables';
-@import 'fix_bottom';
 @import 'shared_center';
 @import 'page_loading';
+@import 'fixed_comment';
 
 .daily {
   &__container {
@@ -15,10 +15,18 @@
     color: #121212;
   }
 
+  &__middle {
+    margin: 28rpx 0 60rpx;
+  }
+
   &__create {
     font-size: 28rpx;
     color: #a8a8a8;
-    margin: 28rpx 0 60rpx;
+  }
+
+  &__shared {
+    width: 60rpx;
+    height: 60rpx;
   }
 
   &__content {

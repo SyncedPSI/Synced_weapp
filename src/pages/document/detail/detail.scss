@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'mixins';
-@import 'fix_bottom';
 @import 'shared_center';
+@import 'fixed_comment';
 
 page {
   position: relative;
@@ -50,7 +50,6 @@ page {
     height: 60rpx;
   }
 
-  &--comment,
   &--download {
     position: fixed;
     bottom: 20rpx;
@@ -77,18 +76,6 @@ page {
     margin-bottom: 8rpx;
     display: inline-block;
     vertical-align: bottom;
-  }
-
-  &--comment {
-    border-radius: 50%;
-    right: 40rpx;
-    padding: 0;
-  }
-
-  &--comment--icon {
-    display: block;
-    width: 88rpx;
-    height: 88rpx;
   }
 }
 

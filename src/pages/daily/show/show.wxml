@@ -1,15 +1,17 @@
-<import src="../../common/page_loading.wxml"/>
-<import src="../../common/comment_and_shared_bar.wxml"/>
+<import src="/pages/common/page_loading.wxml"/>
 <import src="/pages/common/shared_center.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
-
 <template is="page_loading" wx:if="{{daily === null}}" />
 
 <block wx:else>
   <view class="u-detail-padding daily__container">
     <view class="daily__title">{{daily.title}}</view>
-    <view class="daily__create">{{daily.created_at}}</view>
+    <view class="u-flex daily__middle">
+      <view class="daily__create">{{daily.created_at}}</view>
+      <image class="daily__shared" src="/icons/daily_action.png" bindtap="openShared" />
+    </view>
     <view class="daily__content">{{daily.content}}</view>
     <view class="daily__source" wx:if="{{daily.url !== null}}">
       <image src="/icons/daily_source.png" class="daily__source--img" />
@@ -19,9 +21,10 @@
   </view>
   <nodes nodes="{{daily.related_nodes}}" />
   <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment" bindsharecomment="shareComment"></comment>
-  <template is="comment-shared-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX }}" />
 </block>
 <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
+
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedDaily" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}">
   <view class="daily-shared__header">

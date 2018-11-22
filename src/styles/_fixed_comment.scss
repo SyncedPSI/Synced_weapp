@@ -1,0 +1,17 @@
+.fixed-comment {
+  position: fixed;
+  bottom: 20rpx;
+  border-radius: 50%;
+  right: 40rpx;
+  padding: 0;
+
+  &.has-safe-padding {
+    margin-bottom: $safe-padding-bottom;
+  }
+
+  &__icon {
+    display: block;
+    width: 88rpx;
+    height: 88rpx;
+  }
+}
