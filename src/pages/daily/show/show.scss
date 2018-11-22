@@ -55,19 +55,6 @@
     background-color: $bg-white;
     color: $mute-black;
   }
-
-  &__canvas--container {
-    position: absolute;
-    width: 100%;
-    left: 10000rpx;
-    top: 0;
-    bottom: 0;
-    overflow: auto;
-  }
-
-  &__canvas {
-    width: 100%;
-  }
 }
 
 .daily-shared {

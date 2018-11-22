@@ -38,6 +38,4 @@
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
-<cover-view class="daily__canvas--container">
-  <canvas class="daily__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-</cover-view>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
