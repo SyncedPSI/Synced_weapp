@@ -1,4 +1,4 @@
-import { request } from "utils/util";
+import { request, showTipToast } from "utils/util";
 import { ApiRootUrl } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 

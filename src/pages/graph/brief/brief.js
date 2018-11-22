@@ -1,4 +1,4 @@
-import { request, showLoading, hideLoading } from "utils/util";
+import { request, showLoading, hideLoading, showTipToast } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 

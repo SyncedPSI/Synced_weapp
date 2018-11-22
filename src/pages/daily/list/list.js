@@ -1,5 +1,5 @@
 import { dailies } from "config/api";
-import { request } from "utils/util";
+import { request, showTipToast } from "utils/util";
 
 Page({
   data: {
