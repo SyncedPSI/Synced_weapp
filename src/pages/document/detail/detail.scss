@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'mixins';
 @import 'fix_bottom';
+@import 'shared_center';
 
 page {
   position: relative;
@@ -143,6 +144,46 @@ page {
     color: #7d7d7d;
     font-size: 24rpx;
     margin: 22rpx 0 60rpx;
+  }
+
+  &__center {
+    text-align: center;
+  }
+}
+
+.shared-comment {
+  &__container {
+    padding: 38rpx 24rpx 0;
+  }
+
+  &__header {
+    margin-bottom: 28rpx;
+  }
+
+  &__cover {
+    width: 120rpx;
+    height: 176rpx;
+    border: 2rpx solid #e7e7e7;
+    flex-shrink: 0;
+    margin-right: 24rpx;
+  }
+
+  &__right {
+    height: 176rpx;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &__title {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__time {
+    color: #a8a8a8;
+    font-size: 20rpx;
   }
 }
 

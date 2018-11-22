@@ -23,12 +23,7 @@
     }
 
     &.t-left {
-      margin-left: -4rpx;
       margin-bottom: 4rpx;
-    }
-
-    &.t-right {
-      margin-right: -4rpx;
     }
 
     &.t-small.t-right {
@@ -61,7 +56,7 @@
 
   &__user {
     position: absolute;
-    margin-left: 8rpx;
+    margin-left: 16rpx;
     margin-top: -16rpx;
   }
 

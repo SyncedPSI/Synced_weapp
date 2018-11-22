@@ -1,6 +1,7 @@
 import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail, drawComment } from 'utils/canvas';
 import { documents } from "config/api";
+import { runInThisContext } from "vm";
 
 Page({
   data: {
@@ -14,6 +15,8 @@ Page({
     actionSheetHidden: true,
     isDraw: false,
     canvasHeight: 0,
+    isSharedComment: false,
+    targetComment: null
   },
   onLoad: function (options) {
     const { id, from } = options;
@@ -24,7 +27,8 @@ Page({
           isFromWeapp: from === "weapp",
           isLogin: getApp().globalData.isLogin,
         })
-      })
+      });
+    this.initCanvas();
   },
   download: function() {
     showLoading('获取中');
@@ -118,18 +122,40 @@ Page({
     this.closeShared();
     this.onShareAppMessage();
   },
-  drawImage: function () {
-    showLoading('图片生成中');
-    if (this.data.isDraw) {
-      this.saveImage();
-      return;
-    }
 
+  shareComment: function (event) {
+    const { user, comment } = event.detail;
+    this.setData({
+      isSharedComment: true,
+      targetComment: {
+        user,
+        content: comment,
+      }
+    });
+    this.openShared();
+    // this.readyDraw(comment, user);
+  },
+
+  initCanvas: function() {
     this.width = getApp().globalData.systemInfo.screenWidth;
     this.paddingLeft = 30;
     this.ctx = wx.createCanvasContext('js-canvas');
-    this.ctx.setTextBaseline('top');
+  },
 
+  drawImage: function () {
+    showLoading('图片生成中');
+    // if (this.data.isDraw) {
+    //   this.saveImage();
+    //   return;
+    // }
+
+    if (this.data.isSharedComment) {
+      const { content, user } = this.data.targetComment;
+      this.drawComment(content, user);
+      return;
+    }
+
+    this.ctx.setTextBaseline('top');
     const heightInfo = {
       bannerHeight: 252,
       titleTop: 272,
@@ -177,7 +203,7 @@ Page({
           this.ctx.fillRect(0, heightInfo.bannerHeight, this.width, this.height);
           this.ctx.setShadow(0, 0, 0, '#fff');
 
-          // name
+          // title
           drawMultiLines({
             ctx: this.ctx,
             fontSize: 22,
@@ -219,6 +245,101 @@ Page({
       }
     })
   },
+
+  drawComment: function(comment, userInfo) {
+    this.ctx.setTextBaseline('top');
+    const heightInfo = {
+      bannerHeight: 138,
+      titleTop: 30,
+      qrcodeHeight: 90,
+    };
+
+    const titleInfo = getWrapTextHeight({
+      maxWidth: this.width - 40 - 96 - 16,
+      ctx: this.ctx,
+      text: this.data.document.title,
+      fontSize: 22,
+      lineHeight: 33,
+    });
+
+    heightInfo.timeTop = heightInfo.bannerHeight + 30 - 17;
+    const descInfo = getWrapTextHeight({
+      ctx: this.ctx,
+      text: comment,
+      lineHeight: 28,
+      fontSize: 16,
+      maxWidth: this.width - 37 * 2
+    });
+
+    heightInfo.leftMarkTop = 30 + heightInfo.bannerHeight + 30;
+    heightInfo.userTop = heightInfo.leftMarkTop + 14;
+    heightInfo.descTop = heightInfo.leftMarkTop + 41;
+    heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
+    heightInfo.qrcodeTop = heightInfo.rightMarkTop + 54;
+    heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 9;
+    this.height = heightInfo.tipTop + 20 + 30;
+
+    this.setData({
+      canvasHeight: this.height
+    }, () => {
+      this.ctx.clearRect(0, 0, this.width, this.height);
+      setBg(this.ctx, this.width, this.height);
+
+      const { document } = this.data;
+      wx.downloadFile({
+        url: document.cover_image_url,
+        success: (res) => {
+          if (res.statusCode === 200) {
+            this.ctx.drawImage(res.tempFilePath, 20, 30, 96, 138);
+
+            drawMultiLines({
+              ctx: this.ctx,
+              fontSize: 22,
+              text: titleInfo,
+              x: 132,
+              y: heightInfo.titleTop,
+              isBold: true,
+              lineHeight: 33,
+            });
+
+            drawOneLine({
+              ctx: this.ctx,
+              fontSize: 14,
+              color: '#a8a8a8',
+              text: document.created_at,
+              x: 132,
+              y: heightInfo.timeTop,
+            });
+
+            drawComment({
+              ctx: this.ctx,
+              userInfo,
+              heightInfo,
+              comment: descInfo,
+              leftMarkOffset: 24,
+              rightMarkOffset: this.width - 24 * 2,
+              cb: () => {
+                drawQrcode({
+                  ctx: this.ctx,
+                  imgX: (this.width - heightInfo.qrcodeHeight) / 2,
+                  imgTop: heightInfo.qrcodeTop,
+                  hrCenter: this.width / 2,
+                  tipTop: heightInfo.tipTop
+                });
+
+                this.ctx.draw(false, () => {
+                  this.saveImage();
+                });
+              }
+            })
+
+          } else {
+            drawFail(res);
+          }
+        }
+      })
+    });
+  },
   saveImage: function() {
     saveImage(this.width, this.height, () => {
       hideLoading();
@@ -226,8 +347,9 @@ Page({
       this.openActionSheet();
     }, () => {
       this.setData({
-        isDraw: true
+        isSharedComment: false
       });
+      this.closeShared();
     })
   },
   openActionSheet: function () {
