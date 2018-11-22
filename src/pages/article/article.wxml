@@ -9,12 +9,14 @@
     <template is="page_loading" wx:if="{{isFetching}}" />
     <block wx:else>
       <view class="u-detail-padding article" id="js-article-content">
-        <view class="article-metadata"  wx:if="{{article.metadata != null}}">
-          <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
-            <view class="article-metadata__key">{{key}}</view>
-            <view class="article-metadata__value">{{value}}</view>
+        <block wx:if="{{hasMetadata}}">
+          <view class="article-metadata"  wx:if="{{article.metadata != null}}">
+            <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
+              <view class="article-metadata__key">{{key}}</view>
+              <view class="article-metadata__value">{{value}}</view>
+            </view>
           </view>
-        </view>
+        </block>
         <view class="article--time">{{article.publishedAt}}</view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>

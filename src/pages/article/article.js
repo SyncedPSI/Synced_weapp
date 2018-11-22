@@ -14,6 +14,7 @@ Page({
       related_nodes: [],
     },
     articleOwn: null,
+    hasMetadata: false,
     hiddenShared: true,
     commentStr: null,
     isShowComment: false,
@@ -55,6 +56,7 @@ Page({
         article.publishedAt = getDateDiff(res.data.published_at);
         WxParse.wxParse("article_content", "html", res.data.content, this, 5);
         this.setData({
+          hasMetadata: Object.keys(article.metadata).length > 0,
           article,
           articleOwn,
           isFetching: false
