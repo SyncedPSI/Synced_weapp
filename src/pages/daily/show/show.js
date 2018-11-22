@@ -276,10 +276,10 @@ Page({
         this.closeShared();
         this.openActionSheet();
       }, () => {
+        this.closeShared();
         this.setData({
           isSharedComment: false,
         });
-        this.closeShared();
       })
     });
   },

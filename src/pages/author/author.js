@@ -12,7 +12,6 @@ Page({
     hasNextPage: true,
     hiddenShared: true,
     actionSheetHidden: true,
-    isDraw: false,
     canvasHeight: 0,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
@@ -20,6 +19,7 @@ Page({
     const { id, type, from } = option;
 
     this.page = 2;
+    this.isDraw = false;
     request(`${ApiRootUrl}/${type}s/${id}`)
       .then(({ data }) => {
         const { articles, has_next_page, total_count, ...other } = data;
@@ -84,7 +84,7 @@ Page({
   },
   drawImage: function () {
     showLoading('图片生成中');
-    if (this.data.isDraw) {
+    if (this.isDraw) {
       this.saveImage();
       return;
     }
@@ -224,9 +224,7 @@ Page({
       this.closeShared();
       this.openActionSheet();
     }, () => {
-      this.setData({
-        isDraw: true
-      });
+      this.isDraw = true;
     })
   },
   openActionSheet: function () {

@@ -291,6 +291,8 @@ Page({
         success: (res) => {
           if (res.statusCode === 200) {
             this.ctx.drawImage(res.tempFilePath, 20, 30, 96, 138);
+            this.ctx.setStrokeStyle('#e7e7e7');
+            this.ctx.strokeRect(20, 30, 96, 138);
 
             drawMultiLines({
               ctx: this.ctx,
@@ -346,10 +348,10 @@ Page({
       this.closeShared();
       this.openActionSheet();
     }, () => {
+      this.closeShared();
       this.setData({
         isSharedComment: false
       });
-      this.closeShared();
     })
   },
   openActionSheet: function () {
