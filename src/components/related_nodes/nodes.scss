@@ -6,6 +6,14 @@
   background-color: $background-color;
   padding: 28rpx 0 48rpx;
 
+  &.t-small &--title {
+    padding: 0 40rpx;
+  }
+
+  &.t-small &--card:first-child {
+    margin-left: 40rpx;
+  }
+
   &--title {
     font-size: 32rpx;
     font-weight: 500;

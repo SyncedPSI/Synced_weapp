@@ -37,7 +37,7 @@
         <image class="node--shared" src="/icons/daily_action.png" bindtap="openShared" />
       </view>
     </view>
-    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore />
+    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore isSmallPadding />
 
     <view class="node-trend">
       <view class="node-trend__title">相关动态</view>

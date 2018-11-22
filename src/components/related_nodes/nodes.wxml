@@ -1,5 +1,5 @@
 <block wx:if="{{nodes.length > 0}}">
-  <view class="related">
+  <view class="related {{isSmallPadding ? 't-small' : ''}}">
     <view class="related--title u-flex" wx:if="{{hasMore}}">
       <text>关联数据</text>
       <navigator class="related--more" url="/pages/graph/related/related{{query}}">查看全部数据</navigator>

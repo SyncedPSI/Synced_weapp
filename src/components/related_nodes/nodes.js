@@ -11,6 +11,10 @@ Component({
     query:{
       type: String,
       value: ''
+    },
+    isSmallPadding: {
+      type: Boolean,
+      value: false
     }
   },
 })
