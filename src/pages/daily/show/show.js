@@ -19,6 +19,8 @@ Page({
     userInfo: null,
     canvasHeight: 0,
     actionSheetHidden: true,
+    isSharedComment: false,
+    targetComment: null
   },
 
   onLoad: function(option) {
@@ -124,10 +126,23 @@ Page({
 
   shareComment: function (event) {
     const { user, comment } = event.detail;
-    this.readyDraw(comment, user);
+    this.setData({
+      isSharedComment: true,
+      targetComment: {
+        user,
+        content: comment,
+      }
+    });
+    this.openShared();
   },
 
   drawImage: function () {
+    if (this.data.isSharedComment) {
+      const { content, user } = this.data.targetComment;
+      this.readyDraw(content, user);
+      return;
+    }
+
     const { commentStr, userInfo } = this.data;
     this.readyDraw(commentStr, userInfo);
   },
@@ -260,6 +275,11 @@ Page({
       saveImage(this.width, this.height, () => {
         this.closeShared();
         this.openActionSheet();
+      }, () => {
+        this.setData({
+          isSharedComment: false,
+        });
+        this.closeShared();
       })
     });
   },

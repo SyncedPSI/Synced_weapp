@@ -31,7 +31,7 @@
     <image class="daily-shared__cover" src="{{path}}/images/daily_banner.png" mode="aspectFill" />
   </view>
   <view class="daily-shared__content">
-    <template is="shared_center" data="{{isLogin: isLogin, commentStr: commentStr, userInfo: userInfo}}" />
+    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment}}" />
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

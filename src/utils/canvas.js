@@ -94,8 +94,8 @@ export const saveImage = (width, height, authErrorCb, successCb = noLoop) => {
   wx.canvasToTempFilePath({
     x: 0,
     y: 0,
-    width: width,
-    height: height,
+    width,
+    height,
     canvasId: 'js-canvas',
     success: (res) => {
       wx.saveImageToPhotosAlbum({

@@ -1,6 +1,17 @@
 <template name="shared_center">
   <view class="shared-center__commment">
-    <block wx:if="{{!isLogin || commentStr === null}}">
+    <block wx:if="{{isSharedComment}}">
+      <image class="shared-center__quot t-large t-left" src="{{path}}/icons/article_mark_left.png" />
+      <view class="u-flex shared-center__user">
+        <image class="shared-center__avatar" src="{{targetComment.user.avatar_url}}" />
+        <text class="shared-center__username">{{targetComment.user.nickname}}</text>
+      </view>
+      <view class="shared-center__commentstr">{{targetComment.content}}</view>
+        <view class="shared-center__right">
+        <image class="shared-center__quot t-large t-right" src="{{path}}/icons/article_mark_right.png" />
+      </view>
+    </block>
+    <block wx:elif="{{!isLogin || commentStr === null}}">
       <image class="shared-center__quot t-small t-left" src="{{path}}/icons/article_mark_left.png" />
 
       <button class="shared-center__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
