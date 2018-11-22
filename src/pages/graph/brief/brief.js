@@ -19,7 +19,17 @@ Page({
     sharedTrends: [],
   },
   onLoad: function(options) {
-    const { id, type, from } = options;
+    const { id, from } = options;
+    let { type } = options;
+
+    if (type === 'technology') {
+      type = 'technologies';
+    } else if (type === 'expert') {
+      type = 'experts';
+    } else if (type === 'institution') {
+      type = 'institutions';
+    }
+
     this.page = 1;
     request(`${ApiRootUrl}/${type}/${id}`)
       .then((res) => {
