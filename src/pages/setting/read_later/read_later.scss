@@ -95,6 +95,7 @@ page {
 .article {
   &--item {
     position: relative;
+    left: 0;
     transition: left 500ms;
     z-index: 2;
     background-color: #fff;
