@@ -1,5 +1,5 @@
 import { request, showLoading, hideLoading, showTipToast, getWxcodeUrl } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, downloadImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
 Page({
@@ -215,7 +215,6 @@ Page({
       heightInfo.qrcodeTop = heightInfo.aboutTop + 24 + 158;
     }
     this.height = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 55;
-
     this.setData({
       canvasHeight: this.height
     }, () => {
@@ -309,15 +308,16 @@ Page({
       });
     }
 
-    if (node.wxacode_url === null) {
+    const { wxacode_url } = this.data.node;
+    if (wxacode_url === null) {
       this.drawOther('/images/qrcode.png', heightInfo);
     } else {
-      downloadImage(author.wxacode_url, (path) => {
-        this.drawOther(path, heightInfo);
+      downloadImage(wxacode_url, (path) => {
+        this.drawOther(path, heightInfo, halfWidth);
       });
     }
   },
-  drawOther: function(path, heightInfo) {
+  drawOther: function (path, heightInfo, halfWidth) {
     this.ctx.setTextAlign('left');
     this.ctx.drawImage(path, halfWidth - 95, heightInfo.qrcodeTop, 90, 90);
     drawOneLine({
