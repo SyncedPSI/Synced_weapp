@@ -1,4 +1,4 @@
-import { request, showLoading } from "utils/util";
+import { request, showLoading, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
@@ -15,12 +15,20 @@ Page({
     showLoading: true,
     actionSheetHidden: true,
   },
-  onLoad: function(option) {
+  onLoad: function(options) {
     showLoading('图片生成中');
+    let id = null;
+    let isFromWeapp = true;
+    if (options.id) {
+      id = options.id;
+      isFromWeapp = options.from === "weapp";
+    } else {
+      id = decodeURIComponent(options.scene);
+    }
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
 
-    request(`${dailyDetail}${option.id}`)
+    request(`${dailyDetail}${id}`)
       .then(res => {
         const daily = res.data;
         this.setData({
@@ -30,11 +38,10 @@ Page({
           this.getHight();
         });
       });
-    const { id, from } = option;
     this.setData({
       id,
       isLogin: app.globalData.isLogin,
-      isFromWeapp: from === "weapp",
+      isFromWeapp,
     });
   },
   getHight: function() {
@@ -107,18 +114,30 @@ Page({
         y: heightInfo.contentTop,
         lineHeight: 28,
       });
-      // img
-      drawQrcode({
-        ctx: this.ctx,
-        imgX: (this.width - heightInfo.imageHeight) / 2,
-        imgTop: heightInfo.imgTop,
-        hrCenter: this.width / 2,
-        tipTop: heightInfo.tipTop
-      });
-      this.ctx.draw();
-      this.setData({
-        showLoading: false,
-      });
+      const { wxacode_url, id } = this.data.daily;
+      if (wxacode_url === null) {
+        getWxcodeUrl(id, 'pages/daily/show/show', 'Daily', (path) => {
+          this.drawOther(path, heightInfo);
+        });
+      } else {
+        this.drawOther(wxacode_url, heightInfo);
+      }
+  },
+  drawOther: function (path, heightInfo) {
+    drawQrcode({
+      ctx: this.ctx,
+      imgX: (this.width - heightInfo.imageHeight) / 2,
+      imgTop: heightInfo.imgTop,
+      hrCenter: this.width / 2,
+      tipTop: heightInfo.tipTop,
+      imgUrl: path,
+      cb: () => {
+        this.ctx.draw();
+        this.setData({
+          showLoading: false,
+        });
+      }
+    });
   },
   openActionSheet: function () {
     this.setData({
@@ -139,7 +158,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/daily/screenshot/screenshot?id=${id}&from=weapp`,
+      path: `/pages/daily/show/show?id=${id}&from=weapp`,
     };
   },
 });
