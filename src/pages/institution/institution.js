@@ -1,5 +1,5 @@
 Page({
-  onLoad: function(option) {
+  onLoad: function(options) {
     let id = null;
     let from = null;
     if (options.id) {

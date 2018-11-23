@@ -167,7 +167,7 @@ Page({
     const enInfo = getWrapTextHeight({
       maxWidth,
       ctx: this.ctx,
-      text: node.en_name,
+      text: node.en_name || '',
       fontSize: 14,
       lineHeight: 20
     });
