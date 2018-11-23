@@ -41,14 +41,14 @@
       </view>
     </view>
     <view class="shared-center__commment">
-      <image class="shared-center__quot t-large t-left" src="{{path}}/icons/article_mark_left.png" />
+      <image class="shared-center__quot t-large t-left" src="/icons/article_mark_left.png" />
       <view class="u-flex shared-center__user">
         <image class="shared-center__avatar" src="{{targetComment.user.avatar_url}}" />
         <text class="shared-center__username">{{targetComment.user.nickname}}</text>
       </view>
       <view class="shared-center__commentstr">{{targetComment.content}}</view>
         <view class="shared-center__right">
-        <image class="shared-center__quot t-large t-right" src="{{path}}/icons/article_mark_right.png" />
+        <image class="shared-center__quot t-large t-right" src="/icons/article_mark_right.png" />
       </view>
     </view>
   </view>

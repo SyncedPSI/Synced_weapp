@@ -9,7 +9,7 @@
         <text class="readlater--count" hidden="{{readLastersCount === 0}}">{{totalCount}}</text>
       </view>
       <view class="readlater--edit" bindtap="switchEdit">
-        <image class="readlater--icon" src="{{path}}/icons/readlater_edit.png" />
+        <image class="readlater--icon" src="/icons/readlater_edit.png" />
       </view>
     </view>
     <view class="readlater--none" wx:if="{{list.length === 0}}">

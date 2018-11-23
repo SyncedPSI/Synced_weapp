@@ -31,7 +31,7 @@
     <image class="daily-shared__logo" src="/images/logo_white.png" />
     <view class="daily-shared__title">{{daily.title}}</view>
     <view class="daily-shared__time">{{daily.created_at}}</view>
-    <image class="daily-shared__cover" src="{{path}}/images/daily_banner.png" mode="aspectFill" />
+    <image class="daily-shared__cover" src="/images/daily_banner.png" mode="aspectFill" />
   </view>
   <view class="daily-shared__content">
     <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment}}" />

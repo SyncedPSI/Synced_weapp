@@ -4,7 +4,7 @@
 
 <template name="no-trend">
   <view class="none" hidden="{{isHidden}}">
-    <image class="none--icon" src="{{path}}/icons/none_trend.png" />
+    <image class="none--icon" src="/icons/none_trend.png" />
     <text class="none--text">暂无动态</text>
   </view>
 </template>
@@ -56,14 +56,14 @@
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
   <view class="graph-shared">
-    <image class="graph-shared__bg" src="{{path}}/images/graph_share_bg.png" mode="aspectFill" />
+    <image class="graph-shared__bg" src="/images/graph_share_bg.png" mode="aspectFill" />
     <view class="graph-shared__container">
       <view class="graph-shared__title">{{node.full_name}}</view>
       <view class="graph-shared__name">{{node.en_name}}</view>
       <view class="u-text-limit--three graph-shared__desc">{{node.summary}}</view>
     </view>
-    <image class="graph-shared__contact t-left" src="{{path}}/images/graph_hr.png" />
-    <image class="graph-shared__contact t-right" src="{{path}}/images/graph_hr.png" />
+    <image class="graph-shared__contact t-left" src="/images/graph_hr.png" />
+    <image class="graph-shared__contact t-right" src="/images/graph_hr.png" />
     <view class="graph-shared__container t-bottom">
       <view class="graph-shared__tip">相关动态</view>
       <template is="no-trend" data="{{isHidden: sharedTrends.length > 0 }}" />

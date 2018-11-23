@@ -1,47 +1,47 @@
 <template name="shared_center">
   <view class="shared-center__commment">
     <block wx:if="{{isSharedComment}}">
-      <image class="shared-center__quot t-large t-left" src="{{path}}/icons/article_mark_left.png" />
+      <image class="shared-center__quot t-large t-left" src="/icons/article_mark_left.png" />
       <view class="u-flex shared-center__user">
         <image class="shared-center__avatar" src="{{targetComment.user.avatar_url}}" />
         <text class="shared-center__username">{{targetComment.user.nickname}}</text>
       </view>
       <view class="shared-center__commentstr">{{targetComment.content}}</view>
         <view class="shared-center__right">
-        <image class="shared-center__quot t-large t-right" src="{{path}}/icons/article_mark_right.png" />
+        <image class="shared-center__quot t-large t-right" src="/icons/article_mark_right.png" />
       </view>
     </block>
     <block wx:elif="{{!isLogin || commentStr === null}}">
-      <image class="shared-center__quot t-small t-left" src="{{path}}/icons/article_mark_left.png" />
+      <image class="shared-center__quot t-small t-left" src="/icons/article_mark_left.png" />
 
       <button class="shared-center__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
-        <image class="shared-center__opion" src="{{path}}/icons/article_share_comment.png" />
+        <image class="shared-center__opion" src="/icons/article_share_comment.png" />
         <text>添加你的观点</text>
       </button>
 
       <view class="shared-center__textarea" wx:else catchtap="openCommentInShared">
-        <image class="shared-center__opion" src="{{path}}/icons/article_share_comment.png" />
+        <image class="shared-center__opion" src="/icons/article_share_comment.png" />
         <text>添加你的观点</text>
       </view>
       <view class="shared-center__right">
-        <image class="shared-center__quot t-small t-right" src="{{path}}/icons/article_mark_right.png" />
+        <image class="shared-center__quot t-small t-right" src="/icons/article_mark_right.png" />
       </view>
     </block>
 
     <block wx:else>
-      <image class="shared-center__quot t-large t-left" src="{{path}}/icons/article_mark_left.png" />
+      <image class="shared-center__quot t-large t-left" src="/icons/article_mark_left.png" />
       <view class="u-flex shared-center__user">
         <image class="shared-center__avatar" src="{{userInfo.avatarUrl}}" />
         <text class="shared-center__username">{{userInfo.nickName}}</text>
       </view>
       <view class="shared-center__commentstr">{{commentStr}}</view>
         <view class="shared-center__right">
-        <image class="shared-center__quot t-large t-right" src="{{path}}/icons/article_mark_right.png" />
+        <image class="shared-center__quot t-large t-right" src="/icons/article_mark_right.png" />
       </view>
     </block>
   </view>
   <view class="shared-center__center">
-    <image class="shared-center__qrcode" src="{{path}}/images/qrcode.png" />
+    <image class="shared-center__qrcode" src="{{wxacode_url || '/images/qrcode.png'}}" />
     <view class="shared-center__tip">长按小程序码，阅读原文</view>
   </view>
 </template>
