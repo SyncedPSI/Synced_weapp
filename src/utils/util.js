@@ -169,5 +169,7 @@ export const getWxcodeUrl = (id, page, model, cb) => {
   }, 'POST')
   .then((res) => {
     cb(res.data.file_path);
-  });
+  }).catch(() => {
+    cb('/images/qrcode.png');
+  })
 };
