@@ -1,4 +1,4 @@
-import { request, showLoading, hideLoading, showTipToast } from "utils/util";
+import { request, showLoading, hideLoading, showTipToast, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
@@ -34,6 +34,9 @@ Page({
     request(`${ApiRootUrl}/${type}/${id}`)
       .then((res) => {
         const node = res.data;
+        if (node.wxacode_url === null) {
+          this.getWxcode(id, type);
+        }
         this.setData({
           id,
           type,
@@ -43,6 +46,28 @@ Page({
         })
       });
     this.fetchTrends(id, type, true);
+  },
+  getWxcode: function (id, type) {
+    let model = null;
+    let path = null;
+    if (type === 'technologies') {
+      model = 'Graph::Technology';
+      path = 'technology';
+    } else if (type === 'experts') {
+      model = 'Graph::Expert';
+      path = 'expert';
+    } else if (type === 'institutions') {
+      model = 'Graph::Institution';
+      path = 'institution';
+    } else if (type === 'resources') {
+      model = 'Graph::Resource';
+      path = 'resource';
+    }
+    getWxcodeUrl(id, `pages/${path}/${path}`, model, (path) => {
+      this.setData({
+        'node.wxacode_url': path
+      })
+    });
   },
   fetchTrends: function(id, type, firstFetch = false) {
     if (this.data.isFetching) return;
@@ -284,8 +309,17 @@ Page({
       });
     }
 
+    if (node.wxacode_url === null) {
+      this.drawOther('/images/qrcode.png', heightInfo);
+    } else {
+      downloadImage(author.wxacode_url, (path) => {
+        this.drawOther(path, heightInfo);
+      });
+    }
+  },
+  drawOther: function(path, heightInfo) {
     this.ctx.setTextAlign('left');
-    this.ctx.drawImage('/images/qrcode.png', halfWidth - 95, heightInfo.qrcodeTop, 90, 90);
+    this.ctx.drawImage(path, halfWidth - 95, heightInfo.qrcodeTop, 90, 90);
     drawOneLine({
       ctx: this.ctx,
       fontSize: 14,

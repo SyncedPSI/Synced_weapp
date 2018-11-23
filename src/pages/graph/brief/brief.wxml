@@ -72,7 +72,7 @@
         <view class="graph-shared__time">{{item.pubdate}}</view>
       </block>
       <view class="u-flex graph-shared__center">
-        <image class="graph-shared__qrcode" src="/images/qrcode.png" />
+        <image class="graph-shared__qrcode" src="{{ node.wxacode_url || '/images/qrcode.png'}}" />
         <view>
           <view>长按小程序码</view>
           <view>了解更多知识</view>
