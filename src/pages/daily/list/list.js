@@ -94,7 +94,7 @@ Page({
 
     return {
       title: '机器之心',
-      path: '/pages/index/index?from=weapp'
+      path: '/pages/daily/list/list?from=weapp'
     };
   },
 })

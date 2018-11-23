@@ -21,7 +21,7 @@
           <text>-</text>
         </view>
       </view>
-      <navigator class="article--item"
+      <navigator class="article--item" hover-class="none"
         url="/pages/article/article?id={{item.content.id}}&read_later=true{{item.progress === '100' ? '' : '&progress=true'}}">
         <view class="article--title {{item.progress === '100' ? 't-finish' : ''}}">{{item.content.title}}</view>
         <view class="u-flex article--bottom">

@@ -58,7 +58,7 @@ Component({
       wx.navigateBack();
     },
     goHome: function() {
-      wx.navigateTo({
+      wx.switchTab({
         url: '/pages/index/index'
       });
     },
