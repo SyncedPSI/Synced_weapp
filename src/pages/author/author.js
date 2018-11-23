@@ -1,4 +1,4 @@
-import { request, getDateDiff, showLoading, hideLoading } from "utils/util";
+import { request, getDateDiff, showLoading, hideLoading, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, downloadImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
@@ -15,20 +15,32 @@ Page({
     canvasHeight: 0,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight
   },
-  onLoad: function (option) {
-    const { id, type, from } = option;
+  onLoad: function (options) {
+    let id = null;
+    let isFromWeapp = true;
+    let type = 'user';
+    if (options.id) {
+      type = options.type;
+      id = options.id;
+      isFromWeapp = options.from === "weapp";
+    } else {
+      id = decodeURIComponent(options.scene);
+    }
 
     this.page = 2;
     this.isDraw = false;
     request(`${ApiRootUrl}/${type}s/${id}`)
       .then(({ data }) => {
         const { articles, has_next_page, total_count, ...other } = data;
+        if (other.wxacode_url === null) {
+          this.getWxcode(id, type);
+        }
         articles.forEach(item => {
           item.published_at = getDateDiff(item.published_at);
         });
 
         this.setData({
-          isFromWeapp: from === "weapp",
+          isFromWeapp,
           author: other,
           navigateTitle: other.name,
           articles,
@@ -38,6 +50,19 @@ Page({
           hasNextPage: has_next_page,
         })
       });
+  },
+  getWxcode: function (id, type) {
+    let model = 'User';
+    let path = 'pages/author/author';
+    if (type === 'column') {
+      model = 'SpecialColumn';
+      path = 'pages/column/column';
+    }
+    getWxcodeUrl(id, path, model, (path) => {
+      this.setData({
+        'author.wxacode_url': path
+      })
+    });
   },
   fetchData: function() {
     if (!hasNextPage) return;
@@ -139,7 +164,7 @@ Page({
     const { author, totalCount } = this.data;
     downloadImage(`${author.avatar_url}?roundPic/radius/!50p`, (path) => {
       // cover
-      this.ctx.drawImage(res.tempFilePath, -90, -90, heightInfo.avatarHeight, heightInfo.avatarHeight);
+      this.ctx.drawImage(path, -90, -90, heightInfo.avatarHeight, heightInfo.avatarHeight);
       this.ctx.drawImage('/images/logo.svg', this.width - 20 - 64, 15, 64, 24);
 
       // name bg
@@ -180,33 +205,42 @@ Page({
         lineHeight: 28,
       });
 
-      this.ctx.drawImage('/images/qrcode.png', 42, heightInfo.qrcodeTop, 54, 54);
-      drawOneLine({
-        ctx: this.ctx,
-        fontSize: 14,
-        color: '#7d7d7d',
-        text: '长按小程序码',
-        x: 30,
-        y: heightInfo.tipTop,
-      });
-      drawOneLine({
-        ctx: this.ctx,
-        fontSize: 14,
-        color: '#7d7d7d',
-        text: '了解更多文章',
-        x: 30,
-        y: heightInfo.tipTop + 16,
-      });
-
-      this.ctx.beginPath()
-      this.ctx.arc(this.width, this.height, 64, Math.PI, 2 * Math.PI);
-      this.ctx.setFillStyle('#282828');
-      this.ctx.fill();
-
-      this.ctx.draw(false, () => {
-        this.saveImage();
-      });
+      if (author.wxacode_url === null) {
+        this.drawOther('/images/qrcode.png', heightInfo);
+      } else {
+        downloadImage(author.wxacode_url, (path) => {
+          this.drawOther(path, heightInfo);
+        });
+      }
     })
+  },
+  drawOther: function (path, heightInfo) {
+    this.ctx.drawImage(path, 42, heightInfo.qrcodeTop, 54, 54);
+    drawOneLine({
+      ctx: this.ctx,
+      fontSize: 14,
+      color: '#7d7d7d',
+      text: '长按小程序码',
+      x: 30,
+      y: heightInfo.tipTop,
+    });
+    drawOneLine({
+      ctx: this.ctx,
+      fontSize: 14,
+      color: '#7d7d7d',
+      text: '了解更多文章',
+      x: 30,
+      y: heightInfo.tipTop + 16,
+    });
+
+    this.ctx.beginPath()
+    this.ctx.arc(this.width, this.height, 64, Math.PI, 2 * Math.PI);
+    this.ctx.setFillStyle('#282828');
+    this.ctx.fill();
+
+    this.ctx.draw(false, () => {
+      this.saveImage();
+    });
   },
   saveImage: function() {
     saveImage(this.width, this.height, () => {

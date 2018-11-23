@@ -4,6 +4,7 @@
     "pages/search/search",
     "pages/article/article",
     "pages/author/author",
+    "pages/column/column",
     "pages/document/list/list",
     "pages/document/detail/detail",
     "pages/topic/topic",

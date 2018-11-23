@@ -165,7 +165,7 @@ export const getWxcodeUrl = (id, page, model, cb) => {
   request(creatWxcode, {
     id,
     page,
-    model
+    model,
   }, 'POST')
   .then((res) => {
     cb(res.data.file_path);
