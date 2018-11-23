@@ -1,7 +1,6 @@
 import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawFail, drawComment } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawComment, downloadImage } from 'utils/canvas';
 import { documents } from "config/api";
-import { runInThisContext } from "vm";
 
 Page({
   data: {
@@ -187,62 +186,52 @@ Page({
     setBg(this.ctx, this.width, this.height);
 
     const { document } = this.data;
-    wx.downloadFile({
-      url: document.cover_image_url,
-      success: (res) => {
-        if (res.statusCode === 200) {
-          // cover
-          this.ctx.setFillStyle('#f2f2f2');
-          this.ctx.fillRect(0, 0, this.width, heightInfo.bannerHeight);
-          this.ctx.drawImage(res.tempFilePath, (this.width - 180) / 2, 30, 180, 256);
-          this.ctx.drawImage('/images/logo.svg', 20, 12, 51, 19);
+    downloadImage(document.cover_image_url, (path) => {
+      // cover
+      this.ctx.setFillStyle('#f2f2f2');
+      this.ctx.fillRect(0, 0, this.width, heightInfo.bannerHeight);
+      this.ctx.drawImage(path, (this.width - 180) / 2, 30, 180, 256);
+      this.ctx.drawImage('/images/logo.svg', 20, 12, 51, 19);
 
-          // body
-          this.ctx.setFillStyle('#fff');
-          this.ctx.setShadow(0, -10, 10, 'rgba(18, 18, 18, 0.05)');
-          this.ctx.fillRect(0, heightInfo.bannerHeight, this.width, this.height);
-          this.ctx.setShadow(0, 0, 0, '#fff');
+      // body
+      this.ctx.setFillStyle('#fff');
+      this.ctx.setShadow(0, -10, 10, 'rgba(18, 18, 18, 0.05)');
+      this.ctx.fillRect(0, heightInfo.bannerHeight, this.width, this.height);
+      this.ctx.setShadow(0, 0, 0, '#fff');
 
-          // title
-          drawMultiLines({
-            ctx: this.ctx,
-            fontSize: 22,
-            text: titleInfo,
-            x: this.width / 2,
-            y: heightInfo.titleTop,
-            isBold: true,
-            lineHeight: 33,
-            textAlign: 'center'
-          });
+      // title
+      drawMultiLines({
+        ctx: this.ctx,
+        fontSize: 22,
+        text: titleInfo,
+        x: this.width / 2,
+        y: heightInfo.titleTop,
+        isBold: true,
+        lineHeight: 33,
+        textAlign: 'center'
+      });
 
-          const hrCenter = this.width / 2;
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#a8a8a8',
-            text: document.created_at,
-            x: hrCenter,
-            y: heightInfo.timeTop,
-          });
+      const hrCenter = this.width / 2;
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 14,
+        color: '#a8a8a8',
+        text: document.created_at,
+        x: hrCenter,
+        y: heightInfo.timeTop,
+      });
 
-          drawQrcode({
-            ctx: this.ctx,
-            imgX: (this.width - heightInfo.qrcodeHeight) / 2,
-            imgTop: heightInfo.qrcodeTop,
-            hrCenter,
-            tipTop: heightInfo.tipTop
-          });
+      drawQrcode({
+        ctx: this.ctx,
+        imgX: (this.width - heightInfo.qrcodeHeight) / 2,
+        imgTop: heightInfo.qrcodeTop,
+        hrCenter,
+        tipTop: heightInfo.tipTop
+      });
 
-          this.ctx.draw(false, () => {
-            this.saveImage();
-          });
-        } else {
-          drawFail(res);
-        }
-      },
-      fail: (error) => {
-        drawFail(error);
-      }
+      this.ctx.draw(false, () => {
+        this.saveImage();
+      });
     })
   },
 
@@ -286,59 +275,51 @@ Page({
       setBg(this.ctx, this.width, this.height);
 
       const { document } = this.data;
-      wx.downloadFile({
-        url: document.cover_image_url,
-        success: (res) => {
-          if (res.statusCode === 200) {
-            this.ctx.drawImage(res.tempFilePath, 20, 30, 96, 138);
-            this.ctx.setStrokeStyle('#e7e7e7');
-            this.ctx.strokeRect(20, 30, 96, 138);
+      downloadImage(document.cover_image_url, (path) => {
+        this.ctx.drawImage(path, 20, 30, 96, 138);
+        this.ctx.setStrokeStyle('#e7e7e7');
+        this.ctx.strokeRect(20, 30, 96, 138);
 
-            drawMultiLines({
+        drawMultiLines({
+          ctx: this.ctx,
+          fontSize: 22,
+          text: titleInfo,
+          x: 132,
+          y: heightInfo.titleTop,
+          isBold: true,
+          lineHeight: 33,
+        });
+
+        drawOneLine({
+          ctx: this.ctx,
+          fontSize: 14,
+          color: '#a8a8a8',
+          text: document.created_at,
+          x: 132,
+          y: heightInfo.timeTop,
+        });
+
+        drawComment({
+          ctx: this.ctx,
+          userInfo,
+          heightInfo,
+          comment: descInfo,
+          leftMarkOffset: 24,
+          rightMarkOffset: this.width - 24 * 2,
+          cb: () => {
+            drawQrcode({
               ctx: this.ctx,
-              fontSize: 22,
-              text: titleInfo,
-              x: 132,
-              y: heightInfo.titleTop,
-              isBold: true,
-              lineHeight: 33,
+              imgX: (this.width - heightInfo.qrcodeHeight) / 2,
+              imgTop: heightInfo.qrcodeTop,
+              hrCenter: this.width / 2,
+              tipTop: heightInfo.tipTop
             });
 
-            drawOneLine({
-              ctx: this.ctx,
-              fontSize: 14,
-              color: '#a8a8a8',
-              text: document.created_at,
-              x: 132,
-              y: heightInfo.timeTop,
+            this.ctx.draw(false, () => {
+              this.saveImage();
             });
-
-            drawComment({
-              ctx: this.ctx,
-              userInfo,
-              heightInfo,
-              comment: descInfo,
-              leftMarkOffset: 24,
-              rightMarkOffset: this.width - 24 * 2,
-              cb: () => {
-                drawQrcode({
-                  ctx: this.ctx,
-                  imgX: (this.width - heightInfo.qrcodeHeight) / 2,
-                  imgTop: heightInfo.qrcodeTop,
-                  hrCenter: this.width / 2,
-                  tipTop: heightInfo.tipTop
-                });
-
-                this.ctx.draw(false, () => {
-                  this.saveImage();
-                });
-              }
-            })
-
-          } else {
-            drawFail(res);
           }
-        }
+        })
       })
     });
   },

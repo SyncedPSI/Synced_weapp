@@ -1,5 +1,5 @@
 import { request, getDateDiff, showTipToast, showLoading, getWxcodeUrl } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawFail, drawComment, downloadImage } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawComment, downloadImage } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 

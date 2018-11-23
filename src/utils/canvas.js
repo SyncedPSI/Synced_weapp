@@ -153,6 +153,22 @@ export const drawFail = (msg) => {
   showErrorToast('生成失败,请重试');
 };
 
+export const downloadImage = (url, successCb) => {
+  wx.downloadFile({
+    url,
+    success: (res) => {
+      if (res.statusCode === 200) {
+        successCb(res.tempFilePath);
+      } else {
+        drawFail(res);
+      }
+    },
+    fail: (error) => {
+      drawFail(error);
+    }
+  })
+}
+
 export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset, rightMarkOffset, cb}) => {
   const markHeight = 20;
   const markWidth = 26;
@@ -178,35 +194,14 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
     y: heightInfo.descTop,
     lineHeight: 28,
   });
-  wx.downloadFile({
-    url: userInfo.avatarUrl || userInfo.avatar_url,
-    success: (res) => {
-      if (res.statusCode === 200) {
-        ctx.save();
-        ctx.setFillStyle('#fff');
-        ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
-        ctx.fill();
-        ctx.clip();
-        ctx.drawImage(res.tempFilePath, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
-        ctx.restore();
-        cb();
-      }
-    }
-  });
-};
-
-export const downloadImage = (url, successCb) => {
-  wx.downloadFile({
-    url,
-    success: (res) => {
-      if (res.statusCode === 200) {
-        successCb(res.tempFilePath);
-      } else {
-        drawFail(res);
-      }
-    },
-    fail: (error) => {
-      drawFail(error);
-    }
+  downloadImage((userInfo.avatarUrl || userInfo.avatar_url), (path) => {
+    ctx.save();
+    ctx.setFillStyle('#fff');
+    ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.clip();
+    ctx.drawImage(res.tempFilePath, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
+    ctx.restore();
+    cb();
   })
-}
+};

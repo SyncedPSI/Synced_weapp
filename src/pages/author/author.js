@@ -1,5 +1,5 @@
 import { request, getDateDiff, showLoading, hideLoading } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawFail } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, downloadImage } from 'utils/canvas';
 import { ApiRootUrl } from "config/api";
 
 Page({
@@ -137,85 +137,75 @@ Page({
     setBg(this.ctx, this.width, this.height);
 
     const { author, totalCount } = this.data;
-    wx.downloadFile({
-      url: author.avatar_url + '?roundPic/radius/!50p',
-      success: (res) => {
-        if (res.statusCode === 200) {
-          // cover
-          this.ctx.drawImage(res.tempFilePath, -90, -90, heightInfo.avatarHeight, heightInfo.avatarHeight);
-          this.ctx.drawImage('/images/logo.svg', this.width - 20 - 64, 15, 64, 24);
+    downloadImage(`${author.avatar_url}?roundPic/radius/!50p`, (path) => {
+      // cover
+      this.ctx.drawImage(res.tempFilePath, -90, -90, heightInfo.avatarHeight, heightInfo.avatarHeight);
+      this.ctx.drawImage('/images/logo.svg', this.width - 20 - 64, 15, 64, 24);
 
-          // name bg
-          // const bgHeight = nameInfo.height + 24;
-          // this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
-          // this.ctx.fillRect(133, 94, this.width * 0.64, bgHeight);
-          // this.ctx.beginPath()
-          // this.ctx.arc(133, 94 + bgHeight / 2, bgHeight / 2, 0.5 * Math.PI, 1.5 * Math.PI);
-          // this.ctx.fill();
+      // name bg
+      // const bgHeight = nameInfo.height + 24;
+      // this.ctx.setFillStyle('rgba(255, 255, 255, 0.8)');
+      // this.ctx.fillRect(133, 94, this.width * 0.64, bgHeight);
+      // this.ctx.beginPath()
+      // this.ctx.arc(133, 94 + bgHeight / 2, bgHeight / 2, 0.5 * Math.PI, 1.5 * Math.PI);
+      // this.ctx.fill();
 
-          // name
-          drawMultiLines({
-            ctx: this.ctx,
-            fontSize: 24,
-            text: nameInfo,
-            x: this.width - 35,
-            y: heightInfo.nameTop,
-            isBold: true,
-            textAlign: 'right',
-          });
+      // name
+      drawMultiLines({
+        ctx: this.ctx,
+        fontSize: 24,
+        text: nameInfo,
+        x: this.width - 35,
+        y: heightInfo.nameTop,
+        isBold: true,
+        textAlign: 'right',
+      });
 
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#a8a8a8',
-            text: `共 ${totalCount} 篇文章`,
-            x: this.width - 35,
-            y: heightInfo.countTop,
-            isBold: true
-          });
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 14,
+        color: '#a8a8a8',
+        text: `共 ${totalCount} 篇文章`,
+        x: this.width - 35,
+        y: heightInfo.countTop,
+        isBold: true
+      });
 
-          drawMultiLines({
-            ctx: this.ctx,
-            fontSize: 16,
-            text: descInfo,
-            x: this.width * 0.42 - 20,
-            y: heightInfo.descTop,
-            lineHeight: 28,
-          });
+      drawMultiLines({
+        ctx: this.ctx,
+        fontSize: 16,
+        text: descInfo,
+        x: this.width * 0.42 - 20,
+        y: heightInfo.descTop,
+        lineHeight: 28,
+      });
 
-          this.ctx.drawImage('/images/qrcode.png', 42, heightInfo.qrcodeTop, 54, 54);
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#7d7d7d',
-            text: '长按小程序码',
-            x: 30,
-            y: heightInfo.tipTop,
-          });
-          drawOneLine({
-            ctx: this.ctx,
-            fontSize: 14,
-            color: '#7d7d7d',
-            text: '了解更多文章',
-            x: 30,
-            y: heightInfo.tipTop + 16,
-          });
+      this.ctx.drawImage('/images/qrcode.png', 42, heightInfo.qrcodeTop, 54, 54);
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 14,
+        color: '#7d7d7d',
+        text: '长按小程序码',
+        x: 30,
+        y: heightInfo.tipTop,
+      });
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 14,
+        color: '#7d7d7d',
+        text: '了解更多文章',
+        x: 30,
+        y: heightInfo.tipTop + 16,
+      });
 
-          this.ctx.beginPath()
-          this.ctx.arc(this.width, this.height, 64, Math.PI, 2 * Math.PI);
-          this.ctx.setFillStyle('#282828');
-          this.ctx.fill();
+      this.ctx.beginPath()
+      this.ctx.arc(this.width, this.height, 64, Math.PI, 2 * Math.PI);
+      this.ctx.setFillStyle('#282828');
+      this.ctx.fill();
 
-          this.ctx.draw(false, () => {
-            this.saveImage();
-          });
-        } else {
-          drawFail(res);
-        }
-      },
-      fail: (error) => {
-        drawFail(error);
-      }
+      this.ctx.draw(false, () => {
+        this.saveImage();
+      });
     })
   },
   saveImage: function() {
