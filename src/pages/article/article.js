@@ -416,19 +416,20 @@ Page({
       imgX: (this.width - heightInfo.qrcodeHeight) / 2,
       imgTop: heightInfo.qrcodeTop,
       hrCenter: this.width / 2,
-      tipTop: heightInfo.tipTop
-    });
-
-    this.ctx.draw(false, () => {
-      saveImage(this.width, this.height, () => {
-        this.closeShared();
-        this.openActionSheet();
-      }, () => {
-        this.closeShared();
-        this.setData({
-          isSharedComment: false,
+      tipTop: heightInfo.tipTop,
+      cb: () => {
+        this.ctx.draw(false, () => {
+          saveImage(this.width, this.height, () => {
+            this.closeShared();
+            this.openActionSheet();
+          }, () => {
+            this.closeShared();
+            this.setData({
+              isSharedComment: false,
+            });
+          })
         });
-      })
+      }
     });
   },
 

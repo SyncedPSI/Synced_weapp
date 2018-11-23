@@ -74,18 +74,45 @@ export const drawOneLine = ({ctx, fontSize, color, text, x, y, isCenter = false,
   ctx.fillText(text, x, y);
 }
 
-export const drawQrcode = ({ctx, imgX, imgTop, hrCenter, tipTop, imgUrl = '/images/qrcode.png'}) => {
-  ctx.drawImage(imgUrl, imgX, imgTop, 90, 90);
-  drawOneLine({
-    ctx,
-    fontSize: 14,
-    color: '#7d7d7d',
-    text: '长按小程序码，阅读原文',
-    x: hrCenter,
-    y: tipTop,
-    isCenter: true,
-  });
-  hideLoading();
+export const drawQrcode = ({ctx, imgX, imgTop, hrCenter, tipTop, imgUrl = '/images/qrcode.png', cb}) => {
+  const afterDrawImage = () => {
+    drawOneLine({
+      ctx,
+      fontSize: 14,
+      color: '#7d7d7d',
+      text: '长按小程序码，阅读原文',
+      x: hrCenter,
+      y: tipTop,
+      isCenter: true,
+    });
+    hideLoading();
+    cb();
+  };
+
+  const useDefaultUrl = () => {
+    ctx.drawImage('/images/qrcode.png', imgX, imgTop, 90, 90);
+    afterDrawImage();
+  }
+
+  if (imgUrl === '/images/qrcode.png') {
+    useDefaultUrl();
+  } else {
+    wx.downloadFile({
+      url: imgUrl,
+      success: (res) => {
+        if (res.statusCode === 200) {
+          ctx.drawImage(res.tempFilePath, imgX, imgTop, 90, 90);
+          afterDrawImage();
+        } else {
+          useDefaultUrl();
+        }
+      },
+      fail: (error) => {
+        console.log('get weacode url failed', error);
+        useDefaultUrl();
+      }
+    })
+  }
 }
 
 const noLoop = () => {};
