@@ -1,4 +1,4 @@
-import { request, getDateDiff, showLoading, hideLoading, showErrorToast } from "utils/util";
+import { request, getDateDiff, showLoading, hideLoading, showErrorToast, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode, drawComment, downloadImage } from 'utils/canvas';
 import { documents } from "config/api";
 
@@ -18,16 +18,36 @@ Page({
     targetComment: null
   },
   onLoad: function (options) {
-    const { id, from } = options;
+    let id = null;
+    let isFromWeapp = true;
+    if (options.id) {
+      id = options.id;
+      isFromWeapp = options.from === "weapp";
+    } else {
+      id = decodeURIComponent(options.scene);
+    }
+
     request(`${documents}/${id}`)
       .then((res) => {
+        const document = res.data;
+        if (document.wxacode_url === null) {
+          this.getWxcode(id);
+        }
+
         this.setData({
-          document: res.data,
-          isFromWeapp: from === "weapp",
+          document,
+          isFromWeapp,
           isLogin: getApp().globalData.isLogin,
         })
       });
     this.initCanvas();
+  },
+  getWxcode: function (id) {
+    getWxcodeUrl(id, 'pages/document/detail/detail', 'Document', (path) => {
+      this.setData({
+        'document.wxacode_url': path
+      })
+    });
   },
   download: function() {
     showLoading('获取中');
@@ -72,7 +92,7 @@ Page({
     const { id, title }= this.data.document;
     return {
       title,
-      path: `/pages/document/document?id=${id}&from=weapp`,
+      path: `/pages/document/detail/detail?id=${id}&from=weapp`,
     };
   },
 
@@ -221,18 +241,24 @@ Page({
         y: heightInfo.timeTop,
       });
 
-      drawQrcode({
-        ctx: this.ctx,
-        imgX: (this.width - heightInfo.qrcodeHeight) / 2,
-        imgTop: heightInfo.qrcodeTop,
-        hrCenter,
-        tipTop: heightInfo.tipTop
-      });
-
-      this.ctx.draw(false, () => {
-        this.saveImage();
-      });
+      this.drawOther(heightInfo);
     })
+  },
+
+  drawOther: function (heightInfo) {
+    drawQrcode({
+      ctx: this.ctx,
+      imgX: (this.width - heightInfo.qrcodeHeight) / 2,
+      imgTop: heightInfo.qrcodeTop,
+      hrCenter: this.width / 2,
+      tipTop: heightInfo.tipTop,
+      imgUrl: this.data.document.wxacode_url,
+      cb: () => {
+        this.ctx.draw(false, () => {
+          this.saveImage();
+        });
+      }
+    });
   },
 
   drawComment: function(comment, userInfo) {
@@ -307,17 +333,7 @@ Page({
           leftMarkOffset: 24,
           rightMarkOffset: this.width - 24 * 2,
           cb: () => {
-            drawQrcode({
-              ctx: this.ctx,
-              imgX: (this.width - heightInfo.qrcodeHeight) / 2,
-              imgTop: heightInfo.qrcodeTop,
-              hrCenter: this.width / 2,
-              tipTop: heightInfo.tipTop
-            });
-
-            this.ctx.draw(false, () => {
-              this.saveImage();
-            });
+            this.drawOther(heightInfo);
           }
         })
       })
