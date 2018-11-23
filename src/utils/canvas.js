@@ -193,4 +193,20 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
       }
     }
   });
+};
+
+export const downloadImage = (url, successCb) => {
+  wx.downloadFile({
+    url,
+    success: (res) => {
+      if (res.statusCode === 200) {
+        successCb(res.tempFilePath);
+      } else {
+        drawFail(res);
+      }
+    },
+    fail: (error) => {
+      drawFail(error);
+    }
+  })
 }

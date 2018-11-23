@@ -1,5 +1,5 @@
 import { request, getDateDiff, showTipToast, showLoading, getWxcodeUrl } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawFail, drawComment } from 'utils/canvas';
+import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawFail, drawComment, downloadImage } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
@@ -354,57 +354,47 @@ Page({
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
-    wx.downloadFile({
-      url: `${article.cover_image_url}?imageView2/1/w/375/h/190`,
-      success: (res) => {
-        if (res.statusCode === 200) {
-          // cover
-          this.ctx.drawImage(res.tempFilePath, 0, 0, this.width, heightInfo.coverHeight);
-          this.ctx.setFillStyle('rgba(40, 40, 40, 0.3)');
-          this.ctx.fillRect(0, 0, this.width, heightInfo.coverHeight);
-          this.ctx.setFillStyle('#fff');
-          this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
-          // title
-          drawMultiLines({
-            ctx: this.ctx,
-            text: titleInfo,
-            x: this.paddingLeft,
-            y: heightInfo.titleTop,
-            lineHeight: 30,
-            isBold: true,
-          });
+    downloadImage(`${article.cover_image_url}?imageView2/1/w/375/h/190`, (path) => {
+      // cover
+      this.ctx.drawImage(path, 0, 0, this.width, heightInfo.coverHeight);
+      this.ctx.setFillStyle('rgba(40, 40, 40, 0.3)');
+      this.ctx.fillRect(0, 0, this.width, heightInfo.coverHeight);
+      this.ctx.setFillStyle('#fff');
+      this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
+      // title
+      drawMultiLines({
+        ctx: this.ctx,
+        text: titleInfo,
+        x: this.paddingLeft,
+        y: heightInfo.titleTop,
+        lineHeight: 30,
+        isBold: true,
+      });
 
-          // content
-          if (commentStr === null) {
-            // title
-            drawMultiLines({
-              ctx: this.ctx,
-              fontSize: 17,
-              text: descInfo,
-              x: this.paddingLeft,
-              y: heightInfo.descTop,
-              lineHeight: 28,
-            });
+      // content
+      if (commentStr === null) {
+        // title
+        drawMultiLines({
+          ctx: this.ctx,
+          fontSize: 17,
+          text: descInfo,
+          x: this.paddingLeft,
+          y: heightInfo.descTop,
+          lineHeight: 28,
+        });
+        this.drawOther(heightInfo);
+      } else {
+        drawComment({
+          ctx: this.ctx,
+          userInfo,
+          heightInfo,
+          comment: descInfo,
+          leftMarkOffset: this.paddingLeft,
+          rightMarkOffset: this.width - this.paddingLeft * 2,
+          cb: () => {
             this.drawOther(heightInfo);
-          } else {
-            drawComment({
-              ctx: this.ctx,
-              userInfo,
-              heightInfo,
-              comment: descInfo,
-              leftMarkOffset: this.paddingLeft,
-              rightMarkOffset: this.width - this.paddingLeft * 2,
-              cb: () => {
-                this.drawOther(heightInfo);
-              }
-            })
           }
-        } else {
-          drawFail(res);
-        }
-      },
-      fail: (error) => {
-        drawFail(error);
+        })
       }
     })
   },
