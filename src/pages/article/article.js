@@ -7,7 +7,6 @@ Page({
   data: {
     navigateTitle: '',
     id: "",
-    title: "",
     isFromWeapp: false,
     isFetching: true,
     article: {
@@ -36,12 +35,11 @@ Page({
     this.clientHeight = getApp().globalData.systemInfo.screenHeight + this.data.statusBarHeight;
     this.getTitleHeight();
 
-    const { id, title, from, read_later, progress } = options;
+    const { id, from, read_later, progress } = options;
     this.isProgress = progress;
     this.articleId = id;
     this.setData({
       id,
-      title,
       isFromReadLater: read_later,
       isLogin: getApp().globalData.isLogin,
       isFromWeapp: from === "weapp",
@@ -175,7 +173,7 @@ Page({
     const { scrollTop } = event.detail;
     this.scrollTop = scrollTop;
     if (scrollTop > this.titleHeight) {
-      this.setNavigationBarTitle(this.data.title);
+      this.setNavigationBarTitle(this.data.article.title);
     } else {
       this.setNavigationBarTitle();
     }
