@@ -1,5 +1,5 @@
 <import src="../common/page_loading.wxml"/>
-<import src="../common/comment_bottom_bar.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" pageLogin="{{isLogin}}"></nav>
 
@@ -31,8 +31,10 @@
         </view>
       </view>
       <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
-      <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
 </view>
+
+
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />

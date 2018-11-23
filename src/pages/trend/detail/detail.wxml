@@ -1,5 +1,5 @@
 <import src="/pages/common/page_loading.wxml"/>
-<import src="/pages/common/comment_bottom_bar.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
 <import src="../../../wxParse/wxParse.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
@@ -32,8 +32,6 @@
       <template is="wxParse" data="{{wxParseData:trendContent.nodes}}" />
     </view>
     <comment isSmallPadding isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
-    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
   </block>
 </view>
-
-
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
