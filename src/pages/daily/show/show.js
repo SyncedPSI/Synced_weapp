@@ -1,4 +1,4 @@
-import { request, showTipToast, showLoading } from "utils/util";
+import { request, showTipToast, showLoading, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawComment, drawOneLine } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
@@ -23,17 +23,28 @@ Page({
     targetComment: null
   },
 
-  onLoad: function(option) {
-    const { id, from } = option;
+  onLoad: function(options) {
+    let id = null;
+    let isFromWeapp = true;
+    if (options.id) {
+      id = options.id;
+      isFromWeapp = options.from === "weapp";
+    } else {
+      id = decodeURIComponent(options.scene);
+    }
+
     this.setData({
       id,
       isLogin: app.globalData.isLogin,
-      isFromWeapp: from === "weapp",
+      isFromWeapp,
     });
 
     request(`${dailyDetail}${id}`)
       .then(res => {
         const daily = res.data;
+        if (daily.wxacode_url === null) {
+          this.getWxcode(id);
+        }
         const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));
         this.setData({
           navigateTitle: daily.title,
@@ -43,6 +54,13 @@ Page({
         });
       });
     this.initCanvas();
+  },
+  getWxcode: function (id) {
+    getWxcodeUrl(id, 'pages/daily/show/show', 'Daily', (path) => {
+      this.setData({
+        'daily.wxacode_url': path
+      })
+    });
   },
 
   openComment: function() {
@@ -84,7 +102,7 @@ Page({
     });
   },
   onShareAppMessage: function() {
-    const { id, daily: { title } }= this.data;
+    const { id, daily: { title } } = this.data;
     return {
       title,
       path: `/pages/daily/show/show?id=${id}&from=weapp`,
@@ -268,19 +286,21 @@ Page({
       imgX: (this.width - heightInfo.qrcodeHeight) / 2,
       imgTop: heightInfo.qrcodeTop,
       hrCenter: this.width / 2,
-      tipTop: heightInfo.tipTop
-    });
-
-    this.ctx.draw(false, () => {
-      saveImage(this.width, this.height, () => {
-        this.closeShared();
-        this.openActionSheet();
-      }, () => {
-        this.closeShared();
-        this.setData({
-          isSharedComment: false,
+      tipTop: heightInfo.tipTop,
+      imgUrl: this.data.daily.wxacode_url,
+      cb: () => {
+        this.ctx.draw(false, () => {
+          saveImage(this.width, this.height, () => {
+            this.closeShared();
+            this.openActionSheet();
+          }, () => {
+            this.closeShared();
+            this.setData({
+              isSharedComment: false,
+            });
+          })
         });
-      })
+      }
     });
   },
 

@@ -1,5 +1,5 @@
 <import src="/pages/common/page_loading.wxml"/>
-<import src="/pages/common/shared_center.wxml"/>
+<import src="../../common/shared_center.wxml"/>
 <import src="/pages/common/fixed_comment.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
@@ -34,7 +34,7 @@
     <image class="daily-shared__cover" src="/images/daily_banner.png" mode="aspectFill" />
   </view>
   <view class="daily-shared__content">
-    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment}}" />
+    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment, wxacodeUrl: daily.wxacode_url}}" />
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
