@@ -74,8 +74,8 @@ export const drawOneLine = ({ctx, fontSize, color, text, x, y, isCenter = false,
   ctx.fillText(text, x, y);
 }
 
-export const drawQrcode = ({ctx, imgX, imgTop, hrCenter, tipTop}) => {
-  ctx.drawImage('/images/qrcode.png', imgX, imgTop, 90, 90);
+export const drawQrcode = ({ctx, imgX, imgTop, hrCenter, tipTop, imgUrl = '/images/qrcode.png'}) => {
+  ctx.drawImage(imgUrl, imgX, imgTop, 90, 90);
   drawOneLine({
     ctx,
     fontSize: 14,

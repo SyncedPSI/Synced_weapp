@@ -1,4 +1,4 @@
-import { request, getDateDiff, showTipToast, showLoading } from "utils/util";
+import { request, getDateDiff, showTipToast, showLoading, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, saveImage, drawQrcode, drawFail, drawComment } from 'utils/canvas';
 import { articleDetail, readLater } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
@@ -33,24 +33,39 @@ Page({
     this.scrollTop = 0;
     this.contentHeight = null;
     this.clientHeight = getApp().globalData.systemInfo.screenHeight + this.data.statusBarHeight;
-    this.getTitleHeight();
 
-    const { id, from, read_later, progress } = options;
-    this.isProgress = progress;
-    this.articleId = id;
-    this.setData({
-      id,
-      isFromReadLater: read_later,
-      isLogin: getApp().globalData.isLogin,
-      isFromWeapp: from === "weapp",
-      userInfo: wx.getStorageSync('userInfo')
-    });
+    if (options.id) {
+      const { id, from, read_later, progress } = options;
+      this.isProgress = progress;
+      this.articleId = id;
+      this.setData({
+        id,
+        isFromReadLater: read_later,
+        isLogin: getApp().globalData.isLogin,
+        isFromWeapp: from === "weapp",
+        userInfo: wx.getStorageSync('userInfo')
+      });
+    } else {
+      const scene = decodeURIComponent(options.scene);
+      this.articleId = scene;
+      this.isProgress = false;
+      this.setData({
+        id: scene,
+        isFromReadLater: false,
+        isLogin: getApp().globalData.isLogin,
+        isFromWeapp: true,
+        userInfo: wx.getStorageSync('userInfo')
+      });
+    }
 
-    request(`${articleDetail}${options.id}`)
+    request(`${articleDetail}${this.articleId}`)
       .then(res => {
         const article = res.data;
         const articleOwn = article.column || article.author;
-
+        this.articleId = article.id;
+        if (article.wxacode_url === null) {
+          this.getWxcode(this.articleId);
+        }
         article.publishedAt = getDateDiff(res.data.published_at);
         WxParse.wxParse("article_content", "html", res.data.content, this, 5);
         this.setData({
@@ -59,10 +74,19 @@ Page({
           articleOwn,
           isFetching: false
         }, () => {
+          this.getTitleHeight();
           this.getContentHeight();
         });
       });
     this.initCanvas();
+  },
+
+  getWxcode: function (id) {
+    getWxcodeUrl(id, 'pages/article/article', 'Article', (path) => {
+      this.setData({
+        'article.wxacode_url': path
+      })
+    });
   },
 
   onHide: function() {
@@ -388,6 +412,7 @@ Page({
     // qrocde + tip
     drawQrcode({
       ctx: this.ctx,
+      imgUrl: this.data.article.wxacode_url,
       imgX: (this.width - heightInfo.qrcodeHeight) / 2,
       imgTop: heightInfo.qrcodeTop,
       hrCenter: this.width / 2,

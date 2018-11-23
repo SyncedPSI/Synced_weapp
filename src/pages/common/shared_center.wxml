@@ -41,7 +41,7 @@
     </block>
   </view>
   <view class="shared-center__center">
-    <image class="shared-center__qrcode" src="{{wxacode_url || '/images/qrcode.png'}}" />
+    <image class="shared-center__qrcode" src="{{wxacodeUrl || '/images/qrcode.png'}}" />
     <view class="shared-center__tip">长按小程序码，阅读原文</view>
   </view>
 </template>

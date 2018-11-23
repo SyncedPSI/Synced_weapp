@@ -83,7 +83,7 @@
   <image class="article-shared__cover" src="{{article.cover_image_url}}" mode="aspectFill" />
   <view class="article-shared__content">
     <view class="article-shared__title">{{article.title}}</view>
-    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment}}" />
+    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment, wxacodeUrl: article.wxacode_url}}" />
   </view>
 </shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>

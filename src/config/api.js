@@ -17,3 +17,4 @@ export const readLaterList = ApiRootUrl + '/read_laters';
 export const readLater = ApiV1 + '/read_laters';
 export const dynamics = ApiRootUrl + '/dynamics';
 export const trendDetail = ApiRootUrl + '/trends/';
+export const creatWxcode = ApiV1 + '/wechats/wxacode'
