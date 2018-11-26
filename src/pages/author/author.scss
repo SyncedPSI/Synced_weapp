@@ -1,0 +1,168 @@
+@import 'variables';
+@import 'mixins';
+@import 'load_more';
+@import 'shared_center';
+
+.content-container {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.author {
+  &--container {
+    padding: 60rpx 40rpx;
+    border: 2rpx solid $bg-white;
+    align-items: flex-start;
+  }
+
+  &--avatar {
+    @include set-avatar-width(136rpx);
+    margin-right: 40rpx;
+    flex-shrink: 0;
+  }
+
+  &--right {
+    flex-grow: 1;
+  }
+
+  &--name {
+    font-weight: 36rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &--share {
+    width: 56rpx;
+    height: 56rpx;
+  }
+
+  &--desc {
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    color: #121212;
+  }
+}
+
+.author-article {
+  padding: 40rpx;
+
+  &__count {
+    font-size: 32rpx;
+    margin-bottom: 40rpx;
+    color: #a8a8a8;
+  }
+
+  &__highlight {
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__item {
+    margin-bottom: 60rpx;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    font-weight: 500;
+    font-size: 36rpx;
+    color: #121212;
+  }
+
+  &__footer {
+    margin-top: 24rpx;
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
+}
+
+.author-shared {
+  &__container {
+    position: relative;
+    padding: 120rpx 0 172rpx;
+  }
+
+  &__avatar {
+    @include set-avatar-width(384rpx);
+    position: absolute;
+    left: -116rpx;
+    top: -116rpx;
+    z-index: -1;
+  }
+
+  &__logo {
+    position: absolute;
+    right: 28rpx;
+    top: 24rpx;
+    width: 100rpx;
+    height: 32rpx;
+  }
+
+  &__name {
+    z-index: 3;
+    // background-color: rgba(255, 255, 255, .8);
+    padding: 14rpx 20rpx;
+    width: 306rpx;
+    margin-left: 110rpx;
+    font-size: 30rpx;
+    font-weight: 500;
+    color: $black;
+    // border-radius: 50rpx 0 0 50rpx;
+    text-align: right;
+  }
+
+  &__count {
+    margin-right: 44rpx;
+    font-size: 20rpx;
+    color: #a8a8a8;
+    text-align: right;
+  }
+
+  &__desc {
+    margin-top: 32rpx;
+    padding: 0 24rpx 0 176rpx;
+    box-sizing: border-box;
+    font-size: 24rpx;
+    color: $black;
+    line-height: 1.5;
+    min-height: 252rpx;
+  }
+
+  &__center {
+    position: absolute;
+    bottom: 54rpx;
+    left: 34rpx;
+    width: 126rpx;
+    text-align: center;
+  }
+
+  &__qrcode {
+    width: 86rpx;
+    height: 86rpx;
+  }
+
+  &__tip {
+    margin-top: 12rpx;
+    font-size: 20rpx;
+    color: #7d7d7d;
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: -80rpx;
+    right: -80rpx;
+    width: 160rpx;
+    height: 160rpx;
+    background-color: #121212;
+    border-radius: 50%;
+  }
+}
+
+.shared-center__canvas {
+  width: 100%;
+  position: absolute;
+  left: 10000rpx;
+  top: 0;
+}

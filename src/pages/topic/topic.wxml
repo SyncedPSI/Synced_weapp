@@ -1,17 +1,19 @@
 <import src="../common/page_loading.wxml"/>
-<import src="../common/comment_bottom_bar.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" pageLogin="{{isLogin}}"></nav>
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}">
-    <image src="{{topic.cover_image_url}}" class="topic__cover" mode="aspectFill" />
-    <view class="article">
-      <view wx:if="{{isFetching}}">
-        <template is="page_loading" />
-      </view>
+    <template is="page_loading" wx:if="{{topic === nulll}}" />
 
-      <block wx:if="{{!isFetching}}">
+    <block wx:else>
+      <image src="{{topic.cover_image_url}}" class="topic__cover" mode="aspectFill" />
+      <view class="article">
+        <view wx:if="{{topic === nulll}}">
+          <template is="page_loading" wx:if="{{topic === nulll}}" />
+        </view>
+
         <view class="title" id="js-topic-title">{{topic.title}}</view>
         <view class="info">
           <view class="left">
@@ -27,15 +29,12 @@
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:topic_content.nodes}}" />
         </view>
-      </block>
-    </view>
-
-    <block wx:if="{{!isFetching}}">
-      <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-
-      <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX}}" />
+      </view>
+      <comment isShowComment="{{isShowComment}}" baseUrl="/topics/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
 </view>
+
+
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />

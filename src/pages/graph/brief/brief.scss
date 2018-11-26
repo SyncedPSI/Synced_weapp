@@ -1,0 +1,170 @@
+@import 'variables';
+@import 'content';
+@import 'load_more';
+@import '../node';
+@import 'none';
+@import 'shared_center';
+
+.node-header__container {
+  padding-top: 60rpx;
+  padding-bottom: 0;
+  box-shadow: none;
+}
+
+.node-technology {
+  margin-bottom: 16rpx;
+}
+
+.node {
+  &--detail {
+    font-size: 32rpx;
+    color: #121212;
+  }
+
+  &--footer {
+    margin-top: 32rpx;
+  }
+
+  &--shared {
+    display: block;
+    width: 56rpx;
+    height: 56rpx;
+  }
+
+  &--icon {
+    width: 48rpx;
+    height: 48rpx;
+    margin-left: 14rpx;
+    vertical-align: bottom;
+  }
+}
+
+nodes {
+  margin-bottom: 80rpx;
+}
+
+.node-trend {
+  padding: 80rpx 40rpx 0;
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__item {
+    margin-top: 40rpx;
+  }
+
+  &__name {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__footer {
+    margin: 24rpx 0 20rpx;
+    color: #a8a8a8;
+    font-size: 28rpx;
+  }
+
+  &__type {
+    margin-left: 40rpx;
+  }
+}
+
+.graph-shared {
+  position: relative;
+  padding: 30rpx;
+  font-size: 20rpx;
+
+  &__bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  &__container {
+    background-color: #fff;
+    padding: 28rpx;
+
+    &.t-bottom {
+      margin-top: 28rpx;
+    }
+  }
+
+  &__title {
+    font-size: 28rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__name {
+    color: #a8a8a8;
+  }
+
+  &__desc {
+    margin-top: 14rpx;
+    line-height: 1.4;
+    color: #414141;
+  }
+
+  &__contact {
+    position: absolute;
+    height: 48rpx;
+    width: 10rpx;
+    border-radius: 20rpx;
+    margin-top: -10rpx;
+
+    &.t-left {
+      left: 92rpx;
+    }
+
+    &.t-right {
+      right: 92rpx;
+    }
+  }
+
+  &__tip {
+    font-size: 24rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  .none {
+    margin: 80rpx 0 64rpx;
+    font-size: 20rpx;
+  }
+
+  .none--icon {
+    width: 32rpx;
+    height: 32rpx;
+  }
+
+  &__inline {
+    margin-top: 24rpx;
+    font-size: 20rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__time {
+    margin: 12rpx 0 4rpx;
+    color: #a8a8a8;
+  }
+
+  &__center {
+    margin: 56rpx 0 24rpx 32rpx;
+    justify-content: flex-start;
+    color: #7d7d7d;
+  }
+
+  &__qrcode {
+    width: 128rpx;
+    height: 128rpx;
+    margin-right: 24rpx;
+  }
+}

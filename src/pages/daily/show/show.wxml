@@ -1,15 +1,17 @@
-<import src="../../common/page_loading.wxml"/>
-<import src="../../common/comment_bottom_bar.wxml"/>
+<import src="/pages/common/page_loading.wxml"/>
+<import src="../../common/shared_center.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
-<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
-  <view class="daily__container">
-    <view wx:if="{{isFetching}}">
-      <template is="page_loading" />
-    </view>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
+<template is="page_loading" wx:if="{{daily === null}}" />
 
-    <view class="daily__create">AI Daily 快讯 · {{daily.created_at}}</view>
+<block wx:else>
+  <view class="u-detail-padding daily__container">
     <view class="daily__title">{{daily.title}}</view>
+    <view class="u-flex daily__middle">
+      <view class="daily__create">{{daily.created_at}}</view>
+      <image class="daily__shared" src="/icons/daily_action.png" bindtap="openShared" />
+    </view>
     <view class="daily__content">{{daily.content}}</view>
     <view class="daily__source" wx:if="{{daily.url !== null}}">
       <image src="/icons/daily_source.png" class="daily__source--img" />
@@ -17,10 +19,23 @@
       <text class="daily__source--link" bindtap="copySource">{{showUrl}}</text>
     </view>
   </view>
+  <nodes nodes="{{daily.related_nodes}}" />
+  <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment" bindsharecomment="shareComment"></comment>
+</block>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
 
-  <block wx:if="{{!isFetching}}">
-    <comment isShowComment="{{isShowComment}}" baseUrl="/dailies/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
-    <template is="comment-bottom-bar" data="{{isLogin: isLogin, isIphoneX: isIphoneX, prePath: '../../..'}}" />
-  </block>
-  <settingEntry hasComment pageLogin="{{isLogin}}"></settingEntry>
-</view>
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
+
+<shared bindcloseevent="closeShared" bindsharedevent="sharedDaily" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}">
+  <view class="daily-shared__header">
+    <image class="daily-shared__logo" src="/images/logo_white.png" />
+    <view class="daily-shared__title">{{daily.title}}</view>
+    <view class="daily-shared__time">{{daily.created_at}}</view>
+    <image class="daily-shared__cover" src="/images/daily_banner.png" mode="aspectFill" />
+  </view>
+  <view class="daily-shared__content">
+    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment, wxacodeUrl: daily.wxacode_url}}" />
+  </view>
+</shared>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>

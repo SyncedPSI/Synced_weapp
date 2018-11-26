@@ -3,13 +3,20 @@
     "pages/index/index",
     "pages/search/search",
     "pages/article/article",
+    "pages/author/author",
+    "pages/column/column",
+    "pages/document/list/list",
+    "pages/document/detail/detail",
     "pages/topic/topic",
+    "pages/category/category",
+    "pages/trend/detail/detail",
+    "pages/trend/related/related",
+    "pages/daily/list/list",
     "pages/daily/show/show",
     "pages/daily/screenshot/screenshot",
-    "pages/institution/institution",
-    "pages/expert/expert",
-    "pages/resource/resource",
-    "pages/technology/technology",
+    "pages/graph/brief/brief",
+    "pages/graph/detail/detail",
+    "pages/graph/related/related",
     "pages/account/mobile/mobile",
     "pages/account/link/link",
     "pages/setting/collection/collection",
@@ -18,6 +25,10 @@
     "pages/setting/read_later/read_later",
     "pages/setting/chatbot/chatbot",
     "pages/setting/index/index",
+    "pages/expert/expert",
+    "pages/institution/institution",
+    "pages/technology/technology",
+    "pages/resource/resource",
     "pages/logs/logs"
   ],
   "window":{
@@ -27,5 +38,32 @@
     "navigationBarTitleText": "机器之心",
     "navigationBarTextStyle":"black",
     "backgroundColor": "#f6f6f6"
+  },
+  "tabBar": {
+    "color": "#D4D4D4",
+    "selectedColor": "#000000",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "icons/tab/trend.png",
+        "selectedIconPath": "icons/tab/trend_active.png"
+      },
+      {
+        "pagePath": "pages/daily/list/list",
+        "iconPath": "icons/tab/daily.png",
+        "selectedIconPath": "icons/tab/daily_active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "icons/tab/category.png",
+        "selectedIconPath": "icons/tab/category_active.png"
+      },
+      {
+        "pagePath": "pages/document/list/list",
+        "iconPath": "icons/tab/document.png",
+        "selectedIconPath": "icons/tab/document_active.png"
+      }
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import { comments, ApiRootUrl } from "config/api";
+import { comments, ApiV1 } from "config/api";
 import { request, showErrorToast, showTipToast } from 'utils/util';
 
 Component({
@@ -10,6 +10,14 @@ Component({
     baseUrl: {
       type: String,
       value: ''
+    },
+    hasShared: {
+      type: Boolean,
+      value: false
+    },
+    isSmallPadding: {
+      type: Boolean,
+      value: false,
     }
   },
 
@@ -30,7 +38,7 @@ Component({
 
   methods: {
     fetchData: function() {
-      request(`${ApiRootUrl}${this.properties.baseUrl}/comments`)
+      request(`${ApiV1}${this.properties.baseUrl}/comments`)
         .then(res => {
           const { comments, count } = res.data;
           this.setData({
@@ -40,7 +48,7 @@ Component({
         });
     },
     closeComment: function() {
-      this.triggerEvent('closecommentevent');
+      this.triggerEvent('closecomment');
     },
     showAllReplies: function(event) {
       const { id, index } = event.target.dataset;
@@ -68,7 +76,7 @@ Component({
       this.setData({
         placeholder: `回复${name}`
       });
-      this.triggerEvent('opencommentevent');
+      this.triggerEvent('opencomment');
     },
     bindContentInput: function (e) {
       this.setData({
@@ -80,7 +88,7 @@ Component({
 
       if (content === '') return;
       const isCreateComment = this.replyCommentId === null;
-      const url = isCreateComment ? `${ApiRootUrl}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`
+      const url = isCreateComment ? `${ApiV1}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`;
       request(`${url}`, {
         content
       }, 'POST')
@@ -101,7 +109,7 @@ Component({
             content: ''
           });
           this.replyCommentId = null;
-          this.triggerEvent('closecommentevent', {commentStr: content});
+          this.triggerEvent('closecomment', {commentStr: content});
         })
     },
     inputFocus: function (event) {
@@ -114,5 +122,8 @@ Component({
         keyboardHeight: null
       });
     },
+    shareComment: function(event) {
+      this.triggerEvent('sharecomment', event.currentTarget.dataset);
+    }
   },
 });

@@ -1,11 +1,8 @@
 {
-  "usingComponents": {
-    "user": "../../components/user/user",
-    "article": "../../components/article/article",
-    "dailies": "../../components/dailies/dailies",
-    "nav": "../../components/navigate/navigate",
-    "settingEntry": "../../components/setting_enter/setting"
+  "window": {
+    "backgroundColor": "#fff"
   },
-  "enablePullDownRefresh": false,
-  "backgroundTextStyle": "dark"
+  "usingComponents": {
+    "nav": "../../components/navigate/navigate"
+  }
 }

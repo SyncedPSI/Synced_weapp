@@ -1,0 +1,72 @@
+<import src="/pages/common/page_loading.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
+
+<template is="page_loading" wx:if="{{document === null}}" />
+<block wx:else>
+  <view class="document--bannner">
+    <image class="document--cover--shadow" src="/icons/document_left.png" />
+    <image class="document--cover" src="{{document.cover_image_url}}" mode="aspectFill" />
+    <image class="document--cover--shadow" src="/icons/document_right.png" />
+  </view>
+  <view class="u-detail-padding">
+    <view class="document--title">{{document.title}}</view>
+    <view class="document--desc">{{document.description}}</view>
+    <view class="u-flex document--footer">
+      <text>{{document.created_at}}</text>
+      <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
+    </view>
+  </view>
+   <nodes nodes="{{document.related_nodes}}" />
+  <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecomment="closeComment"
+    bindopencomment="openComment" bindsharecomment="shareComment"></comment>
+</block>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
+
+<view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download">
+  <image class="document--icon" src="/icons/download.png" />
+  <text>获取报告</text>
+</view>
+
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
+
+<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+  <view class="shared-comment__container" wx:if="{{isSharedComment}}">
+    <view class="u-flex shared-comment__header">
+      <image class="shared-comment__cover" src="{{document.cover_image_url}}" />
+      <view class="u-flex shared-comment__right">
+        <view class="shared-comment__title">{{document.title}}</view>
+        <view class="shared-comment__time">{{document.created_at}}</view>
+      </view>
+    </view>
+    <view class="shared-center__commment">
+      <image class="shared-center__quot t-large t-left" src="/icons/article_mark_left.png" />
+      <view class="u-flex shared-center__user">
+        <image class="shared-center__avatar" src="{{targetComment.user.avatar_url}}" />
+        <text class="shared-center__username">{{targetComment.user.nickname}}</text>
+      </view>
+      <view class="shared-center__commentstr">{{targetComment.content}}</view>
+        <view class="shared-center__right">
+        <image class="shared-center__quot t-large t-right" src="/icons/article_mark_right.png" />
+      </view>
+    </view>
+  </view>
+
+  <view class="document-share__container" wx:else>
+    <view class="document-share__header">
+      <image class="document-share__logo" src="{{logo}}" />
+      <image class="document-share__cover" src="{{document.cover_image_url}}" />
+    </view>
+    <view class="document-share__title">{{document.title}}</view>
+    <view class="document-share__time">{{document.created_at}}</view>
+  </view>
+  <view class="document-share__center">
+    <image class="document-share__qrcode" src="{{document.wxacode_url}} || '/images/qrcode.png'" />
+    <view class="document-share__tip">长按小程序码，阅读原文</view>
+  </view>
+</shared>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
+
+

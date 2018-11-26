@@ -1,16 +1,19 @@
 <import src="./comment_item.wxml"/>
 
-<view class="comment">
+<view class="comment {{isSmallPadding ? 't-small' : ''}}">
   <view class="comment__title">评论（{{count}}）</view>
-  <view class="comment__none" hidden="{{comments.length > 0}}">暂无评论</view>
-  <template is="comment_item" data="{{comments}}" />
+  <view class="none" hidden="{{comments.length > 0}}">
+    <image class="none--icon" src="/icons/none_comment.png" />
+    <text class="none--text">暂无评论</text>
+  </view>
+  <template is="comment_item" data="{{comments, hasShared}}" />
 </view>
 
 <view class="u-container-cover comment-editor" wx:if="{{isShowComment}}" catchtouchmove="move">
   <view class="u-container-cover comment-editor__mask" bindtap="closeComment"></view>
   <view class="comment-editor__main {{isIphoneX ? 'has-safe-padding' : ''}}" style="bottom: {{keyboardHeight}}px">
     <view class="comment-editor__body {{ isAndroid ? '' : 't-ios'}}">
-      <textarea class="comment-editor__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" auto-height auto-focus
+      <textarea class="comment-editor__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" maxlength="-1" auto-height auto-focus
        cursor-spacing="14" placeholder="{{placeholder}}" fixed show-confirm-bar="{{false}}" name="textarea" bindinput="bindContentInput" />
     </view>
     <text class="comment-editor__submit" bindtap="submitComment">发布</text>

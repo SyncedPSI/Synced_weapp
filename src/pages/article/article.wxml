@@ -1,169 +1,90 @@
-<import src="../common/page_loading.wxml"/>
-<import src="../common/comment_bottom_bar.wxml"/>
+<import src="/pages/common/page_loading.wxml"/>
+<import src="/pages/common/shared_center.wxml"/>
 
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"  pageLogin="{{isLogin}}"></nav>
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow pageLogin="{{isLogin}}"></nav>
 
-<view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
+<view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <scroll-view scroll-y="{{true}}" bindscroll="scroll">
-    <view class="article" id="js-article-content">
-      <view class="title" id="js-article-title">{{title}}</view>
-      <view wx:if="{{isFetching}}">
-        <template is="page_loading" />
-      </view>
-
-      <block wx:if="{{!isFetching}}">
-        <view class="info">
-          <view class="left">
-            <view class="avatar">
-              <image wx:if="{{article.author.avatar_url}}" src="{{article.author.avatar_url}}" mode="aspectFill"></image>
-            </view>
-            <view class="author">{{article.author.name}}</view>
-            <view wx-hidden="{{article.copyright === '' || article.copyright === undefined || article.copyright === null}}" class="copyright">{{article.copyright}}</view>
+    <template is="page_loading" wx:if="{{isFetching}}" />
+    <block wx:else>
+       <view class="article--title" id="js-article-title">{{article.title}}</view>
+       <view class="article-metadata" wx:if="{{hasMetadata}}">
+        <scroll-view scroll-x class="article-metadata__scroll" wx:if="{{article.metadata != null}}">
+          <view class="article-metadata__item" wx:for="{{article.metadata}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
+            <view class="article-metadata__key">{{key}}</view>
+            <view class="article-metadata__value">{{value}}</view>
           </view>
-          <view class="right">{{article.publishedAt}}</view>
-        </view>
+        </scroll-view>
+      </view>
+      <view class="u-detail-padding article" id="js-article-content">
+        <view class="article--time">{{article.publishedAt}}</view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
         </view>
-      </block>
-    </view>
-
-    <block wx:if="{{article.related_nodes.length > 0}}">
-      <view class="related_nodes">
-        <view class="title">相关数据</view>
-        <scroll-view scroll-x="{{true}}" style="width: 100%">
-          <block wx:for="{{article.related_nodes}}" wx:key="unique">
-            <view class="node_card" wx:if="{{item.level == 'level_1'}}">
-              <view class="top">
-                <view class="zh_name">{{item.zh_name}}</view>
-                <view class="type">{{item.node_type}}</view>
-              </view>
-              <view class="en_name">{{item.en_name}}</view>
-            </view>
-            <navigator url="../{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}&title={{item.zh_name ? item.zh_name : item.en_name}}" wx:else class="node_card can_click" id="{{item.node_id}}">
-              <view class="top">
-                <view class="zh_name">{{item.zh_name}}</view>
-                <view class="type">{{item.node_type}}</view>
-              </view>
-              <view class="en_name">{{item.en_name}}</view>
-            </navigator>
-          </block>
-        </scroll-view>
       </view>
-    </block>
 
-    <block wx:if="{{!isFetching}}">
-      <comment isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecommentevent="closeComment" bindopencommentevent="openComment"></comment>
+      <nodes nodes="{{article.related_nodes}}" />
+      <view class="article-author__container">
+        <navigator class="u-flex article-author" url="/pages/author/author?id={{articleOwn.id}}&type={{articleOwn.type}}" hover-class="none">
+          <view class="u-flex article-author__left">
+            <image class="article-author__avatar {{articleOwn.type}}" src="{{articleOwn.avatar_url}}" />
+            <view class="article-author__right">
+              <view class="article-author__name">{{articleOwn.name}}</view>
+              <view class="u-text-limit--one article-author_desc">{{articleOwn.desc || ''}}</view>
+            </view>
+          </view>
+          <image class="article-author__enter" src="/icons/see_detail.png" />
+        </navigator>
+      </view>
+      <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/articles/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment" bindsharecomment="shareComment"></comment>
 
-      <block wx:if="{{isLogin}}">
-        <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+      <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+        <block wx:if="{{isLogin}}">
           <block wx:if="{{isFromReadLater !== 'true'}}">
             <view class="u-fix-bottom--bar is-disabled" wx:if="{{article.is_read_later}}">
-              <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_readed.png" />
+              <image class="u-fix-bottom--icon" src="/icons/article_readed.png" />
               <text>已添加待读</text>
             </view>
             <view class="u-fix-bottom--bar" bindtap="addRead" wx:else>
-              <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
+              <image class="u-fix-bottom--icon" src="/icons/article_delayread.png" />
               <text>稍后阅读</text>
             </view>
           </block>
 
           <view class="u-fix-bottom--bar" bindtap="openComment">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_comment.png" />
             <text>评论</text>
           </view>
-          <view class="u-fix-bottom--bar" bindtap="openShared">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
-            <text>分享</text>
-          </view>
-        </view>
-      </block>
-      <block wx:else>
-        <view class="u-fix-bottom {{isIphoneX ? 'has-safe-padding' : ''}}">
+        </block>
+        <block wx:else>
           <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="read">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_delayread.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_delayread.png" />
             <text>稍后阅读</text>
           </button>
           <button class="u-fix-bottom--bar is-button" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="comment">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_comment.png" />
+            <image class="u-fix-bottom--icon" src="/icons/article_comment.png" />
             <text>评论</text>
           </button>
-          <view class="u-fix-bottom--bar" bindtap="openShared">
-            <image class="u-fix-bottom--icon" src="{{prePath}}/icons/article_shared.png" />
-            <text>分享</text>
-          </view>
+        </block>
+        <view class="u-fix-bottom--bar" bindtap="openShared">
+          <image class="u-fix-bottom--icon" src="/icons/article_shared.png" />
+          <text>分享</text>
         </view>
-      </block>
+      </view>
     </block>
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
-  <settingEntry hasComment pageLogin="{{isLogin}}" bindsuccessloginevent="successLogin"></settingEntry>
 </view>
 
-<view class="container--cover article-shared" hidden="{{hiddenShared}}">
-  <view class="container--cover article-shared__mask" catchtap="closeShared"></view>
-  <view class="article-shared__main">
-    <canvas class="article-shared__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>
-    <image class="article-shared__close" src="/icons/article_close.png" catchtap="closeShared"></image>
-    <view class="article-shared__wrapper">
-      <view class="article-shared__cover--mask"></view>
-      <image class="article-shared__logo" src="/images/logo_white.png" />
-      <image class="article-shared__cover" src="{{article.cover_image_url}}" />
-      <view class="article-shared__content">
-        <view class="article-shared__title">{{article.title}}</view>
-
-        <view class="article-shared__commment">
-          <block wx:if="{{!isLogin || commentStr === null}}">
-            <image class="article-shared__quot t-small t-left" src="/icons/article_mark_left.png" />
-
-            <button class="article-shared__textarea" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="share" wx:if="{{!isLogin}}">
-              <image class="article-shared__opion" src="/icons/article_share_comment.png" />
-              <text>添加你的观点</text>
-            </button>
-
-            <view class="article-shared__textarea" wx:else catchtap="openCommentInShared">
-              <image class="article-shared__opion" src="/icons/article_share_comment.png" />
-              <text>添加你的观点</text>
-            </view>
-            <view class="article-shared__right">
-              <image class="article-shared__quot t-small t-right" src="/icons/article_mark_right.png" />
-            </view>
-          </block>
-
-          <block wx:else>
-            <image class="article-shared__quot t-large t-left" src="/icons/article_mark_left.png" />
-            <view class="u-flex article-shared__user">
-              <image class="article-shared__avatar" src="{{userInfo.avatarUrl}}" />
-              <text class="article-shared__username">{{userInfo.nickName}}</text>
-            </view>
-            <view class="article-shared__commentstr">{{commentStr}}</view>
-             <view class="article-shared__right">
-              <image class="article-shared__quot t-large t-right" src="/icons/article_mark_right.png" />
-            </view>
-          </block>
-
-        </view>
-
-        <view class="article-shared__center">
-          <image class="article-shared__qrcode" src="/images/qrcode.png" />
-          <view class="article-shared__tip">长按小程序码，阅读原文</view>
-        </view>
-      </view>
-    </view>
-
-    <view class="article-shared__footer u-flex {{isIphoneX ? 'has-safe-padding' : ''}}">
-      <button class="article-shared__action" open-type="share" bindtap="sharedArticle">
-        <image class="article-shared__footer--icon" src="/icons/article_wechat.png" />
-        <text>分享给朋友</text>
-      </button>
-      <view class="article-shared__action">
-        <view class="article-shared__action--hr" bindtap="drawImgae">
-          <image class="article-shared__footer--icon t-load" src="/icons/article_download.png" />
-          <text>生成海报</text>
-        </view>
-      </view>
-    </view>
+<shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}">
+  <view class="article-shared__cover--mask"></view>
+  <image class="article-shared__logo" src="/images/logo_white.png" />
+  <image class="article-shared__cover" src="{{article.cover_image_url}}" mode="aspectFill" />
+  <view class="article-shared__content">
+    <view class="article-shared__title">{{article.title}}</view>
+    <template is="shared_center" data="{{isLogin, commentStr, userInfo, isSharedComment, targetComment, wxacodeUrl: article.wxacode_url}}" />
   </view>
-</view>
+</shared>
 <album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>

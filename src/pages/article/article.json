@@ -2,7 +2,8 @@
   "backgroundColor": "#f6f6f6",
   "usingComponents": {
     "comment": "../../components/comment/comment",
-    "settingEntry": "../../components/setting_enter/setting",
+    "nodes": "../../components/related_nodes/nodes",
+    "shared": "../../components/shared_modal/shared",
     "nav": "../../components/navigate/navigate",
     "album-setting": "../../components/album_setting/setting"
   }

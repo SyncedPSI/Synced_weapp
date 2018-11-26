@@ -1,0 +1,10 @@
+{
+  "window": {
+    "backgroundColor": "#fff"
+  },
+  "usingComponents": {
+    "nav": "../../../components/navigate/navigate",
+    "shared": "../../../components/shared_modal/shared",
+    "nodes": "../../../components/related_nodes/nodes"
+  }
+}

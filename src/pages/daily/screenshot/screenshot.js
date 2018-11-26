@@ -1,5 +1,5 @@
-import { request, showLoading, hideLoading } from "utils/util";
-import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage } from 'utils/canvas';
+import { request, showLoading, getWxcodeUrl } from "utils/util";
+import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, drawQrcode } from 'utils/canvas';
 import { dailyDetail } from "config/api";
 
 const app = getApp();
@@ -9,52 +9,57 @@ Page({
     id: null,
     navigateTitle: '',
     isFromWeapp: false,
-    isFetching: true,
     isIphoneX: app.globalData.isIphoneX,
     isLogin: false,
     canvasHeight: 0,
     showLoading: true,
     actionSheetHidden: true,
   },
-  onLoad: function(option) {
+  onLoad: function(options) {
     showLoading('图片生成中');
+    let id = null;
+    let isFromWeapp = true;
+    if (options.id) {
+      id = options.id;
+      isFromWeapp = options.from === "weapp";
+    } else {
+      id = decodeURIComponent(options.scene);
+    }
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
 
-    request(`${dailyDetail}${option.id}`)
+    request(`${dailyDetail}${id}`)
       .then(res => {
         const daily = res.data;
         this.setData({
           navigateTitle: daily.title,
           daily,
-          isFetching: false
         }, () => {
           this.getHight();
         });
       });
-    const { id, from } = option;
     this.setData({
       id,
       isLogin: app.globalData.isLogin,
-      isFromWeapp: from === "weapp",
+      isFromWeapp,
     });
   },
   getHight: function() {
     this.width = getApp().globalData.systemInfo.screenWidth - 40;
-    this.paddingLeft = 20;
+    this.paddingLeft = 25;
     const maxWidth = this.width - this.paddingLeft * 2;
     const { title, content } = this.data.daily;
     const titleInfo = getWrapTextHeight({
       ctx: this.ctx,
       maxWidth,
       text: title,
-      lineHeight: 30,
+      lineHeight: 33,
     });
     const contentInfo = getWrapTextHeight({
       ctx: this.ctx,
       maxWidth,
       text: content,
-      lineHeight: 30,
+      lineHeight: 28,
       fontSize: 16
     });
 
@@ -62,12 +67,12 @@ Page({
       bannerHeight: 185,
       imageHeight: 90,
     };
-    heightInfo.createAtTop = heightInfo.bannerHeight - 15 - 14;
+    heightInfo.createAtTop = heightInfo.bannerHeight - 19 - 12;
     heightInfo.titleTop = heightInfo.createAtTop - titleInfo.height + 4;
-    heightInfo.contentTop = heightInfo.bannerHeight + 20;
-    heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 22;
+    heightInfo.contentTop = heightInfo.bannerHeight + 25;
+    heightInfo.imgTop = heightInfo.contentTop + contentInfo.height + 26;
     heightInfo.tipTop = heightInfo.imgTop + heightInfo.imageHeight + 7;
-    this.height = heightInfo.tipTop + 14 + 30;
+    this.height = heightInfo.tipTop + 14 + 25;
 
     this.setData({
       canvasHeight: this.height
@@ -79,6 +84,7 @@ Page({
       // set ctx
       setBg(this.ctx, this.width, this.height);
       this.ctx.drawImage('/images/daily_banner.png', 0, 0, this.width, heightInfo.bannerHeight);
+      this.ctx.drawImage('/images/logo_white.png', 20, 14, 48, 18);
       // title
       drawMultiLines({
         ctx: this.ctx,
@@ -86,7 +92,7 @@ Page({
         text: titleInfo,
         x: this.paddingLeft,
         y: heightInfo.titleTop,
-        lineHeight: 26,
+        lineHeight: 33,
         isBold: true,
       });
       // time
@@ -98,32 +104,40 @@ Page({
         x: this.paddingLeft,
         y: heightInfo.createAtTop,
       });
+
       // content
       drawMultiLines({
         ctx: this.ctx,
         fontSize: 16,
-        color: '#414141',
         text: contentInfo,
         x: this.paddingLeft,
         y: heightInfo.contentTop,
-        lineHeight: 30,
+        lineHeight: 28,
       });
-      // img
-      this.ctx.drawImage('/images/qrcode.png', (this.width - heightInfo.imageHeight) / 2, heightInfo.imgTop, heightInfo.imageHeight, heightInfo.imageHeight);
-      drawOneLine({
-        ctx: this.ctx,
-        fontSize: 14,
-        color: '#717171',
-        text: '长按小程序码，了解机器之心',
-        x: this.width / 2,
-        y: heightInfo.tipTop,
-        isCenter: true,
-      });
-      this.ctx.draw();
-      hideLoading();
-      this.setData({
-        showLoading: false,
-      });
+      const { wxacode_url, id } = this.data.daily;
+      if (wxacode_url === null) {
+        getWxcodeUrl(id, 'pages/daily/show/show', 'Daily', (path) => {
+          this.drawOther(path, heightInfo);
+        });
+      } else {
+        this.drawOther(wxacode_url, heightInfo);
+      }
+  },
+  drawOther: function (path, heightInfo) {
+    drawQrcode({
+      ctx: this.ctx,
+      imgX: (this.width - heightInfo.imageHeight) / 2,
+      imgTop: heightInfo.imgTop,
+      hrCenter: this.width / 2,
+      tipTop: heightInfo.tipTop,
+      imgUrl: path,
+      cb: () => {
+        this.ctx.draw();
+        this.setData({
+          showLoading: false,
+        });
+      }
+    });
   },
   openActionSheet: function () {
     this.setData({
@@ -144,7 +158,7 @@ Page({
     const { id, daily: { title } }= this.data;
     return {
       title,
-      path: `/pages/daily/screenshot/screenshot?id=${id}&from=weapp`,
+      path: `/pages/daily/show/show?id=${id}&from=weapp`,
     };
   },
 });

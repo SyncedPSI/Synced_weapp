@@ -1,50 +1,44 @@
-<import src="../common/loading.wxml"/>
-
-<nav isIndex hasShadow="{{false}}" title="{{isNavFixed ? '机器之心' : ''}}"></nav>
-
-<view class="header-nav {{ isNavFixed ? 'is-show' : ''}}" style="margin-top: {{statusBarHeight}}px;">
-  <text class="header-nav__item {{activeType === 'dailies' ? 'is-active' : ''}}" bindtap="switchType" data-type="dailies">资讯</text>
-  <text class="header-nav__item {{activeType === 'timelines' ? 'is-active' : ''}}" bindtap="switchType" data-type="timelines">文章</text>
-  <!--<navigator url="../search/search"><image class="search__btn header-nav__search" src="{{searchIconUrl}}"></image></navigator>-->
-</view>
+<nav isIndex hasShadow="{{false}}" title=""></nav>
+<view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">趋势</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <swiper current-item-id="{{activeType}}" bindchange="swiperActiveType">
-      <swiper-item item-id='dailies'>
-        <scroll-view scroll-y bindscrolltolower="fetchMoreData">
-          <view class="daily--list">
-            <navigator class="banner--container" url="../topic/topic?id={{morningDaily.id}}" hover-class="none" wx-if="{{morningDaily !== null}}">
-              <image class="banner--image" src="/images/morning_daily.png" mode="aspectFill" />
-              <view class="banner--text">
-                <view class="banner--title">AI每日精选</view>
-                <view class="banner--time">{{morningDaily.published_at}}</view>
-              </view>
+    <scroll-view scroll-y>
+      <view class="slide--container">
+        <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
+          <swiper-item wx:for="{{banners}}" wx:key="slide-{{index}}">
+            <navigator class="slide--content t-{{index}} {{currentBannerIndex === index ? 'is-active' : ''}}"
+              url="/pages/{{item.path}}?id={{item.content.id}}">
+              <image class="slide--img" src="{{item.content.cover_image_url}}" />
+              <view class="slide--title">{{item.content.title}}</view>
             </navigator>
-            <dailies dailies="{{dailies}}" dayDaily="{{dayDaily}}" bindopen="openActionSheet"></dailies>
-          </view>
-          <template is="loading" />
-        </scroll-view>
-      </swiper-item>
-      <swiper-item item-id="timelines">
-        <scroll-view scroll-y bindscrolltolower="fetchMoreData">
-          <view class="content--list">
-            <article id="{{item.id}}" articleId="{{item.id}}" title="{{item.title}}" author="{{item.author}}" category="{{item.category}}" publishedAt="{{item.published_at}}" wx:for="{{articleList}}" wx:key="{{item.id}}"></article>
-          </view>
-          <template is="loading" />
-        </scroll-view>
-      </swiper-item>
-    </swiper>
+          </swiper-item>
+        </swiper>
+      </view>
+      <view class="slide--dots">
+        <view class="slide--dot {{currentBannerIndex === index ? 'is-active' : '' }}" wx:for="{{slide}}" wx:key="{{index}}"></view>
+      </view>
+
+      <view class="content--body">
+        <view class="content--title">当下热点</view>
+        <block wx:for="{{recommends}}" wx:key="list-{{index}}">
+          <view class="trend-item__tip t-{{index}}">NO.{{index + 1}}</view>
+          <navigator class="u-flex trend-item__inline" url="/pages/graph/brief/brief?id={{item.node.id}}&type={{item.node.node_type_en}}" hover-class="none">
+            <image class="trend-item__image" src="{{item.avatar_url}}" />
+            <view class="trend-item__right">
+              <view class="trend-item__title">
+                <text>{{item.node.full_name}}</text>
+                <view class="trend-item__type">{{item.node.node_type}}</view>
+              </view>
+              <view class="u-text-limit--two trend-item__desc">{{item.node.summary}}</view>
+              <view class="u-flex trend-item__inline trend-item__quot" wx:if="{{item.remark !== null && item.remark !== ''}}">
+                <image class="trend-item__icon" src="/icons/article_mark_left.png" />
+                <text class="trend-item__grow">{{item.remark}}</text>
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </view>
+    </scroll-view>
   </view>
 </view>
-<settingEntry></settingEntry>
-
-<action-sheet hidden="{{actionSheetHidden}}" bindchange="closeActionSheet">
-  <action-sheet-item>
-    <button open-type="share" data-id="{{activeId}}" data-title="{{activeTitle}}" bindtap="closeActionSheet">分享给朋友</button>
-  </action-sheet-item>
-  <action-sheet-item bindtap="saveCard">生成卡片保存分享</action-sheet-item>
-  <action-sheet-item bindtap="copyclip">复制此新闻链接</action-sheet-item>
-  <action-sheet-cancel>取消</action-sheet-cancel>
-</action-sheet>
-

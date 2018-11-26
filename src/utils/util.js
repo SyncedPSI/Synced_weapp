@@ -1,3 +1,5 @@
+import { creatWxcode } from "config/api";
+
 function formatNumber(n) {
   n = n.toString();
   return n[1] ? n : "0" + n;
@@ -157,4 +159,17 @@ export const request = (url, data = {}, method = "GET") => {
       }
     })
   });
+};
+
+export const getWxcodeUrl = (id, page, model, cb) => {
+  request(creatWxcode, {
+    id,
+    page,
+    model,
+  }, 'POST')
+  .then((res) => {
+    cb(res.data.file_path);
+  }).catch(() => {
+    cb('/images/qrcode.png');
+  })
 };

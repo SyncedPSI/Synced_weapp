@@ -1,11 +1,11 @@
 import { request, getDateDiff, showTipToast } from "utils/util";
-import { readLater } from "config/api";
+import { readLater, readLaterList } from "config/api";
 
 Page({
   data: {
     list: [],
-    startX: 0,
-    startY: 0,
+    totalCount: 0,
+    isEdit: false,
     maxRightBtnWidth: 80,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
   },
@@ -14,72 +14,27 @@ Page({
   },
 
   getList: function() {
-    request(readLater)
+    request(readLaterList)
       .then((res) => {
-        const list = res.data;
-        list.forEach(item => {
+        const { read_laters, count } = res.data;
+        read_laters.forEach(item => {
           item.content.updatedAt = getDateDiff(item.content.published_at);
         });
         this.setData({
-          list
+          list: read_laters,
+          totalCount: count
         });
       })
   },
 
-  touchStart: function(event) {
-    const { list } = this.data;
-    list.forEach((item) => {
-      item.isOpenBtn = false;
-    });
-    const { clientX, clientY } = event.changedTouches[0];
+  switchEdit: function() {
     this.setData({
-      list,
-      startX: clientX,
-      startY: clientY,
-    });
-  },
-
-  touchMove: function(event) {
-    const index = event.currentTarget.dataset.index;
-    const { clientX } = event.changedTouches[0];
-    const { startX, list, maxRightBtnWidth } = this.data;
-    if (clientX > startX) {
-      list[index].txtStyle = '';
-      this.setData({
-        list,
-      });
-      return; // right slide
-    }
-
-    let distance = startX - clientX;
-    if (maxRightBtnWidth < distance) {
-      distance = maxRightBtnWidth;
-    }
-    list[index].txtStyle = `right: ${distance}px`;
-    this.setData({
-      list,
-    });
-  },
-
-  touchEnd: function(event) {
-    const index = event.currentTarget.dataset.index;
-    const { clientX } = event.changedTouches[0];
-    const { startX, list, maxRightBtnWidth } = this.data;
-    const distance = startX - clientX;
-    list[index].txtStyle = '';
-
-    if (maxRightBtnWidth < distance) {
-      list[index].isOpenBtn = true;
-    }
-
-    this.setData({
-      startX: 0,
-      startY: 0,
-      list,
+      isEdit: !this.data.isEdit
     });
   },
 
   deleteItem: function(event) {
+    console.log('klkk')
     const { id, index } = event.currentTarget.dataset;
 
     request(`${readLater}/${id}`, {}, 'DELETE')

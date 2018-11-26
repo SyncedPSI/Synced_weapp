@@ -1,5 +1,5 @@
 import { request } from "utils/util";
-import { readLaterCount } from "config/api";
+// import { readLaterCount } from "config/api";
 
 Component({
   properties: {
@@ -16,16 +16,7 @@ Component({
     this.setData({
       user: wx.getStorageSync('userInfo')
     });
-    this.getReadLaterCount();
   },
   methods: {
-    getReadLaterCount: function() {
-      request(readLaterCount)
-        .then((res) => {
-          this.setData({
-            readLastersCount: res.data.count
-          });
-        })
-    }
   }
 });

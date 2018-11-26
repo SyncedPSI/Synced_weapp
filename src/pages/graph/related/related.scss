@@ -1,0 +1,59 @@
+@import 'variables';
+@import 'common';
+
+.node-header {
+  &__full {
+    font-size: 40rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__en {
+    font-size: 28rpx;
+    color: #a8a8a8;
+    margin-bottom: 40rpx;
+  }
+}
+
+.related {
+  padding: 60rpx 30px;
+
+  &--type {
+    margin: 60rpx 0 40rpx;
+    font-size: 32rpx;
+    color: #121212;
+    font-weight: 500;
+  }
+
+  &--item {
+    margin-bottom: 40rpx;
+    align-items: flex-start;
+  }
+
+  &--avatar  {
+    flex-shrink: 0;
+    margin-right: 28rpx;
+    width: 100rpx;
+    height: 100rpx;
+
+    &.t-institition {
+      border: 2rpx solid #e7e7e7;
+    }
+  }
+
+  &--right {
+    flex-grow: 1;
+  }
+
+  &--title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &--desc {
+    margin-top: 12rpx;
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
+}

@@ -10,8 +10,7 @@ Page({
     id: "",
     title: "",
     isFromWeapp: false,
-    isFetching: true,
-    topic: {},
+    topic: null,
     isShowComment: false,
     isIphoneX: app.globalData.isIphoneX,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
@@ -33,7 +32,6 @@ Page({
   },
 
   onLoad: function(option) {
-
     const { id, from } = option;
     this.setData({
       id,
@@ -49,7 +47,6 @@ Page({
         this.setData({
           navigateTitle: topic.title,
           topic,
-          isFetching: false
         }, () => {
           this.getTitleHeight();
         });
@@ -77,7 +74,7 @@ Page({
     const { title, id } = this.data;
     return {
       title,
-      path: `/pages/topic/topic?id=${id}&title=${title}&from=weapp`
+      path: `/pages/topic/topic?id=${id}&from=weapp`
     };
   },
 });

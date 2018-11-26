@@ -1,0 +1,33 @@
+@import 'variables';
+@import 'fixed_comment';
+
+.trend {
+  &--cover {
+    display: block;
+    height: 160px;
+    width: 100%;
+  }
+
+  &--list {
+    padding: 0 40rpx;
+  }
+}
+
+.trend-item {
+  display: block;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    border-bottom: 2rpx solid $bg-white;
+  }
+
+  &__title {
+    font-size: 36rpx;
+  }
+
+  &__desc {
+    font-size: 32rpx;
+    color: $secondary-black;
+    line-height: 1.63;
+  }
+}

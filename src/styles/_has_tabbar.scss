@@ -1,0 +1,18 @@
+.u-tab-title {
+  position: fixed;
+  top: $nav-content-height;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #fff;
+  padding: 4rpx 20px;
+  font-size: 60rpx;
+  font-weight: 500;
+  color: #121212;
+}
+
+.content-container {
+  height: 100%;
+  padding-top: 98rpx;
+  box-sizing: border-box;
+}

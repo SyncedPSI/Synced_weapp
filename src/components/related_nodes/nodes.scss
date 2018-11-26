@@ -1,0 +1,90 @@
+@import 'variables';
+@import 'common';
+
+.related {
+  margin-top: 80rpx;
+  background-color: $background-color;
+  padding: 28rpx 0 48rpx;
+
+  &.t-small &--title {
+    padding: 0 40rpx;
+  }
+
+  &.t-small &--card:first-child {
+    margin-left: 40rpx;
+  }
+
+  &--title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #121212;
+    padding: 0 60rpx;
+    margin-bottom: 40rpx;
+  }
+
+  &--scroll {
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &--card {
+    background-color: $white;
+    padding: 20rpx 80rpx 28rpx 32rpx;
+    display: inline-block;
+    margin-right: 28rpx;
+    position: relative;
+    min-width: 180rpx;
+    vertical-align: middle;
+
+    &:first-child {
+      margin-left: 60rpx;
+    }
+
+    &:last-child {
+      margin-right: 60rpx;
+    }
+
+    &.can_click::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 0;
+      height: 0;
+      border: 14rpx solid transparent;
+      border-top-color: $red;
+      border-right-color: $red;
+    }
+  }
+
+  &--zh {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: $black;
+    vertical-align: middle;
+    margin-right: 16rpx;
+    display: inline-block;
+  }
+
+  &--type {
+    font-size: 20rpx;
+    color: $light_gray;
+    background-color: $background_gray;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 4rpx 10rpx;
+    line-height: 1.4;
+  }
+
+  &--name {
+    font-size: 28rpx;
+    color: $light_gray;
+  }
+
+  &--more {
+    font-size: 32rpx;
+    font-weight: normal;
+    color: #a8a8a8;
+  }
+}
+

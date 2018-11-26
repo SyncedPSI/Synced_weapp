@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "comment": "../../../components/comment/comment",
+    "nodes": "../../../components/related_nodes/nodes",
+    "nav": "../../../components/navigate/navigate",
+    "shared": "../../../components/shared_modal/shared",
+    "album-setting": "../../../components/album_setting/setting"
+  }
+}

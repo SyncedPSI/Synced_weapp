@@ -1,7 +1,6 @@
 @import 'variables';
 
 page {
-  background-color: $background_color;
   height: 100vh;
   overflow: hidden;
 }
@@ -9,7 +8,7 @@ page {
 .readlater {
   &--container {
     // $setting-header + $nav-content-height
-    height: calc(100vh - 120rpx - 98rpx);
+    height: calc(100vh - 98rpx - 98rpx);
     margin-top: $setting-header;
 
     scroll-view {
@@ -21,9 +20,38 @@ page {
     height: $safe-padding-bottom;
   }
 
+  &--title {
+    padding: 0 40rpx;
+    margin: 60rpx 0 40rpx;
+    font-size: 42rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &--count {
+    margin-left: 12rpx;
+    padding: 2rpx 12rpx;
+    font-size: 20rpx;
+    border-radius: 100rpx;
+    background-color: $red;
+    color: #fff;
+    min-width: 20rpx;
+    text-align: center;
+  }
+
+  &--edit {
+    border-radius: 50%;
+  }
+
+  &--icon {
+    display: block;
+    width: 60rpx;
+    height: 60rpx;
+  }
+
   &--item {
     padding: 0 40rpx;
-    margin: 32rpx 0;
+    margin-bottom: 60rpx;
     position: relative;
   }
 
@@ -31,33 +59,25 @@ page {
     background-color: #fff;
     position: relative;
     z-index: 3;
-    transition: right .28s;
-
-    &.is-open {
-      right: 160rpx;
-    }
   }
 
   &--btn {
     position: absolute;
-    right: 40rpx;
+    left: 0;
     top: 0;
-    bottom: 0;
-    width: 160rpx;
-    font-size: 32rpx;
-    text-align: center;
-    background-color: $red;
-    color: #fff;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items:center;
+    padding: 34rpx 40rpx;
     z-index: 0;
   }
 
-  &--icon {
-    width: 48rpx;
-    height: 48rpx;
+  &--delete {
+    background-color: $red;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 30rpx;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 36rpx;
+    color: #fff;
   }
 
   &--none {
@@ -65,6 +85,45 @@ page {
     font-size: 28rpx;
     text-align: center;
     margin-top: 144rpx;
+  }
+}
+
+.is-edit .article--item {
+  left: 80rpx;
+}
+
+.article {
+  &--item {
+    position: relative;
+    left: 0;
+    transition: left 500ms;
+    z-index: 2;
+    background-color: #fff;
+  }
+
+  &--title {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #121212;
+
+    &.t-finish {
+      color: #898989;
+    }
+  }
+
+  &--bottom {
+    margin-top: 24rpx;
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
+
+  &--author {
+    margin-right: 40rpx;
+  }
+
+  &--category {
+    flex-shrink: 0;
+    margin-left: 60rpx;
   }
 }
 

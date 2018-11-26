@@ -4,10 +4,7 @@
 .daily {
   &__container {
     background-color: $background_color;
-    padding-left: 40rpx;
-    padding-right: 40rpx;
-    padding-top: 40rpx;
-    overflow: hidden;
+    padding: 36rpx 40rpx 0;
   }
 
   &__canvas {
@@ -20,15 +17,14 @@
   background-color: $black;
   color: #fff;
   text-align: center;
-  margin: 19rpx 40rpx;
-  padding: 28rpx 0;
+  margin: 20rpx 40rpx;
+  height: 100rpx;
   border-radius: 0;
-  line-height: 1.4;
 
   &--container {
     height: 140rpx;
     display: block;
-    background: rgba(255, 255, 255, 0.90);
+    background: rgba(255, 255, 255, 0.9);
   }
 
   &--border {

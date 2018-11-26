@@ -18,10 +18,10 @@ Component({
       type: Boolean,
       value: false
     },
-    // hasShadow: {
-    //   type: Boolean,
-    //   value: true
-    // },
+    hasShadow: {
+      type: Boolean,
+      value: false
+    },
     hasHeaderHeight: {
       type: Boolean,
       value: false
@@ -42,7 +42,8 @@ Component({
   data: {
     paddingTop: app.globalData.systemInfo.statusBarHeight,
     isAndroid: app.globalData.isAndroid,
-    isLogin: false
+    isLogin: false,
+    avatarUrl: app.globalData.userInfo && app.globalData.userInfo.avatarUrl,
   },
   ready: function () {
     this.setData({
@@ -57,15 +58,24 @@ Component({
       wx.navigateBack();
     },
     goHome: function() {
-      wx.navigateTo({
+      wx.switchTab({
         url: '/pages/index/index'
       });
     },
     getUserInfo: function (event) {
+      let pagePath = '/pages/search/search';
+      if (event.currentTarget.dataset.type === 'user') {
+        pagePath = '/pages/setting/read_later/read_later';
+      }
       app.login(event.detail.userInfo, () => {
-        wx.navigateTo({
-          url: '/pages/search/search'
-        });
+        this.setData({
+          isLogin: true,
+          avatarUrl: app.globalData.userInfo.avatarUrl
+        }, () => {
+          wx.navigateTo({
+            url: pagePath
+          });
+        })
       });
     },
   }

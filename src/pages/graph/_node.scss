@@ -1,0 +1,122 @@
+.u-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.node-header {
+  padding: 40rpx;
+  background-color: $bg-white;
+
+  &__container {
+    padding: 40rpx;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 0 rgba(226, 225, 225, 0.22);
+  }
+
+  &__full {
+    font-size: 40rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__en {
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
+
+  &__icon {
+    width: 26rpx;
+    height: 26rpx;
+    margin-right: 10rpx;
+  }
+
+  &__website {
+    margin-top: 24rpx;
+    color: $title-black;
+    font-size: 28rpx;
+  }
+
+  &__link {
+    display: inline-block;
+  }
+
+  &__avatar {
+    width: 96rpx;
+    height: 96rpx;
+    margin: 0 0 20rpx 70rpx;
+  }
+
+  &__summary {
+    margin-top: 40rpx;
+    color: #121212;
+    font-size: 32rpx;
+  }
+
+  &__origins {
+    margin-top: 24rpx;
+    line-height: 1.57;
+    color: #7d7d7d;
+    font-size: 28rpx;
+  }
+
+  &__origins--tip {
+    color: #121212;
+  }
+
+  &__origin {
+    border-bottom: 2rpx dashed $red;
+    background-color: transparent;
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 28rpx;
+    }
+  }
+}
+
+.node-technology {
+  color: $title-black;
+  font-size: 28rpx;
+  margin: 40rpx 0 36rpx;
+  border-top: 1px solid $bg-white;
+
+  &__item {
+    padding: 4rpx 16rpx;
+    background-color: $bg-white;
+    color: #7d7d7d;
+    margin: 20rpx 20rpx 0 0;
+    display: inline-block;
+  }
+
+  &__avatar {
+    width: 160rpx;
+    height: 160rpx;
+    margin-left: 70rpx;
+  }
+}
+
+.node-block {
+  padding: 80rpx 60rpx 0;
+  background-color: #fff;
+
+  &__header {
+    border-bottom: 2rpx solid $bg-white;
+    margin-bottom: 40rpx;
+  }
+
+  &__title {
+    display: inline-block;
+    border-bottom: 4rpx solid $red;
+    color: $black;
+    font-weight: 600;
+    font-size: 40rpx;
+  }
+
+  &:last-child {
+    padding-bottom: $safe-padding-bottom + 30;
+  }
+
+  &.t-first {
+    padding-top: 40rpx;
+  }
+}

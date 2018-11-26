@@ -1,0 +1,85 @@
+<import src="/pages/common/node_header.wxml"/>
+<import src="/pages/common/node_property.wxml"/>
+<import src="/pages/common/loading.wxml"/>
+
+<template name="no-trend">
+  <view class="none" hidden="{{isHidden}}">
+    <image class="none--icon" src="/icons/none_trend.png" />
+    <text class="none--text">暂无动态</text>
+  </view>
+</template>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
+
+<view class="u-container" style="padding-top: {{statusBarHeight}}px" wx:if="{{node !== null}}">
+  <scroll-view scroll-y bindscrolltolower="fetchMore">
+    <view class="node-header__container">
+      <template is="node-header" data="{{...node}}" />
+      <block wx:if="{{node.level === 'level_3'}}">
+        <view class="u-text-limit--three node-header__summary">{{node.summary}}</view>
+      </block>
+      <block wx:else>
+        <view class="node-header__summary {{isExpand ? '' : 'u-text-limit--three'}}" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
+        <view style="height: {{isExpand ? 'auto' : '0'}}">
+          <template is="node-property" data="{{...node}}"/>
+        </view>
+      </block>
+
+      <view class="u-flex node--footer">
+        <navigator class="node--detail" url="/pages/graph/detail/detail?type={{type}}&id={{id}}" hover-class="none" wx:if="{{node.level === 'level_3'}}">
+          <text>查看详细介绍</text>
+          <image class="node--icon" src="/icons/see_detail.png" />
+        </navigator>
+        <view class="node--detail" bindtap="seeAll" wx:else>
+          <text>{{isExpand ? '收起全部' : '展开全部'}}</text>
+          <image class="node--icon" src="/icons/see_more.png" />
+        </view>
+        <image class="node--shared" src="/icons/daily_action.png" bindtap="openShared" />
+      </view>
+    </view>
+    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore isSmallPadding />
+
+    <view class="node-trend">
+      <view class="node-trend__title">相关动态</view>
+      <template is="no-trend" data="{{isHidden: (noTrends || trends.length > 0) }}" />
+      <navigator class="node-trend__item" url="/pages/{{item.type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}" hover-class="none" wx:for="{{trends}}">
+        <view class="node-trend__name">{{item.title}}</view>
+        <view class="u-flex node-trend__footer">
+          <text>{{item.pubdate}}</text>
+          <view class="node-trend__type">#{{item.category}}</view>
+        </view>
+      </navigator>
+      <template is="loading" wx-if="{{hasNextPage}}" />
+    </view>
+  </scroll-view>
+</view>
+
+<shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
+  <view class="graph-shared">
+    <image class="graph-shared__bg" src="/images/graph_share_bg.png" mode="aspectFill" />
+    <view class="graph-shared__container">
+      <view class="graph-shared__title">{{node.full_name}}</view>
+      <view class="graph-shared__name">{{node.en_name}}</view>
+      <view class="u-text-limit--three graph-shared__desc">{{node.summary}}</view>
+    </view>
+    <image class="graph-shared__contact t-left" src="/images/graph_hr.png" />
+    <image class="graph-shared__contact t-right" src="/images/graph_hr.png" />
+    <view class="graph-shared__container t-bottom">
+      <view class="graph-shared__tip">相关动态</view>
+      <template is="no-trend" data="{{isHidden: sharedTrends.length > 0 }}" />
+      <block wx:for="{{sharedTrends}}">
+        <view class="graph-shared__inline">{{item.title}}</view>
+        <view class="graph-shared__time">{{item.pubdate}}</view>
+      </block>
+      <view class="u-flex graph-shared__center">
+        <image class="graph-shared__qrcode" src="{{ node.wxacode_url || '/images/qrcode.png'}}" />
+        <view>
+          <view>长按小程序码</view>
+          <view>了解更多知识</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</shared>
+<album-setting hidden="{{actionSheetHidden}}" bindcloseevent="closeActionSheet"></album-setting>
+<canvas class="shared-center__canvas" canvas-id="js-canvas" style="height: {{canvasHeight}}px;"></canvas>

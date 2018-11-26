@@ -1,0 +1,26 @@
+<import src="/pages/common/node_header.wxml"/>
+<import src="/pages/common/node_property.wxml"/>
+<import src="../../../wxParse/wxParse.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
+<block wx:if="{{isRequestFinished}}">
+  <view class="u-container" style="padding-top: {{statusBarHeight}}px">
+    <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
+      <view class="node-header">
+        <view class="node-header__container">
+          <template is="node-header" data="{{...node}}" />
+           <view class="node-header__summary" wx:if="{{node.summary !== ''}}">{{node.summary}}</view>
+          <template is="node-property" data="{{...node}}"/>
+        </view>
+      </view>
+      <view wx:if="{{node.desc != ''}}" class="node-block t-first" id="js-introduction">
+          <view class="node-block__header">
+            <text class="node-block__title">简介</text>
+          </view>
+          <view class="content">
+            <template is="wxParse" data="{{wxParseData:node_content.nodes}}" />
+          </view>
+      </view>
+    </scroll-view>
+  </view>
+</block>

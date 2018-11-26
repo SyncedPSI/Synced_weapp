@@ -49,3 +49,31 @@ action-sheet-cancel {
     background-color: transparent;
   }
 }
+
+.u-detail-padding {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.u-text-limit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.u-text-limit--one {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.u-text-limit--two {
+  @extend .u-text-limit;
+  -webkit-line-clamp: 2;
+}
+
+.u-text-limit--three {
+  @extend .u-text-limit;
+  -webkit-line-clamp: 3;
+}

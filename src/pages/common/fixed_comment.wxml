@@ -1,0 +1,8 @@
+<template name="fixed_comment">
+  <view class="fixed-comment {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="openComment"  wx:if="{{isLogin}}">
+    <image class="fixed-comment__icon" src="{{prePath}}/icons/fixed_comment.png" />
+  </view>
+  <button class="fixed-comment {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="comment"  wx:else>
+    <image class="fixed-comment__icon" src="{{prePath}}/icons/fixed_comment.png" />
+  </button>
+</template>

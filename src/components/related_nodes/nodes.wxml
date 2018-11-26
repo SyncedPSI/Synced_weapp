@@ -1,0 +1,27 @@
+<block wx:if="{{nodes.length > 0}}">
+  <view class="related {{isSmallPadding ? 't-small' : ''}}">
+    <view class="related--title u-flex" wx:if="{{hasMore}}">
+      <text>关联数据</text>
+      <navigator class="related--more" url="/pages/graph/related/related{{query}}">查看全部数据</navigator>
+    </view>
+    <view class="related--title" wx:else>关联数据</view>
+    <scroll-view scroll-x class="related--scroll" >
+      <block wx:for="{{nodes}}" wx:key="unique">
+        <view class="related--card" wx:if="{{item.level == 'level_1'}}">
+          <view>
+            <view class="related--zh">{{item.full_name}}</view>
+            <view class="related--type">{{item.node_type}}</view>
+          </view>
+          <view class="related--en">{{item.en_name}}</view>
+        </view>
+        <navigator url="/pages/graph/brief/brief?type={{item.node_type_en}}&id={{item.node_id}}" wx:else class="related--card can_click" id="{{item.node_id}}">
+          <view>
+            <view class="related--zh">{{item.full_name}}</view>
+            <view class="related--type">{{item.node_type}}</view>
+          </view>
+          <view class="related--en">{{item.en_name}}</view>
+        </navigator>
+      </block>
+    </scroll-view>
+  </view>
+</block>
