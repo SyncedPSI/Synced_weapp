@@ -172,10 +172,11 @@ Page({
       lineHeight: 20
     });
 
+    const summary = (node.summary && node.summary.slice(0, 65) + '...') || '';
     const summaryInfo = getWrapTextHeight({
       maxWidth,
       ctx: this.ctx,
-      text: node.summary.slice(0, 65) + '...',
+      text: summary,
       fontSize: 14,
       lineHeight: 22
     });
