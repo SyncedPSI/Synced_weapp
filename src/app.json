@@ -28,8 +28,7 @@
     "pages/expert/expert",
     "pages/institution/institution",
     "pages/technology/technology",
-    "pages/resource/resource",
-    "pages/logs/logs"
+    "pages/resource/resource"
   ],
   "window":{
     "backgroundTextStyle":"light",
