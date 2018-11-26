@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "user": "../../../components/user/user",
     "nav": "../../../components/navigate/navigate"
   },
   "enablePullDownRefresh": false
