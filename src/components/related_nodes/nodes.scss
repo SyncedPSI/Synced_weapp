@@ -20,6 +20,7 @@
     color: #121212;
     padding: 0 60rpx;
     margin-bottom: 40rpx;
+    align-items: flex-end;
   }
 
   &--scroll {
@@ -58,11 +59,12 @@
   }
 
   &--zh {
-    font-size: 36rpx;
+    line-height: 1.5;
+    font-size: 32rpx;
     font-weight: 500;
     color: $black;
     vertical-align: middle;
-    margin-right: 16rpx;
+    margin-right: 20rpx;
     display: inline-block;
   }
 
@@ -72,17 +74,17 @@
     background-color: $background_gray;
     vertical-align: middle;
     display: inline-block;
-    padding: 4rpx 10rpx;
+    padding: 2rpx 10rpx;
     line-height: 1.4;
   }
 
-  &--name {
+  &--en {
     font-size: 28rpx;
     color: $light_gray;
   }
 
   &--more {
-    font-size: 32rpx;
+    font-size: 28rpx;
     font-weight: normal;
     color: #a8a8a8;
   }

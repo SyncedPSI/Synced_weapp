@@ -11,7 +11,7 @@
     <block wx:if="{{node.institutions.length > 0}}">
       <view class="related--type">相关机构</view>
       <navigator class="u-flex related--item" wx:for="{{node.institutions}}" url="/pages/graph/brief/brief?id={{item.id}}&type=institutions" hover-class="none">
-        <image class="related--avatar t-institition" src="{{item.image_url || '/images/default_insititution.png'}}" />
+        <image class="related--avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
         <view class="related--right">
           <view class="related--title">{{item.full_name}}</view>
           <view class="u-text-limit--two related--desc">{{item.summary}}</view>
