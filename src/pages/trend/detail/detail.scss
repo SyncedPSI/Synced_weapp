@@ -32,10 +32,15 @@
 
 .trend-item {
   padding-top: 60rpx;
+  color: #7d7d7d;
 
   &__title {
     font-weight: 500;
     color: #414141;
+  }
+
+  &__sub {
+    margin: 16rpx 0 28rpx;
   }
 
   &__author {
