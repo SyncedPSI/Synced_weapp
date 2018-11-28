@@ -1,0 +1,85 @@
+@import 'variables';
+@import 'common';
+
+.subscribe {
+  margin-top: $setting-header;
+  padding: 60rpx 40rpx;
+
+  &--title {
+    font-size: 42rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+}
+
+.subscribe-item {
+  padding: 40rpx 0;
+  border-bottom: 2rpx solid #f2f2f2;
+
+  &.t-no-border {
+    border: none;
+  }
+
+  &__title {
+    font-size: 36rpx;
+    font-weight: 500;
+    color: $black;
+    position: relative;
+    padding-left: 20rpx;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 6rpx;
+      height: 36rpx;
+      margin-top: -18rpx;
+      border-radius: 6rpx;
+      background-color: #eb2835;
+    }
+  }
+
+  &__desc {
+    margin-top: 20rpx;
+    color: $mute-black;
+    font-size: 30rpx;
+  }
+
+}
+
+.subscribe-ai {
+  padding: 20rpx 0;
+  font-size: 36rpx;
+  color: #414141;
+  border-bottom: 2rpx solid #f2f2f2;
+
+  &:last-child {
+    border: none;
+  }
+
+  &__btn {
+    background-color: rgba(157, 157, 157, 0.2);
+    padding: 8rpx 0;
+    width: 80rpx;
+    text-align: center;
+    color: $mute-black;
+    font-weight: 500;
+    line-height: 1;
+
+    &.is-checked {
+      background-color: $black;
+    }
+  }
+
+  &__add {
+    width: 24rpx;
+    height: 24rpx;
+  }
+
+  &__img {
+    width: 30rpx;
+    height: 24rpx;
+  }
+}
+
