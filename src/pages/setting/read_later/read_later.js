@@ -7,7 +7,6 @@ Page({
     totalCount: 0,
     isEdit: false,
     maxRightBtnWidth: 80,
-    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
   },
   onLoad: function () {
     this.getList();

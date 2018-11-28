@@ -1,4 +1,25 @@
 <nav title="订阅管理" isNoSearch hasHeaderHeight></nav>
 <myheader activeBar="subscribe"></myheader>
 
+<view class="subscribe">
+  <view class="subscribe--title">订阅管理</view>
+  <view class="subscribe-item" wx:for="{{subscribeTypes}}">
+    <view class="u-flex subscribe-item__title">
+      <text>{{item.name}}</text>
+      <switch checked="{{item.is_subscribe}}" bindchange="switchChange" data-category="{{item.category}}" color="#414141" />
+    </view>
+    <view class="subscribe-item__desc">{{item.desc}}</view>
+  </view>
 
+  <view class="subscribe-item t-no-border">
+    <view class="u-flex subscribe-item__title">行业内参</view>
+    <view class="subscribe-item__desc">行业视角，AI应用，汇总AI+垂直行业一周大事件，产业人的精选内参。周日22：00更新。</view>
+  </view>
+  <view class="u-flex subscribe-ai" wx:for="{{aiTypes}}">
+    <text>{{item.name}}</text>
+    <view class="subscribe-ai__btn {{item.is_subscribe ? 'is-checked' : ''}}" bindtap="switchAiType"  data-index="{{index}}">
+      <image class="subscribe-ai__add" src="/icons/subscribe_add.png" hidden="{{item.is_subscribe}}" />
+      <image class="subscribe-ai__img" src="/icons/subscribe_check.png" hidden="{{!item.is_subscribe}}" />
+    </view>
+  </view>
+</view>
