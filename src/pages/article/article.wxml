@@ -18,6 +18,7 @@
       </view>
       <view class="u-detail-padding article" id="js-article-content">
         <view class="article--time">{{article.publishedAt}}</view>
+        <view class="article--foreword" wx-if="{{article.foreword !== null && article.foreword !== ''}}">{{article.foreword}}</view>
         <view class="content">
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
