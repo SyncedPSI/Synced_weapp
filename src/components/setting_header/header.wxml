@@ -4,14 +4,27 @@
     <text>{{user.nickName}}</text>
   </view>
   <view class="setting-header__list">
-    <navigator class="setting-header__item {{ activeBar === 'subscribe' ? 'is-active' : '' }}" url="{{ activeBar === 'subscribe' ? '' : '../subscribe/subscribe' }}" hover-class="none">
-      <image class="setting-header__icon" src="/icons/me_collection.png" mode="aspectFill" />
+    <view class="setting-header__item is-active" wx:if="{{activeBar === 'subscribe'}}">
+      <image class="setting-header__icon" src="/icons/setting/subscribe_active.png" mode="aspectFill" />
+    </view>
+    <navigator class="setting-header__item" url="/pages/setting/subscribe/subscribe" hover-class="none" wx:else>
+      <image class="setting-header__icon" src="/icons/setting/subscribe.png" mode="aspectFill" />
     </navigator>
-    <navigator class="setting-header__item {{ activeBar === 'read_later' ? 'is-active' : '' }}" url="{{ activeBar === 'read_later' ? '' : '../read_later/read_later' }}" hover-class="none">
-      <image class="setting-header__icon" src="/icons/me_delayread.png" mode="aspectFill" />
+
+    <view class="setting-header__item is-active" wx:if="{{activeBar === 'read_later'}}">
+      <image class="setting-header__icon" src="/icons/setting/read_active.png" mode="aspectFill" />
+    </view>
+    <navigator class="setting-header__item" url="/pages/setting/read_later/read_later" hover-class="none" wx:else>
+      <image class="setting-header__icon" src="/icons/setting/read.png" mode="aspectFill" />
     </navigator>
-    <navigator class="setting-header__item {{ activeBar === 'chatbot' ? 'is-active' : '' }}" url="{{ activeBar === 'chatbot' ? '' : '../chatbot/chatbot' }}" hover-class="none">
-      <image class="setting-header__icon" src="/icons/me_message.png" mode="aspectFill" />
+
+    <!--
+     <view class="setting-header__item is-active" wx:if="{{activeBar === 'chatbot'}}">
+      <image class="setting-header__icon" src="/icons/setting/subscribe.png" mode="aspectFill" />
+    </view>
+    <navigator class="setting-header__item" url="/pages/setting/chatbot/chatbot" hover-class="none" wx:else>
+      <image class="setting-header__icon" src="/icons/setting/subscribe.png" mode="aspectFill" />
     </navigator>
+    -->
   </view>
 </view>
