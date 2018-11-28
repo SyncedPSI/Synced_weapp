@@ -27,7 +27,7 @@
     margin-right: 22rpx;
   }
 
-  /*
+
   &__list {
     height: 100%;
     display: flex;
@@ -59,18 +59,4 @@
     height: 46rpx;
     padding: 20rpx 0 10rpx;
   }
-
-  &__count {
-    position: absolute;
-    padding: 2rpx 12rpx;
-    font-size: 20rpx;
-    border-radius: 100rpx;
-    background-color: $red;
-    color: #fff;
-    top: 0;
-    left: 52rpx;
-    min-width: 20rpx;
-    text-align: center;
-  }
-  */
 }
