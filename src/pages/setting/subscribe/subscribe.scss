@@ -20,24 +20,20 @@
     border: none;
   }
 
-  &__title {
+  &__header {
     font-size: 36rpx;
     font-weight: 500;
     color: $black;
     position: relative;
-    padding-left: 20rpx;
+    line-height: 1;
+  }
 
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 6rpx;
-      height: 36rpx;
-      margin-top: -18rpx;
-      border-radius: 6rpx;
-      background-color: #eb2835;
-    }
+  &__hr {
+    width: 6rpx;
+    height: 36rpx;
+    border-radius: 6rpx;
+    background-color: #eb2835;
+    margin-right: 14rpx;
   }
 
   &__desc {
@@ -45,7 +41,6 @@
     color: $mute-black;
     font-size: 30rpx;
   }
-
 }
 
 .subscribe-ai {
@@ -60,12 +55,12 @@
 
   &__btn {
     background-color: rgba(157, 157, 157, 0.2);
-    padding: 8rpx 0;
+    padding: 10rpx 0;
     width: 80rpx;
     text-align: center;
     color: $mute-black;
     font-weight: 500;
-    line-height: 1;
+    font-size: 0;
 
     &.is-checked {
       background-color: $black;
