@@ -23,7 +23,7 @@
         <view class="content--title">当下热点</view>
         <block wx:for="{{recommends}}" wx:key="list-{{index}}">
           <view class="trend-item__tip t-{{index}}">NO.{{index + 1}}</view>
-          <navigator class="u-flex trend-item__inline" url="/pages/graph/brief/brief?id={{item.node.id}}&type={{item.node.node_type_en}}" hover-class="none">
+          <navigator class="u-flex trend-item__inline" url="/pages/{{item.node.node_type_en}}/{{item.node.node_type_en}}?id={{item.node.id}}" hover-class="none">
             <image class="trend-item__image" src="{{item.avatar_url}}" />
             <view class="trend-item__right">
               <view class="trend-item__title">
