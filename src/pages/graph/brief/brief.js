@@ -1,6 +1,6 @@
 import { request, showLoading, hideLoading, showTipToast, getWxcodeUrl } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, downloadImage } from 'utils/canvas';
-import { ApiRootUrl } from "config/api";
+import { graph } from "config/api";
 
 Page({
   data: {
@@ -23,7 +23,7 @@ Page({
     let { type } = options;
 
     this.page = 1;
-    request(`${ApiRootUrl}/${type}/${id}`)
+    request(`${graph}/${type}/${id}`)
       .then((res) => {
         const node = res.data;
         if (node.wxacode_url === null) {
@@ -83,7 +83,7 @@ Page({
     this.setData({
       isFetching: true,
     }, () => {
-      request(`${ApiRootUrl}/${type}/${id}/flows`, {
+      request(`${graph}/${type}/${id}/flows`, {
         page: this.page
       }).then((res) => {
         const { flows, has_next_page } = res.data;

@@ -1,5 +1,5 @@
 import { request, showTipToast } from "utils/util";
-import { ApiRootUrl } from "config/api";
+import { graph } from "config/api";
 const WxParse = require("wxParse/wxParse.js");
 
 const app = getApp();
@@ -23,7 +23,7 @@ Page({
       id: id,
       isFromWeapp: from === "weapp",
     });
-    request(`${ApiRootUrl}/${type}/${id}/detail`)
+    request(`${graph}/${type}/${id}/detail`)
       .then(res => {
         const node = res.data;
         const catalogList = this.getCatalog(node);

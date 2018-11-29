@@ -1,5 +1,5 @@
 import { request } from "utils/util";
-import { ApiRootUrl } from "config/api";
+import { graph } from "config/api";
 
 Page({
   data: {
@@ -9,7 +9,7 @@ Page({
   },
   onLoad: function(options) {
     const { id, type, from } = options;
-    request(`${ApiRootUrl}/${type}/${id}/relations`)
+    request(`${graph}/${type}/${id}/relations`)
       .then((res) => {
         const node = res.data;
         this.setData({
