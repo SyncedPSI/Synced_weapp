@@ -59,10 +59,26 @@ Page({
     } else if (type === 'institutions') {
       model = 'Graph::Institution';
       path = 'institution';
+    } else if (type === 'examples') {
+      model = 'Graph::Example';
+      path = 'example';
+    } else if (type === 'papers') {
+      model = 'Graph::Paper';
+      path = 'paper';
+    } else if (type === 'products') {
+      model = 'Graph::Product';
+      path = 'product';
+    } else if (type === 'publications') {
+      model = 'Graph::Publication';
+      path = 'publication';
+    } else if (type === 'use_cases') {
+      model = 'Graph::UseCase';
+      path = 'use_case';
     } else if (type === 'resources') {
       model = 'Graph::Resource';
       path = 'resource';
     }
+
     getWxcodeUrl(id, `pages/${path}/${path}`, model, (path) => {
       this.setData({
         'node.wxacode_url': path

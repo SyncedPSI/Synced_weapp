@@ -23,6 +23,11 @@
     "pages/setting/chatbot/chatbot",
     "pages/setting/subscribe/subscribe",
     "pages/expert/expert",
+    "pages/example/example",
+    "pages/paper/paper",
+    "pages/product/product",
+    "pages/publication/publication",
+    "pages/use_case/use_case",
     "pages/institution/institution",
     "pages/technology/technology",
     "pages/resource/resource"
