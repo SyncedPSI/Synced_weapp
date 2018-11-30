@@ -5,7 +5,7 @@
   <view class="node-header__website" wx:else>
     <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
     <text>机构主页：</text>
-    <text class="node-header__link">{{website}}</text>
+    <text class="node-header__link" url="{{website}}" bindtap="copyclip">{{website}}</text>
   </view>
   <view class="node-header__origins"  wx:if="{{summary_sources != null}}">
     <image class="node-header__icon" src="{{val}}/icons/node_source.png" />
