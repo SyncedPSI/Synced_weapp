@@ -142,20 +142,25 @@
     flex-grow: 1;
   }
 
+  &__header {
+    font-size: 0;
+    line-height: 1.4;
+  }
+
   &__title {
     font-size: 34rpx;
     font-weight: 500;
     color: #121212;
-    vertical-align: middle;
   }
 
   &__type {
-    display: inline-block;
     padding: 0 8rpx;
     color: #999;
     font-size: 20rpx;
     background-color: #e2e2e2;
     margin-left: 12rpx;
+    display: inline-block;
+    vertical-align: 16%;
   }
 
   &__desc {
