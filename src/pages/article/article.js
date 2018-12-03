@@ -66,10 +66,14 @@ Page({
         if (article.wxacode_url === null) {
           this.getWxcode(this.articleId);
         }
-        article.publishedAt = getDateDiff(res.data.published_at);
-        WxParse.wxParse("article_content", "html", res.data.content, this, 5);
+        article.publishedAt = getDateDiff(article.published_at);
+        WxParse.wxParse("article_content", "html", article.content, this, 5);
+        let hasMetadata = false;
+        try {
+          hasMetadata = Object.keys(article.metadata).length > 0
+        } catch(err) {}
         this.setData({
-          hasMetadata: Object.keys(article.metadata).length > 0,
+          hasMetadata,
           article,
           articleOwn,
           isFetching: false
