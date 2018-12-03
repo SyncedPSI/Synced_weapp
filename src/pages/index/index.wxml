@@ -31,7 +31,7 @@
                 <text>{{item.node.full_name}}</text>
                 <view class="trend-item__type">{{item.node.node_type}}</view>
               </view>
-              <view class="u-text-limit--two trend-item__desc">{{item.node.summary}}</view>
+              <view class="u-text-limit--two trend-item__desc" wx:if="{{item.node.summary !== null}}">{{item.node.summary}}</view>
               <view class="u-flex trend-item__inline trend-item__quot" wx:if="{{item.remark !== null && item.remark !== ''}}">
                 <image class="trend-item__icon" src="/icons/article_mark_left.png" />
                 <text class="trend-item__grow">{{item.remark}}</text>
