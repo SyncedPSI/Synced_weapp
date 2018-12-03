@@ -1,4 +1,4 @@
-import { request, showLoading, hideLoading, showTipToast, getWxcodeUrl } from "utils/util";
+import { request, showLoading, hideLoading, showTipToast, getWxcodeUrl, getDateDiff } from "utils/util";
 import { setBg, getWrapTextHeight, drawMultiLines, drawOneLine, saveImage, downloadImage } from 'utils/canvas';
 import { graph } from "config/api";
 
@@ -87,6 +87,9 @@ Page({
         page: this.page
       }).then((res) => {
         const { flows, has_next_page } = res.data;
+        flows.forEach(item => {
+          item.pubdate = getDateDiff(item.pubdate);
+        });
 
         if (firstFetch) {
           this.setData({
