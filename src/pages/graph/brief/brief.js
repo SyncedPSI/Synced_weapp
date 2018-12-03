@@ -87,6 +87,7 @@ Page({
         page: this.page
       }).then((res) => {
         const { flows, has_next_page } = res.data;
+        const { trends } = this.data;
         flows.forEach(item => {
           item.pubdate = getDateDiff(item.pubdate);
         });
@@ -96,8 +97,9 @@ Page({
             sharedTrends: flows.slice(0, 2)
           });
         }
+
         this.setData({
-          trends: flows,
+          trends: [...trends, ...flows],
           isFetching: false,
           hasNextPage: has_next_page,
           noTrends: false,
