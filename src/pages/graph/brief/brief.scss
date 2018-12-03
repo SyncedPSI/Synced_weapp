@@ -44,7 +44,7 @@ nodes {
 }
 
 .node-trend {
-  padding: 80rpx 40rpx 0;
+  padding: 80rpx 40rpx $safe-padding-bottom;
 
   &__title {
     font-size: 32rpx;

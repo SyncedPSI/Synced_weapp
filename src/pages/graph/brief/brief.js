@@ -78,7 +78,7 @@ Page({
     });
   },
   fetchTrends: function(id, type, firstFetch = false) {
-    if (this.data.isFetching) return;
+    if (this.data.isFetching || !this.data.hasNextPage) return;
 
     this.setData({
       isFetching: true,
