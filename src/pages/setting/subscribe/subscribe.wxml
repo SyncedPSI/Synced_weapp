@@ -3,7 +3,7 @@
 
 <view class="subscribe">
   <view class="subscribe--title">订阅管理</view>
-  <view class="subscribe-item" wx:for="{{subscribeTypes}}">
+  <view class="subscribe-item" wx:for="{{subscribeTypes}}" wx:key="{{item.category}}">
     <view class="u-flex subscribe-item__header">
       <view class="u-flex">
         <view class="subscribe-item__hr" />
@@ -23,7 +23,7 @@
     </view>
     <view class="subscribe-item__desc">行业视角，AI应用，汇总AI+垂直行业一周大事件，产业人的精选内参。周日22：00更新。</view>
   </view>
-  <view class="u-flex subscribe-ai" wx:for="{{aiTypes}}">
+  <view class="u-flex subscribe-ai" wx:for="{{aiTypes}}" wx:key="{{item.category}}">
     <text>{{item.name}}</text>
     <view class="subscribe-ai__btn {{item.is_subscribe ? 'is-checked' : ''}}" bindtap="switchAiType"  data-index="{{index}}">
       <image class="subscribe-ai__add" src="/icons/subscribe_add.png" hidden="{{item.is_subscribe}}" />
