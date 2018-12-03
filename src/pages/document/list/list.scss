@@ -12,6 +12,10 @@ page {
   margin: 70rpx 0;
   align-items: flex-end;
 
+  &:first-child {
+    margin-top: 50rpx;
+  }
+
   &__height {
     height: 100%;
   }
