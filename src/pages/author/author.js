@@ -65,7 +65,7 @@ Page({
     });
   },
   fetchData: function() {
-    if (!hasNextPage) return;
+    if (!this.data.hasNextPage) return;
 
     const { type, id } = this.data;
     request(`${ApiRootUrl}/${type}s/${id}?page=${this.page}`)
