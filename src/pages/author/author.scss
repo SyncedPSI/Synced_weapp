@@ -44,7 +44,7 @@
 }
 
 .author-article {
-  padding: 40rpx;
+  padding: 40rpx 40rpx $safe-padding-bottom;
 
   &__count {
     font-size: 32rpx;

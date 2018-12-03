@@ -67,10 +67,20 @@
     display: block;
   }
 
+  &--cover,
   &--title {
     position: absolute;
     left: 0;
     right: 0;
+  }
+
+  &--cover {
+    top: 0;
+    bottom: 0;
+    background-image: linear-gradient(to top, rgba(18, 18, 18, 0.3), rgba(0, 0, 0, 0));
+  }
+
+  &--title {
     bottom: 20rpx;
     padding: 0 30rpx;
     font-size: 34rpx;
@@ -136,6 +146,7 @@
     font-size: 34rpx;
     font-weight: 500;
     color: #121212;
+    vertical-align: middle;
   }
 
   &__type {
