@@ -17,7 +17,7 @@
         </swiper>
       </view>
       <view class="slide--dots">
-        <view class="slide--dot {{currentBannerIndex === index ? 'is-active' : '' }}" wx:for="{{slide}}" wx:key="{{index}}"></view>
+        <view class="slide--dot {{currentBannerIndex === index ? 'is-active' : ''}}" wx:for="{{slide}}" wx:key="{{index}}"></view>
       </view>
 
       <view class="content--body">
@@ -25,7 +25,7 @@
         <block wx:for="{{recommends}}" wx:key="list-{{index}}">
           <view class="trend-item__tip t-{{index}}">NO.{{index + 1}}</view>
           <navigator class="u-flex trend-item__inline" url="/pages/{{item.node.node_type_en}}/{{item.node.node_type_en}}?id={{item.node.id}}" hover-class="none">
-            <image class="trend-item__image" src="{{item.avatar_url}}" />
+            <image class="trend-item__image" src="{{item.avatar_url}}" mode="aspectFill" />
             <view class="trend-item__right">
               <view class="trend-item__header">
                 <text class="trend-item__title">{{item.node.full_name}}</text>
