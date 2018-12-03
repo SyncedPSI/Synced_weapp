@@ -42,7 +42,8 @@
     <view class="node-trend">
       <view class="node-trend__title">相关动态</view>
       <template is="no-trend" data="{{isHidden: (noTrends || trends.length > 0) }}" />
-      <navigator class="node-trend__item" url="/pages/{{item.type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}" hover-class="none" wx:for="{{trends}}">
+      <navigator class="node-trend__item" url="/pages/{{item.type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}"
+          hover-class="none" wx:for="{{trends}}" wx:key="{{item.id}}">
         <view class="node-trend__name">{{item.title}}</view>
         <view class="u-flex node-trend__footer">
           <text>{{item.pubdate}}</text>
@@ -67,7 +68,7 @@
     <view class="graph-shared__container t-bottom">
       <view class="graph-shared__tip">相关动态</view>
       <template is="no-trend" data="{{isHidden: sharedTrends.length > 0 }}" />
-      <block wx:for="{{sharedTrends}}">
+      <block wx:for="{{sharedTrends}}" wx:key="{{item.id}}">
         <view class="graph-shared__inline">{{item.title}}</view>
         <view class="graph-shared__time">{{item.pubdate}}</view>
       </block>
