@@ -11,7 +11,7 @@
               url="/pages/{{item.path}}?id={{item.content.id}}">
               <image class="slide--img" src="{{item.content.cover_image_url}}?imageView2/1/w/600/h/308" mode="aspectFill" />
               <view class="slide--cover"></view>
-              <view class="slide--title">{{item.content.title}}</view>
+              <view class="slide--title" wx-if="{{item.tableize !== 'trends'}}">{{item.content.title}}</view>
             </navigator>
           </swiper-item>
         </swiper>
