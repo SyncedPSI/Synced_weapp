@@ -53,11 +53,18 @@ Page({
     });
   },
   getUserInfo: function (event) {
-    getApp().login(event.detail.userInfo, () => {
+    const {currentTarget: { dataset }, detail: { userInfo }} = event;
+    const isShowComment = dataset.type === 'comment';
+
+    getApp().login(userInfo, () => {
       this.setData({
         isLogin: true,
-        isShowComment: true
+        isShowComment
       });
+
+      if (!isShowComment) {
+        this.download();
+      }
     });
   },
   download: function() {
