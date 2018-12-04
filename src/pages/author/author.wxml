@@ -46,7 +46,7 @@
 
     <view class="author-shared__name">{{author.name}}</view>
     <view class="author-shared__count">共{{totalCount}}篇文章</view>
-    <view class="author-shared__desc">{{author.description}}</view>
+    <view class="author-shared__desc">{{author.description || ''}}</view>
 
     <view class="author-shared__center">
       <image class="author-shared__qrcode" src="{{author.wxacode_url || '/images/qrcode.png'}}" />
