@@ -42,7 +42,7 @@
     <view class="node-trend">
       <view class="node-trend__title">相关动态</view>
       <template is="no-trend" data="{{isHidden: (noTrends || trends.length > 0) }}" />
-      <navigator class="node-trend__item" url="/pages/{{item.type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}"
+      <navigator class="node-trend__item" url="/pages/{{item.flow_type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}"
           hover-class="none" wx:for="{{trends}}" wx:key="{{item.id}}">
         <view class="node-trend__name">{{item.title}}</view>
         <view class="u-flex node-trend__footer">
