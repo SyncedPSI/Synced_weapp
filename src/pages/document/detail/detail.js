@@ -36,6 +36,7 @@ Page({
 
         this.setData({
           document,
+          navigateTitle: document.title,
           isFromWeapp,
           isLogin: getApp().globalData.isLogin,
         })
