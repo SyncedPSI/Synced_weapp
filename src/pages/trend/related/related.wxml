@@ -36,7 +36,6 @@
     <view class="trend--desc">
       <template is="wxParse" data="{{wxParseData:trendContent.nodes}}" />
     </view>
-    <image class="trend--image" src="{{trend.cover_image_url}}" mode="aspectFill" wx:if="{{trend.cover_image_url !== null}}" />
     <comment isSmallPadding isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
   </block>
 </view>
