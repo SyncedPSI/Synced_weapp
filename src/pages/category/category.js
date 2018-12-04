@@ -66,7 +66,7 @@ Page({
   // },
   onShareAppMessage: function() {
     return {
-      title: '机器之心',
+      title: '文章 - 机器之心',
       path: '/pages/category/category'
     };
   },

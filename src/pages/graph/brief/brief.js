@@ -126,7 +126,7 @@ Page({
     })
   },
   onShareAppMessage: function() {
-    const { id, type, node: { full_name } }= this.data;
+    const { id, type, node: { full_name } } = this.data;
     return {
       title: full_name,
       path: `/pages/graph/brief/brief?id=${id}&type=${type}&from=weapp`,

@@ -52,8 +52,8 @@ Page({
   // },
   onShareAppMessage: function() {
     return {
-      title: '机器之心',
-      path: '/pages/document/list/list?from=weapp'
+      title: '报告 - 机器之心',
+      path: '/pages/document/list/list'
     };
   },
 });

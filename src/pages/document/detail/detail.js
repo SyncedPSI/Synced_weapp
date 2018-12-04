@@ -115,14 +115,6 @@ Page({
         })
       });
   },
-  onShareAppMessage: function() {
-    const { id, document } = this.data;
-    return {
-      title: document.title,
-      path: `/pages/document/detail/detail?id=${id}&from=weapp`,
-    };
-  },
-
   toggleShare: function (status) {
     this.setData({
       hiddenShared: status

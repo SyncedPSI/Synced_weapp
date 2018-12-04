@@ -269,7 +269,7 @@ Page({
   },
 
   onShareAppMessage: function() {
-    const { title, id } = this.data;
+    const { title, id } = this.data.article;
     return {
       title,
       path: `/pages/article/article?id=${id}&from=weapp`
