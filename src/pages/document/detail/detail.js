@@ -73,6 +73,8 @@ Page({
     if (!url) {
       showErrorToast('请重试');
     }
+    // 判断用户身份
+    // true 获取 false 填写表单
 
     wx.downloadFile({
       url,
