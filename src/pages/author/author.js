@@ -87,7 +87,7 @@ Page({
     const { type, id, author } = this.data;
     return {
       title: author.name,
-      path: `/pages/author/author?is=${id}&type=${type}`,
+      path: `/pages/author/author?id=${id}&type=${type}&from=weapp`,
     };
   },
   toggleShare: function (status) {

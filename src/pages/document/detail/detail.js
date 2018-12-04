@@ -116,10 +116,10 @@ Page({
       });
   },
   onShareAppMessage: function() {
-    const { type, id, author } = this.data;
+    const { id, document } = this.data;
     return {
-      title: author.name,
-      path: `/pages/author/author?is=${id}&type=${type}`,
+      title: document.title,
+      path: `/pages/document/detail/detail?id=${id}&from=weapp`,
     };
   },
 
