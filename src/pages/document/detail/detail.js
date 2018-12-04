@@ -50,6 +50,14 @@ Page({
       })
     });
   },
+  getUserInfo: function (event) {
+    getApp().login(event.detail.userInfo, () => {
+      this.setData({
+        isLogin: true,
+        isShowComment: true
+      });
+    });
+  },
   download: function() {
     showLoading('获取中');
     wx.downloadFile({
