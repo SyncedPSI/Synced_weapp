@@ -59,7 +59,7 @@ Page({
     });
   },
   onShareAppMessage: function() {
-    const { id, daily: { title } }= this.data;
+    const { id, trend: { title } }= this.data;
     return {
       title,
       path: `/pages/trend/detail/detail?id=${id}&from=weapp`,

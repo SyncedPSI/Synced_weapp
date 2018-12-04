@@ -21,7 +21,6 @@ Page({
   onLoad: function(options) {
     const { id, from } = options;
     let { type } = options;
-
     this.page = 1;
     request(`${graph}/${type}/${id}`)
       .then((res) => {
@@ -127,9 +126,9 @@ Page({
     })
   },
   onShareAppMessage: function() {
-    const { id, type }= this.data;
+    const { id, type, node: { full_name } }= this.data;
     return {
-      title,
+      title: full_name,
       path: `/pages/graph/brief/brief?id=${id}&type=${type}&from=weapp`,
     };
   },

@@ -22,9 +22,9 @@ Page({
       })
   },
   onShareAppMessage: function() {
-    const { id, type }= this.data;
+    const { id, type, node: { full_name } }= this.data;
     return {
-      title,
+      title: full_name,
       path: `/pages/graph/graph?id=${id}&type=${type}&from=weapp`,
     };
   },
