@@ -89,7 +89,7 @@ Page({
 
   initCanvas: function () {
     this.width = getApp().globalData.systemInfo.screenWidth;
-    this.paddingLeft = 24;
+    this.paddingLeft = 30;
     this.ctx = wx.createCanvasContext('js-canvas');
   },
 
@@ -238,7 +238,7 @@ Page({
     drawMultiLines({
       ctx: this.ctx,
       text: titleInfo,
-      x: 24,
+      x: 30,
       y: heightInfo.titleTop,
       lineHeight: 30,
       isBold: true,
@@ -250,7 +250,7 @@ Page({
       fontSize: 13,
       color: '#f2f2f2',
       text: daily.created_at,
-      x: 24,
+      x: 30,
       y: heightInfo.timeTop,
     });
 

@@ -104,7 +104,7 @@ export const showErrorToast = (msg) => {
   wx.showToast({
     title: msg,
     image: '/images/icon_error.png',
-    duration: 2000
+    duration: 2000,
   })
 };
 
@@ -147,6 +147,19 @@ export const request = (url, data = {}, method = "GET") => {
       success: (res) => {
         if (res.statusCode == 200) {
           resolve(res);
+        } else if (res.statusCode == 404) {
+          wx.showModal({
+            title: '提示',
+            content: '资源找不到了，是否返回主页',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '/pages/index/index'
+                });
+              }
+            }
+          })
         } else if (res.statusCode == 500) {
           showErrorToast('服务器错误');
           reject(res);
