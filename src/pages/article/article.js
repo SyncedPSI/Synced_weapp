@@ -38,9 +38,10 @@ Page({
       const { id, from, read_later, progress } = options;
       this.isProgress = progress;
       this.articleId = id;
+
       this.setData({
         id,
-        isFromReadLater: read_later,
+        isFromReadLater: read_later || false,
         isLogin: getApp().globalData.isLogin,
         isFromWeapp: from === "weapp",
         userInfo: wx.getStorageSync('userInfo')
