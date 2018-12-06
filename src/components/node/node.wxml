@@ -1,4 +1,4 @@
-<navigator class="card_wrapper is-node" url="/pages/graph/type/type?id={{nodeId}}">
+<navigator class="card_wrapper is-node" url="/pages/{{type}}/{{type}}?id={{nodeId}}">
   <view class="top flex">
     <text class="title">{{name}}</text>
     <text class="more" alt="查看知识详情">查看知识详情 ></text>
