@@ -56,7 +56,9 @@ Page({
   getTitleHeight: function() {
     setTimeout(() => {
       wx.createSelectorQuery().select('#js-topic-title').boundingClientRect((rect) => {
-        this.titleHeight = (rect.height + 16);
+        if (rect) {
+          this.titleHeight = (rect.height + 16);
+        }
       }).exec();
     }, 300);
   },

@@ -129,7 +129,9 @@ Page({
   getContentHeight: function() {
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-content').boundingClientRect((rect) => {
-        this.contentHeight = rect.height;
+        if (rect) {
+          this.contentHeight = rect.height;
+        }
         clearTimeout(this.timeout);
       }).exec();
      }, 500);
@@ -137,7 +139,9 @@ Page({
   getTitleHeight: function() {
     this.timeout = setTimeout(() => {
       wx.createSelectorQuery().select('#js-article-title').boundingClientRect((rect) => {
-        this.titleHeight = (rect.height + 16);
+        if (rect) {
+          this.titleHeight = (rect.height + 16);
+        }
       }).exec();
     }, 300);
   },

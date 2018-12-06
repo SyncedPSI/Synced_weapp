@@ -36,8 +36,10 @@ Component({
     this.timeout = false;
     this.enableChangeFilling = true;
     wx.createSelectorQuery().in(this).select('#js-scroll-view').boundingClientRect((rect) => {
-      this.scrollViewHeight = rect.height;
-      this.pageScrollToBottom();
+      if (rect) {
+        this.scrollViewHeight = rect.height;
+        this.pageScrollToBottom();
+      }
     }).exec()
   },
   detached: function() {
