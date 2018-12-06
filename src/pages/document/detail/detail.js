@@ -60,8 +60,13 @@ Page({
   },
   download: function() {
     showLoading('获取中');
+    const url = this.data.document.file_url;
+    if (!url) {
+      showErrorToast('请重试');
+    }
+
     wx.downloadFile({
-      url: this.data.document.file_url,
+      url,
       success: (res) => {
         if (res.statusCode === 200) {
           wx.openDocument({
