@@ -37,18 +37,20 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${trendDetail}${option.id}`)
-      .then(res => {
-       const { content, desc, trend_cards, ...otherProps } = res.data;
-        WxParse.wxParse("trendDesc", "html", desc, this, 5);
-        WxParse.wxParse("trendContent", "html", content, this, 5);
+    request({
+      url: `${trendDetail}${option.id}`,
+      isHandleNotFound: true
+    }).then(res => {
+      const { content, desc, trend_cards, ...otherProps } = res.data;
+      WxParse.wxParse("trendDesc", "html", desc, this, 5);
+      WxParse.wxParse("trendContent", "html", content, this, 5);
 
-        this.setData({
-          navigateTitle: otherProps.title,
-          trend: otherProps,
-          cards: trend_cards,
-        });
+      this.setData({
+        navigateTitle: otherProps.title,
+        trend: otherProps,
+        cards: trend_cards,
       });
+    });
   },
 
   getUserInfo: function(event) {

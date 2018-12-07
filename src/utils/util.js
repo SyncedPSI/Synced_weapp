@@ -135,7 +135,7 @@ export const checkValue = ({value, reg, isRequired = true, errMsg}) => {
   }
 };
 
-export const request = (url, data = {}, method = "GET") => {
+export const request = ({ url, data = {}, method = "GET", isHandleNotFound = false }) => {
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
@@ -147,7 +147,7 @@ export const request = (url, data = {}, method = "GET") => {
       success: (res) => {
         if (res.statusCode == 200) {
           resolve(res);
-        } else if (res.statusCode == 404) {
+        } else if (isHandleNotFound && res.statusCode == 404) {
           wx.showModal({
             title: '提示',
             content: '资源找不到了，是否返回主页',
@@ -175,12 +175,15 @@ export const request = (url, data = {}, method = "GET") => {
 };
 
 export const getWxcodeUrl = (id, page, model, cb) => {
-  request(creatWxcode, {
-    id,
-    page,
-    model,
-  }, 'POST')
-  .then((res) => {
+  request({
+    url: creatWxcode,
+    data: {
+      id,
+      page,
+      model,
+    },
+    method: 'POST'
+  }).then((res) => {
     cb(res.data.file_path);
   }).catch(() => {
     cb('/images/qrcode.png');

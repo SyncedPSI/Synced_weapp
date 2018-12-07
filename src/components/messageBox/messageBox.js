@@ -55,9 +55,13 @@ Component({
   },
   methods: {
     fetchData: function (keyword) {
-      request('https://www.jiqizhixin.com/api/v1/chatbot/dialog', {
-        keyword,
-      }, 'POST').then(res => {
+      request({
+        url: 'https://www.jiqizhixin.com/api/v1/chatbot/dialog',
+        data: {
+          keyword,
+        },
+        method: 'POST'
+      }).then(res => {
         console.log(res.data);
         const { reply, askBack, recommend } = res.data.result.dialog;
         const { chat } = this.data;
@@ -110,27 +114,28 @@ Component({
     },
     getNode: function (msg) {
       const [_, id, nodeType] = msg.match(new RegExp('"id":"([^/?#]+)","type":"([^/?#]+)"}', 'i'));
-      request(`${ApiRootUrl}/chatbot/cards/64d4c374-6061-46cc-8d29-d0a582934876`)
-        .then(res => {
-          const { chat } = this.data;
-          const node = res.data.card_node;
-          node.nodeType = nodeType;
-          chat.push({
-            fromRobot: true,
-            message: null,
-            askBack: {
-              items: [],
-              path: null,
-            },
-            node
-          });
+      request({
+        url: `${ApiRootUrl}/chatbot/cards/64d4c374-6061-46cc-8d29-d0a582934876`
+      }).then(res => {
+        const { chat } = this.data;
+        const node = res.data.card_node;
+        node.nodeType = nodeType;
+        chat.push({
+          fromRobot: true,
+          message: null,
+          askBack: {
+            items: [],
+            path: null,
+          },
+          node
+        });
 
-          this.setData({
-            chat
-          }, () => {
-            this.pageScrollToBottom();
-          });
-        })
+        this.setData({
+          chat
+        }, () => {
+          this.pageScrollToBottom();
+        });
+      })
     },
     sendKeywords: function(keywords, isResetInput = false) {
       const { chat } = this.data;

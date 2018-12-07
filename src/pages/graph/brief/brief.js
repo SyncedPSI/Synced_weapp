@@ -22,20 +22,22 @@ Page({
     const { id, from } = options;
     let { type } = options;
     this.page = 1;
-    request(`${graph}/${type}/${id}`)
-      .then((res) => {
-        const node = res.data;
-        if (node.wxacode_url === null) {
-          this.getWxcode(id, type);
-        }
-        this.setData({
-          id,
-          type,
-          navigateTitle: node.full_name,
-          node: node,
-          isFromWeapp: from === "weapp",
-        })
-      });
+    request({
+      url: `${graph}/${type}/${id}`,
+      isHandleNotFound: true
+    }).then((res) => {
+      const node = res.data;
+      if (node.wxacode_url === null) {
+        this.getWxcode(id, type);
+      }
+      this.setData({
+        id,
+        type,
+        navigateTitle: node.full_name,
+        node: node,
+        isFromWeapp: from === "weapp",
+      })
+    });
     this.fetchTrends(id, type, true);
   },
   getWxcode: function (id, type) {
@@ -82,8 +84,11 @@ Page({
     this.setData({
       isFetching: true,
     }, () => {
-      request(`${graph}/${type}/${id}/flows`, {
-        page: this.page
+      request({
+        url: `${graph}/${type}/${id}/flows`,
+        data: {
+          page: this.page
+        }
       }).then((res) => {
         const { flows, has_next_page } = res.data;
         const { trends } = this.data;

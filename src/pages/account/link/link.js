@@ -49,12 +49,15 @@ Page({
     });
 
     if (checkLoginName && checkPassword) {
-      request( bindAccount, {
-        'login_name': loginName,
-        password,
-        unionid
-      }, "POST")
-      .then(res => {
+      request({
+        url: bindAccount,
+        data: {
+          'login_name': loginName,
+          password,
+          unionid
+        },
+        method: "POST"
+      }).then(res => {
         app.setLoginSuccess(res.data, '关联成功');
         this.redirectPage();
       }).catch(() => {
@@ -65,18 +68,21 @@ Page({
 
   register: function() {
     const { unionid } = this.data;
-    request( register, {
-      'user_info': app.globalData.userInfo,
-      unionid
-    }, "POST")
-      .then(res => {
-        if (res.data.errors) {
-          showErrorToast('注册失败，请重试');
-          return;
-        }
-        app.setLoginSuccess(res.data, '注册成功');
-        this.redirectPage();
-      })
+    request({
+      url: register,
+      data: {
+        'user_info': app.globalData.userInfo,
+        unionid
+      },
+      method: "POST"
+    }).then(res => {
+      if (res.data.errors) {
+        showErrorToast('注册失败，请重试');
+        return;
+      }
+      app.setLoginSuccess(res.data, '注册成功');
+      this.redirectPage();
+    })
   },
   redirectPage: function() {
     this.timeout = setTimeout(() => {

@@ -59,30 +59,32 @@ Page({
       });
     }
 
-    request(`${articleDetail}${this.articleId}`)
-      .then(res => {
-        const article = res.data;
-        const articleOwn = article.column || article.author;
-        this.articleId = article.id;
-        if (article.wxacode_url === null) {
-          this.getWxcode(this.articleId);
-        }
-        article.publishedAt = getDateDiff(article.published_at);
-        WxParse.wxParse("article_content", "html", article.content, this, 5);
-        let hasMetadata = false;
-        try {
-          hasMetadata = Object.keys(article.metadata).length > 0
-        } catch(err) {}
-        this.setData({
-          hasMetadata,
-          article,
-          articleOwn,
-          isFetching: false
-        }, () => {
-          this.getTitleHeight();
-          this.getContentHeight();
-        });
+    request({
+      url: `${articleDetail}${this.articleId}`,
+      isHandleNotFound: true
+    }).then(res => {
+      const article = res.data;
+      const articleOwn = article.column || article.author;
+      this.articleId = article.id;
+      if (article.wxacode_url === null) {
+        this.getWxcode(this.articleId);
+      }
+      article.publishedAt = getDateDiff(article.published_at);
+      WxParse.wxParse("article_content", "html", article.content, this, 5);
+      let hasMetadata = false;
+      try {
+        hasMetadata = Object.keys(article.metadata).length > 0
+      } catch(err) {}
+      this.setData({
+        hasMetadata,
+        article,
+        articleOwn,
+        isFetching: false
+      }, () => {
+        this.getTitleHeight();
+        this.getContentHeight();
       });
+    });
     this.initCanvas();
   },
 
@@ -184,13 +186,17 @@ Page({
   },
 
   addRead: function (isShowTip = true) {
-    request(readLater, {
-      read_later: {
-        content_id: this.articleId,
-        content_type: "Article",
-        progress: this.getProgress()
-      }
-    }, 'POST').then(() => {
+    request({
+      url: readLater,
+      data: {
+        read_later: {
+          content_id: this.articleId,
+          content_type: "Article",
+          progress: this.getProgress()
+        }
+      },
+      method: 'POST'
+    }).then(() => {
       if (isShowTip) {
         showTipToast('添加成功');
         this.setData({

@@ -32,8 +32,11 @@ Page({
     });
 
     if (checkMobile) {
-      request(getVerificationCode, {
-        mobile,
+      request({
+        url: getVerificationCode,
+        data: {
+          mobile,
+        }
       }).then(res => {
         this.setData({
           countDown: 60
@@ -80,9 +83,12 @@ Page({
     });
 
     if (checkMobile || checkCode) {
-      request(bindMobile, {
-        mobile,
-        code
+      request({
+        url: bindMobile,
+        data: {
+          mobile,
+          code
+        }
       }).then(res => {
         wx.switchTab({
           url: '/pages/index/index'

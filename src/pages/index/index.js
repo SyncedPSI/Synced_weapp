@@ -9,26 +9,27 @@ Page({
     currentBannerIndex: 0,
   },
   onLoad: function () {
-    request(dynamics)
-      .then(res => {
-        const { banners, recommends } = res.data;
-        banners.forEach(item => {
-          const detailCategory = ['paper', 'article', 'investment', 'report']
-          if (item.tableize === 'trends') {
-            if (detailCategory.indexOf(item.content.category) > -1) {
-              item.path = 'trend/detail/detail';
-            } else {
-              item.path = 'trend/related/related';
-            }
+    request({
+      url: dynamics
+    }).then(res => {
+      const { banners, recommends } = res.data;
+      banners.forEach(item => {
+        const detailCategory = ['paper', 'article', 'investment', 'report']
+        if (item.tableize === 'trends') {
+          if (detailCategory.indexOf(item.content.category) > -1) {
+            item.path = 'trend/detail/detail';
           } else {
-            item.path = 'article/article';
+            item.path = 'trend/related/related';
           }
-        })
-        this.setData({
-          banners,
-          recommends
-        });
+        } else {
+          item.path = 'article/article';
+        }
       })
+      this.setData({
+        banners,
+        recommends
+      });
+    })
   },
   bannerChange: function (event) {
     this.setData({

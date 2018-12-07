@@ -28,16 +28,18 @@ Page({
     this.ctx = wx.createCanvasContext('js-canvas');
     this.ctx.setTextBaseline('top');
 
-    request(`${dailyDetail}${id}`)
-      .then(res => {
-        const daily = res.data;
-        this.setData({
-          navigateTitle: daily.title,
-          daily,
-        }, () => {
-          this.getHight();
-        });
+    request({
+      url: `${dailyDetail}${id}`,
+      isHandleNotFound: true
+    }).then(res => {
+      const daily = res.data;
+      this.setData({
+        navigateTitle: daily.title,
+        daily,
+      }, () => {
+        this.getHight();
       });
+    });
     this.setData({
       id,
       isLogin: app.globalData.isLogin,

@@ -13,17 +13,18 @@ Page({
   },
 
   getList: function() {
-    request(readLaterList)
-      .then((res) => {
-        const { read_laters, count } = res.data;
-        read_laters.forEach(item => {
-          item.content.updatedAt = getDateDiff(item.content.published_at);
-        });
-        this.setData({
-          list: read_laters,
-          totalCount: count
-        });
-      })
+    request({
+      url: readLaterList
+    }).then((res) => {
+      const { read_laters, count } = res.data;
+      read_laters.forEach(item => {
+        item.content.updatedAt = getDateDiff(item.content.published_at);
+      });
+      this.setData({
+        list: read_laters,
+        totalCount: count
+      });
+    })
   },
 
   switchEdit: function() {
@@ -33,21 +34,22 @@ Page({
   },
 
   deleteItem: function(event) {
-    console.log('klkk')
     const { id, index } = event.currentTarget.dataset;
 
-    request(`${readLater}/${id}`, {}, 'DELETE')
-      .then(() => {
-        const { list } = this.data;
-        const newList = [
-          ...list.slice(0, index),
-          ...list.slice(index + 1)
-        ];
-        this.setData({
-          list: newList,
-          totalCount: newList.length
-        });
-        showTipToast('删除成功');
-      })
+    request({
+      url: `${readLater}/${id}`,
+      method: 'DELETE'
+    }).then(() => {
+      const { list } = this.data;
+      const newList = [
+        ...list.slice(0, index),
+        ...list.slice(index + 1)
+      ];
+      this.setData({
+        list: newList,
+        totalCount: newList.length
+      });
+      showTipToast('删除成功');
+    })
   }
 })
