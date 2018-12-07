@@ -80,8 +80,8 @@ Page({
   },
   redirectPage: function() {
     this.timeout = setTimeout(() => {
-      wx.navigateTo({
-        url: "../../index/index"
+      wx.switchTab({
+        url: '/pages/index/index'
       });
     }, 500);
   },

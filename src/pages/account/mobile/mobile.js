@@ -84,8 +84,8 @@ Page({
         mobile,
         code
       }).then(res => {
-        wx.navigateTo({
-          url: "../../index/index"
+        wx.switchTab({
+          url: '/pages/index/index'
         });
       }).catch((err) => {
         showErrorToast('出错啦');
