@@ -1,6 +1,3 @@
-import { request } from "utils/util";
-// import { readLaterCount } from "config/api";
-
 Component({
   properties: {
     activeBar: {
@@ -13,8 +10,10 @@ Component({
     readLastersCount: 0,
   },
   attached: function () {
+    const user = wx.getStorageSync('userInfo');
+    user.nickName = user.nickName.slice(0, 8);
     this.setData({
-      user: wx.getStorageSync('userInfo')
+      user,
     });
   },
   methods: {

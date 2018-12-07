@@ -2,7 +2,7 @@ import { request, showTipToast } from "utils/util";
 import { login, getAhoyTokens } from "config/api";
 import gio from "utils/gio-minp.js";
 
-gio('init', 'ab6599720580bdfd', 'wxf424e2f3e2f94500', { version: '1.0.2', followShare: true });
+gio('init', 'ab6599720580bdfd', 'wxf424e2f3e2f94500', { version: '1.0.3', followShare: true });
 
 App({
   globalData: {
