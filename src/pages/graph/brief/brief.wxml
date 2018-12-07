@@ -14,6 +14,11 @@
 <view class="u-container" style="padding-top: {{statusBarHeight}}px" wx:if="{{node !== null}}">
   <scroll-view scroll-y bindscrolltolower="fetchMore">
     <view class="node-header__container">
+      <view class="u-flex node__order" wx-if="{{node.hot_rank !== null}}">
+        <text class="node__order--num">NO.{{node.hot_rank}}</text>
+        <view class="node__order--hr"></view>
+        <text>当下热点</text>
+      </view>
       <template is="node-header" data="{{...node}}" />
       <block wx:if="{{node.level === 'level_3' && node.summary !== null}}">
         <view class="u-text-limit--three node-header__summary">{{node.summary}}</view>

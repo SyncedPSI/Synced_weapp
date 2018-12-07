@@ -37,6 +37,28 @@
     margin-left: 14rpx;
     vertical-align: bottom;
   }
+
+  &__order {
+    justify-content: flex-start;
+    font-size: 32rpx;
+    color: #a8a8a8;
+    margin-bottom: 16rpx;
+  }
+
+  &__order--hr {
+    width: 8rpx;
+    height: 8rpx;
+    background-color: #a8a8a8;
+    margin: 0 16rpx;
+    border-radius: 50%;
+  }
+
+  &__order--num {
+    font-size: 30rpx;
+    padding: 0 10rpx;
+    color: #fff;
+    background-color: $red;
+  }
 }
 
 nodes {
