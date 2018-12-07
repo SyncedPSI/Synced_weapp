@@ -50,6 +50,10 @@
   &__footer {
     margin-top: 28rpx;
     box-shadow: 0 -1px 0 0 #EEEEEE;
+
+    &.has-safe-padding {
+      padding-bottom: $safe-padding-bottom;
+    }
   }
 
   &__action {

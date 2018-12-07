@@ -3,7 +3,10 @@ Component({
     hiddenShared: {
       type: Boolean,
       value: true
-    }
+    },
+  },
+  data: {
+    isIphoneX: getApp().globalData.isIphoneX,
   },
   methods: {
     closeShared: function() {
