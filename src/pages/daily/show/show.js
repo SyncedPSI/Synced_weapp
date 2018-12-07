@@ -39,20 +39,21 @@ Page({
       isFromWeapp,
     });
 
-    request(`${dailyDetail}${id}`)
-      .then(res => {
-        const daily = res.data;
-        if (daily.wxacode_url === null) {
-          this.getWxcode(id);
-        }
-        const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));
-        this.setData({
-          navigateTitle: daily.title,
-          daily,
-          showUrl: showUrl[showUrl.length - 1],
-          userInfo: wx.getStorageSync('userInfo')
-        });
+    request({
+      url: `${dailyDetail}${id}`
+    }).then(res => {
+      const daily = res.data;
+      if (daily.wxacode_url === null) {
+        this.getWxcode(id);
+      }
+      const showUrl = daily.url && daily.url.match(new RegExp('^(http)?s?://([^/?#]+)(?:[/?#]|$)', 'i'));
+      this.setData({
+        navigateTitle: daily.title,
+        daily,
+        showUrl: showUrl[showUrl.length - 1],
+        userInfo: wx.getStorageSync('userInfo')
       });
+    });
     this.initCanvas();
   },
   getWxcode: function (id) {

@@ -17,24 +17,25 @@ Page({
   getReportList: function (isRefresh = false) {
     if (!this.data.hasMore) return;
 
-    return request(`${documents}?page=${this.page}`)
-      .then(res => {
-        this.page += 1;
-        const { reportList } = this.data;
-         const { documents, has_next_page } = res.data;
+    return request({
+      url: `${documents}?page=${this.page}`
+    }).then(res => {
+      this.page += 1;
+      const { reportList } = this.data;
+        const { documents, has_next_page } = res.data;
 
-        if (isRefresh) {
-          this.setData({
-            reportList: documents,
-            hasMore: true,
-          });
-        } else {
-          this.setData({
-            reportList: [...reportList, ...documents],
-            hasMore: has_next_page
-          });
-        }
-      });
+      if (isRefresh) {
+        this.setData({
+          reportList: documents,
+          hasMore: true,
+        });
+      } else {
+        this.setData({
+          reportList: [...reportList, ...documents],
+          hasMore: has_next_page
+        });
+      }
+    });
   },
   fetchMoreData: function () {
     this.getReportList();

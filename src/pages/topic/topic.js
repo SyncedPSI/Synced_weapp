@@ -39,18 +39,19 @@ Page({
       isFromWeapp: from === "weapp",
     });
 
-    request(`${topicDetail}${option.id}`)
-      .then(res => {
-        const topic = res.data;
-        topic.publishedAt = getDateDiff(res.data.published_at);
-        WxParse.wxParse("topic_content", "html", res.data.content, this, 5);
-        this.setData({
-          navigateTitle: topic.title,
-          topic,
-        }, () => {
-          this.getTitleHeight();
-        });
+    request({
+      url: `${topicDetail}${option.id}`
+    }).then(res => {
+      const topic = res.data;
+      topic.publishedAt = getDateDiff(res.data.published_at);
+      WxParse.wxParse("topic_content", "html", res.data.content, this, 5);
+      this.setData({
+        navigateTitle: topic.title,
+        topic,
+      }, () => {
+        this.getTitleHeight();
       });
+    });
   },
 
   getTitleHeight: function() {

@@ -27,20 +27,21 @@ Page({
       id = decodeURIComponent(options.scene);
     }
 
-    request(`${documents}/${id}`)
-      .then((res) => {
-        const document = res.data;
-        if (document.wxacode_url === null) {
-          this.getWxcode(id);
-        }
+    request({
+      url: `${documents}/${id}`
+    }).then((res) => {
+      const document = res.data;
+      if (document.wxacode_url === null) {
+        this.getWxcode(id);
+      }
 
-        this.setData({
-          document,
-          navigateTitle: document.title,
-          isFromWeapp,
-          isLogin: getApp().globalData.isLogin,
-        })
-      });
+      this.setData({
+        document,
+        navigateTitle: document.title,
+        isFromWeapp,
+        isLogin: getApp().globalData.isLogin,
+      })
+    });
     this.initCanvas();
   },
   getWxcode: function (id) {
@@ -114,20 +115,21 @@ Page({
     if (!this.data.hasNextPage) return;
 
     const { type, id } = this.data;
-    request(`${ApiRootUrl}/${type}s/${id}?page=${this.page}`)
-      .then(({ data }) => {
-        const oldArticles = this.data.articles;
-        const { articles, has_next_page } = data;
+    request({
+      url: `${ApiRootUrl}/${type}s/${id}?page=${this.page}`
+    }).then(({ data }) => {
+      const oldArticles = this.data.articles;
+      const { articles, has_next_page } = data;
 
-        this.page += 1;
-        articles.forEach(item => {
-          item.published_at = getDateDiff(item.published_at);
-        });
-        this.setData({
-          articles: [...oldArticles, ...articles],
-          hasNextPage: has_next_page,
-        })
+      this.page += 1;
+      articles.forEach(item => {
+        item.published_at = getDateDiff(item.published_at);
       });
+      this.setData({
+        articles: [...oldArticles, ...articles],
+        hasNextPage: has_next_page,
+      })
+    });
   },
   toggleShare: function (status) {
     this.setData({

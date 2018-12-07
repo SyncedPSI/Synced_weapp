@@ -9,17 +9,18 @@ Page({
   },
   onLoad: function(options) {
     const { id, type, from } = options;
-    request(`${graph}/${type}/${id}/relations`)
-      .then((res) => {
-        const node = res.data;
-        this.setData({
-          id,
-          type,
-          navigateTitle: node.full_name,
-          node: node,
-          isFromWeapp: from === "weapp",
-        })
+    request({
+      url: `${graph}/${type}/${id}/relations`
+    }).then((res) => {
+      const node = res.data;
+      this.setData({
+        id,
+        type,
+        navigateTitle: node.full_name,
+        node: node,
+        isFromWeapp: from === "weapp",
       })
+    })
   },
   onShareAppMessage: function() {
     const { id, type, node: { full_name } }= this.data;

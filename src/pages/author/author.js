@@ -31,27 +31,28 @@ Page({
 
     this.page = 2;
     this.isDraw = false;
-    request(`${ApiRootUrl}/${type}s/${id}`)
-      .then(({ data }) => {
-        const { articles, has_next_page, total_count, ...other } = data;
-        if (other.wxacode_url === null) {
-          this.getWxcode(id, type);
-        }
-        articles.forEach(item => {
-          item.published_at = getDateDiff(item.published_at);
-        });
-
-        this.setData({
-          isFromWeapp,
-          author: other,
-          navigateTitle: other.name,
-          articles,
-          id,
-          type,
-          totalCount: total_count,
-          hasNextPage: has_next_page,
-        })
+    request({
+      url: `${ApiRootUrl}/${type}s/${id}`
+    }).then(({ data }) => {
+      const { articles, has_next_page, total_count, ...other } = data;
+      if (other.wxacode_url === null) {
+        this.getWxcode(id, type);
+      }
+      articles.forEach(item => {
+        item.published_at = getDateDiff(item.published_at);
       });
+
+      this.setData({
+        isFromWeapp,
+        author: other,
+        navigateTitle: other.name,
+        articles,
+        id,
+        type,
+        totalCount: total_count,
+        hasNextPage: has_next_page,
+      })
+    });
   },
   getWxcode: function (id, type) {
     let model = 'User';
@@ -70,20 +71,21 @@ Page({
     if (!this.data.hasNextPage) return;
 
     const { type, id } = this.data;
-    request(`${ApiRootUrl}/${type}s/${id}?page=${this.page}`)
-      .then(({ data }) => {
-        const oldArticles = this.data.articles;
-        const { articles, has_next_page } = data;
+    request({
+      url: `${ApiRootUrl}/${type}s/${id}?page=${this.page}`
+    }).then(({ data }) => {
+      const oldArticles = this.data.articles;
+      const { articles, has_next_page } = data;
 
-        this.page += 1;
-        articles.forEach(item => {
-          item.published_at = getDateDiff(item.published_at);
-        });
-        this.setData({
-          articles: [...oldArticles, ...articles],
-          hasNextPage: has_next_page,
-        })
+      this.page += 1;
+      articles.forEach(item => {
+        item.published_at = getDateDiff(item.published_at);
       });
+      this.setData({
+        articles: [...oldArticles, ...articles],
+        hasNextPage: has_next_page,
+      })
+    });
   },
   onShareAppMessage: function() {
     const { type, id, author } = this.data;

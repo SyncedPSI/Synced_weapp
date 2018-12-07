@@ -36,19 +36,20 @@ Page({
   getArticleList: function () {
     const { activeCategory } = this.data;
     const queryCategory = activeCategory === 'all' ? '' : `&category=${activeCategory}`;
-    return request(`${articles}?page=${this.articlePage}${queryCategory}`)
-      .then(res => {
-        this.articlePage += 1;
-        const { articleList } = this.data;
-        const newList = res.data;
-        newList.forEach(item => {
-          item.published_at = getDateDiff(item.published_at);
-        });
-
-        this.setData({
-          articleList: [...articleList, ...newList],
-        });
+    return request({
+      url: `${articles}?page=${this.articlePage}${queryCategory}`
+    }).then(res => {
+      this.articlePage += 1;
+      const { articleList } = this.data;
+      const newList = res.data;
+      newList.forEach(item => {
+        item.published_at = getDateDiff(item.published_at);
       });
+
+      this.setData({
+        articleList: [...articleList, ...newList],
+      });
+    });
   },
   fetchMoreData: function () {
     this.getArticleList();

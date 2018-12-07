@@ -28,19 +28,20 @@ Page({
     if (keywords === '') return;
     if (!isRefresh && !this.data.hasNextPage) return;
 
-    request(`${searchByKeyword}${keywords}&page=${this.page}`)
-      .then(({ data }) => {
-        const { articles, hasNextPage } = data;
-        const card_node = data.card_node || null;
-        const oldArticles = isRefresh ? [] : this.data.articles;
+    request({
+      url: `${searchByKeyword}${keywords}&page=${this.page}`
+    }).then(({ data }) => {
+      const { articles, hasNextPage } = data;
+      const card_node = data.card_node || null;
+      const oldArticles = isRefresh ? [] : this.data.articles;
 
-        this.page += 1;
-        this.setData({
-          articles: [...oldArticles, ...articles],
-          hasNextPage: hasNextPage,
-          node: card_node,
-        })
-      });
+      this.page += 1;
+      this.setData({
+        articles: [...oldArticles, ...articles],
+        hasNextPage: hasNextPage,
+        node: card_node,
+      })
+    });
   },
 
   fetchMoreData: function() {

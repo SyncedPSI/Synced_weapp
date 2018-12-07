@@ -38,37 +38,39 @@ Component({
 
   methods: {
     fetchData: function() {
-      request(`${ApiV1}${this.properties.baseUrl}/comments`)
-        .then(res => {
-          const { comments, count } = res.data;
-          this.setData({
-            comments,
-            count
-          });
+      request({
+        url: `${ApiV1}${this.properties.baseUrl}/comments`
+      }).then(res => {
+        const { comments, count } = res.data;
+        this.setData({
+          comments,
+          count
         });
+      });
     },
     closeComment: function() {
       this.triggerEvent('closecomment');
     },
     showAllReplies: function(event) {
       const { id, index } = event.target.dataset;
-      request(`${comments}/${id}`)
-        .then(res => {
-          const { comments } = this.data;
-          const oldComment = comments[index];
+      request({
+        url: `${comments}/${id}`
+      }).then(res => {
+        const { comments } = this.data;
+        const oldComment = comments[index];
 
-          this.setData({
-            comments: [
-              ...comments.slice(0, index),
-              {
-                ...oldComment,
-                count: 0,
-                replies: res.data.replies
-              },
-              ...comments.slice(index + 1)
-            ]
-          })
-        });
+        this.setData({
+          comments: [
+            ...comments.slice(0, index),
+            {
+              ...oldComment,
+              count: 0,
+              replies: res.data.replies
+            },
+            ...comments.slice(index + 1)
+          ]
+        })
+      });
     },
     replyComment: function(event) {
       const { id, name } = event.target.dataset;
@@ -89,28 +91,29 @@ Component({
       if (content === '') return;
       const isCreateComment = this.replyCommentId === null;
       const url = isCreateComment ? `${ApiV1}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`;
-      request(`${url}`, {
-        content
-      }, 'POST')
-        .then(() => {
-          if (isCreateComment) {
-            showTipToast('评论成功');
-          } else {
-            showTipToast('回复成功');
-          }
+      request({
+        url: `${url}`,
+        data: content,
+        method: 'POST'
+      }).then(() => {
+        if (isCreateComment) {
+          showTipToast('评论成功');
+        } else {
+          showTipToast('回复成功');
+        }
 
-          this.fetchData();
-        })
-        .catch(() => {
-          showErrorToast('操作失败，请重试！');
-        })
-        .then(() => {
-          this.setData({
-            content: ''
-          });
-          this.replyCommentId = null;
-          this.triggerEvent('closecomment', {commentStr: content});
-        })
+        this.fetchData();
+      })
+      .catch(() => {
+        showErrorToast('操作失败，请重试！');
+      })
+      .then(() => {
+        this.setData({
+          content: ''
+        });
+        this.replyCommentId = null;
+        this.triggerEvent('closecomment', {commentStr: content});
+      })
     },
     inputFocus: function (event) {
       this.setData({

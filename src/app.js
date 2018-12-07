@@ -41,14 +41,16 @@ App({
   },
 
   getCookies: function() {
-    request(getAhoyTokens, {}, 'POST')
-      .then((res) => {
-        const { ahoy_visit, ahoy_visitor } = res.data;
-        wx.setStorage({
-          key: 'Cookie',
-          data: `ahoy_visitor=${ahoy_visitor}; ahoy_visit=${ahoy_visit};`
-        });
+    request({
+      url: getAhoyTokens,
+      method : 'POST'
+    }).then((res) => {
+      const { ahoy_visit, ahoy_visitor } = res.data;
+      wx.setStorage({
+        key: 'Cookie',
+        data: `ahoy_visitor=${ahoy_visitor}; ahoy_visit=${ahoy_visit};`
       });
+    });
   },
   checkSystemInfo: function() {
     wx.getSystemInfo({
@@ -83,17 +85,19 @@ App({
 
         const authToken = wx.getStorageSync('authToken');
         if (authToken) {
-          request(login, {}, 'POST')
-            .then(() => {
-              const remain_hours = timeDistance / 3600;
-              if (remain_hours > 1.5) {
-                this.globalData.isLogin = true;
-              } else {
-                this.globalData.isLogin = false;
-              }
-            }).catch(() => {
-              this.setLoginFailed();
-            })
+          request({
+            url: login,
+            method: 'POST'
+          }).then(() => {
+            const remain_hours = timeDistance / 3600;
+            if (remain_hours > 1.5) {
+              this.globalData.isLogin = true;
+            } else {
+              this.globalData.isLogin = false;
+            }
+          }).catch(() => {
+            this.setLoginFailed();
+          })
         } else {
           this.globalData.isLogin = false;
         }
@@ -125,25 +129,28 @@ App({
             success: (e) => {
               encryptedData = e.encryptedData;
               iv = e.iv;
-              request(login, {
-                code: code,
-                encrypted_data: encryptedData,
-                iv: iv
-              }, "POST")
-                .then(res => {
-                  this.setLoginSuccess(res.data, '登录成功');
-                  cb();
-                })
-                .catch(err => {
-                  if (err.statusCode == 401) {
-                    const unionid = err.data.unionid;
-                    wx.navigateTo({
-                      url: `/pages/account/link/link?unionid=${unionid}`
-                    })
-                  } else {
-                    showErrorToast('登录失败')
-                  }
-                })
+              request({
+                url: login,
+                data: {
+                  code: code,
+                  encrypted_data: encryptedData,
+                  iv: iv
+                },
+                method: "POST"
+              }).then(res => {
+                this.setLoginSuccess(res.data, '登录成功');
+                cb();
+              })
+              .catch(err => {
+                if (err.statusCode == 401) {
+                  const unionid = err.data.unionid;
+                  wx.navigateTo({
+                    url: `/pages/account/link/link?unionid=${unionid}`
+                  })
+                } else {
+                  showErrorToast('登录失败')
+                }
+              })
             }
           });
         } else {

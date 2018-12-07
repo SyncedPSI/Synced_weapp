@@ -20,11 +20,12 @@ Page({
   },
 
   getDailyList: function (isRefresh = false) {
-    return request(`${dailies}?page=${this.dailyPage}`)
-      .then(res => {
-        this.dailyPage += 1;
-        this.resolveDailyList(res.data, isRefresh);
-      });
+    return request({
+      url: `${dailies}?page=${this.dailyPage}`
+    }).then(res => {
+      this.dailyPage += 1;
+      this.resolveDailyList(res.data, isRefresh);
+    });
   },
   resolveDailyList: function(data, isRefresh = false) {
     let dailies = {};

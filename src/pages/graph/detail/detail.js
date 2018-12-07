@@ -23,18 +23,19 @@ Page({
       id: id,
       isFromWeapp: from === "weapp",
     });
-    request(`${graph}/${type}/${id}/detail`)
-      .then(res => {
-        const node = res.data;
-        const catalogList = this.getCatalog(node);
-        WxParse.wxParse("node_content", "html", res.data.desc, this, 5);
-        this.setData({
-          catalogList,
-          navigateTitle: node.full_name,
-          node: node,
-          isRequestFinished: true
-        });
-      })
+    request({
+      url: `${graph}/${type}/${id}/detail`
+    }).then(res => {
+      const node = res.data;
+      const catalogList = this.getCatalog(node);
+      WxParse.wxParse("node_content", "html", res.data.desc, this, 5);
+      this.setData({
+        catalogList,
+        navigateTitle: node.full_name,
+        node: node,
+        isRequestFinished: true
+      });
+    })
   },
   getCatalog: function(node) {
     const catalog = [{
