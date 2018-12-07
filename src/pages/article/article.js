@@ -60,7 +60,8 @@ Page({
     }
 
     request({
-      url: `${articleDetail}${this.articleId}`
+      url: `${articleDetail}${this.articleId}`,
+      isHandleNotFound: true
     }).then(res => {
       const article = res.data;
       const articleOwn = article.column || article.author;

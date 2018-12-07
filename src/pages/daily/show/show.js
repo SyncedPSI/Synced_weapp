@@ -40,7 +40,8 @@ Page({
     });
 
     request({
-      url: `${dailyDetail}${id}`
+      url: `${dailyDetail}${id}`,
+      isHandleNotFound: true
     }).then(res => {
       const daily = res.data;
       if (daily.wxacode_url === null) {

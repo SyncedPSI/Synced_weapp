@@ -40,7 +40,8 @@ Page({
     });
 
     request({
-      url: `${topicDetail}${option.id}`
+      url: `${topicDetail}${option.id}`,
+      isHandleNotFound: true
     }).then(res => {
       const topic = res.data;
       topic.publishedAt = getDateDiff(res.data.published_at);

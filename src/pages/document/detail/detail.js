@@ -116,7 +116,8 @@ Page({
 
     const { type, id } = this.data;
     request({
-      url: `${ApiRootUrl}/${type}s/${id}?page=${this.page}`
+      url: `${ApiRootUrl}/${type}s/${id}?page=${this.page}`,
+      isHandleNotFound: true
     }).then(({ data }) => {
       const oldArticles = this.data.articles;
       const { articles, has_next_page } = data;

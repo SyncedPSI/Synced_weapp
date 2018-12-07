@@ -38,7 +38,8 @@ Page({
     });
 
     request({
-      url: `${trendDetail}${option.id}`
+      url: `${trendDetail}${option.id}`,
+      isHandleNotFound: true
     }).then(res => {
       const { content, desc, trend_cards, ...otherProps } = res.data;
       WxParse.wxParse("trendDesc", "html", desc, this, 5);

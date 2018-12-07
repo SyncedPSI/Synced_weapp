@@ -29,7 +29,8 @@ Page({
     this.ctx.setTextBaseline('top');
 
     request({
-      url: `${dailyDetail}${id}`
+      url: `${dailyDetail}${id}`,
+      isHandleNotFound: true
     }).then(res => {
       const daily = res.data;
       this.setData({

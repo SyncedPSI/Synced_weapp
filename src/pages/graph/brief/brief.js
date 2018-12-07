@@ -23,7 +23,8 @@ Page({
     let { type } = options;
     this.page = 1;
     request({
-      url: `${graph}/${type}/${id}`
+      url: `${graph}/${type}/${id}`,
+      isHandleNotFound: true
     }).then((res) => {
       const node = res.data;
       if (node.wxacode_url === null) {
