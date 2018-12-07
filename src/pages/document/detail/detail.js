@@ -28,7 +28,8 @@ Page({
     }
 
     request({
-      url: `${documents}/${id}`
+      url: `${documents}/${id}`,
+      isHandleNotFound: true
     }).then((res) => {
       const document = res.data;
       if (document.wxacode_url === null) {
@@ -116,8 +117,7 @@ Page({
 
     const { type, id } = this.data;
     request({
-      url: `${ApiRootUrl}/${type}s/${id}?page=${this.page}`,
-      isHandleNotFound: true
+      url: `${ApiRootUrl}/${type}s/${id}?page=${this.page}`
     }).then(({ data }) => {
       const oldArticles = this.data.articles;
       const { articles, has_next_page } = data;

@@ -92,8 +92,10 @@ Component({
       const isCreateComment = this.replyCommentId === null;
       const url = isCreateComment ? `${ApiV1}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`;
       request({
-        url: `${url}`,
-        data: content,
+        url,
+        data: {
+          content
+        },
         method: 'POST'
       }).then(() => {
         if (isCreateComment) {
