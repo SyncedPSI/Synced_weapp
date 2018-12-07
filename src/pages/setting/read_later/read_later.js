@@ -45,6 +45,7 @@ Page({
         ];
         this.setData({
           list: newList,
+          totalCount: newList.length
         });
         showTipToast('删除成功');
       })
