@@ -31,7 +31,7 @@ Page({
       activeNav: nav,
     }, () => {
       if (nav === 'notice' && this.data.hasNotice) {
-        this.fetchMoreNotice();
+        this.fetchMoreNotice(true);
       }
     });
   },
@@ -41,7 +41,7 @@ Page({
       readCount: event.detail.count
     });
   },
-  fetchMoreNotice: function() {
+  fetchMoreNotice: function(isFirst = false) {
     const { activeNav, hasNotice } = this.data;
     if (activeNav !== 'notice' || !hasNotice) return;
 
@@ -50,6 +50,13 @@ Page({
     }).then(res => {
       this.noticePage += 1;
       const { noticeList } = this.data;
+      if (isFirst) {
+        const count = res.data.notifications_count;
+        this.setData({
+          unreadNoticeCount: count
+        });
+        getApp().globalData.notifyCount = count
+      }
 
       const { notifications, has_next_page } = res.data;
       notifications.forEach((item) => {
@@ -61,7 +68,7 @@ Page({
         } else if (item.comment.commentable_type === 'daily') {
           item.path = '/pages/daily/show/show';
         } else if (item.comment.commentable_type === 'trend') {
-          item.path = '/pages/trend/show/show';
+          item.path = '/pages/trend/trend';
         } else if (item.comment.commentable_type === 'document') {
           item.path = '/pages/document/detail/detail';
         }
