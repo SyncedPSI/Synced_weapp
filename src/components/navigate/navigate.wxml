@@ -14,7 +14,7 @@
       <block wx:if="{{pageLogin || isLogin}}">
         <navigator  class="global-nav--user" url="/pages/setting/setting" hover-class="none">
           <image class="global-nav--avatar" src="{{avatarUrl}}" />
-           <text class="global-nav--count">20</text>
+           <text class="global-nav--count" wx:if="{{notifyCount > 0}}">{{notifyCount}}</text>
         </navigator>
         <navigator class="global-nav--input" url="/pages/search/search">
           <image class="global-nav--search" src="/icons/ic_search.png" mode="aspectFill" />
