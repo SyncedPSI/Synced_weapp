@@ -29,7 +29,7 @@
     </block>
 
     <block wx:if="{{activeNav === 'readlater'}}">
-      <readlater />
+      <readlater bindgetcount="getReadCount" />
     </block>
     <block wx:if="{{ activeNav === 'subscribe'}}">
       <subscribe />

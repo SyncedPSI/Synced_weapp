@@ -27,4 +27,10 @@ Page({
 
     });
   },
+
+  getReadCount: function(event) {
+    this.setData({
+      readCount: event.detail.count
+    });
+  }
 })

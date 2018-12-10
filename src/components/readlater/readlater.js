@@ -21,8 +21,8 @@ Component({
         });
         this.setData({
           readList: read_laters,
-          readCount: count
         });
+        this.tiggerEvent(count);
       })
     },
 
@@ -37,6 +37,7 @@ Component({
         startX: clientX,
         startY: clientY,
       });
+
     },
 
     touchMove: function(event) {
@@ -94,10 +95,13 @@ Component({
         ];
         this.setData({
           readList: newList,
-          readCount: newList.length
         });
+        this.tiggerEvent(readList.length);
         showTipToast('删除成功');
       })
+    },
+    tiggerEvent: function (count) {
+      this.triggerEvent('getcount', {count})
     }
   }
 });
