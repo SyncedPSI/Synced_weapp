@@ -1,0 +1,11 @@
+<navigator class="notice-item" url="" hover-class="none">
+  <image class="notice-item__cover" src="" mode="aspectFill" />
+  <view class="notice-item__right">
+    <view class="botice-utem__header">
+      <text class="notice-item__user">Laura Williams</text>
+      <text class="notice-item__type">回复了你的评论</text>
+    </view>
+    <view class="notice-item__content">预言者教人把握时机炒股和投资房地产的桥段实在是败笔</view>
+    <view class="notice-item__footer">三小时前</view>
+  </view>
+</navigator>

@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "article": "../article_with_cover/article"
+  }
+}

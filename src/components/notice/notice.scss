@@ -1,0 +1,43 @@
+@import 'variables';
+
+.notice-item {
+  display: flex;
+  margin-bottom: 60rpx;
+
+  &:first-child {
+    margin-top: 40rpx;
+  }
+
+  &__cover {
+    flex-shrink: 0;
+    width: 84rpx;
+    height: 84rpx;
+    margin-right: 24rpx;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+  }
+
+  &__right {
+    flex-grow: 1;
+    font-size: 28rpx;
+  }
+
+  &__user {
+    color: #121212;
+  }
+
+  &__type {
+    color: #a8a8a8;
+  }
+
+  &__content {
+    margin-top: 4rpx;
+    color: #282828;
+  }
+
+  &__footer {
+    margin-top: 12rpx;
+    font-size: 24rpx;
+    color: #a8a8a8;
+  }
+}

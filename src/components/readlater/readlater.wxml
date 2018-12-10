@@ -1,0 +1,13 @@
+<view class="readlater--none" wx:if="{{readList.length === 0}}">
+  <text>还未添加任何可待读的文章</text>
+</view>
+<view class="readlater--item" wx:for="{{readList}}" wx:key="{{item.id}}" data-index="{{index}}" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <view class="readlater--btn" bindtap="deleteItem" data-id="{{item.id}}" data-index="{{index}}">
+    <view class="readlater--delete">
+      <text>-</text>
+    </view>
+  </view>
+  <view class="readlater--inline {{item.isOpenBtn ? 'is-open' : ''}}" style="{{item.txtStyle}}">
+    <article article="{{item.content}}" />
+  </view>
+</view>

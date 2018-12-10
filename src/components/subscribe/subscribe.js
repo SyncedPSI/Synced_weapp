@@ -10,7 +10,6 @@ Component({
     this.getList();
   },
   methods: {
-
     getList: function () {
       request({
         url: subscribe
