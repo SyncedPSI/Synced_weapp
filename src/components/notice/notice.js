@@ -32,7 +32,8 @@ Component({
       if (!id) return;
 
       request({
-        url: `${notice}/${id}/read`
+        url: `${notice}/${id}/read`,
+        method: 'POST'
       })
     }
   }
