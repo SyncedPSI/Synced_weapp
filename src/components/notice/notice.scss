@@ -3,6 +3,7 @@
 .notice-item {
   display: flex;
   margin-bottom: 60rpx;
+  padding: 0 60rpx 0 40rpx;
 
   &:first-child {
     margin-top: 40rpx;
@@ -20,10 +21,12 @@
   &__right {
     flex-grow: 1;
     font-size: 28rpx;
+    overflow: visible;
   }
 
   &__user {
     color: #121212;
+    margin-right: 20rpx;
   }
 
   &__type {
@@ -33,11 +36,26 @@
   &__content {
     margin-top: 4rpx;
     color: #282828;
+    position: relative;
+    overflow: visible;
+
+    &.is-unread::after {
+      content: '';
+      position: absolute;
+      left: 100%;
+      margin-left: 8rpx;
+      top: 8rpx;
+      width: 16rpx;
+      height: 16rpx;
+      background-color: $red;
+      border-radius: 50%;
+    }
   }
 
   &__footer {
     margin-top: 12rpx;
     font-size: 24rpx;
     color: #a8a8a8;
+    text-align: right;
   }
 }

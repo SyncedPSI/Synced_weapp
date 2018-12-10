@@ -1,18 +1,13 @@
-import { request, getDateDiff, showTipToast } from "utils/util";
+import { request, getDateDiff } from "utils/util";
 import { readLater, readLaterList } from "config/api";
 
 Component({
-  properties: {
-    readList: {
-      type: Array,
-      value: []
-    },
-  },
   attached: function () {
     this.getList();
   },
   data: {
     readList: [],
+    maxBtnWidth: 40,
   },
 
   methods: {
@@ -88,7 +83,21 @@ Component({
     deleteItem: function(event) {
       const { id, index } = event.currentTarget.dataset;
 
-      this.triggerEvent('delete', { id, index});
+      request({
+        url: `${readLater}/${id}`,
+        method: 'DELETE'
+      }).then(() => {
+        const { readList } = this.data;
+        const newList = [
+          ...readList.slice(0, index),
+          ...readList.slice(index + 1)
+        ];
+        this.setData({
+          readList: newList,
+          readCount: newList.length
+        });
+        showTipToast('删除成功');
+      })
     }
   }
 });

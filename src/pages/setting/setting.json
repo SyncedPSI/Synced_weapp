@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "nav": "../../components/navigate/navigate",
-    "article": "../../components/article_with_cover/article",
-    "subscribe": "../../components/subscribe/subscribe"
+    "readlater": "../../components/readlater/readlater",
+    "subscribe": "../../components/subscribe/subscribe",
+    "notice": "../../components/notice/notice"
   }
 }
