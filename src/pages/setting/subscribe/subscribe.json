@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "myheader": "../../../components/setting_header/header",
-    "nav": "../../../components/navigate/navigate"
-  }
-}

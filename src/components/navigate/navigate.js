@@ -65,7 +65,7 @@ Component({
     getUserInfo: function (event) {
       let pagePath = '/pages/search/search';
       if (event.currentTarget.dataset.type === 'user') {
-        pagePath = '/pages/setting/read_later/read_later';
+        pagePath = '/pages/setting/setting';
       }
       app.login(event.detail.userInfo, () => {
         this.setData({

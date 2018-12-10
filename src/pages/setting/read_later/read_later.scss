@@ -6,20 +6,6 @@ page {
 }
 
 .readlater {
-  &--container {
-    // $setting-header + $nav-content-height
-    height: calc(100vh - 98rpx - 98rpx);
-    margin-top: $setting-header;
-
-    scroll-view {
-      height: 100%;
-    }
-  }
-
-  &--safe {
-    height: $safe-padding-bottom;
-  }
-
   &--title {
     padding: 0 40rpx;
     margin: 60rpx 0 40rpx;

@@ -12,7 +12,7 @@
   <view class="global-nav {{ isAndroid ? '' : 't-iphone'}} {{ hasShadow ? 't-has-shadow' : ''}}" style="padding-top: {{paddingTop}}px;">
     <view class="global-nav--tap t-search" wx:if="{{isIndex}}">
       <block wx:if="{{pageLogin || isLogin}}">
-        <navigator  class="global-nav--user" url="/pages/setting/read_later/read_later" hover-class="none">
+        <navigator  class="global-nav--user" url="/pages/setting/setting" hover-class="none">
           <image class="global-nav--avatar" src="{{avatarUrl}}" />
         </navigator>
         <navigator class="global-nav--input" url="/pages/search/search">

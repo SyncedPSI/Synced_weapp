@@ -2,14 +2,7 @@
 @import 'common';
 
 .subscribe {
-  margin-top: $setting-header;
-  padding: 60rpx 40rpx;
-
-  &--title {
-    font-size: 42rpx;
-    font-weight: 500;
-    color: #121212;
-  }
+  padding: 0 40rpx 60rpx;
 }
 
 .subscribe-item {
