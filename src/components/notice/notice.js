@@ -27,7 +27,6 @@ Component({
     },
 
     readNotice: function(event) {
-      console.log(event)
       const { id } = event.currentTarget.dataset;
       if (!id) return;
 
