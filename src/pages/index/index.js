@@ -14,13 +14,8 @@ Page({
     }).then(res => {
       const { banners, recommends } = res.data;
       banners.forEach(item => {
-        const detailCategory = ['paper', 'article', 'investment', 'report']
         if (item.tableize === 'trends') {
-          if (detailCategory.indexOf(item.content.category) > -1) {
-            item.path = 'trend/detail/detail';
-          } else {
-            item.path = 'trend/related/related';
-          }
+          item.path = 'trend/trend';
         } else {
           item.path = 'article/article';
         }

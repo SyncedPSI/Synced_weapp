@@ -11,6 +11,52 @@
   &--list {
     padding: 0 40rpx;
   }
+
+  &--title {
+    padding: 0 40rpx;
+    margin: 40rpx 0 60rpx;
+  }
+
+  &--desc {
+    background-color: #f6f6f6;
+    padding: 32rpx 40rpx;
+    font-size: 32rpx;
+    line-height: 1.75;
+    color: $title-black;
+  }
+
+  &--content {
+    padding: 0 40rpx;
+    font-size: 32rpx;
+    color: #121212;
+    margin-bottom: 20rpx;
+
+    image {
+      max-width: 100%;
+    }
+  }
+
+  &--type {
+    display: inline-block;
+    margin: 40rpx 0 0;
+    border-left: 6rpx solid $red;
+    background-color: $black;
+    padding: 6rpx 20rpx 6rpx 34rpx;
+    font-size: 36rpx;
+    font-weight: 500;
+    color: #fff;
+  }
+
+  &--desc__related {
+    padding: 0 40rpx;
+    font-size: 32rpx;
+    color: #121212;
+    margin: 60rpx 0 20rpx;
+
+    image {
+      max-width: 100%;
+    }
+  }
 }
 
 .trend-item {
@@ -29,5 +75,46 @@
     font-size: 32rpx;
     color: $secondary-black;
     line-height: 1.63;
+  }
+
+  &__sub {
+    margin: 16rpx 0 28rpx;
+  }
+
+  &__author {
+    color: $mute-black;
+    font-size: 28rpx;
+    margin-top: 24rpx;
+  }
+
+  &.t-article {
+    padding-top: 60rpx;
+    color: #7d7d7d;
+  }
+
+  &.t-article &__title {
+    font-weight: 500;
+    color: #414141;
+  }
+
+  &.t-article &__desc {
+    margin: 28rpx 0 60rpx;
+  }
+
+  &.t-article &:last-child &__desc {
+    margin-bottom: 0;
+  }
+
+  &.t-daily {
+    padding-top: 40rpx;
+  }
+
+  &.t-daily &__title {
+    font-weight: normal;
+    color: $black;
+  }
+
+  &.t-daily &__desc {
+    margin: 24rpx 0 40rpx;
   }
 }

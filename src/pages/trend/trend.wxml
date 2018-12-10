@@ -1,0 +1,64 @@
+<import src="/pages/common/page_loading.wxml"/>
+<import src="/pages/common/fixed_comment.wxml"/>
+<import src="../../wxParse/wxParse.wxml"/>
+
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight  pageLogin="{{isLogin}}"></nav>
+<view class="{{isIphoneX ? 'has-safe-padding' : ''}}">
+  <template is="page_loading" wx:if="{{trend === null}}" />
+
+  <block wx:else>
+    <image class="trend--cover" src='/images/{{trend.image}}.jpg' />
+
+    <block wx:if="{{trend.type === 'article'}}">
+      <view class="trend--title">{{trend.title}}</view>
+      <view class="trend--desc">
+        <template is="wxParse" data="{{wxParseData:trendDesc.nodes}}" />
+      </view>
+
+      <view class="trend--list" wx:if="{{trend.type === 'article'}}">
+        <block wx:for="{{cards}}" wx:key="{{item.cardable_id}}">
+          <navigator url="/pages/article/article?id={{item.cardable_id}}" class="trend-item t-article" hover-class="none" wx:if="{{item.cardable_type === 'articles'}}">
+            <view class="trend-item__title">{{item.default_title}}</view>
+            <view class="trend-item__sub" wx-if="{{item.sub_title !== null && item.sub_title !== ''}}">{{item.sub_title}}</view>
+            <view class="trend-item__author" wx-if="{{item.author !== null && item.author !== ''}}">{{item.author}}</view>
+            <view class="trend-item__desc">{{item.default_content}}</view>
+          </navigator>
+          <view class="trend-item t-article" wx:else data-url="{{item.default_url}}" bindtap="copySource">
+            <view class="trend-item__title">{{item.default_title}}</view>
+            <view class="trend-item__sub" wx-if="{{item.sub_title !== null && item.sub_title !== ''}}">{{item.sub_title}}</view>
+            <view class="trend-item__author" wx-if="{{item.author !== null && item.author !== ''}}">{{item.author}}</view>
+            <view class="trend-item__desc">{{item.default_content}}</view>
+            </view>
+        </block>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="trend--desc__related">
+        <template is="wxParse" data="{{wxParseData:trendDesc.nodes}}" />
+      </view>
+      <block wx:for="{{cards}}" wx:for-item="card">
+        <block wx:for="{{card}}" wx:key="{{key}}" wx:for-index="key" wx:for-item="items">
+          <view class="trend--type">{{key}}</view>
+          <view class="trend--list">
+            <block wx:for="{{items}}" wx:key="{{item.cardable_id}}">
+              <navigator class="trend-item t-daily" url="/pages/daily/show/show?id={{item.cardable_id}}" hover-class="none" wx:if="{{item.cardable_type === 'dailies'}}">
+                <view class="trend-item__title">{{item.default_title}}</view>
+                <view class="u-text-limit--three trend-item__desc">{{item.default_content}}</view>
+              </navigator>
+              <view class="trend-item t-daily" wx:else data-url="{{item.default_url}}" bindtap="copySource">
+                <view class="trend-item__title">{{item.default_title}}</view>
+                <view class="u-text-limit--three trend-item__desc">{{item.default_content}}</view>
+              </view>
+            </block>
+          </view>
+        </block>
+      </block>
+    </block>
+
+    <view class="trend--content">
+      <template is="wxParse" data="{{wxParseData:trendContent.nodes}}" />
+    </view>
+    <comment isSmallPadding isShowComment="{{isShowComment}}" baseUrl="/trends/{{id}}" bindclosecomment="closeComment" bindopencomment="openComment"></comment>
+  </block>
+</view>
+<template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
