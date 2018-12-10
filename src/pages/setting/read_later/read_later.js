@@ -6,7 +6,9 @@ Page({
     list: [],
     totalCount: 0,
     isEdit: false,
-    maxRightBtnWidth: 80,
+    maxBtnWidth: 40,
+    startX: 0,
+    startY: 0,
   },
   onLoad: function () {
     this.getList();
@@ -18,7 +20,7 @@ Page({
     }).then((res) => {
       const { read_laters, count } = res.data;
       read_laters.forEach(item => {
-        item.content.updatedAt = getDateDiff(item.content.published_at);
+        item.content.published_at = getDateDiff(item.content.published_at);
       });
       this.setData({
         list: read_laters,
@@ -27,9 +29,57 @@ Page({
     })
   },
 
-  switchEdit: function() {
+  touchStart: function(event) {
+    const { list } = this.data;
+    list.forEach((item) => {
+      item.isOpenBtn = false;
+    });
+    const { clientX, clientY } = event.changedTouches[0];
     this.setData({
-      isEdit: !this.data.isEdit
+      list,
+      startX: clientX,
+      startY: clientY,
+    });
+  },
+
+  touchMove: function(event) {
+    const index = event.currentTarget.dataset.index;
+    const { clientX } = event.changedTouches[0];
+    const { startX, list, maxBtnWidth } = this.data;
+    if (clientX < startX) { // left slide
+      list[index].txtStyle = '';
+      this.setData({
+        list,
+      });
+      return;
+    }
+
+    let distance = clientX - startX;
+    if (maxBtnWidth < distance) {
+      distance = maxBtnWidth;
+    }
+
+    list[index].txtStyle = `left: ${distance}px`;
+    this.setData({
+      list,
+    });
+  },
+
+  touchEnd: function(event) {
+    const index = event.currentTarget.dataset.index;
+    const { clientX } = event.changedTouches[0];
+    const { startX, list, maxBtnWidth } = this.data;
+    const distance = clientX - startX;
+    list[index].txtStyle = '';
+
+    if (maxBtnWidth < distance) {
+      list[index].isOpenBtn = true;
+    }
+
+    this.setData({
+      startX: 0,
+      startY: 0,
+      list,
     });
   },
 

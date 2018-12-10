@@ -39,16 +39,6 @@ page {
     text-align: center;
   }
 
-  &--edit {
-    border-radius: 50%;
-  }
-
-  &--icon {
-    display: block;
-    width: 60rpx;
-    height: 60rpx;
-  }
-
   &--item {
     padding: 0 40rpx;
     margin-bottom: 60rpx;
@@ -59,6 +49,10 @@ page {
     background-color: #fff;
     position: relative;
     z-index: 3;
+
+    &.is-open {
+      left: 80rpx;
+    }
   }
 
   &--btn {
@@ -87,43 +81,3 @@ page {
     margin-top: 144rpx;
   }
 }
-
-.is-edit .article--item {
-  left: 80rpx;
-}
-
-.article {
-  &--item {
-    position: relative;
-    left: 0;
-    transition: left 500ms;
-    z-index: 2;
-    background-color: #fff;
-  }
-
-  &--title {
-    font-size: 36rpx;
-    font-weight: 500;
-    color: #121212;
-
-    &.t-finish {
-      color: #898989;
-    }
-  }
-
-  &--bottom {
-    margin-top: 24rpx;
-    font-size: 28rpx;
-    color: #a8a8a8;
-  }
-
-  &--author {
-    margin-right: 40rpx;
-  }
-
-  &--category {
-    flex-shrink: 0;
-    margin-left: 60rpx;
-  }
-}
-
