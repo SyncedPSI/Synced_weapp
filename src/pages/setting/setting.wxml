@@ -26,7 +26,7 @@
   <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreNotice" scroll-top="0">
     <block wx:if="{{ activeNav === 'notice'}}">
       <notice notice="{{noticeList}}" />
-      <template is="loading" />
+      <template is="loading" wx:if="{{hasNotice}}" />
     </block>
 
     <block wx:if="{{activeNav === 'readlater'}}">

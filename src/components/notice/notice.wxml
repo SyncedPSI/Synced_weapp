@@ -1,6 +1,7 @@
 <view class="notice-item" wx:for="{{keys}}" wx:key="{{keys}}" wx:for-item="key">
   <view class="notice-item__date">{{notice[key].date}}</view>
-  <navigator class="notice-item__inline" url="{{item.path}}?id={{item.comment.commentable_id}}" hover-class="none" wx:for="{{notice[key].list}}" wx:key="{{item.id}}">
+  <navigator class="notice-item__inline" url="{{item.path}}?id={{item.comment.commentable_id}}" hover-class="none" data-id="{{item.id}}" bindtap="readNotice"
+    wx:for="{{notice[key].list}}" wx:key="{{item.id}}">
     <image class="notice-item__cover" src="{{item.actor.avatar_url}}" mode="aspectFill" />
     <view class="notice-item__right">
       <view class="notice-utem__header">

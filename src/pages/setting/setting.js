@@ -41,6 +41,14 @@ Page({
       readCount: event.detail.count
     });
   },
+
+  getUnreadCount: function (count) {
+    this.setData({
+      unreadNoticeCount: count
+    });
+    getApp().globalData.notifyCount = count
+  },
+
   fetchMoreNotice: function(isFirst = false) {
     const { activeNav, hasNotice } = this.data;
     if (activeNav !== 'notice' || !hasNotice) return;
@@ -52,10 +60,7 @@ Page({
       const { noticeList } = this.data;
       if (isFirst) {
         const count = res.data.notifications_count;
-        this.setData({
-          unreadNoticeCount: count
-        });
-        getApp().globalData.notifyCount = count
+        this.getUnreadCount(count);
       }
 
       const { notifications, has_next_page } = res.data;

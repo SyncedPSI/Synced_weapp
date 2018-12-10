@@ -1,3 +1,6 @@
+import { request } from "utils/util";
+import { notice } from "config/api";
+
 Component({
   properties: {
     notice: {
@@ -22,5 +25,15 @@ Component({
         keys: Object.keys(notice)
       });
     },
+
+    readNotice: function(event) {
+      console.log(event)
+      const { id } = event.currentTarget.dataset;
+      if (!id) return;
+
+      request({
+        url: `${notice}/${id}/read`
+      })
+    }
   }
 });
