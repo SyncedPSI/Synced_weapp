@@ -1,8 +1,26 @@
 Component({
   properties: {
-    item: {
+    notice: {
       type: Object,
-      value: {}
+      value: {},
+       observer: function () {
+         this.resolveData();
+       }
     },
   },
+  data: {
+    keys: [],
+  },
+  attached: function () {
+    this.resolveData();
+  },
+  methods: {
+    resolveData: function() {
+      const { notice } = this.data;
+
+      this.setData({
+        keys: Object.keys(notice)
+      });
+    },
+  }
 });

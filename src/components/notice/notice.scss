@@ -1,12 +1,26 @@
 @import 'variables';
 
 .notice-item {
-  display: flex;
-  margin-bottom: 60rpx;
   padding: 0 60rpx 0 40rpx;
+  margin-top: 20rpx;
 
   &:first-child {
     margin-top: 40rpx;
+  }
+
+  &__date {
+    font-size: 28rpx;
+    color: #a8a8a8;
+    margin-bottom: 28rpx;
+  }
+
+  &__inline {
+    display: flex;
+    margin-bottom: 60rpx;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__cover {
