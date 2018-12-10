@@ -369,7 +369,7 @@ Page({
     this.ctx.clearRect(0, 0, this.width, this.height);
     setBg(this.ctx, this.width, this.height);
 
-    downloadImage(`${article.cover_image_url}?imageView2/1/w/375/h/190`, (path) => {
+    downloadImage(`${article.cover_image_url}?imageView2/1/w/1125/h/570`, (path) => {
       // cover
       this.ctx.drawImage(path, 0, 0, this.width, heightInfo.coverHeight);
       this.ctx.setFillStyle('rgba(40, 40, 40, 0.3)');
