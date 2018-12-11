@@ -1,10 +1,5 @@
 @import 'variables';
 
-page {
-  height: 100vh;
-  overflow: hidden;
-}
-
 .readlater {
   &--title {
     padding: 0 40rpx;
@@ -14,21 +9,14 @@ page {
     color: #121212;
   }
 
-  &--count {
-    margin-left: 12rpx;
-    padding: 2rpx 12rpx;
-    font-size: 20rpx;
-    border-radius: 100rpx;
-    background-color: $red;
-    color: #fff;
-    min-width: 20rpx;
-    text-align: center;
-  }
-
   &--item {
     padding: 0 40rpx;
-    margin-bottom: 60rpx;
+    margin: 60rpx 0;
     position: relative;
+
+    &:first-child {
+      margin-top: 50rpx;
+    }
   }
 
   &--inline {

@@ -44,10 +44,13 @@ Component({
     isAndroid: app.globalData.isAndroid,
     isLogin: false,
     avatarUrl: app.globalData.userInfo && app.globalData.userInfo.avatarUrl,
+    notifyCount: 0
   },
   ready: function () {
+    const { isLogin, notifyCount } = app.globalData;
     this.setData({
-      isLogin: app.globalData.isLogin,
+      isLogin,
+      notifyCount
     });
   },
   detached: function () {
@@ -65,7 +68,7 @@ Component({
     getUserInfo: function (event) {
       let pagePath = '/pages/search/search';
       if (event.currentTarget.dataset.type === 'user') {
-        pagePath = '/pages/setting/read_later/read_later';
+        pagePath = '/pages/setting/setting';
       }
       app.login(event.detail.userInfo, () => {
         this.setData({

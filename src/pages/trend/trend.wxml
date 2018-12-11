@@ -36,7 +36,7 @@
       <view class="trend--desc__related">
         <template is="wxParse" data="{{wxParseData:trendDesc.nodes}}" />
       </view>
-      <block wx:for="{{cards}}" wx:for-item="card">
+      <block wx:for="{{cards}}" wx:for-item="card" wx:key="{{index}}">
         <block wx:for="{{card}}" wx:key="{{key}}" wx:for-index="key" wx:for-item="items">
           <view class="trend--type">{{key}}</view>
           <view class="trend--list">

@@ -1,0 +1,40 @@
+<import src="../common/loading.wxml"/>
+<nav title="个人中心" isNoSearch hasHeaderHeight></nav>
+
+<view class="setting-header">
+  <view class="setting-header__user">
+    <image class="setting-header__avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
+    <text>{{user.nickName}}</text>
+    <image class="setting-header__sign" src="/icons/user_{{user.sign ? 'sliver' : 'gold'}}.png" />
+  </view>
+  <view class="u-flex setting-nav">
+    <view class="setting-nav__item {{activeNav === 'notice' ? 'is-active' : ''}}" data-type="notice" bindtap="switchNav">
+      <text>消息通知</text>
+      <view class="setting-nav__count" wx:if="{{unreadNoticeCount > 0}}">{{unreadNoticeCount}}</view>
+    </view>
+    <view class="setting-nav__item {{activeNav === 'readlater' ? 'is-active' : ''}}" data-type="readlater" bindtap="switchNav">
+      <text>待读列表</text>
+      <view class="setting-nav__count" wx-if="{{readCount > 0}}">{{readCount}}</view>
+    </view>
+    <view class="setting-nav__item {{activeNav === 'subscribe' ? 'is-active' : ''}}" data-type="subscribe" bindtap="switchNav">
+      <text>订阅管理</text>
+    </view>
+  </view>
+</view>
+
+<view class="setting--container">
+  <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreNotice" scroll-top="0">
+    <block wx:if="{{ activeNav === 'notice'}}">
+      <notice notice="{{noticeList}}" />
+      <template is="loading" wx:if="{{hasNotice}}" />
+    </block>
+
+    <block wx:if="{{activeNav === 'readlater'}}">
+      <readlater bindgetcount="getReadCount" />
+    </block>
+    <block wx:if="{{ activeNav === 'subscribe'}}">
+      <subscribe />
+    </block>
+    <view class="setting--safe"></view>
+  </scroll-view>
+</view>

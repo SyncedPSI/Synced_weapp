@@ -1,8 +1,4 @@
-<nav title="订阅管理" isNoSearch hasHeaderHeight></nav>
-<myheader activeBar="subscribe"></myheader>
-
 <view class="subscribe">
-  <view class="subscribe--title">订阅管理</view>
   <view class="subscribe-item" wx:for="{{subscribeTypes}}" wx:key="{{item.category}}">
     <view class="u-flex subscribe-item__header">
       <view class="u-flex">

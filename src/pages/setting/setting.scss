@@ -1,0 +1,95 @@
+@import 'variables';
+@import 'common';
+@import 'load_more';
+
+page {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.setting {
+  &--container {
+    // $setting-header + $nav-content-height + setting-nav
+    height: calc(100vh - 296rpx);
+    margin-top: 198rpx;
+
+    scroll-view {
+      height: 100%;
+    }
+  }
+
+  &--safe {
+    height: $safe-padding-bottom;
+  }
+}
+
+.setting-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 4;
+  background-color: #fff;
+  z-index: 10;
+
+  &__user {
+    box-sizing: border-box;
+    padding: 4rpx 40rpx;
+    height: $setting-header;
+    font-size: 44rpx;
+    color: #121212;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 48rpx;
+    height: 48rpx;
+    border-radius: 50%;
+    margin-right: 22rpx;
+  }
+
+  &__sign {
+    width: 36rpx;
+    height: 38rpx;
+    margin-left: 20rpx;
+  }
+}
+
+.setting-nav {
+  border-bottom: 2rpx solid #f2f2f2;
+  height: 100rpx;
+  box-sizing: border-box;
+  padding: 2rpx 74rpx 3rpx;
+
+  &__item {
+    position: relative;
+    overflow: visible;
+    color: #D0D0D0;
+    font-size: 30rpx;
+    font-weight: 500;
+    padding: 2rpx 22rpx;
+    transition: background-color .28s;
+    border-radius: 50rpx;
+
+    &.is-active {
+      background-color: $bg-white;
+      color: #121212;
+    }
+  }
+
+  &__count {
+    position: absolute;
+    left: 100%;
+    bottom: 100%;
+    margin: 0 0 -20rpx -20rpx;
+    height: 32rpx;
+    min-width: 32rpx;
+    font-size: 20rpx;
+    font-weight: 500;
+    border-radius: 100rpx;
+    background-color: $red;
+    color: #fff;
+    text-align: center;
+  }
+}
