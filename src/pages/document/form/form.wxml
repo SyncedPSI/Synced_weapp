@@ -1,3 +1,0 @@
-
-<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
-

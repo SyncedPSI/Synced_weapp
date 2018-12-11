@@ -1,0 +1,44 @@
+<nav isFromWeapp="{{isFromWeapp}}" title="职业认证 {{step}}/3" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
+
+<view class="u-detail-padding">
+  <view class="step" wx-if="{{step === 1}}">
+    <view data-status="{{item.id}}" bindtap="getStatus" wx:for="{{allStatus}}" wx:key="status-{{item.id}}">{{item.title}}</view>
+  </view>
+  <view class="step" wx-if="{{step === 2}}">
+    <block wx:if="{{status === 0}}">
+      <view class="">在读状态</view>
+    </block>
+    <block wx:else="{{status === 1}}">
+      <view class="">在职状态</view>
+    </block>
+    <view class="u-flex picker--container">
+      <view class="picker--item">
+        <picker class="form--input t-picker" bindchange="bindCountryChange" value="{{countryIndex}}" range="{{country}}">
+          <text>{{country[countryIndex]}} </text>
+        </picker>
+      </view>
+      <view class="picker--item">
+        <view class="{{countryIndex === 0 ? '' : 'is-hidden'}}">
+          <picker
+            class="form--input t-picker"
+            mode="multiSelector"
+            bindchange="bindCityChange"
+            bindcolumnchange="bindCityColumnChange"
+            value="{{cityIndex}}"
+            range="{{city}}"
+          >
+            <view class="u-text-limit--one">
+              {{city[0][cityIndex[0]]}}{{city[1][cityIndex[1]]}}
+            </view>
+          </picker>
+        </view>
+        <view class="{{countryIndex === 0 ? 'is-hidden' : ''}}">
+          <input class="form--input" type="text" placeholder="请输入城市" auto-focus />
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="step" wx-if="{{step === 3}}">
+    <view class="">个人信息</view>
+  </view>
+</view>
