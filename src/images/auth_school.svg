@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="335px" height="119px" viewBox="0 0 335 119" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>6C5975D9-21A1-4784-B37B-E2C12D13260F</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="98.9043281%" y1="5.28123305%" x2="1.7287429%" y2="94.7239655%" id="linearGradient-1">
+            <stop stop-color="#393848" offset="0%"></stop>
+            <stop stop-color="#46485A" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="335" height="119" rx="10"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#3D4051" offset="0%"></stop>
+            <stop stop-color="#393848" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="33.0069475%" y2="77.020154%" id="linearGradient-5">
+            <stop stop-color="#3D4051" stop-opacity="0.483865489" offset="0%"></stop>
+            <stop stop-color="#393848" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="50%" x2="50%" y2="3.061617e-15%" id="linearGradient-6">
+            <stop stop-color="#333232" offset="0%"></stop>
+            <stop stop-color="#161314" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="61.7397478%" x2="50%" y2="15.6566021%" id="linearGradient-7">
+            <stop stop-color="#333232" offset="0%"></stop>
+            <stop stop-color="#161314" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="72.4304488%" x2="50%" y2="3.061617e-15%" id="linearGradient-8">
+            <stop stop-color="#414141" offset="0%"></stop>
+            <stop stop-color="#161314" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="2018年12月05日" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="职业认证-step1" transform="translate(-20.000000, -383.000000)">
+            <g id="在读" transform="translate(20.000000, 383.000000)">
+                <g id="Path-2">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" fill="url(#linearGradient-1)" fill-rule="nonzero" xlink:href="#path-2"></use>
+                    <path d="M88.5887559,138.466414 C211.421379,184.382833 301.25235,194.409073 358.081668,168.545135 C443.325647,129.749228 533.891204,40.6360851 345.05154,23 C219.15843,11.2426099 133.670835,49.7314147 88.5887559,138.466414 Z" fill="url(#linearGradient-4)" fill-rule="nonzero" mask="url(#mask-3)"></path>
+                    <path d="M-9,-46 C112.923754,-33.4450563 175.423754,-9.48582133 178.5,25.877705 C183.114369,78.9229945 18.3133534,63.8644576 4.6566767,22.8390258 C-4.44777443,-4.51126205 -9,-27.457604 -9,-46 Z" id="Path-4" fill="url(#linearGradient-5)" fill-rule="nonzero" mask="url(#mask-3)" transform="translate(84.797543, 6.978368) scale(1, -1) translate(-84.797543, -6.978368) "></path>
+                </g>
+                <text font-family="SourceHanSansSC-Medium, Source Han Sans SC" font-size="20" font-weight="400" fill="#FFFFFF">
+                    <tspan x="20" y="47">在读</tspan>
+                </text>
+                <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="21" y="85" width="24" height="3"></rect>
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="254" cy="60" r="41"></circle>
+                <g id="Group-41" transform="translate(224.000000, 39.000000)" fill-rule="nonzero">
+                    <polygon id="Rectangle-48" fill="url(#linearGradient-6)" points="53.0232558 14.9411765 54.4186047 14.9411765 54.4186047 24 53.0232558 24"></polygon>
+                    <rect id="Rectangle-49" fill="#EB2835" x="51.627907" y="24" width="4.18604651" height="11.2941176"></rect>
+                    <path d="M9.76744186,14.1176471 L48.8372093,14.1176471 L48.8372093,38.7647059 C44.4835533,42.6662956 37.9719254,44.6170905 29.3023256,44.6170905 C20.6327258,44.6170905 14.1210979,42.6662956 9.76744186,38.7647059 L9.76744186,14.1176471 Z" id="Rectangle-47" fill="url(#linearGradient-7)"></path>
+                    <polygon id="Path-23" fill="url(#linearGradient-8)" points="0.0420203287 14.2350385 29.3379715 0.50101139 59.3096754 14.2350385 29.3379715 26.117371"></polygon>
+                </g>
+                <text id="students" opacity="0.600000024" font-family="SourceHanSansSC-Medium, Source Han Sans SC" font-size="15" font-weight="400" fill="#FFFFFF">
+                    <tspan x="20" y="70">students</tspan>
+                </text>
+                <text id="ion-ios-arrow-forward---Ionicons" font-family="Ionicons" font-size="28" font-weight="400" fill="#FFFFFF">
+                    <tspan x="314" y="70"></tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

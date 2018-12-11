@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="335px" height="119px" viewBox="0 0 335 119" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>F719AA1F-98AB-4FC6-948F-4867BC756BF5</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="98.9043281%" y1="5.28123305%" x2="1.7287429%" y2="94.7239655%" id="linearGradient-1">
+            <stop stop-color="#393848" offset="0%"></stop>
+            <stop stop-color="#46485A" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="335" height="119" rx="10"></rect>
+        <linearGradient x1="50%" y1="0%" x2="33.0069475%" y2="77.020154%" id="linearGradient-4">
+            <stop stop-color="#3D4051" stop-opacity="0.483865489" offset="0%"></stop>
+            <stop stop-color="#393848" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
+            <stop stop-color="#3D4051" offset="0%"></stop>
+            <stop stop-color="#393848" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-6" cx="41" cy="41" r="41"></circle>
+        <filter x="-235.5%" y="-168.2%" width="571.0%" height="436.3%" filterUnits="objectBoundingBox" id="filter-8">
+            <feGaussianBlur stdDeviation="4.70982143" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="2018年12月05日" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="职业认证-step1" transform="translate(-20.000000, -224.000000)">
+            <g id="在职" transform="translate(20.000000, 224.000000)">
+                <g id="Path-24">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" fill="url(#linearGradient-1)" fill-rule="nonzero" xlink:href="#path-2"></use>
+                    <path d="M-16,60 C87.1250565,72.2083754 160.535744,89.0809821 204.232064,110.61782 C269.776543,142.923077 -16,160.812859 -16,116.703824 C-16,87.2978001 -16,68.3965255 -16,60 Z" fill="url(#linearGradient-4)" fill-rule="nonzero" mask="url(#mask-3)"></path>
+                    <path d="M124.165447,121.009857 C185.565473,29.312945 254.353745,-12.6855022 330.530264,-4.9854848 C444.795042,6.56454134 428.226954,126.921904 330.530264,126.921904 C265.399137,126.921904 196.610865,124.951222 124.165447,121.009857 Z" id="Path-3" fill="url(#linearGradient-5)" fill-rule="nonzero" mask="url(#mask-3)"></path>
+                </g>
+                <text font-family="SourceHanSansSC-Medium, Source Han Sans SC" font-size="20" font-weight="400" fill="#FFFFFF">
+                    <tspan x="20" y="47">在职</tspan>
+                </text>
+                <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="21" y="85" width="24" height="3"></rect>
+                <g id="Group-39" transform="translate(213.000000, 19.000000)">
+                    <mask id="mask-7" fill="white">
+                        <use xlink:href="#path-6"></use>
+                    </mask>
+                    <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-6"></use>
+                    <g mask="url(#mask-7)">
+                        <g transform="translate(7.000000, 11.000000)">
+                            <g id="Group-37" transform="translate(26.000000, 0.000000)">
+                                <polygon id="Path-17" fill="#4D4C4C" fill-rule="nonzero" points="1.05052924 5.57002085 16.4686974 8.5500087 27.7126026 2.88043945 10.5060827 0.273722639"></polygon>
+                                <polygon id="Path-18" fill="#2A2929" fill-rule="nonzero" points="0.897698794 5.49283732 0.897698794 70.8157243 16.2006782 76.1034234 16.2006782 8.37217302"></polygon>
+                                <polygon id="Path-19" fill="#404040" fill-rule="nonzero" points="15.9885682 8.32152675 27.7727967 2.72057332 27.7727967 70.6922092 15.9885682 76.2460445"></polygon>
+                                <path d="M22.617099,16.9978937 C23.5101981,16.9978937 24.234198,15.8786056 24.234198,14.4978937 C24.234198,13.1171819 23.5101981,11.9978937 22.617099,11.9978937 C21.7239999,11.9978937 21,13.1171819 21,14.4978937 C21,15.8786056 21.7239999,16.9978937 22.617099,16.9978937 Z" id="Oval-11" fill="#4D4C4C" fill-rule="nonzero"></path>
+                                <polygon id="Rectangle-46" fill="#4D4C4C" fill-rule="nonzero" points="19 20.2742145 26 18 26 23 19 25.2742145"></polygon>
+                            </g>
+                            <g id="Group-35" transform="translate(36.000000, 25.000000)">
+                                <polygon id="Path-20" fill="#4D4C4C" fill-rule="nonzero" points="14.0509257 0.641659432 32.5539807 4.2863251 21.2057817 10.3954961 0.608881748 6.5164463"></polygon>
+                                <polygon id="Path-21" fill="#2A2929" fill-rule="nonzero" points="0.736696472 6.67709417 0.736696472 42.7454608 21.0193688 49.7268132 21.0193688 10.2551247"></polygon>
+                                <polygon id="Path-22" fill="#404040" fill-rule="nonzero" points="21.033831 10.3802033 21.033831 49.6713095 32.6086856 40.7035627 32.6086856 4.23415219"></polygon>
+                                <polygon id="Rectangle-43" fill="#4D4C4C" fill-rule="nonzero" points="4 11 8 11.9978937 8 17.9978937 4 17"></polygon>
+                                <polygon id="Rectangle-43-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="4 19 8 19.9978937 8 25.9978937 4 25"></polygon>
+                                <polygon id="Rectangle-43-Copy" fill="#4D4C4C" fill-rule="nonzero" points="9 12 13 12.9978937 13 18.9978937 9 18"></polygon>
+                                <polygon id="Rectangle-43-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="9 20 13 20.9978937 13 26.9978937 9 26"></polygon>
+                                <polygon id="Rectangle-43-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="14 13 18 13.9978937 18 19.9978937 14 19"></polygon>
+                                <polygon id="Rectangle-43-Copy-5" fill="#4D4C4C" fill-rule="nonzero" points="14 21 18 21.9978937 18 27.9978937 14 27"></polygon>
+                                <polygon id="Rectangle-43-Copy-8" fill="#4D4C4C" fill-rule="nonzero" points="4 27 8 27.9978937 8 33.9978937 4 33"></polygon>
+                                <polygon id="Rectangle-43-Copy-7" fill="#4D4C4C" fill-rule="nonzero" points="9 28 13 28.9978937 13 34.9978937 9 34"></polygon>
+                                <polygon id="Rectangle-43-Copy-6" fill="#4D4C4C" fill-rule="nonzero" points="14 29 18 29.9978937 18 35.9978937 14 35"></polygon>
+                            </g>
+                            <g id="Group-34" transform="translate(0.000000, 13.000000)">
+                                <polygon id="Path-8" fill="#4D4C4C" fill-rule="nonzero" points="0.344962295 9.43357638 26.6352044 15.4819758 41.050345 5.53476604 15.8617345 0.81071651"></polygon>
+                                <polygon id="Path-15" fill="#2A2929" fill-rule="nonzero" points="0.238592418 9.38364105 0.238592418 70.0783539 26.7126394 79.9634294 26.7126394 15.4235819"></polygon>
+                                <polygon id="Path-16" fill="#404040" fill-rule="nonzero" points="26.5144505 15.5669116 41.0507117 5.48687391 41.0507117 63.7442976 26.5144505 80.0565001"></polygon>
+                                <polygon id="Rectangle-36" fill="#4D4C4C" fill-rule="nonzero" points="2 15 8 16.4024462 8 23.4024462 2 22"></polygon>
+                                <polygon id="Rectangle-36-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="2 24 8 25.4024462 8 32.4024462 2 31"></polygon>
+                                <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" filter="url(#filter-8)" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
+                                <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
+                                <polygon id="Rectangle-36-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="10 26 16 27.4024462 16 34.4024462 10 33"></polygon>
+                                <polygon id="Rectangle-36-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="18 19 24 20.4024462 24 27.4024462 18 26"></polygon>
+                                <polygon id="Rectangle-36-Copy-5" fill="#4D4C4C" fill-rule="nonzero" points="18 28 24 29.4024462 24 36.4024462 18 35"></polygon>
+                                <polygon id="Rectangle-36-Copy-8" fill="#4D4C4C" fill-rule="nonzero" points="2 33 8 34.4024462 8 41.4024462 2 40"></polygon>
+                                <polygon id="Rectangle-36-Copy-7" fill="#4D4C4C" fill-rule="nonzero" points="10 35 16 36.4024462 16 43.4024462 10 42"></polygon>
+                                <polygon id="Rectangle-36-Copy-6" fill="#4D4C4C" fill-rule="nonzero" points="18 37 24 38.4024462 24 45.4024462 18 44"></polygon>
+                                <polygon id="Rectangle-36-Copy-11" fill="#4D4C4C" fill-rule="nonzero" points="2 42 8 43.4024462 8 50.4024462 2 49"></polygon>
+                                <polygon id="Rectangle-36-Copy-10" fill="#4D4C4C" fill-rule="nonzero" points="10 44 16 45.4024462 16 52.4024462 10 51"></polygon>
+                                <polygon id="Rectangle-36-Copy-9" fill="#4D4C4C" fill-rule="nonzero" points="18 46 24 47.4024462 24 54.4024462 18 53"></polygon>
+                                <polygon id="Rectangle-36-Copy-14" fill="#4D4C4C" fill-rule="nonzero" points="2 51 8 52.4024462 8 59.4024462 2 58"></polygon>
+                                <polygon id="Rectangle-36-Copy-13" fill="#4D4C4C" fill-rule="nonzero" points="10 53 16 54.4024462 16 61.4024462 10 60"></polygon>
+                                <polygon id="Rectangle-36-Copy-12" fill="#4D4C4C" fill-rule="nonzero" points="18 55 24 56.4024462 24 63.4024462 18 62"></polygon>
+                                <polygon id="Rectangle-36-Copy-17" fill="#4D4C4C" fill-rule="nonzero" points="2 60 8 61.4024462 8 68.4024462 2 67"></polygon>
+                                <polygon id="Rectangle-36-Copy-16" fill="#4D4C4C" fill-rule="nonzero" points="10 62 16 63.4024462 16 70.4024462 10 69"></polygon>
+                                <polygon id="Rectangle-36-Copy-15" fill="#4D4C4C" fill-rule="nonzero" points="18 64 24 65.4024462 24 72.4024462 18 71"></polygon>
+                                <polygon id="Rectangle-37" fill="#4D4C4C" fill-rule="nonzero" points="29 19.565713 32 17 32 22 29 24.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="29 29.565713 32 27 32 32 29 34.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy" fill="#4D4C4C" fill-rule="nonzero" points="33 16.565713 36 14 36 19 33 21.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="33 26.565713 36 24 36 29 33 31.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="37 13.565713 40 11 40 16 37 18.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-5" fill="#4D4C4C" fill-rule="nonzero" points="37 23.565713 40 21 40 26 37 28.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-8" fill="#4D4C4C" fill-rule="nonzero" points="29 39.565713 32 37 32 42 29 44.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-7" fill="#4D4C4C" fill-rule="nonzero" points="33 36.565713 36 34 36 39 33 41.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-6" fill="#4D4C4C" fill-rule="nonzero" points="37 33.565713 40 31 40 36 37 38.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-11" fill="#4D4C4C" fill-rule="nonzero" points="29 49.565713 32 47 32 52 29 54.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-10" fill="#4D4C4C" fill-rule="nonzero" points="33 46.565713 36 44 36 49 33 51.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-9" fill="#4D4C4C" fill-rule="nonzero" points="37 43.565713 40 41 40 46 37 48.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-14" fill="#4D4C4C" fill-rule="nonzero" points="29 59.565713 32 57 32 62 29 64.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-13" fill="#4D4C4C" fill-rule="nonzero" points="33 56.565713 36 54 36 59 33 61.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-12" fill="#4D4C4C" fill-rule="nonzero" points="37 53.565713 40 51 40 56 37 58.565713"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <text id="working" opacity="0.600000024" font-family="SourceHanSansSC-Medium, Source Han Sans SC" font-size="15" font-weight="400" fill="#FFFFFF">
+                    <tspan x="20" y="70">working</tspan>
+                </text>
+                <text id="ion-ios-arrow-forward---Ionicons" font-family="Ionicons" font-size="28" font-weight="400" fill="#FFFFFF">
+                    <tspan x="314" y="70"></tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,25 +1,32 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="职业认证 {{step}}/3" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
 
-<view class="u-detail-padding">
+<form class="auth" bindsubmit="submitForm">
   <view class="step" wx-if="{{step === 1}}">
-    <view data-status="{{item.id}}" bindtap="getStatus" wx:for="{{allStatus}}" wx:key="status-{{item.id}}">{{item.title}}</view>
+    <view class="auth--title">请选择你的身份</view>
+    <view class="auth--desc">我们会对不同身份提供更精准的信息服务</view>
+    <image class="auth--step1" src="{{item.image}}" data-status="{{item.id}}" bindtap="getStatus" wx:for="{{allStatus}}" wx:key="status-{{item.id}}" />
+    <view class="auth--tip">请放心选择，以后还可以更改</view>
   </view>
   <view class="step" wx-if="{{step === 2}}">
     <block wx:if="{{status === 0}}">
-      <view class="">在读状态</view>
+      <view class="auth--title">在读状态</view>
+    <view class="auth--desc">填写你目前在读院校以及所学专业</view>
     </block>
     <block wx:else="{{status === 1}}">
-      <view class="">在职状态</view>
+      <view class="auth--title">在职状态</view>
+      <view class="auth--desc">填写你在职城市以及职业描述</view>
     </block>
+    <view class="form--label">所在城市</view>
     <view class="u-flex picker--container">
       <view class="picker--item">
-        <picker class="form--input t-picker" bindchange="bindCountryChange" value="{{countryIndex}}" range="{{country}}">
+        <picker class="form--input t-picker" name="city" bindchange="bindCountryChange" value="{{countryIndex}}" range="{{country}}">
           <text>{{country[countryIndex]}} </text>
         </picker>
       </view>
       <view class="picker--item">
         <view class="{{countryIndex === 0 ? '' : 'is-hidden'}}">
           <picker
+            name="external"
             class="form--input t-picker"
             mode="multiSelector"
             bindchange="bindCityChange"
@@ -27,18 +34,51 @@
             value="{{cityIndex}}"
             range="{{city}}"
           >
-            <view class="u-text-limit--one">
+            <view class="u-text-limit--one" name="internal">
               {{city[0][cityIndex[0]]}}{{city[1][cityIndex[1]]}}
             </view>
           </picker>
         </view>
         <view class="{{countryIndex === 0 ? 'is-hidden' : ''}}">
-          <input class="form--input" type="text" placeholder="请输入城市" auto-focus />
+          <input class="form--input" type="text" placeholder="请输入城市" />
         </view>
       </view>
     </view>
+    <block wx:if="{{status === 1}}">
+      <view class="form--label">公司</view>
+      <input class="form--input" type="text" placeholder="请输入公司" name="company" />
+      <view class="form--label">职务</view>
+      <input class="form--input" type="text" placeholder="请输入职务" name="post" />
+      <view class="form--label">工作年限</view>
+      <input class="form--input" type="text" placeholder="请选择工作年限" name="work" />
+    </block>
+    <view class="form--label">毕业院校</view>
+    <input class="form--input" type="text" placeholder="请输入毕业院校" name="school" />
+    <view class="form--label">专业</view>
+    <input class="form--input" type="text" placeholder="请输入专业" name="profession" />
+    <view class="form--label">学位</view>
+    <input class="form--input" type="text" placeholder="请输入学位" name="degree" />
+    <view class="form--label">毕业年份</view>
+    <input class="form--input" type="text" placeholder="请输入毕业年份" name="yearOfGraduation" />
+
+    <view class="form--button__container">
+      <button class="form--button">下一步</button>
+    </view>
   </view>
   <view class="step" wx-if="{{step === 3}}">
-    <view class="">个人信息</view>
+    <view class="auth--title">个人信息</view>
+    <view class="auth--desc">我们会将你的信息保密，仅用于为你提供更精准的信息服务</view>
+    <view class="form--label">姓名</view>
+    <input class="form--input" type="text" placeholder="请输入姓名" name="name" auto-focus />
+    <view class="form--label">手机号码</view>
+    <input class="form--input" type="text" placeholder="请输入手机号码" name="mobile" />
+    <view class="form--label">微信 ID</view>
+    <input class="form--input" type="text" placeholder="请输入微信 ID" name="wechat" />
+    <view class="form--label">邮箱</view>
+    <input class="form--input" type="text" placeholder="请输入邮箱" name="email" />
+
+    <view class="form--button__container">
+      <button class="form--button" form-type="submit">完成</button>
+    </view>
   </view>
-</view>
+</form>

@@ -26,6 +26,62 @@
       line-height: 1.8;
     }
   }
+
+  &--label {
+    font-size: 28rpx;
+    color: #414141;
+    margin: 40rpx 0 28rpx;
+  }
+
+  &--button__container {
+    margin: 120rpx 66rpx;
+  }
+
+  &--button {
+    display: block;
+    padding: 24rpx 0;
+    width: 100%;
+    border-radius: 0;
+    line-height: 1;
+    text-align: center;
+    background-color: #121212;
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #fff;
+  }
+}
+
+.auth {
+  padding: 0 40rpx;
+  display: block;
+  box-sizing: border-box;
+
+  &--title {
+    margin-top: 60rpx;
+    font-size: 44rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &--desc {
+    margin: 8rpx 0 20rpx;
+    font-size: 32rpx;
+    color: #a8a8a8;
+  }
+
+  &--tip {
+    margin-top: 60rpx;
+    font-size: 26rpx;
+    color: #a8a8a8;
+    text-align: center;
+  }
+
+  &--step1 {
+    height: 238rpx;
+    width: 100%;
+    display: block;
+    margin-top: 80rpx;
+  }
 }
 
 .is-hidden {

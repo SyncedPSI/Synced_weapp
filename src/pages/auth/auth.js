@@ -6,8 +6,8 @@ Page({
     isIphoneX: getApp().globalData.isIphoneX,
     step: 1,
     allStatus: [
-      {id: 0, title: '在读'},
-      {id: 1, title: '在职'}
+      {id: 1, title: '在职', image: '/images/auth_work.svg'},
+      {id: 0, title: '在读', image: '/images/auth_school.svg'},
     ],
     status: 0,
     country: ['中国', '海外'],
@@ -25,12 +25,13 @@ Page({
   getStatus: function(event) {
     const { status } = event.currentTarget.dataset;
     this.setData({
-      status,
+      status: Number(status),
       step: 2,
     });
   },
 
   bindCountryChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     const index = Number(e.detail.value)
     this.setData({
       countryIndex: index
@@ -70,6 +71,7 @@ Page({
 
   submitForm: function(event) {
     // 提交表单
-    // 更新本地缓存和globalData
+    // 更新本地缓存和globalData,
+    const { city, external, internal, company, post, work, school, profession, degree, yearOfGraduation, name, mobile, wechat, email } = event.detail.value;
   }
 })
