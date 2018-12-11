@@ -29,13 +29,14 @@
             name="external"
             class="form--input t-picker"
             mode="multiSelector"
+            range-key="name"
             bindchange="bindCityChange"
             bindcolumnchange="bindCityColumnChange"
             value="{{cityIndex}}"
             range="{{city}}"
           >
             <view class="u-text-limit--one" name="internal">
-              {{city[0][cityIndex[0]]}}{{city[1][cityIndex[1]]}}
+              {{city[0][cityIndex[0]].name}}{{city[1][cityIndex[1]].name}}
             </view>
           </picker>
         </view>

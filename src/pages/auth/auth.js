@@ -1,10 +1,10 @@
-// import { request } from "utils/util";
+import { province, city } from "utils/city";
 // import { documents } from "config/api";
 
 Page({
   data: {
     isIphoneX: getApp().globalData.isIphoneX,
-    step: 1,
+    step: 2,
     allStatus: [
       {id: 1, title: '在职', image: '/images/auth_work.svg'},
       {id: 0, title: '在读', image: '/images/auth_school.svg'},
@@ -13,8 +13,8 @@ Page({
     country: ['中国', '海外'],
     countryIndex: 0,
     city: [
-      ['无脊柱动物', '脊柱动物'],
-      ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物'],
+      province,
+      city['110000'],
     ],
     cityIndex: [0, 0],
 
@@ -52,20 +52,13 @@ Page({
       cityIndex: this.data.cityIndex
     }
     data.cityIndex[e.detail.column] = e.detail.value
-    switch (e.detail.column) {
-      case 0:
-        switch (data.cityIndex[0]) {
-          case 0:
-            data.city[1] = ['扁性动物', '线形动物', '环节动物', '软体动物', '节肢动物']
-            break
-          case 1:
-            data.city[1] = ['鱼', '两栖动物', '爬行动物']
-            break
-        }
-        data.cityIndex[1] = 0
-        break
+    if (e.detail.column === 0) {
+      const provinceIndex = data.cityIndex[0];
+      const provinceId = data.city[0][provinceIndex].id;
+      data.city[1] = city[provinceId];
+      data.cityIndex[1] = 0;
     }
-    console.log(data.cityIndex)
+    // console.log(data.cityIndex)
     this.setData(data)
   },
 
