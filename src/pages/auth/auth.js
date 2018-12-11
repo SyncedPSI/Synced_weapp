@@ -4,7 +4,7 @@ import { province, city } from "utils/city";
 Page({
   data: {
     isIphoneX: getApp().globalData.isIphoneX,
-    step: 2,
+    step: 1,
     allStatus: [
       {id: 1, title: '在职', image: '/images/auth_work.svg'},
       {id: 0, title: '在读', image: '/images/auth_school.svg'},
@@ -27,6 +27,11 @@ Page({
     this.setData({
       status: Number(status),
       step: 2,
+    });
+  },
+  goStep3: function() {
+    this.setData({
+      step: 3,
     });
   },
 

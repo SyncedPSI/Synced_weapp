@@ -63,7 +63,7 @@
     <input class="form--input" type="text" placeholder="请输入毕业年份" name="yearOfGraduation" />
 
     <view class="form--button__container">
-      <button class="form--button">下一步</button>
+      <button class="form--button" bindtap="goStep3">下一步</button>
     </view>
   </view>
   <view class="step" wx-if="{{step === 3}}">
