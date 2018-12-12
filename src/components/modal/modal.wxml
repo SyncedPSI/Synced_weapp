@@ -1,0 +1,9 @@
+<view class="modal" hidden="{{!isShowModal}}">
+  <view class="modal--mask" catchtap="closeModal"></view>
+  <view class="modal--main">
+    <view class="modal--close" catchtap="closeModal">
+      <image class="modal--close__img" src="/icons/article_close.png"></image>
+    </view>
+    <slot></slot>
+  </view>
+</view>
