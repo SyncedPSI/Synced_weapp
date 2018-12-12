@@ -32,7 +32,7 @@ Page({
   },
   goStep3: function (event) {
     console.log(event.detail.value)
-    const { city, external, internal, company, post, work, school, profession, degree, yearOfGraduation } = event.detail.value;
+    const { city, external, internal, company, position, work_experience, school, major, degree, graduation_year } = event.detail.value;
     let address = '';
     if (city === 0) {
       address = this.data.city[1][external[1]].id
@@ -46,12 +46,12 @@ Page({
         return;
       }
 
-      if (post === '') {
+      if (position === '') {
         showErrorToast('请输入职位', 1000);
         return;
       }
 
-      if (work === '') {
+      if (work_experience === '') {
         showErrorToast('请输入工作年限', 1000);
         return;
       }
@@ -62,7 +62,7 @@ Page({
       return;
     }
 
-    if (profession === '') {
+    if (major === '') {
       showErrorToast('请输入专业', 1000);
       return;
     }
@@ -72,7 +72,7 @@ Page({
       return;
     }
 
-    if (yearOfGraduation === '') {
+    if (graduation_year === '') {
       showErrorToast('请输入毕业年份', 1000);
       return;
     }
@@ -81,7 +81,7 @@ Page({
       step: 3,
       formData: {
         ...event.detail.value,
-        address
+        city: address
       }
     });
   },
@@ -119,8 +119,8 @@ Page({
   },
 
   submitForm: function(event) {
-    const { name, mobile, wechat, email } = event.detail.value;
-    if (name === '') {
+    const { full_name, mobile, wechat, email } = event.detail.value;
+    if (full_name === '') {
       showErrorToast('请输入姓名', 1000);
       return;
     }
