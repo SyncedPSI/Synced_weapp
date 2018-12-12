@@ -1,5 +1,5 @@
 import { province, city } from "utils/city";
-// import { documents } from "config/api";
+import { showErrorToast, request } from "utils/util";
 
 Page({
   data: {
@@ -17,6 +17,7 @@ Page({
       city['110000'],
     ],
     cityIndex: [0, 0],
+    formData: null,
 
   },
   onLoad: function (options) {
@@ -29,9 +30,59 @@ Page({
       step: 2,
     });
   },
-  goStep3: function() {
+  goStep3: function (event) {
+    console.log(event.detail.value)
+    const { city, external, internal, company, post, work, school, profession, degree, yearOfGraduation } = event.detail.value;
+    let address = '';
+    if (city === 0) {
+      address = this.data.city[1][external[1]].id
+    } else {
+      address = `海外${internal}`;
+    }
+
+    if (this.data.status === 1) { // 在职
+      if (company === '') {
+        showErrorToast('请输入公司', 1000);
+        return;
+      }
+
+      if (post === '') {
+        showErrorToast('请输入职位', 1000);
+        return;
+      }
+
+      if (work === '') {
+        showErrorToast('请输入工作年限', 1000);
+        return;
+      }
+    }
+
+    if (school === '') {
+      showErrorToast('请输入院校', 1000);
+      return;
+    }
+
+    if (profession === '') {
+      showErrorToast('请输入专业', 1000);
+      return;
+    }
+
+    if (degree === '') {
+      showErrorToast('请输入学位', 1000);
+      return;
+    }
+
+    if (yearOfGraduation === '') {
+      showErrorToast('请输入毕业年份', 1000);
+      return;
+    }
+
     this.setData({
       step: 3,
+      formData: {
+        ...event.detail.value,
+        address
+      }
     });
   },
 
@@ -68,8 +119,38 @@ Page({
   },
 
   submitForm: function(event) {
+    const { name, mobile, wechat, email } = event.detail.value;
+    if (name === '') {
+      showErrorToast('请输入姓名', 1000);
+      return;
+    }
+
+    if (mobile === '') {
+      showErrorToast('请输入手机号', 1000);
+      return;
+    }
+
+    if (!(/^1[34578]\d{9}$/.test(mobile))) {
+      showErrorToast('手机号格式不正确', 1000);
+      return;
+    }
+
+    if (wechat === '') {
+      showErrorToast('请输入微信ID', 1000);
+      return;
+    }
+
+    if (email === '') {
+      showErrorToast('请输入邮箱', 1000);
+      return;
+    }
+
+    if (!(/^[^@]+@([^@\.]+\.)+[^@\.]+$/.test(email))) {
+      showErrorToast('邮箱格式不正确', 1000);
+      return;
+    }
+
     // 提交表单
     // 更新本地缓存和globalData,
-    const { city, external, internal, company, post, work, school, profession, degree, yearOfGraduation, name, mobile, wechat, email } = event.detail.value;
   }
 })

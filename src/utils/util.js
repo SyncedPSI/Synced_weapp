@@ -100,11 +100,11 @@ const getHeader = () => {
   }
 };
 
-export const showErrorToast = (msg) => {
+export const showErrorToast = (msg, duration = 2000) => {
   wx.showToast({
     title: msg,
     image: '/images/icon_error.png',
-    duration: 2000,
+    duration,
   })
 };
 
