@@ -49,10 +49,19 @@ page {
     margin-right: 22rpx;
   }
 
-  &__sign {
-    width: 36rpx;
-    height: 38rpx;
-    margin-left: 20rpx;
+  &__tip {
+    display: inline;
+    font-size: 24rpx;
+    border-radius: 4rpx;
+    background-color: #a8a8a8;
+    padding: 0 6rpx;
+    color: #fff;
+    margin: 4rpx 0 0 10rpx;
+    line-height: 1.2;
+
+    &.t-red {
+      background-color: $red;
+    }
   }
 }
 

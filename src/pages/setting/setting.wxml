@@ -5,7 +5,8 @@
   <view class="setting-header__user">
     <image class="setting-header__avatar" src="{{user.avatarUrl}}" mode="aspectFill" />
     <text>{{user.nickName}}</text>
-    <image class="setting-header__sign" src="/icons/user_{{user.sign ? 'sliver' : 'gold'}}.png" />
+    <text class="setting-header__tip t-red" wx:if="{{user.sign}}">Pro</text>
+    <navigator class="setting-header__tip" url="/pages/auth/auth" hover-class="none" wx:else>Pro</navigator>
   </view>
   <view class="u-flex setting-nav">
     <view class="setting-nav__item {{activeNav === 'notice' ? 'is-active' : ''}}" data-type="notice" bindtap="switchNav">
