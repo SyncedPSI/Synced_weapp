@@ -52,21 +52,15 @@ Page({
     } else if (type === 'institutions') {
       model = 'Graph::Institution';
       path = 'institution';
-    } else if (type === 'examples') {
-      model = 'Graph::Example';
-      path = 'example';
     } else if (type === 'papers') {
       model = 'Graph::Paper';
       path = 'paper';
-    } else if (type === 'products') {
-      model = 'Graph::Product';
-      path = 'product';
     } else if (type === 'publications') {
-      model = 'Graph::Publication';
-      path = 'publication';
-    } else if (type === 'use_cases') {
-      model = 'Graph::UseCase';
-      path = 'use_case';
+      model = 'Graph::Venue';
+      path = 'venue';
+    } else if (type === 'venues') {
+      model = 'Graph::Venue';
+      path = 'venue';
     } else if (type === 'resources') {
       model = 'Graph::Resource';
       path = 'resource';
