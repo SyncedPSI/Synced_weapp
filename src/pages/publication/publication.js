@@ -11,7 +11,7 @@ Page({
     }
 
     wx.redirectTo({
-      url: `/pages/graph/brief/brief?id=${id}&type=publications&from=${from}`
+      url: `/pages/graph/brief/brief?id=${id}&type=venues&from=${from}`
     })
   }
 })
