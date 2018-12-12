@@ -1,48 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="335px" height="119px" viewBox="0 0 335 119" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: sketchtool 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
-    <title>F719AA1F-98AB-4FC6-948F-4867BC756BF5</title>
-    <desc>Created with sketchtool.</desc>
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>在职</title>
+    <desc>Created with Sketch.</desc>
     <defs>
         <linearGradient x1="98.9043281%" y1="5.28123305%" x2="1.7287429%" y2="94.7239655%" id="linearGradient-1">
             <stop stop-color="#393848" offset="0%"></stop>
             <stop stop-color="#46485A" offset="100%"></stop>
         </linearGradient>
-        <rect id="path-2" x="0" y="0" width="335" height="119" rx="10"></rect>
-        <linearGradient x1="50%" y1="0%" x2="33.0069475%" y2="77.020154%" id="linearGradient-4">
-            <stop stop-color="#3D4051" stop-opacity="0.483865489" offset="0%"></stop>
-            <stop stop-color="#393848" offset="100%"></stop>
-        </linearGradient>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-5">
-            <stop stop-color="#3D4051" offset="0%"></stop>
-            <stop stop-color="#393848" offset="100%"></stop>
-        </linearGradient>
-        <circle id="path-6" cx="41" cy="41" r="41"></circle>
-        <filter x="-235.5%" y="-168.2%" width="571.0%" height="436.3%" filterUnits="objectBoundingBox" id="filter-8">
+        <circle id="path-2" cx="41" cy="41" r="41"></circle>
+        <filter x="-235.5%" y="-168.2%" width="571.0%" height="436.3%" filterUnits="objectBoundingBox" id="filter-4">
             <feGaussianBlur stdDeviation="4.70982143" in="SourceGraphic"></feGaussianBlur>
         </filter>
     </defs>
     <g id="2018年12月05日" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="职业认证-step1" transform="translate(-20.000000, -224.000000)">
             <g id="在职" transform="translate(20.000000, 224.000000)">
-                <g id="Path-24">
-                    <mask id="mask-3" fill="white">
-                        <use xlink:href="#path-2"></use>
-                    </mask>
-                    <use id="Mask" fill="url(#linearGradient-1)" fill-rule="nonzero" xlink:href="#path-2"></use>
-                    <path d="M-16,60 C87.1250565,72.2083754 160.535744,89.0809821 204.232064,110.61782 C269.776543,142.923077 -16,160.812859 -16,116.703824 C-16,87.2978001 -16,68.3965255 -16,60 Z" fill="url(#linearGradient-4)" fill-rule="nonzero" mask="url(#mask-3)"></path>
-                    <path d="M124.165447,121.009857 C185.565473,29.312945 254.353745,-12.6855022 330.530264,-4.9854848 C444.795042,6.56454134 428.226954,126.921904 330.530264,126.921904 C265.399137,126.921904 196.610865,124.951222 124.165447,121.009857 Z" id="Path-3" fill="url(#linearGradient-5)" fill-rule="nonzero" mask="url(#mask-3)"></path>
+                <g id="Path-24" fill="url(#linearGradient-1)" fill-rule="nonzero">
+                    <rect id="Mask" x="0" y="0" width="335" height="119" rx="10"></rect>
+                    <path d="M269.131345,0 L325,0 C330.522847,-1.01453063e-15 335,4.4771525 335,10 L335,109 C335,114.522847 330.522847,119 325,119 L125.517806,119 C169.594976,53.8121249 217.466152,14.1454645 269.131345,-3.99680289e-15 Z" id="Combined-Shape"></path>
+                    <path d="M213.867586,119 L10,119 C4.4771525,119 6.76353751e-16,114.522847 0,109 L0,61.9618314 C94.752957,73.9932548 162.830312,90.2119176 204.232064,110.61782 C210.164414,113.541729 213.2188,116.347549 213.867586,119 Z" id="Combined-Shape"></path>
                 </g>
                 <text font-family="SourceHanSansSC-Medium, Source Han Sans SC" font-size="20" font-weight="400" fill="#FFFFFF">
                     <tspan x="20" y="47">在职</tspan>
                 </text>
                 <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="21" y="85" width="24" height="3"></rect>
                 <g id="Group-39" transform="translate(213.000000, 19.000000)">
-                    <mask id="mask-7" fill="white">
-                        <use xlink:href="#path-6"></use>
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
                     </mask>
-                    <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-6"></use>
-                    <g mask="url(#mask-7)">
+                    <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-2"></use>
+                    <g mask="url(#mask-3)">
                         <g transform="translate(7.000000, 11.000000)">
                             <g id="Group-37" transform="translate(26.000000, 0.000000)">
                                 <polygon id="Path-17" fill="#4D4C4C" fill-rule="nonzero" points="1.05052924 5.57002085 16.4686974 8.5500087 27.7126026 2.88043945 10.5060827 0.273722639"></polygon>
@@ -71,7 +59,7 @@
                                 <polygon id="Path-16" fill="#404040" fill-rule="nonzero" points="26.5144505 15.5669116 41.0507117 5.48687391 41.0507117 63.7442976 26.5144505 80.0565001"></polygon>
                                 <polygon id="Rectangle-36" fill="#4D4C4C" fill-rule="nonzero" points="2 15 8 16.4024462 8 23.4024462 2 22"></polygon>
                                 <polygon id="Rectangle-36-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="2 24 8 25.4024462 8 32.4024462 2 31"></polygon>
-                                <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" filter="url(#filter-8)" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
+                                <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" filter="url(#filter-4)" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
                                 <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
                                 <polygon id="Rectangle-36-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="10 26 16 27.4024462 16 34.4024462 10 33"></polygon>
                                 <polygon id="Rectangle-36-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="18 19 24 20.4024462 24 27.4024462 18 26"></polygon>
@@ -110,9 +98,7 @@
                 <text id="working" opacity="0.600000024" font-family="SourceHanSansSC-Medium, Source Han Sans SC" font-size="15" font-weight="400" fill="#FFFFFF">
                     <tspan x="20" y="70">working</tspan>
                 </text>
-                <text id="ion-ios-arrow-forward---Ionicons" font-family="Ionicons" font-size="28" font-weight="400" fill="#FFFFFF">
-                    <tspan x="314" y="70"></tspan>
-                </text>
+                <polygon id="ion-ios-arrow-forward---Ionicons" fill="#FFFFFF" points="312 52.75 313.75 51 322.5 59.75 313.75 68.5 312 66.75 318.945312 59.75"></polygon>
             </g>
         </g>
     </g>
