@@ -1,4 +1,5 @@
 import { province, city } from "utils/city";
+import { certifications } from 'config/api';
 import { showErrorToast, request } from "utils/util";
 
 Page({
@@ -106,7 +107,6 @@ Page({
   },
 
   bindCountryChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     const index = Number(e.detail.value)
     this.setData({
       countryIndex: index
@@ -114,14 +114,12 @@ Page({
   },
 
   bindCityChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       cityIndex: e.detail.value
     })
   },
 
   bindCityColumnChange(e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value)
     const data = {
       city: this.data.city,
       cityIndex: this.data.cityIndex
@@ -168,6 +166,19 @@ Page({
       showErrorToast('邮箱格式不正确', 1000);
       return;
     }
+
+    const { formData, status } = this.data;
+    request({
+      url: certifications,
+      method: 'POST',
+      data: {
+        ...formData,
+        ...event.detail.value,
+        category: status === 0 ? 'studying' : 'working'
+      }
+    }).then(res => {
+      console.log(res.data)
+    })
 
     // 提交表单
     // 更新本地缓存和globalData,
