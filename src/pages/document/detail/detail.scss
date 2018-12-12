@@ -3,6 +3,7 @@
 @import 'shared_center';
 @import 'fixed_comment';
 @import 'page_loading';
+@import 'modal';
 
 page {
   position: relative;
@@ -179,4 +180,23 @@ page {
   position: absolute;
   left: 10000rpx;
   top: 0;
+}
+
+.document-modal {
+  padding: 0 96rpx 50rpx;
+  text-align: center;
+
+  &__link {
+    padding: 20rpx 120rpx;
+    display: inline-block;
+    background-color: #121212;
+    color: #fff;
+    font-size: 28rpx;
+  }
+
+  &__no {
+    font-size: 28rpx;
+    color: #a8a8a8;
+    margin-top: 20rpx;
+  }
 }

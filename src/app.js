@@ -10,6 +10,7 @@ App({
     isAndroid: true,
     isLogin: false,
     userInfo: null,
+    isAuth: false,
     systemInfo: {},
     notifyCount: 0,
   },

@@ -15,7 +15,8 @@ Page({
     isDraw: false,
     canvasHeight: 0,
     isSharedComment: false,
-    targetComment: null
+    targetComment: null,
+    isShowModal: false,
   },
   onLoad: function (options) {
     let id = null;
@@ -68,6 +69,11 @@ Page({
     });
   },
   download: function() {
+    if (!getApp().globalData.isAuth) {
+      this.openModal();
+      return;
+    }
+
     showLoading('获取中');
     const url = this.data.document.file_url;
     if (!url) {
@@ -379,4 +385,14 @@ Page({
       actionSheetHidden: true
     });
   },
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
+  },
+  openModal: function() {
+    this.setData({
+      isShowModal: true,
+    })
+  }
 })
