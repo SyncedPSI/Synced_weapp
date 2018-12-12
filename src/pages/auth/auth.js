@@ -18,9 +18,28 @@ Page({
     ],
     cityIndex: [0, 0],
     formData: null,
-
+    isShowModal: false,
+    isShowInComment: true
   },
   onLoad: function (options) {
+  },
+
+  switchChange: function(event) {
+    this.setData({
+      isShowInComment: event.detail.value
+    })
+  },
+
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
+  },
+
+  openModal: function() {
+    this.setData({
+      isShowModal: true,
+    })
   },
 
   getStatus: function(event) {
@@ -152,5 +171,6 @@ Page({
 
     // 提交表单
     // 更新本地缓存和globalData,
+    // this.openModal();
   }
 })

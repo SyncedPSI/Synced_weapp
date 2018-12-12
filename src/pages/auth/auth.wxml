@@ -87,3 +87,30 @@
     </form>
   </view>
 </view>
+
+<modal isShowModal="{{isShowModal}}" bindclosemodal="closeModal">
+  <view class="auth-modal__header">
+    <image class="modal__img" src="/images/auth_success.png" />
+    <view class="modal__title">恭喜你，职业认证成功</view>
+    <view class="modal__desc">快去阅读你感兴趣的内容吧</view>
+  </view>
+  <view class="auth-modal__footer">
+    <view class="u-flex auth-modal__switch">
+      <text>在评论时呈现我的职务信息</text>
+      <switch checked="{{isShowInComment}}" bindchange="switchChange" color="#414141" />
+    </view>
+    <view class="u-flex auth-modal__user">
+      <view class="auth-modal__avatar"></view>
+      <view class="auth-modal__right">
+        <block wx:if="{{isShowInComment}}">
+          <view>
+            <text>用户名</text>
+            <text class="auth-modal__pro">pro</text>
+          </view>
+          <view class="auth-modal__post">机器之心 UI设计师</view>
+        </block>
+        <view wx:else>用户名</view>
+      </view>
+    </view>
+  </view>
+</modal>
