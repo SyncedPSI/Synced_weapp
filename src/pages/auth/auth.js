@@ -32,6 +32,8 @@ Page({
     workExperienceIndex: 0,
     graduationYear: getGraduationYear(),
     graduationYearIndex: 5,
+    allDegree: ['学士', '硕士', '博士', '其他'],
+    degreeIndex: 0,
     formData: {},
     isShowModal: false,
     isShowInComment: true,
@@ -110,11 +112,6 @@ Page({
       return;
     }
 
-    if (degree === '') {
-      showErrorToast('请输入学位', 1000);
-      return;
-    }
-
     const { workExperience, graduationYear } = this.data;
     this.setData({
       step: 3,
@@ -123,6 +120,7 @@ Page({
         city: address,
         graduation_year: graduationYear[graduation_year],
         work_experience: workExperience[work_experience],
+        degree: allDegree[degreeIndex],
       }
     });
   },
@@ -145,6 +143,13 @@ Page({
     const index = Number(event.detail.value);
     this.setData({
       graduationYearIndex: index
+    })
+  },
+
+  bindDegreeChange: function (event) {
+    const index = Number(event.detail.value);
+    this.setData({
+      degreeIndex: index
     })
   },
 
