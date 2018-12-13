@@ -4,7 +4,7 @@
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchData" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchData" scroll-top="{{scrollTop}}">
       <block wx:if="{{author !== null}}">
         <view class="u-flex author--container">
           <image class="author--avatar" src="{{author.avatar_url}}" />

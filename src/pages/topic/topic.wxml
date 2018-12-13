@@ -4,7 +4,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" pageLogin="{{isLogin}}"></nav>
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
-  <scroll-view scroll-y="{{true}}">
+  <scroll-view scroll-y enable-back-to-top>
     <template is="page_loading" wx:if="{{topic === nulll}}" />
 
     <block wx:else>

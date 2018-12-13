@@ -5,7 +5,7 @@
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-   <scroll-view scroll-y bindscrolltolower="fetchMoreData">
+   <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData">
       <view class="content--list">
         <navigator class="u-flex document-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
           <image class="document-item__cover" src="{{item.cover_image_url}}" />

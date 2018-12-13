@@ -14,7 +14,7 @@
 
 <view class="u-container t-bg" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <scroll-view scroll-y="{{true}}" bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
       <view class="search__container">
         <block wx:if="{{node !== null}}">
           <node id="{{node.id}}" nodeId="{{node.id}}" name="{{node.zh_name ? node.zh_name : node.en_name}}" type="{{node.type}}" summary="{{node.summary}}"></node>

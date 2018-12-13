@@ -5,7 +5,8 @@ Page({
   data: {
     noticeList: {},
     unreadNoticeCount: 0,
-    hasNotice: true,
+    hasMoreNotice: true,
+    noHasNotice: false,
     readCount: 0,
     startX: 0,
     startY: 0,
@@ -30,7 +31,7 @@ Page({
     this.setData({
       activeNav: nav,
     }, () => {
-      if (nav === 'notice' && this.data.hasNotice) {
+      if (nav === 'notice' && this.data.hasMoreNotice) {
         this.fetchMoreNotice(true);
       }
     });
@@ -50,8 +51,8 @@ Page({
   },
 
   fetchMoreNotice: function(isFirst = false) {
-    const { activeNav, hasNotice } = this.data;
-    if (activeNav !== 'notice' || !hasNotice) return;
+    const { activeNav, hasMoreNotice } = this.data;
+    if (activeNav !== 'notice' || !hasMoreNotice) return;
 
     request({
       url: `${notice}?page=${this.noticePage}`
@@ -61,6 +62,11 @@ Page({
       if (isFirst) {
         const count = res.data.notifications_count;
         this.getUnreadCount(count);
+        if (noticeList.length === 0) {
+          this.setData({
+            noHasNotice: true
+          });
+        }
       }
 
       const { notifications, has_next_page } = res.data;
@@ -92,7 +98,7 @@ Page({
 
       this.setData({
         noticeList,
-        hasNotice: has_next_page
+        hasMoreNotice: has_next_page
       });
     });
   }

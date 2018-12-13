@@ -12,7 +12,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px" wx:if="{{node !== null}}">
-  <scroll-view scroll-y bindscrolltolower="fetchMore">
+  <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMore">
     <view class="node-header__container">
       <view class="u-flex node__order" wx-if="{{node.hot_rank !== null}}">
         <text class="node__order--num">NO.{{node.hot_rank}}</text>

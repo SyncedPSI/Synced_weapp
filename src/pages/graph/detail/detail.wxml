@@ -5,7 +5,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}"></nav>
 <block wx:if="{{isRequestFinished}}">
   <view class="u-container" style="padding-top: {{statusBarHeight}}px">
-    <scroll-view scroll-y scroll-into-view="{{scrollToView}}">
+    <scroll-view scroll-y enable-back-to-top scroll-into-view="{{scrollToView}}">
       <view class="node-header">
         <view class="node-header__container">
           <template is="node-header" data="{{...node}}" />
