@@ -26,7 +26,10 @@
   <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreNotice" scroll-top="0">
     <block wx:if="{{ activeNav === 'notice'}}">
       <notice notice="{{noticeList}}" />
-      <template is="loading" wx:if="{{hasNotice}}" />
+      <view class="no-data" wx:if="{{!noHasNotice}}">
+        <text>暂无通知</text>
+      </view>
+      <template is="loading" wx:if="{{hasMoreNotice}}" />
     </block>
 
     <block wx:if="{{activeNav === 'readlater'}}">
