@@ -128,7 +128,7 @@ export const saveImage = (width, height, authErrorCb, successCb = noLoop) => {
       wx.saveImageToPhotosAlbum({
         filePath: res.tempFilePath,
         success: function () {
-          showTipToast('图片已保存至相册');
+          showTipToast('图片已保存');
           successCb();
         },
         fail: (error) => {
