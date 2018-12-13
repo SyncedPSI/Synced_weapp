@@ -84,14 +84,16 @@ App({
           this.setLoginFailed();
           return;
         }
-
         const authToken = wx.getStorageSync('authToken');
         if (authToken) {
           request({
             url: login,
             method: 'POST'
           }).then((res) => {
-            this.globalData.notifyCount = res.data.notify_count;
+            const { user_info: {certification}, notify_count } = res.data;
+            this.globalData.notifyCount = notify_count;
+            this.globalData.isAuth = certification;
+
             const remain_hours = timeDistance / 3600;
             if (remain_hours > 1.5) {
               this.globalData.isLogin = true;
@@ -163,7 +165,7 @@ App({
     });
   },
   setLoginSuccess: function (loginData, msg) {
-    const { auth_token, expired_time, notify_count } = loginData;
+    const { auth_token, expired_time, notify_count, user_info: {certification}, } = loginData;
     wx.setStorage({
       key: 'authToken',
       data: auth_token
@@ -172,6 +174,8 @@ App({
       key: 'expiredTime',
       data: expired_time
     });
+
+    this.globalData.isAuth = certification;
     this.globalData.notifyCount = notify_count;
     this.globalData.isLogin = true;
     showTipToast(msg);

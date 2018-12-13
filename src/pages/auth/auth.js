@@ -3,7 +3,7 @@ import { certifications } from 'config/api';
 import { showErrorToast, request } from "utils/util";
 
 const getGraduationYear = () => {
-  const currentYear = Number(new Date().getFullYear()) + 4;
+  const currentYear = Number(new Date().getFullYear()) + 5;
   const arr = [];
 
   for (let i = 0; i < 50; i++) {
@@ -35,7 +35,7 @@ Page({
     workExperience: ['一年内', '1-3年', '3-5年', '5年以上'],
     workExperienceIndex: 0,
     graduationYear: getGraduationYear(),
-    graduationYearIndex: 4,
+    graduationYearIndex: 5,
     formData: null,
     isShowModal: false,
     isShowInComment: true
@@ -44,8 +44,17 @@ Page({
   },
 
   switchChange: function(event) {
-    this.setData({
-      isShowInComment: event.detail.value
+    const newStatus = event.detail.value;
+    request({
+      url: certifications,
+      method: 'POST',
+      data: {
+        reveal: newStatus
+      }
+    }).then(() => {
+      this.setData({
+        isShowInComment: event.detail.value
+      });
     })
   },
 
@@ -69,8 +78,7 @@ Page({
     });
   },
   goStep3: function (event) {
-    console.log(event.detail.value)
-    const { city, external, internal, company, position, school, major, degree } = event.detail.value;
+    const { city, external, internal, company, position, school, major, degree, graduation_year, work_experience  } = event.detail.value;
     let address = '';
     if (city === 0) {
       address = this.data.city[1][external[1]].id
@@ -105,38 +113,41 @@ Page({
       return;
     }
 
+    const { workExperience, graduationYear } = this.data;
     this.setData({
       step: 3,
       formData: {
         ...event.detail.value,
-        city: address
+        city: address,
+        graduation_year: graduationYear[graduation_year],
+        work_experience: workExperience[work_experience],
       }
     });
   },
 
-  bindCountryChange: function(e) {
-    const index = Number(e.detail.value);
+  bindCountryChange: function (event) {
+    const index = Number(event.detail.value);
     this.setData({
       countryIndex: index
     })
   },
 
-  bindWorkChange: function(e) {
-    const index = Number(e.detail.value);
+  bindWorkChange: function (event) {
+    const index = Number(event.detail.value);
     this.setData({
       workExperienceIndex: index
     })
   },
 
-  bindGraduationChange: function() {
-    const index = Number(e.detail.value);
+  bindGraduationChange: function(event) {
+    const index = Number(event.detail.value);
     this.setData({
       graduationYearIndex: index
     })
   },
 
-  bindCityChange(e) {
-    const index = Number(e.detail.value);
+  bindCityChange: function(event) {
+    const index = Number(event.detail.value);
     this.setData({
       cityIndex: index
     })
@@ -154,7 +165,6 @@ Page({
       data.city[1] = city[provinceId];
       data.cityIndex[1] = 0;
     }
-    // console.log(data.cityIndex)
     this.setData(data)
   },
 
@@ -199,12 +209,8 @@ Page({
         ...event.detail.value,
         category: status === 0 ? 'studying' : 'working'
       }
-    }).then(res => {
-      console.log(res.data)
+    }).then(() => {
+      this.openModal();
     })
-
-    // 提交表单
-    // 更新本地缓存和globalData,
-    // this.openModal();
   }
 })
