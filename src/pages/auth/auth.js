@@ -5,16 +5,12 @@ import { showErrorToast, request } from "utils/util";
 const getGraduationYear = () => {
   const currentYear = Number(new Date().getFullYear()) + 5;
   const arr = [];
-
   for (let i = 0; i < 50; i++) {
     arr.push(`${currentYear - i}年`);
   }
-
   arr.push(`${currentYear - 49}年之前`);
-
   return arr;
 }
-
 
 Page({
   data: {
@@ -24,7 +20,7 @@ Page({
       {id: 1, title: '在职', image: '/images/auth_work.svg'},
       {id: 0, title: '在读', image: '/images/auth_school.svg'},
     ],
-    status: 0,
+    status: 1,
     country: ['中国', '海外'],
     countryIndex: 0,
     city: [
@@ -36,11 +32,15 @@ Page({
     workExperienceIndex: 0,
     graduationYear: getGraduationYear(),
     graduationYearIndex: 5,
-    formData: null,
+    formData: {},
     isShowModal: false,
-    isShowInComment: true
+    isShowInComment: true,
+    userInfo: {},
   },
-  onLoad: function (options) {
+  onLoad: function () {
+    this.setData({
+      userInfo: getApp().globalData.userInfo
+    });
   },
 
   switchChange: function(event) {

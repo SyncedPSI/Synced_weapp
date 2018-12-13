@@ -39,7 +39,6 @@ Component({
       value: false,
       observer: function(newVal) {
         if (newVal && this.data.avatarUrl === '') {
-          console.log('kkkk')
           this.setData({
             avatarUrl: app.globalData.userInfo.avatarUrl
           });
