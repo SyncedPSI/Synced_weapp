@@ -9,10 +9,16 @@ Page({
     activeId: null,
     activeTitle: null,
     keys: [],
+    isLogin: false,
   },
   onLoad: function () {
     this.dailyPage = 1;
     this.getDailyList();
+  },
+  onShow: function () {
+    this.setData({
+      isLogin: getApp().globalData.isLogin
+    })
   },
 
   fetchMore: function() {

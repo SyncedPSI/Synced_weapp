@@ -1,4 +1,4 @@
-<nav isIndex hasShadow="{{false}}" title=""></nav>
+<nav isIndex hasShadow="{{false}}" title="" pageLogin="{{isLogin}}"></nav>
 <view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">趋势</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">

@@ -7,6 +7,7 @@ Page({
     banners: [],
     recommends: [],
     currentBannerIndex: 0,
+    isLogin: false,
   },
   onLoad: function () {
     request({
@@ -26,6 +27,13 @@ Page({
       });
     })
   },
+
+  onShow: function () {
+    this.setData({
+      isLogin: getApp().globalData.isLogin
+    })
+  },
+
   bannerChange: function (event) {
     this.setData({
       currentBannerIndex: event.detail.current

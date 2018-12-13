@@ -13,7 +13,8 @@ Page({
       { en: 'practice', zh: '#工程' },
       { en: 'theory', zh: '#理论' },
       { en: 'basic', zh: '#入门' },
-    ]
+    ],
+    isLogin: false,
   },
 
   onLoad: function() {
@@ -23,6 +24,13 @@ Page({
 
     this.getArticleList();
   },
+
+  onShow: function () {
+    this.setData({
+      isLogin: getApp().globalData.isLogin
+    })
+  },
+
   switchCategory: function(event) {
     this.setData({
       activeCategory: event.target.dataset.type,

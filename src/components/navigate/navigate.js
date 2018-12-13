@@ -37,6 +37,14 @@ Component({
     pageLogin: {
       type: Boolean,
       value: false,
+      observer: function(newVal) {
+        if (newVal && this.data.avatarUrl === '') {
+          console.log('kkkk')
+          this.setData({
+            avatarUrl: app.globalData.userInfo.avatarUrl
+          });
+        }
+      }
     }
   },
   data: {
@@ -46,15 +54,12 @@ Component({
     avatarUrl: app.globalData.userInfo && app.globalData.userInfo.avatarUrl,
     notifyCount: 0
   },
-  ready: function () {
+  attached: function () {
     const { isLogin, notifyCount } = app.globalData;
     this.setData({
       isLogin,
       notifyCount
     });
-  },
-  detached: function () {
-
   },
   methods: {
     goBack: function() {
@@ -72,8 +77,7 @@ Component({
       }
       app.login(event.detail.userInfo, () => {
         this.setData({
-          isLogin: true,
-          avatarUrl: app.globalData.userInfo.avatarUrl
+          isLogin: true
         }, () => {
           wx.navigateTo({
             url: pagePath

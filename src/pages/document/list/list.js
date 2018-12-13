@@ -6,13 +6,18 @@ Page({
     reportList: [],
     hasMore: true,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
-    scrollTop: 0,
+    isLogin: false,
   },
 
   onLoad: function() {
     this.page = 1;
 
     this.getReportList();
+  },
+  onShow: function() {
+    this.setData({
+      isLogin: getApp().globalData.isLogin
+    })
   },
   getReportList: function (isRefresh = false) {
     if (!this.data.hasMore) return;

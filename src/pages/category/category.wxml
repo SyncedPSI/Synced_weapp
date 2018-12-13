@@ -1,6 +1,6 @@
 <import src="../common/loading.wxml"/>
 
-<nav isIndex hasShadow="{{false}}" title=""></nav>
+<nav isIndex hasShadow="{{false}}" title="" pageLogin="{{isLogin}}"></nav>
 
 <view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">文章</view>
 
