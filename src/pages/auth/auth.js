@@ -61,7 +61,9 @@ Page({
   closeModal: function() {
     this.setData({
       isShowModal: false,
-    })
+    }, () => {
+      wx.navigateBack();
+    });
   },
 
   openModal: function() {
@@ -210,6 +212,10 @@ Page({
         category: status === 0 ? 'studying' : 'working'
       }
     }).then(() => {
+      getApp().globalData.isAuth = true;
+      this.setData({
+        isAuth: true,
+      })
       this.openModal();
     })
   }
