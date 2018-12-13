@@ -28,11 +28,12 @@
 
   &--close {
     text-align: right;
+    font-size: 0;
   }
 
   &--close__img {
-    padding: 18rpx 26rpx;
-    width: 36rpx;
-    height: 36rpx;
+    padding: 24rpx 26rpx 18rpx;
+    width: 28rpx;
+    height: 28rpx;
   }
 }
