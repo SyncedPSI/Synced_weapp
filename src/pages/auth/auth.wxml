@@ -98,7 +98,7 @@
     <view class="modal__title">恭喜你，职业认证成功</view>
     <view class="modal__desc">快去阅读你感兴趣的内容吧</view>
   </view>
-  <view class="auth-modal__footer" wx-if="{{status === 1}}">
+  <view class="auth-modal__footer">
     <view class="u-flex auth-modal__switch">
       <text>在评论时呈现我的职务信息</text>
       <switch checked="{{isShowInComment}}" bindchange="switchChange" color="#414141" />
@@ -111,7 +111,8 @@
             <text class="auth-modal__name">{{userInfo.nickName}}</text>
             <text class="auth-modal__pro">pro</text>
           </view>
-          <view class="auth-modal__post">{{formData.company}}・{{formData.position}}</view>
+          <view class="auth-modal__post" wx-if="{{status === 1}}">{{formData.company}}・{{formData.position}}</view>
+          <view class="auth-modal__post" wx-if="{{status === 0}}">{{formData.school}}・{{formData.major}}・{{formData.degree}}</view>
         </block>
         <view wx:else>{{username}}</view>
       </view>
