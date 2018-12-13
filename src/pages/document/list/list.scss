@@ -2,6 +2,7 @@
 @import 'load_more';
 @import 'mixins';
 @import 'has_tabbar';
+@import 'u_tab_in_header';
 
 page {
   background-color: #fff;
@@ -13,7 +14,7 @@ page {
   align-items: flex-end;
 
   &:first-child {
-    margin-top: 50rpx;
+    margin-top: 0;
   }
 
   &__height {
@@ -58,4 +59,17 @@ page {
 
 .content--list {
   padding: 0 40rpx;
+}
+
+.document-nav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 2rpx 40rpx 3rpx;
+  z-index: 10;
+
+  &__height {
+    height: 140rpx;
+  }
 }
