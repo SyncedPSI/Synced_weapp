@@ -46,6 +46,11 @@ Page({
     });
     this.initCanvas();
   },
+  onShow: function() {
+    this.setData({
+      isShowModal: false
+    })
+  },
   getWxcode: function (id) {
     getWxcodeUrl(id, 'pages/document/detail/detail', 'Document', (path) => {
       this.setData({

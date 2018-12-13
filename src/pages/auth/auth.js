@@ -112,7 +112,7 @@ Page({
       return;
     }
 
-    const { workExperience, graduationYear } = this.data;
+    const { workExperience, graduationYear, allDegree } = this.data;
     this.setData({
       step: 3,
       formData: {
@@ -120,7 +120,7 @@ Page({
         city: address,
         graduation_year: graduationYear[graduation_year],
         work_experience: workExperience[work_experience],
-        degree: allDegree[degreeIndex],
+        degree: allDegree[degree],
       }
     });
   },

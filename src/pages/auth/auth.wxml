@@ -61,7 +61,7 @@
       <view class="form--label">专业</view>
       <input class="form--input" type="text" placeholder="请输入专业" name="major" />
       <view class="form--label">学位</view>
-       <picker class="form--input t-picker" name="graduation_year" bindchange="bindDegreeChange" value="{{degreeIndex}}" range="{{allDegree}}">
+       <picker class="form--input t-picker" name="degree" bindchange="bindDegreeChange" value="{{degreeIndex}}" range="{{allDegree}}">
         <text>{{allDegree[degreeIndex]}} </text>
       </picker>
       <view class="form--label">毕业年份</view>
