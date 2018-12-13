@@ -4,7 +4,7 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow pageLogin="{{isLogin}}"></nav>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
-  <scroll-view scroll-y="{{true}}" bindscroll="scroll">
+  <scroll-view scroll-y enable-back-to-top bindscroll="scroll">
     <template is="page_loading" wx:if="{{isFetching}}" />
     <block wx:else>
        <view class="article--title" id="js-article-title">{{article.title}}</view>

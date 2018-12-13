@@ -2,7 +2,7 @@
 <myheader activeBar="read_later"></myheader>
 
 <view class="readlater--container">
-  <scroll-view scroll-y="{{true}}" >
+  <scroll-view scroll-y enable-back-to-top >
     <view class="u-flex readlater--title">
       <view class="u-flex">
         <text>待读列表</text>
