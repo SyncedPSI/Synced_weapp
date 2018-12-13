@@ -2,6 +2,20 @@ import { province, city } from "utils/city";
 import { certifications } from 'config/api';
 import { showErrorToast, request } from "utils/util";
 
+const getGraduationYear = () => {
+  const currentYear = Number(new Date().getFullYear()) + 4;
+  const arr = [];
+
+  for (let i = 0; i < 50; i++) {
+    arr.push(`${currentYear - i}年`);
+  }
+
+  arr.push(`${currentYear - 49}年之前`);
+
+  return arr;
+}
+
+
 Page({
   data: {
     isIphoneX: getApp().globalData.isIphoneX,
@@ -18,6 +32,10 @@ Page({
       city['110000'],
     ],
     cityIndex: [0, 0],
+    workExperience: ['一年内', '1-3年', '3-5年', '5年以上'],
+    workExperienceIndex: 0,
+    graduationYear: getGraduationYear(),
+    graduationYearIndex: 4,
     formData: null,
     isShowModal: false,
     isShowInComment: true
@@ -52,7 +70,7 @@ Page({
   },
   goStep3: function (event) {
     console.log(event.detail.value)
-    const { city, external, internal, company, position, work_experience, school, major, degree, graduation_year } = event.detail.value;
+    const { city, external, internal, company, position, school, major, degree } = event.detail.value;
     let address = '';
     if (city === 0) {
       address = this.data.city[1][external[1]].id
@@ -68,11 +86,6 @@ Page({
 
       if (position === '') {
         showErrorToast('请输入职位', 1000);
-        return;
-      }
-
-      if (work_experience === '') {
-        showErrorToast('请输入工作年限', 1000);
         return;
       }
     }
@@ -92,11 +105,6 @@ Page({
       return;
     }
 
-    if (graduation_year === '') {
-      showErrorToast('请输入毕业年份', 1000);
-      return;
-    }
-
     this.setData({
       step: 3,
       formData: {
@@ -106,16 +114,31 @@ Page({
     });
   },
 
-  bindCountryChange(e) {
-    const index = Number(e.detail.value)
+  bindCountryChange: function(e) {
+    const index = Number(e.detail.value);
     this.setData({
       countryIndex: index
     })
   },
 
-  bindCityChange(e) {
+  bindWorkChange: function(e) {
+    const index = Number(e.detail.value);
     this.setData({
-      cityIndex: e.detail.value
+      workExperienceIndex: index
+    })
+  },
+
+  bindGraduationChange: function() {
+    const index = Number(e.detail.value);
+    this.setData({
+      graduationYearIndex: index
+    })
+  },
+
+  bindCityChange(e) {
+    const index = Number(e.detail.value);
+    this.setData({
+      cityIndex: index
     })
   },
 

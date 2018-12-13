@@ -52,16 +52,20 @@
         <view class="form--label">职务</view>
         <input class="form--input" type="text" placeholder="请输入职务" name="position" />
         <view class="form--label">工作年限</view>
-        <input class="form--input" type="text" placeholder="请选择工作年限" name="work_experience" />
+        <picker class="form--input t-picker" name="work_experience" bindchange="bindWorkChange" value="{{workExperienceIndex}}" range="{{workExperience}}">
+          <text>{{workExperience[workExperienceIndex]}} </text>
+        </picker>
       </block>
-      <view class="form--label">毕业院校</view>
+      <view class="form--label">毕业/在读院校</view>
       <input class="form--input" type="text" placeholder="请输入毕业院校" name="school" />
       <view class="form--label">专业</view>
       <input class="form--input" type="text" placeholder="请输入专业" name="major" />
       <view class="form--label">学位</view>
       <input class="form--input" type="text" placeholder="请输入学位" name="degree" />
       <view class="form--label">毕业年份</view>
-      <input class="form--input" type="text" placeholder="请输入毕业年份" name="graduation_year" />
+      <picker class="form--input t-picker" name="graduation_year" bindchange="bindGraduationChange" value="{{graduationYearIndex}}" range="{{graduationYear}}">
+        <text>{{graduationYear[graduationYearIndex]}} </text>
+      </picker>
 
       <view class="form--button__container">
         <button class="form--button" form-type="submit">下一步</button>
