@@ -14,7 +14,7 @@
           </view>
           <view class="related--en">{{item.en_name}}</view>
         </view>
-        <navigator url="/pages/{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}" wx:else class="related--card can_click" id="{{item.node_id}}">
+        <navigator url="/pages/{{item.node_type_en}}/{{item.node_type_en}}?id={{item.node_id}}" wx:else class="related--card" id="{{item.node_id}}">
           <view>
             <view class="related--zh">{{item.full_name}}</view>
             <view class="related--type">{{item.node_type}}</view>
