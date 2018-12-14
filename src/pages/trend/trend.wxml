@@ -7,7 +7,7 @@
   <template is="page_loading" wx:if="{{trend === null}}" />
 
   <block wx:else>
-    <image class="trend--cover" src='/images/{{trend.image}}.jpg' />
+    <image class="trend--cover" src="{{trend.banner_url}}" />
 
     <block wx:if="{{trend.type === 'article'}}">
       <view class="trend--title">{{trend.title}}</view>

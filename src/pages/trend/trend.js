@@ -47,17 +47,9 @@ Page({
 
       const category = otherProps.category;
       const detailCategory = ['paper', 'investment', 'report'];
-      if (category === 'article') {
-        otherProps.image = 'trend_task';
-        otherProps.type = 'article';
-      } else if (category === 'daily') {
-        otherProps.image = 'trend_daily';
-         otherProps.type = 'daily';
-      } else if (detailCategory.indexOf(category) > -1) {
-        otherProps.image = 'trend_paper';
+      if (category === 'daily' || detailCategory.indexOf(category) > -1) {
         otherProps.type = 'daily';
       } else {
-        otherProps.image = 'trend_reference';
         otherProps.type = 'article';
       }
 
