@@ -45,14 +45,6 @@ Page({
       WxParse.wxParse("trendDesc", "html", desc, this, 5);
       WxParse.wxParse("trendContent", "html", content, this, 5);
 
-      const category = otherProps.category;
-      const detailCategory = ['paper', 'investment', 'report'];
-      if (category === 'daily' || detailCategory.indexOf(category) > -1) {
-        otherProps.type = 'daily';
-      } else {
-        otherProps.type = 'article';
-      }
-
       this.setData({
         navigateTitle: otherProps.title,
         trend: otherProps,
