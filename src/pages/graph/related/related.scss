@@ -1,8 +1,10 @@
 @import 'variables';
 @import 'common';
+@import 'u_tab_in_header';
 
 .node-header {
   &__full {
+    margin-top: 60rpx;
     font-size: 40rpx;
     font-weight: 500;
     color: #121212;
@@ -15,8 +17,21 @@
   }
 }
 
+scroll-view.u-tab {
+  height: auto;
+  width: 100%;
+  white-space: nowrap;
+  padding: 28rpx 0;
+}
+
+.u-tab {
+  &__item {
+    display: inline-block;
+  }
+}
+
 .related {
-  padding: 60rpx 40rpx;
+  padding: 0 40rpx;
 
   &--type {
     padding: 40rpx 0;
@@ -29,6 +44,10 @@
   &--item {
     margin-bottom: 40rpx;
     align-items: flex-start;
+
+    &:last-child {
+      margin-bottom: 60rpx;
+    }
   }
 
   &--avatar  {

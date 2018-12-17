@@ -6,7 +6,7 @@
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-    <scroll-view scroll-y  enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
       <view class="u-flex u-tab article-nav">
         <view class="u-tab__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
       </view>
