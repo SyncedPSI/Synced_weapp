@@ -4,8 +4,10 @@ import { graph } from "config/api";
 Page({
   data: {
     node: null,
+    statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isFromWeapp: false,
-    isExpand: false
+    activeCategory: null,
+    category: [],
   },
   onLoad: function(options) {
     const { id, type, from } = options;
@@ -13,14 +15,40 @@ Page({
       url: `${graph}/${type}/${id}/relations`
     }).then((res) => {
       const node = res.data;
+      const category = this.getCategory(node);
       this.setData({
         id,
         type,
         navigateTitle: node.full_name,
         node: node,
+        category,
+        activeCategory: category[0].en,
         isFromWeapp: from === "weapp",
       })
     })
+  },
+
+  getCategory: function(node) {
+    const category = [];
+    const translate = {
+      institutions: '相关机构',
+      technologies: '关联技术',
+      experts: '相关人物',
+    };
+
+    ['institutions', 'technologies', 'experts'].forEach((item) => {
+      if (node[item] && node[item].length > 0) {
+        category.push({ en:`js-${item}`, zh: translate[item] });
+      }
+    })
+    return category;
+  },
+  switchCategory: function(event) {
+    const target = event.target.dataset.type;
+    this.setData({
+      activeCategory: target,
+      scrollToView: target,
+    });
   },
   onShareAppMessage: function() {
     const { id, type, node: { full_name } }= this.data;
