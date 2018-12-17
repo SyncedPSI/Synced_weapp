@@ -34,12 +34,15 @@ Component({
       type: String,
       value: '机器之心'
     },
+    notifyCount: {
+      type: Number,
+      value: 0
+    },
     pageLogin: {
       type: Boolean,
       value: false,
       observer: function(newVal) {
         if (newVal && this.data.avatarUrl === '') {
-          console.log('kkkk')
           this.setData({
             avatarUrl: app.globalData.userInfo.avatarUrl
           });
@@ -52,13 +55,11 @@ Component({
     isAndroid: app.globalData.isAndroid,
     isLogin: false,
     avatarUrl: app.globalData.userInfo && app.globalData.userInfo.avatarUrl,
-    notifyCount: 0
   },
   attached: function () {
-    const { isLogin, notifyCount } = app.globalData;
+    const { isLogin } = app.globalData;
     this.setData({
       isLogin,
-      notifyCount
     });
   },
   methods: {

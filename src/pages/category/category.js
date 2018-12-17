@@ -15,6 +15,7 @@ Page({
       { en: 'basic', zh: '#入门' },
     ],
     isLogin: false,
+    notifyCount: 0,
   },
 
   onLoad: function() {
@@ -27,7 +28,8 @@ Page({
 
   onShow: function () {
     this.setData({
-      isLogin: getApp().globalData.isLogin
+      isLogin: getApp().globalData.isLogin,
+      notifyCount: getApp().globalData.notifyCount
     })
   },
 

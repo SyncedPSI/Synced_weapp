@@ -7,6 +7,7 @@ Page({
     hasMore: true,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isLogin: false,
+    notifyCount: 0,
   },
 
   onLoad: function() {
@@ -16,7 +17,8 @@ Page({
   },
   onShow: function() {
     this.setData({
-      isLogin: getApp().globalData.isLogin
+      isLogin: getApp().globalData.isLogin,
+      notifyCount: getApp().globalData.notifyCount
     })
   },
   getReportList: function (isRefresh = false) {

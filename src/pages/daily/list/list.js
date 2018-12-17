@@ -10,6 +10,7 @@ Page({
     activeTitle: null,
     keys: [],
     isLogin: false,
+    notifyCount: 0,
   },
   onLoad: function () {
     this.dailyPage = 1;
@@ -17,7 +18,8 @@ Page({
   },
   onShow: function () {
     this.setData({
-      isLogin: getApp().globalData.isLogin
+      isLogin: getApp().globalData.isLogin,
+      notifyCount: getApp().globalData.notifyCount
     })
   },
 
