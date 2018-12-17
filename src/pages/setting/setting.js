@@ -38,12 +38,16 @@ Page({
   },
 
   getReadCount: function(event) {
+    const {notifications_count, count} = event.detail;
     this.setData({
-      readCount: event.detail.count
+      readCount: count
     });
+    if (notifications_count) {
+      this.getNoticeCount(notifications_count);
+    }
   },
 
-  getUnreadCount: function (count) {
+  getNoticeCount: function (count) {
     this.setData({
       unreadNoticeCount: count
     });
@@ -61,7 +65,7 @@ Page({
       const { noticeList } = this.data;
       if (isFirst) {
         const count = res.data.notifications_count;
-        this.getUnreadCount(count);
+        this.getNoticeCount(count);
         if (noticeList.length === 0) {
           this.setData({
             noHasNotice: true

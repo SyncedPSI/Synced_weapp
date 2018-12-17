@@ -10,7 +10,7 @@
   <view class="u-flex u-tab setting-nav">
     <view class="u-tab__item setting-nav__item {{activeNav === 'notice' ? 'is-active' : ''}}" data-type="notice" bindtap="switchNav">
       <text>消息通知</text>
-      <view class="u-tab__item setting-nav__count" wx:if="{{unreadNoticeCount > 0}}">{{unreadNoticeCount}}</view>
+      <view class="setting-nav__count" wx:if="{{unreadNoticeCount > 0}}">{{unreadNoticeCount}}</view>
     </view>
     <view class="u-tab__item setting-nav__item {{activeNav === 'readlater' ? 'is-active' : ''}}" data-type="readlater" bindtap="switchNav">
       <text>待读列表</text>

@@ -15,14 +15,14 @@ Component({
       request({
         url: readLaterList
       }).then((res) => {
-        const { read_laters, count } = res.data;
+        const { read_laters, count, notifications_count } = res.data;
         read_laters.forEach(item => {
           item.content.published_at = getDateDiff(item.content.published_at);
         });
         this.setData({
           readList: read_laters,
         });
-        this.tiggerEvent(count);
+        this.triggerEvent('getcount', {count, notifications_count})
       })
     },
 
