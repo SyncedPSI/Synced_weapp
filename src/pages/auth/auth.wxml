@@ -116,7 +116,7 @@
           <view class="auth-modal__post" wx-if="{{status === 1}}">{{formData.company}}・{{formData.position}}</view>
           <view class="auth-modal__post" wx-if="{{status === 0}}">{{formData.school}}・{{formData.major}}・{{formData.degree}}</view>
         </block>
-        <view wx:else>{{username}}</view>
+        <view wx:else>{{userInfo.nickName}}</view>
       </view>
     </view>
   </view>
