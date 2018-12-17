@@ -38,16 +38,14 @@ Page({
 
     ['institutions', 'technologies', 'experts'].forEach((item) => {
       if (node[item] && node[item].length > 0) {
-        category.push({ en:`js-${item}`, zh: translate[item] });
+        category.push({ en:item, zh: translate[item] });
       }
     })
     return category;
   },
   switchCategory: function(event) {
-    const target = event.target.dataset.type;
     this.setData({
-      activeCategory: target,
-      scrollToView: target,
+      activeCategory: event.target.dataset.type,
     });
   },
   onShareAppMessage: function() {
