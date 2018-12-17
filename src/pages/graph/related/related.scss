@@ -18,16 +18,14 @@
 }
 
 scroll-view.u-tab {
-  height: auto;
+  height: 100rpx;
   width: 100%;
   white-space: nowrap;
-  padding: 28rpx 0;
 }
 
-.u-tab {
-  &__item {
-    display: inline-block;
-  }
+.u-tab__item {
+  display: inline-block;
+  margin-top: 24rpx;
 }
 
 .related {
