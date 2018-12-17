@@ -42,7 +42,7 @@ Page({
     this.setData({
       readCount: count
     });
-    if (notifications_count) {
+    if (notifications_count !== undefined) {
       this.getNoticeCount(notifications_count);
     }
   },
