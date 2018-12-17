@@ -1,33 +1,19 @@
 @import 'variables';
 @import 'load_more';
 @import 'has_tabbar';
+@import 'u_tab_in_header';
 
 page {
   background-color: #fff;
 }
 
 .article-nav {
-  height: 100rpx;
   position: fixed;
   left: 0;
   right: 0;
   background-color: #fff;
   padding: 2rpx 40rpx 3rpx;
   z-index: 10;
-
-  &__item {
-    color: #D0D0D0;
-    font-size: 30rpx;
-    font-weight: 500;
-    padding: 2rpx 22rpx;
-    transition: background-color .28s;
-    border-radius: 50rpx;
-
-    &.is-active {
-      background-color: $bg-white;
-      color: #121212;
-    }
-  }
 
   &__height {
     height: 140rpx;

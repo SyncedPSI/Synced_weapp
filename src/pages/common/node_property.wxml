@@ -14,12 +14,5 @@
       <text class="node-header__origin" bindtap="copyclip" data-url="{{value}}">{{key}}</text>
     </block>
   </view>
-  <view class="node-header__origins"  wx:if="{{ext_relationships != null}}">
-    <image class="node-header__icon" src="{{val}}/icons/node_source.png" />
-    <text class="node-header__origins--tip">相关外链： </text>
-    <block wx:for="{{ext_relationships}}" wx:key="unique" wx:for-index="key" wx:for-item="value">
-      <text class="node-header__origin" bindtap="copyclip" data-url="{{value}}">{{key}}</text>
-    </block>
-  </view>
   <template wx:if="{{technologies && technologies.length != 0}}" is="node-technologies" data="{{technologies: technologies}}"/>
 </template>

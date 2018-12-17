@@ -45,22 +45,6 @@ Page({
       WxParse.wxParse("trendDesc", "html", desc, this, 5);
       WxParse.wxParse("trendContent", "html", content, this, 5);
 
-      const category = otherProps.category;
-      const detailCategory = ['paper', 'investment', 'report'];
-      if (category === 'article') {
-        otherProps.image = 'trend_task';
-        otherProps.type = 'article';
-      } else if (category === 'daily') {
-        otherProps.image = 'trend_daily';
-         otherProps.type = 'daily';
-      } else if (detailCategory.indexOf(category) > -1) {
-        otherProps.image = 'trend_paper';
-        otherProps.type = 'daily';
-      } else {
-        otherProps.image = 'trend_reference';
-        otherProps.type = 'article';
-      }
-
       this.setData({
         navigateTitle: otherProps.title,
         trend: otherProps,
