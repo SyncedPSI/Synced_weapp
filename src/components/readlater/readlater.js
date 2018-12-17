@@ -96,7 +96,7 @@ Component({
         this.setData({
           readList: newList,
         });
-        this.tiggerEvent(readList.length);
+        this.tiggerEvent(newList.length);
         showTipToast('删除成功');
       })
     },
