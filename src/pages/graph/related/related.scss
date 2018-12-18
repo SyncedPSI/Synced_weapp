@@ -27,7 +27,11 @@ scroll-view.u-tab {
 
 .u-tab__item {
   display: inline-block;
-  margin: 24rpx 30rpx 0 0;
+  margin: 24rpx 28rpx 0 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .related {

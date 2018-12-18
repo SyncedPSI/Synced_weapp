@@ -8,15 +8,15 @@
     <image class="setting-header__sign" src="/icons/user_{{user.sign ? 'sliver' : 'gold'}}.png" />
   </view>
   <view class="u-flex u-tab setting-nav">
-    <view class="u-tab__item has-count {{activeNav === 'notice' ? 'is-active' : ''}}" data-type="notice" bindtap="switchNav">
+    <view class="u-tab__item setting-nav__item {{activeNav === 'notice' ? 'is-active' : ''}}" data-type="notice" bindtap="switchNav">
       <text>消息通知</text>
-      <view class="u-tab__count" wx:if="{{unreadNoticeCount > 0}}">{{unreadNoticeCount}}</view>
+      <view class="setting-nav__count" wx:if="{{unreadNoticeCount > 0}}">{{unreadNoticeCount}}</view>
     </view>
-    <view class="u-tab__item has-count {{activeNav === 'readlater' ? 'is-active' : ''}}" data-type="readlater" bindtap="switchNav">
+    <view class="u-tab__item setting-nav__item {{activeNav === 'readlater' ? 'is-active' : ''}}" data-type="readlater" bindtap="switchNav">
       <text>待读列表</text>
-      <view class="u-tab__count" wx-if="{{readCount > 0}}">{{readCount}}</view>
+      <view class="setting-nav__count" wx-if="{{readCount > 0}}">{{readCount}}</view>
     </view>
-    <view class="u-tab__item has-count {{activeNav === 'subscribe' ? 'is-active' : ''}}" data-type="subscribe" bindtap="switchNav">
+    <view class="u-tab__item {{activeNav === 'subscribe' ? 'is-active' : ''}}" data-type="subscribe" bindtap="switchNav">
       <text>订阅管理</text>
     </view>
   </view>

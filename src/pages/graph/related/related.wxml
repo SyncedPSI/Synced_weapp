@@ -11,8 +11,7 @@
         <view class="node-header__en">{{node.en_name}}</view>
         <scroll-view class="u-tab" scroll-x>
           <view class="u-tab__item has-count {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">
-            <text>{{item.zh}}</text>
-            <view class="u-tab__count">{{node[item.en].length}}</view>
+            {{item.zh}} ({{node[item.en].length}})
           </view>
         </scroll-view>
 
