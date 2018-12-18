@@ -45,7 +45,7 @@ Page({
   },
   switchCategory: function(event) {
     this.setData({
-      activeCategory: event.target.dataset.type,
+      activeCategory: event.currentTarget.dataset.type,
     });
   },
   onShareAppMessage: function() {

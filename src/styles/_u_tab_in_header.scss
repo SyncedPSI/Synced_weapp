@@ -9,9 +9,29 @@
     transition: background-color .28s;
     border-radius: 50rpx;
 
+    &.has-count {
+      position: relative;
+      overflow: visible;
+    }
+
     &.is-active {
       background-color: $bg-white;
       color: #121212;
     }
+  }
+
+  &__count {
+    position: absolute;
+    left: 100%;
+    bottom: 100%;
+    margin: 0 0 -20rpx -20rpx;
+    height: 32rpx;
+    min-width: 32rpx;
+    font-size: 20rpx;
+    font-weight: 500;
+    border-radius: 100rpx;
+    background-color: $red;
+    color: #fff;
+    text-align: center;
   }
 }
