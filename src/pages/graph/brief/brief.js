@@ -161,12 +161,17 @@ Page({
     this.ctx.setTextBaseline('top');
 
     const heightInfo = {
-      nameTop: 50,
       qrcodeHeight: 90,
     };
 
     const { node, sharedTrends } = this.data;
     const maxWidth = this.width - 100;
+
+    if (node.hot_rank !== null) {
+      heightInfo.nameTop = 84;
+    } else {
+      heightInfo.nameTop = 50;
+    }
     const nameInfo = getWrapTextHeight({
       maxWidth,
       ctx: this.ctx,
@@ -243,6 +248,10 @@ Page({
     this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.headerOffset - 5, 8, 40);
     this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.headerOffset - 5, 8, 40);
 
+    const rank = this.data.node.hot_rank;
+    if (rank !== null) {
+      this.ctx.drawImage(`/images/rank/${rank}.svg`, 50, 51, 130, 22);
+    }
     drawMultiLines({
       ctx: this.ctx,
       fontSize: 22,

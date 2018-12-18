@@ -1,11 +1,16 @@
 <import src="/pages/common/loading.wxml"/>
 
-<nav isIndex hasShadow="{{false}}" title="" pageLogin="{{isLogin}}"></nav>
+<nav isIndex hasShadow="{{false}}" title="" pageLogin="{{isLogin}}" notifyCount="{{notifyCount}}"></nav>
 <view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">报告</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">
   <view class="content-container">
-   <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData">
+   <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
+      <view class="u-flex u-tab document-nav">
+        <view class="u-tab__item {{activeCategory === item.id ? 'is-active' : ''}}" data-type="{{item.id}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.id}}">{{item.name}}</view>
+      </view>
+      <view class="document-nav__height"></view>
+
       <view class="content--list">
         <navigator class="u-flex document-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
           <image class="document-item__cover" src="{{item.cover_image_url}}" />

@@ -4,43 +4,44 @@
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
 
 <block wx:if="{{node !== null}}">
-  <view class="u-container related" style="padding-top: {{statusBarHeight}}px">
-    <scroll-view scroll-y enable-back-to-top scroll-into-view="{{scrollToView}}">
-      <view class="node-header__full">{{node.full_name}}</view>
-      <view class="node-header__en">{{node.en_name}}</view>
-      <scroll-view class="u-tab" scroll-x>
-        <view class="u-tab__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
-      </scroll-view>
-
-      <block wx:if="{{node.institutions.length > 0}}">
-        <view id="js-institutions" class="related--type">相关机构</view>
-        <navigator class="u-flex related--item" wx:for="{{node.institutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
-          <image class="related--avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
-          <view class="related--right">
-            <view class="related--title">{{item.full_name}}</view>
-            <view class="u-text-limit--two related--desc">{{item.summary}}</view>
+  <view class="u-container" style="padding-top: {{statusBarHeight}}px">
+    <scroll-view scroll-y enable-back-to-top>
+      <view class="related">
+        <view class="node-header__full">{{node.full_name}}</view>
+        <view class="node-header__en">{{node.en_name}}</view>
+        <scroll-view class="u-tab" scroll-x>
+          <view class="u-tab__item has-count {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">
+            {{item.zh}} ({{node[item.en].length}})
           </view>
-        </navigator>
-      </block>
+        </scroll-view>
 
-      <block wx:if="{{node.technologies.length > 0}}">
-        <view id="js-technologies" class="related--type">关联技术</view>
-        <navigator class="related--item" wx:for="{{node.technologies}}" wx:key="{{item.id}}" url="/pages/technology/technology?id={{item.id}}" hover-class="none">
-          <view class="related--title">{{item.full_name}}</view>
-          <view class="u-text-limit--two related--desc">{{item.en_name}}</view>
-        </navigator>
-      </block>
+        <view hidden="{{activeCategory !== 'institutions'}}">
+          <navigator class="u-flex related--item" wx:for="{{node.institutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+            <image class="related--avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
+            <view class="related--right">
+              <view class="related--title">{{item.full_name}}</view>
+              <view class="u-text-limit--two related--desc">{{item.summary}}</view>
+            </view>
+          </navigator>
+        </view>
 
-      <block wx:if="{{node.experts.length > 0}}">
-        <view id="js-experts" class="related--type">相关人物</view>
-        <navigator class="u-flex related--item" wx:for="{{node.experts}}" wx:key="{{item.id}}" url="/pages/expert/expert?id={{item.id}}" hover-class="none">
-          <image class="related--avatar" src="{{item.image_url || '/images/default_expert.jpg'}}" />
-          <view class="related--right">
+        <view hidden="{{activeCategory !== 'technologies'}}">
+          <navigator class="related--item" wx:for="{{node.technologies}}" wx:key="{{item.id}}" url="/pages/technology/technology?id={{item.id}}" hover-class="none">
             <view class="related--title">{{item.full_name}}</view>
-            <view class="u-text-limit--two related--desc">{{item.summary}}</view>
-          </view>
-        </navigator>
-      </block>
+            <view class="u-text-limit--two related--desc">{{item.en_name}}</view>
+          </navigator>
+        </view>
+
+        <view hidden="{{activeCategory !== 'experts'}}">
+          <navigator class="u-flex related--item" wx:for="{{node.experts}}" wx:key="{{item.id}}" url="/pages/expert/expert?id={{item.id}}" hover-class="none">
+            <image class="related--avatar" src="{{item.image_url || '/images/default_expert.jpg'}}" />
+            <view class="related--right">
+              <view class="related--title">{{item.full_name}}</view>
+              <view class="u-text-limit--two related--desc">{{item.summary}}</view>
+            </view>
+          </navigator>
+        </view>
+      </view>
     </scroll-view>
   </view>
 </block>

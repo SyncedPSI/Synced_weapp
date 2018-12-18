@@ -1,6 +1,6 @@
 <import src="/pages/common/loading.wxml"/>
 
-<nav isIndex hasShadow="{{false}}" title="" pageLogin="{{isLogin}}"></nav>
+<nav isIndex hasShadow="{{false}}" title="" pageLogin="{{isLogin}}" notifyCount="{{notifyCount}}"></nav>
 <view class="u-tab-title" style="margin-top: {{statusBarHeight}}px;">快讯</view>
 
 <view class="u-container" style="padding-top: {{statusBarHeight}}px">

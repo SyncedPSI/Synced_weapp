@@ -32,6 +32,14 @@ Page({
     this.setData({
       isAuth: getApp().globalData.isAuth,
     });
+    if (this.data.activeNav === 'notice') {
+      this.setData({
+        hasMoreNotice: true
+      }, () => {
+        this.noticePage = 1;
+        this.fetchMoreNotice(true);
+      });
+    }
   },
 
   switchNav: function (event) {
@@ -46,12 +54,16 @@ Page({
   },
 
   getReadCount: function(event) {
+    const {notifications_count, count} = event.detail;
     this.setData({
-      readCount: event.detail.count
+      readCount: count
     });
+    if (notifications_count !== undefined) {
+      this.getNoticeCount(notifications_count);
+    }
   },
 
-  getUnreadCount: function (count) {
+  getNoticeCount: function (count) {
     this.setData({
       unreadNoticeCount: count
     });
@@ -66,18 +78,19 @@ Page({
       url: `${notice}?page=${this.noticePage}`
     }).then(res => {
       this.noticePage += 1;
-      const { noticeList } = this.data;
+      const { notifications, has_next_page } = res.data;
+      let { noticeList } = this.data;
       if (isFirst) {
         const count = res.data.notifications_count;
-        this.getUnreadCount(count);
-        if (noticeList.length === 0) {
+        this.getNoticeCount(count);
+        if (notifications.length === 0) {
           this.setData({
             noHasNotice: true
           });
         }
+        noticeList = {};
       }
 
-      const { notifications, has_next_page } = res.data;
       notifications.forEach((item) => {
         const { created_at } = item;
         if (created_at === undefined) return;

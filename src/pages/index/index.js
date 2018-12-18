@@ -8,6 +8,7 @@ Page({
     recommends: [],
     currentBannerIndex: 0,
     isLogin: false,
+    notifyCount: 0,
   },
   onLoad: function () {
     request({
@@ -30,7 +31,8 @@ Page({
 
   onShow: function () {
     this.setData({
-      isLogin: getApp().globalData.isLogin
+      isLogin: getApp().globalData.isLogin,
+      notifyCount: getApp().globalData.notifyCount
     })
   },
 

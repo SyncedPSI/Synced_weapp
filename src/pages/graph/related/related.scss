@@ -21,23 +21,21 @@ scroll-view.u-tab {
   height: 100rpx;
   width: 100%;
   white-space: nowrap;
+  border-bottom: 2rpx solid #f2f2f2;
+  margin-bottom: 40rpx;
 }
 
 .u-tab__item {
   display: inline-block;
-  margin-top: 24rpx;
+  margin: 24rpx 28rpx 0 0;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 
 .related {
   padding: 0 40rpx;
-
-  &--type {
-    padding: 40rpx 0;
-    font-size: 32rpx;
-    color: #121212;
-    font-weight: 500;
-    border-top: 2rpx solid #f2f2f2;
-  }
 
   &--item {
     margin-bottom: 40rpx;
