@@ -26,6 +26,17 @@ Page({
     });
   },
 
+  onShow: function() {
+    if (this.data.activeNav === 'notice') {
+      this.setData({
+        hasMoreNotice: true
+      }, () => {
+        this.noticePage = 1;
+        this.fetchMoreNotice(true);
+      });
+    }
+  },
+
   switchNav: function (event) {
     const nav = event.currentTarget.dataset.type;
     this.setData({
@@ -62,18 +73,19 @@ Page({
       url: `${notice}?page=${this.noticePage}`
     }).then(res => {
       this.noticePage += 1;
-      const { noticeList } = this.data;
+      const { notifications, has_next_page } = res.data;
+      let { noticeList } = this.data;
       if (isFirst) {
         const count = res.data.notifications_count;
         this.getNoticeCount(count);
-        if (noticeList.length === 0) {
+        if (notifications.length === 0) {
           this.setData({
             noHasNotice: true
           });
         }
+        noticeList = {};
       }
 
-      const { notifications, has_next_page } = res.data;
       notifications.forEach((item) => {
         const { created_at } = item;
         if (created_at === undefined) return;
