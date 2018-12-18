@@ -1,0 +1,39 @@
+@import 'variables';
+@import 'mixins';
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+
+  &--mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(#121212, .4);
+  }
+
+  &--main {
+    position: absolute;
+    top: 18%;
+    left: 50rpx;
+    right: 50rpx;
+    background-color: #fff;
+  }
+
+  &--close {
+    text-align: right;
+    font-size: 0;
+  }
+
+  &--close__img {
+    padding: 24rpx 26rpx 18rpx;
+    width: 28rpx;
+    height: 28rpx;
+  }
+}

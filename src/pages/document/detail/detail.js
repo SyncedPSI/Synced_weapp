@@ -15,7 +15,8 @@ Page({
     isDraw: false,
     canvasHeight: 0,
     isSharedComment: false,
-    targetComment: null
+    targetComment: null,
+    isShowModal: false,
   },
   onLoad: function (options) {
     let id = null;
@@ -45,6 +46,11 @@ Page({
     });
     this.initCanvas();
   },
+  onShow: function() {
+    this.setData({
+      isShowModal: false
+    })
+  },
   getWxcode: function (id) {
     getWxcodeUrl(id, 'pages/document/detail/detail', 'Document', (path) => {
       this.setData({
@@ -53,19 +59,33 @@ Page({
     });
   },
   getUserInfo: function (event) {
-    getApp().login(event.detail.userInfo, () => {
+    const {currentTarget: { dataset }, detail: { userInfo }} = event;
+    const isShowComment = dataset.type === 'comment';
+
+    getApp().login(userInfo, () => {
       this.setData({
         isLogin: true,
-        isShowComment: true
+        isShowComment
       });
+
+      if (!isShowComment) {
+        this.download();
+      }
     });
   },
   download: function() {
+    if (!getApp().globalData.isAuth) {
+      this.openModal();
+      return;
+    }
+
     showLoading('获取中');
     const url = this.data.document.file_url;
     if (!url) {
       showErrorToast('请重试');
     }
+    // 判断用户身份
+    // true 获取 false 填写表单
 
     wx.downloadFile({
       url,
@@ -370,4 +390,14 @@ Page({
       actionSheetHidden: true
     });
   },
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
+  },
+  openModal: function() {
+    this.setData({
+      isShowModal: true,
+    })
+  }
 })

@@ -13,6 +13,7 @@ Page({
     activeNav: 'readlater',
     user: null,
     noticePage: 1,
+    isAuth: getApp().globalData.isAuth,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
   },
 
@@ -20,6 +21,7 @@ Page({
     this.noticePage = 1;
     const user = wx.getStorageSync('userInfo');
     user.nickName = user.nickName.slice(0, 8);
+    const { globalData } = getApp();
     this.setData({
       user,
       unreadNoticeCount: getApp().globalData.notifyCount,
@@ -27,6 +29,9 @@ Page({
   },
 
   onShow: function() {
+    this.setData({
+      isAuth: getApp().globalData.isAuth,
+    });
     if (this.data.activeNav === 'notice') {
       this.setData({
         hasMoreNotice: true
@@ -62,7 +67,7 @@ Page({
     this.setData({
       unreadNoticeCount: count
     });
-    getApp().globalData.notifyCount = count
+    getApp().globalData.notifyCount = count;
   },
 
   fetchMoreNotice: function(isFirst = false) {

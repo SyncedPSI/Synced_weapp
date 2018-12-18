@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="335px" height="119px" viewBox="0 0 335 119" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>在职</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="98.9043281%" y1="5.28123305%" x2="1.7287429%" y2="94.7239655%" id="linearGradient-1">
+            <stop stop-color="#393848" offset="0%"></stop>
+            <stop stop-color="#46485A" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="41" cy="41" r="41"></circle>
+        <filter x="-235.5%" y="-168.2%" width="571.0%" height="436.3%" filterUnits="objectBoundingBox" id="filter-4">
+            <feGaussianBlur stdDeviation="4.70982143" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="表单" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="职业认证-step1" transform="translate(-20.000000, -224.000000)">
+            <g id="在职" transform="translate(20.000000, 224.000000)">
+                <g id="Path-24" fill="url(#linearGradient-1)" fill-rule="nonzero">
+                    <rect id="Mask" x="0" y="0" width="335" height="119" rx="10"></rect>
+                    <path d="M269.131345,0 L325,0 C330.522847,-1.01453063e-15 335,4.4771525 335,10 L335,109 C335,114.522847 330.522847,119 325,119 L125.517806,119 C169.594976,53.8121249 217.466152,14.1454645 269.131345,-3.99680289e-15 Z" id="Combined-Shape"></path>
+                    <path d="M213.867586,119 L10,119 C4.4771525,119 6.76353751e-16,114.522847 0,109 L0,61.9618314 C94.752957,73.9932548 162.830312,90.2119176 204.232064,110.61782 C210.164414,113.541729 213.2188,116.347549 213.867586,119 Z" id="Combined-Shape"></path>
+                </g>
+                <path d="M32.96,46 L32.96,51.16 L37.98,51.16 L37.98,52.9 L26.04,52.9 L26.04,51.16 L31.08,51.16 L31.08,46 L26.8,46 L26.8,44.28 L31.08,44.28 L31.08,40.68 L32.96,40.68 L32.96,44.28 L37.22,44.28 L37.22,46 L32.96,46 Z M28,37.94 L38,37.94 L38,39.72 L27.24,39.72 C26.56,41.14 25.78,42.5 24.86,43.74 L24.86,53.34 L23,53.34 L23,45.9 C22.36,46.52 21.66,47.12 20.92,47.64 C20.72,47.14 20.3,46.34 20,45.9 C22.2,44.4 23.9,42.16 25.14,39.72 L20.54,39.72 L20.54,37.94 L25.94,37.94 C26.36,36.96 26.66,35.98 26.92,35 L28.86,35.48 C28.6,36.3 28.32,37.12 28,37.94 Z M55.68,43.66 L55.68,38.14 L50.7,38.14 L50.7,43.66 L55.68,43.66 Z M57.54,36.36 L57.54,45.42 L48.92,45.42 L48.92,36.36 L57.54,36.36 Z M43.02,45.6 L43.02,48.46 C43.8,48.34 44.66,48.2 45.5,48.08 L45.5,45.6 L43.02,45.6 Z M45.5,37.54 L43.02,37.54 L43.02,40 L45.5,40 L45.5,37.54 Z M43.02,41.54 L43.02,44.06 L45.5,44.06 L45.5,41.54 L43.02,41.54 Z M48.48,49.22 L47.22,49.44 L47.22,53.38 L45.5,53.38 L45.5,49.76 C43.64,50.06 41.86,50.38 40.42,50.64 L40.04,48.9 C40.44,48.84 40.84,48.78 41.3,48.72 L41.3,37.54 L40.28,37.54 L40.28,35.86 L48.28,35.86 L48.28,37.54 L47.22,37.54 L47.22,47.8 L48.38,47.62 L48.48,49.22 Z M50.42,47.2 L52.22,47.62 C51.56,49.84 50.4,51.96 49.14,53.34 C48.78,53.04 48.04,52.52 47.6,52.28 C48.86,51.06 49.86,49.16 50.42,47.2 Z M54.24,47.76 L55.86,47.12 C56.9,48.84 58.04,51.06 58.48,52.5 L56.7,53.22 C56.32,51.8 55.24,49.5 54.24,47.76 Z" fill="#FFFFFF"></path>
+                <rect id="Rectangle" fill="#FFFFFF" fill-rule="nonzero" x="20" y="85" width="24" height="3"></rect>
+                <g id="Group-39" transform="translate(213.000000, 19.000000)">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" fill="#FFFFFF" fill-rule="nonzero" xlink:href="#path-2"></use>
+                    <g mask="url(#mask-3)">
+                        <g transform="translate(7.000000, 11.000000)">
+                            <g id="Group-37" transform="translate(26.000000, 0.000000)">
+                                <polygon id="Path-17" fill="#4D4C4C" fill-rule="nonzero" points="1.05052924 5.57002085 16.4686974 8.5500087 27.7126026 2.88043945 10.5060827 0.273722639"></polygon>
+                                <polygon id="Path-18" fill="#2A2929" fill-rule="nonzero" points="0.897698794 5.49283732 0.897698794 70.8157243 16.2006782 76.1034234 16.2006782 8.37217302"></polygon>
+                                <polygon id="Path-19" fill="#404040" fill-rule="nonzero" points="15.9885682 8.32152675 27.7727967 2.72057332 27.7727967 70.6922092 15.9885682 76.2460445"></polygon>
+                                <path d="M22.617099,16.9978937 C23.5101981,16.9978937 24.234198,15.8786056 24.234198,14.4978937 C24.234198,13.1171819 23.5101981,11.9978937 22.617099,11.9978937 C21.7239999,11.9978937 21,13.1171819 21,14.4978937 C21,15.8786056 21.7239999,16.9978937 22.617099,16.9978937 Z" id="Oval-11" fill="#4D4C4C" fill-rule="nonzero"></path>
+                                <polygon id="Rectangle-46" fill="#4D4C4C" fill-rule="nonzero" points="19 20.2742145 26 18 26 23 19 25.2742145"></polygon>
+                            </g>
+                            <g id="Group-35" transform="translate(36.000000, 25.000000)">
+                                <polygon id="Path-20" fill="#4D4C4C" fill-rule="nonzero" points="14.0509257 0.641659432 32.5539807 4.2863251 21.2057817 10.3954961 0.608881748 6.5164463"></polygon>
+                                <polygon id="Path-21" fill="#2A2929" fill-rule="nonzero" points="0.736696472 6.67709417 0.736696472 42.7454608 21.0193688 49.7268132 21.0193688 10.2551247"></polygon>
+                                <polygon id="Path-22" fill="#404040" fill-rule="nonzero" points="21.033831 10.3802033 21.033831 49.6713095 32.6086856 40.7035627 32.6086856 4.23415219"></polygon>
+                                <polygon id="Rectangle-43" fill="#4D4C4C" fill-rule="nonzero" points="4 11 8 11.9978937 8 17.9978937 4 17"></polygon>
+                                <polygon id="Rectangle-43-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="4 19 8 19.9978937 8 25.9978937 4 25"></polygon>
+                                <polygon id="Rectangle-43-Copy" fill="#4D4C4C" fill-rule="nonzero" points="9 12 13 12.9978937 13 18.9978937 9 18"></polygon>
+                                <polygon id="Rectangle-43-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="9 20 13 20.9978937 13 26.9978937 9 26"></polygon>
+                                <polygon id="Rectangle-43-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="14 13 18 13.9978937 18 19.9978937 14 19"></polygon>
+                                <polygon id="Rectangle-43-Copy-5" fill="#4D4C4C" fill-rule="nonzero" points="14 21 18 21.9978937 18 27.9978937 14 27"></polygon>
+                                <polygon id="Rectangle-43-Copy-8" fill="#4D4C4C" fill-rule="nonzero" points="4 27 8 27.9978937 8 33.9978937 4 33"></polygon>
+                                <polygon id="Rectangle-43-Copy-7" fill="#4D4C4C" fill-rule="nonzero" points="9 28 13 28.9978937 13 34.9978937 9 34"></polygon>
+                                <polygon id="Rectangle-43-Copy-6" fill="#4D4C4C" fill-rule="nonzero" points="14 29 18 29.9978937 18 35.9978937 14 35"></polygon>
+                            </g>
+                            <g id="Group-34" transform="translate(0.000000, 13.000000)">
+                                <polygon id="Path-8" fill="#4D4C4C" fill-rule="nonzero" points="0.344962295 9.43357638 26.6352044 15.4819758 41.050345 5.53476604 15.8617345 0.81071651"></polygon>
+                                <polygon id="Path-15" fill="#2A2929" fill-rule="nonzero" points="0.238592418 9.38364105 0.238592418 70.0783539 26.7126394 79.9634294 26.7126394 15.4235819"></polygon>
+                                <polygon id="Path-16" fill="#404040" fill-rule="nonzero" points="26.5144505 15.5669116 41.0507117 5.48687391 41.0507117 63.7442976 26.5144505 80.0565001"></polygon>
+                                <polygon id="Rectangle-36" fill="#4D4C4C" fill-rule="nonzero" points="2 15 8 16.4024462 8 23.4024462 2 22"></polygon>
+                                <polygon id="Rectangle-36-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="2 24 8 25.4024462 8 32.4024462 2 31"></polygon>
+                                <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" filter="url(#filter-4)" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
+                                <polygon id="Rectangle-36-Copy" fill="#F8E71C" fill-rule="nonzero" points="10 17 16 18.4024462 16 25.4024462 10 24"></polygon>
+                                <polygon id="Rectangle-36-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="10 26 16 27.4024462 16 34.4024462 10 33"></polygon>
+                                <polygon id="Rectangle-36-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="18 19 24 20.4024462 24 27.4024462 18 26"></polygon>
+                                <polygon id="Rectangle-36-Copy-5" fill="#4D4C4C" fill-rule="nonzero" points="18 28 24 29.4024462 24 36.4024462 18 35"></polygon>
+                                <polygon id="Rectangle-36-Copy-8" fill="#4D4C4C" fill-rule="nonzero" points="2 33 8 34.4024462 8 41.4024462 2 40"></polygon>
+                                <polygon id="Rectangle-36-Copy-7" fill="#4D4C4C" fill-rule="nonzero" points="10 35 16 36.4024462 16 43.4024462 10 42"></polygon>
+                                <polygon id="Rectangle-36-Copy-6" fill="#4D4C4C" fill-rule="nonzero" points="18 37 24 38.4024462 24 45.4024462 18 44"></polygon>
+                                <polygon id="Rectangle-36-Copy-11" fill="#4D4C4C" fill-rule="nonzero" points="2 42 8 43.4024462 8 50.4024462 2 49"></polygon>
+                                <polygon id="Rectangle-36-Copy-10" fill="#4D4C4C" fill-rule="nonzero" points="10 44 16 45.4024462 16 52.4024462 10 51"></polygon>
+                                <polygon id="Rectangle-36-Copy-9" fill="#4D4C4C" fill-rule="nonzero" points="18 46 24 47.4024462 24 54.4024462 18 53"></polygon>
+                                <polygon id="Rectangle-36-Copy-14" fill="#4D4C4C" fill-rule="nonzero" points="2 51 8 52.4024462 8 59.4024462 2 58"></polygon>
+                                <polygon id="Rectangle-36-Copy-13" fill="#4D4C4C" fill-rule="nonzero" points="10 53 16 54.4024462 16 61.4024462 10 60"></polygon>
+                                <polygon id="Rectangle-36-Copy-12" fill="#4D4C4C" fill-rule="nonzero" points="18 55 24 56.4024462 24 63.4024462 18 62"></polygon>
+                                <polygon id="Rectangle-36-Copy-17" fill="#4D4C4C" fill-rule="nonzero" points="2 60 8 61.4024462 8 68.4024462 2 67"></polygon>
+                                <polygon id="Rectangle-36-Copy-16" fill="#4D4C4C" fill-rule="nonzero" points="10 62 16 63.4024462 16 70.4024462 10 69"></polygon>
+                                <polygon id="Rectangle-36-Copy-15" fill="#4D4C4C" fill-rule="nonzero" points="18 64 24 65.4024462 24 72.4024462 18 71"></polygon>
+                                <polygon id="Rectangle-37" fill="#4D4C4C" fill-rule="nonzero" points="29 19.565713 32 17 32 22 29 24.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-3" fill="#4D4C4C" fill-rule="nonzero" points="29 29.565713 32 27 32 32 29 34.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy" fill="#4D4C4C" fill-rule="nonzero" points="33 16.565713 36 14 36 19 33 21.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-4" fill="#4D4C4C" fill-rule="nonzero" points="33 26.565713 36 24 36 29 33 31.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-2" fill="#4D4C4C" fill-rule="nonzero" points="37 13.565713 40 11 40 16 37 18.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-5" fill="#4D4C4C" fill-rule="nonzero" points="37 23.565713 40 21 40 26 37 28.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-8" fill="#4D4C4C" fill-rule="nonzero" points="29 39.565713 32 37 32 42 29 44.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-7" fill="#4D4C4C" fill-rule="nonzero" points="33 36.565713 36 34 36 39 33 41.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-6" fill="#4D4C4C" fill-rule="nonzero" points="37 33.565713 40 31 40 36 37 38.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-11" fill="#4D4C4C" fill-rule="nonzero" points="29 49.565713 32 47 32 52 29 54.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-10" fill="#4D4C4C" fill-rule="nonzero" points="33 46.565713 36 44 36 49 33 51.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-9" fill="#4D4C4C" fill-rule="nonzero" points="37 43.565713 40 41 40 46 37 48.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-14" fill="#4D4C4C" fill-rule="nonzero" points="29 59.565713 32 57 32 62 29 64.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-13" fill="#4D4C4C" fill-rule="nonzero" points="33 56.565713 36 54 36 59 33 61.565713"></polygon>
+                                <polygon id="Rectangle-37-Copy-12" fill="#4D4C4C" fill-rule="nonzero" points="37 53.565713 40 51 40 56 37 58.565713"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+                <path d="M22.235,70.955 L20,62.705 L21.74,62.705 L22.835,67.175 C23,67.97 23.135,68.735 23.285,69.515 L23.345,69.515 C23.525,68.735 23.69,67.955 23.885,67.175 L25.04,62.705 L26.645,62.705 L27.83,67.175 C28.025,67.97 28.19,68.735 28.385,69.515 L28.445,69.515 C28.61,68.735 28.745,67.97 28.925,67.175 L29.99,62.705 L31.61,62.705 L29.48,70.955 L27.41,70.955 L26.36,66.875 C26.165,66.095 26.015,65.345 25.835,64.49 L25.76,64.49 C25.595,65.345 25.445,66.11 25.235,66.89 L24.23,70.955 L22.235,70.955 Z M36.62,71.15 C34.58,71.15 32.735,69.575 32.735,66.845 C32.735,64.085 34.58,62.495 36.62,62.495 C38.66,62.495 40.505,64.085 40.505,66.845 C40.505,69.575 38.66,71.15 36.62,71.15 Z M36.62,69.74 C37.925,69.74 38.735,68.585 38.735,66.845 C38.735,65.09 37.925,63.92 36.62,63.92 C35.33,63.92 34.52,65.09 34.52,66.845 C34.52,68.585 35.33,69.74 36.62,69.74 Z M42.53,70.955 L42.53,62.705 L43.94,62.705 L44.075,64.19 L44.12,64.19 C44.705,63.125 45.575,62.495 46.46,62.495 C46.865,62.495 47.135,62.555 47.39,62.675 L47.075,64.175 C46.79,64.085 46.58,64.04 46.25,64.04 C45.575,64.04 44.765,64.505 44.24,65.81 L44.24,70.955 L42.53,70.955 Z M48.665,70.955 L48.665,59 L50.345,59 L50.345,66.71 L50.39,66.71 L53.63,62.705 L55.535,62.705 L52.73,66.05 L55.85,70.955 L53.975,70.955 L51.74,67.22 L50.345,68.825 L50.345,70.955 L48.665,70.955 Z M57.29,70.955 L57.29,62.705 L59,62.705 L59,70.955 L57.29,70.955 Z M58.145,61.16 C57.515,61.16 57.05,60.74 57.05,60.14 C57.05,59.525 57.515,59.12 58.145,59.12 C58.775,59.12 59.255,59.525 59.255,60.14 C59.255,60.74 58.775,61.16 58.145,61.16 Z M61.595,70.955 L61.595,62.705 L63.005,62.705 L63.14,63.845 L63.185,63.845 C63.95,63.11 64.79,62.495 65.915,62.495 C67.67,62.495 68.45,63.665 68.45,65.765 L68.45,70.955 L66.725,70.955 L66.725,65.975 C66.725,64.55 66.305,63.98 65.33,63.98 C64.565,63.98 64.04,64.37 63.305,65.105 L63.305,70.955 L61.595,70.955 Z M73.775,74.66 C71.795,74.66 70.355,73.925 70.355,72.485 C70.355,71.795 70.79,71.15 71.555,70.685 L71.555,70.61 C71.135,70.355 70.805,69.92 70.805,69.245 C70.805,68.6 71.27,68.045 71.72,67.715 L71.72,67.655 C71.165,67.22 70.64,66.44 70.64,65.465 C70.64,63.59 72.125,62.495 73.835,62.495 C74.3,62.495 74.72,62.585 75.035,62.705 L77.96,62.705 L77.96,63.995 L76.385,63.995 C76.7,64.325 76.925,64.88 76.925,65.51 C76.925,67.31 75.56,68.345 73.835,68.345 C73.46,68.345 73.04,68.255 72.68,68.09 C72.41,68.33 72.23,68.57 72.23,68.96 C72.23,69.455 72.56,69.77 73.61,69.77 L75.125,69.77 C77.075,69.77 78.095,70.37 78.095,71.78 C78.095,73.37 76.415,74.66 73.775,74.66 Z M73.835,67.235 C74.69,67.235 75.395,66.56 75.395,65.465 C75.395,64.355 74.705,63.71 73.835,63.71 C72.965,63.71 72.275,64.34 72.275,65.465 C72.275,66.56 72.98,67.235 73.835,67.235 Z M74.03,73.52 C75.47,73.52 76.43,72.815 76.43,72.05 C76.43,71.36 75.89,71.15 74.885,71.15 L73.64,71.15 C73.25,71.15 72.875,71.105 72.53,71.03 C72.035,71.39 71.825,71.81 71.825,72.23 C71.825,73.04 72.665,73.52 74.03,73.52 Z" id="working" fill="#FFFFFF" opacity="0.600000024"></path>
+                <polygon id="ion-ios-arrow-forward---Ionicons" fill="#FFFFFF" points="312 52.75 313.75 51 322.5 59.75 313.75 68.5 312 66.75 318.945312 59.75"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
