@@ -64,6 +64,7 @@
 
   &__header {
     display: flex;
+    align-items: center;
   }
 
   &__user {
@@ -96,8 +97,14 @@
 
   &__avatar {
     @include set-avatar-width(70rpx);
+    position: absolute;
+    margin-left: -35rpx;
+  }
+
+  &__avatar--height {
+    height: 70rpx;
+    width: 65rpx;
     flex-shrink: 0;
-    margin-right: 30rpx;
   }
 
   &__img {

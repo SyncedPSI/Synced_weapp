@@ -1,6 +1,8 @@
 <template name="comment_inline">
   <view class="comment-inline">
     <view class="comment-inline__header">
+      <view class="comment-inline__avatar--height">
+      </view>
       <view class="comment-inline__avatar">
         <image  class="comment-inline__img" src="{{from.avatar_url}}" mode="aspectFill" />
       </view>
