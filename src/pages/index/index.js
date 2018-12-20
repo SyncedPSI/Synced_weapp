@@ -18,8 +18,10 @@ Page({
       banners.forEach(item => {
         if (item.tableize === 'trends') {
           item.path = 'trend/trend';
-        } else {
+        } else if (item.tableize === 'articles') {
           item.path = 'article/article';
+        } else {
+          item.path = `web_view/web_view?url=${item.content.url}`;
         }
       })
       this.setData({
