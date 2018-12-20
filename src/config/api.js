@@ -21,4 +21,5 @@ export const creatWxcode = ApiV1 + '/wechats/wxacode';
 export const graph = ApiRootUrl + '/graph';
 export const subscribe = ApiRootUrl + '/subscribes';
 export const notice = ApiRootUrl + '/notifications';
-export const certifications = ApiRootUrl + '/certifications'
+export const certifications = ApiRootUrl + '/certifications';
+export const advertisement = ApiRootUrl + '/advertisements';

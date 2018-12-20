@@ -8,6 +8,7 @@
     "pages/document/list/list",
     "pages/document/detail/detail",
     "pages/auth/auth",
+    "pages/advertisement/advertisement",
     "pages/topic/topic",
     "pages/category/category",
     "pages/trend/trend",
