@@ -9,9 +9,9 @@
       <view>
         <view class="comment-inline__user">
           <text class="comment-inline__from">{{from.nickname}}</text>
-          <view class="comment-inline__pro" wx-if="{{from.pubinfo !== ''}}">pro</view>
+          <view class="comment-inline__pro" wx-if="{{from.pubinfo !== undefined && from.pubinfo !== ''}}">pro</view>
         </view>
-        <view class="comment-inline__pubinfo" wx-if="{{from.pubinfo !== ''}}">{{from.pubinfo}}</view>
+        <view class="comment-inline__pubinfo" wx-if="{{from.pubinfo !== undefined && from.pubinfo !== ''}}">{{from.pubinfo}}</view>
 
         <view class="comment-inline__user" wx:if="{{to !== null}}">
           <text>回复 </text>
