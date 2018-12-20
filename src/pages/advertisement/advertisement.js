@@ -10,13 +10,14 @@ Page({
       id = decodeURIComponent(options.scene);
     }
 
-    request(`${advertisement}/id`)
-      .then((res) => {
-        const { url } = res.data;
-          wx.redirectTo({
-            url: `/pages/web_view/web_view?url=${url}`
-          })
-      })
-    }
+    request({
+      url: `${advertisement}/${id}`
+    }).then((res) => {
+      const { url } = res.data;
+        wx.redirectTo({
+          url: `/pages/web_view/web_view?url=${url}`
+        })
+    })
+  }
 })
 
