@@ -1,16 +1,16 @@
 <template name="comment_inline">
   <view class="comment-inline">
     <view class="comment-inline__header">
-      <view class="comment-inline__author">
-        <!-- <navigator alt="{{from.nickname}}" class="comment-inline__avatar" url="/user/{{from.id}}"> -->
-        <view class="comment-inline__avatar">
-          <image  class="comment-inline__img" src="{{from.avatar_url}}" mode="aspectFill" />
-        </view>
-        <!-- </navigator> -->
-        <view class="comment-inline__user {{to === null ? 'is-only' : ''}}">
+      <view class="comment-inline__avatar">
+        <image  class="comment-inline__img" src="{{from.avatar_url}}" mode="aspectFill" />
+      </view>
+      <view>
+        <view class="comment-inline__user">
           <text class="comment-inline__from">{{from.nickname}}</text>
-          <!-- <navigator class="comment-inline__from" url="/user/id">{{from.name}}</navigator> -->
+          <view class="comment-inline__pro">pro</view>
         </view>
+        <view class="comment-inline__pubinfo">机器之心</view>
+
         <view class="comment-inline__user" wx:if="{{to !== null}}">
           <text>回复 </text>
           <text class="comment-inline__from"> {{to.nickname}}</text>

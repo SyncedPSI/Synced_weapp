@@ -62,17 +62,27 @@
     color: #121212;
   }
 
-  &__author {
-    min-height: 70rpx;
+  &__header {
+    display: flex;
   }
 
   &__user {
     color: $mute-black;
-    padding-left: 64rpx;
   }
 
-  &__user.is-only .comment-inline__from {
-    line-height: 70rpx;
+  &__pubinfo {
+    color: #a8a8a8;
+    font-size: 24rpx;
+  }
+
+  &__pro {
+    display: inline-block;
+    padding: 0 6rpx 4rpx;
+    margin-left: 10rpx;
+    font-size: 24rpx;
+    color: #fff;
+    background-color: $red;
+    line-height: 1;
   }
 
   &__from {
@@ -86,8 +96,8 @@
 
   &__avatar {
     @include set-avatar-width(70rpx);
-    position: absolute;
-    margin-left: -35rpx;
+    flex-shrink: 0;
+    margin-right: 30rpx;
   }
 
   &__img {
