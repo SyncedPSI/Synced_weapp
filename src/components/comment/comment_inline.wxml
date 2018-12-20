@@ -7,9 +7,9 @@
       <view>
         <view class="comment-inline__user">
           <text class="comment-inline__from">{{from.nickname}}</text>
-          <view class="comment-inline__pro">pro</view>
+          <view class="comment-inline__pro" wx-if="{{from.pubinfo !== ''}}">pro</view>
         </view>
-        <view class="comment-inline__pubinfo">机器之心</view>
+        <view class="comment-inline__pubinfo" wx-if="{{from.pubinfo !== ''}}">{{from.pubinfo}}</view>
 
         <view class="comment-inline__user" wx:if="{{to !== null}}">
           <text>回复 </text>
