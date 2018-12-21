@@ -1,7 +1,6 @@
 @import 'variables';
 @import 'mixins';
 @import 'common';
-@import 'modal';
 
 .picker {
   &--container {
@@ -87,56 +86,4 @@
 
 .is-hidden {
   display: none;
-}
-
-.auth-modal {
-  &__header {
-    padding: 0 96rpx;
-    text-align: center;
-  }
-
-  &__footer {
-    padding: 30rpx 40rpx 50rpx;
-  }
-
-  &__switch {
-    border-top: 2rpx solid #f2f2f2;
-    padding: 40rpx 0 36rpx;
-    font-size: 32rpx;
-    color: #121212;
-  }
-
-  &__user {
-    justify-content: flex-start;
-  }
-
-  &__avatar {
-    flex-shrink: 0;
-    margin-right: 30rpx;
-    width: 70rpx;
-    height: 70rpx;
-    border-radius: 50%;
-    background-color: #f2f2f2;
-  }
-
-  &__name {
-    font-size: 30rpx;
-    font-weight: 500;
-    color: #282828;
-  }
-
-  &__pro {
-    padding: 2rpx 6rpx;
-    margin-left: 10rpx;
-    font-size: 24rpx;
-    color: #fff;
-    background-color: $red;
-    line-height: 1;
-  }
-
-  &__post {
-    font-size: 24rpx;
-    font-weight: normal;
-    color: #a8a8a8;
-  }
 }

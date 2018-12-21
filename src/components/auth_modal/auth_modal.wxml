@@ -1,0 +1,27 @@
+<modal isShowModal="{{isShowModal}}" bindclosemodal="closeModal">
+  <view class="auth-modal__header">
+    <image class="modal__img" src="/images/auth_success.png" />
+    <view class="modal__title">恭喜你，职业认证成功</view>
+    <view class="modal__desc">快去阅读你感兴趣的内容吧</view>
+  </view>
+  <view class="auth-modal__footer">
+    <view class="u-flex auth-modal__switch">
+      <text>在评论时呈现我的职务信息</text>
+      <switch checked="{{isShowInComment}}" bindchange="switchChange" color="#414141" />
+    </view>
+    <view class="u-flex auth-modal__user">
+      <image class="auth-modal__avatar" src="{{userInfo.avatarUrl}}" />
+      <view class="auth-modal__right">
+        <block wx:if="{{isShowInComment}}">
+          <view class="u-flex">
+            <text class="auth-modal__name">{{userInfo.nickName}}</text>
+            <text class="auth-modal__pro">pro</text>
+          </view>
+          <view class="auth-modal__post">{{pubInfo}}</view>
+        </block>
+        <view class="auth-modal__name" wx:else>{{userInfo.nickName}}</view>
+      </view>
+    </view>
+    <navigator class="auth-modal__modify" url="/pages/auth/auth" redirect hover-class="none">修改职业认证信息</navigator>
+  </view>
+</modal>

@@ -36,28 +36,9 @@ Page({
     degreeIndex: 0,
     formData: {},
     isShowModal: false,
-    isShowInComment: true,
-    userInfo: {},
+    pubInfo: '',
   },
   onLoad: function () {
-    this.setData({
-      userInfo: getApp().globalData.userInfo
-    });
-  },
-
-  switchChange: function(event) {
-    const newStatus = event.detail.value;
-    request({
-      url: certifications,
-      method: 'POST',
-      data: {
-        reveal: newStatus
-      }
-    }).then(() => {
-      this.setData({
-        isShowInComment: event.detail.value
-      });
-    })
   },
 
   closeModal: function() {
@@ -121,7 +102,8 @@ Page({
         graduation_year: graduationYear[graduation_year],
         work_experience: workExperience[work_experience],
         degree: allDegree[degree],
-      }
+      },
+      pubInfo: this.data.status === 1 ? `${company}・${position}` : `${school}・${major}・${degree}`,
     });
   },
 
