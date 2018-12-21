@@ -82,12 +82,12 @@ Page({
     });
   },
   goStep3: function (event) {
-    const { city, external, internal, company, position, school, major, degree, graduation_year, work_experience  } = event.detail.value;
+    const { country, external, internal, company, position, school, major, degree, graduation_year, work_experience  } = event.detail.value;
     let address = '';
-    if (city === 0) {
-      address = this.data.city[1][external[1]].id
+    if (country === 0) {
+      address = this.data.city[1][internal[1]].id;
     } else {
-      address = `海外${internal}`;
+      address = `海外${external}`;
     }
 
     if (this.data.status === 1) { // 在职
@@ -154,25 +154,24 @@ Page({
   },
 
   bindCityChange: function(event) {
-    const index = Number(event.detail.value);
     this.setData({
-      cityIndex: index
+      cityIndex: event.detail.value
     })
   },
 
-  bindCityColumnChange(e) {
+  bindCityColumnChange: function(e) {
     const data = {
       city: this.data.city,
       cityIndex: this.data.cityIndex
     }
-    data.cityIndex[e.detail.column] = e.detail.value
+    data.cityIndex[e.detail.column] = e.detail.value;
     if (e.detail.column === 0) {
       const provinceIndex = data.cityIndex[0];
       const provinceId = data.city[0][provinceIndex].id;
       data.city[1] = city[provinceId];
       data.cityIndex[1] = 0;
     }
-    this.setData(data)
+    this.setData(data);
   },
 
   submitForm: function(event) {

@@ -20,14 +20,14 @@
       <view class="form--label">所在城市</view>
       <view class="u-flex picker--container">
         <view class="picker--item">
-          <picker class="form--input t-picker" name="city" bindchange="bindCountryChange" value="{{countryIndex}}" range="{{country}}">
+          <picker class="form--input t-picker" name="country" bindchange="bindCountryChange" value="{{countryIndex}}" range="{{country}}">
             <text>{{country[countryIndex]}} </text>
           </picker>
         </view>
         <view class="picker--item">
           <view class="{{countryIndex === 0 ? '' : 'is-hidden'}}">
             <picker
-              name="external"
+              name="internal"
               class="form--input t-picker"
               mode="multiSelector"
               range-key="name"
@@ -36,13 +36,13 @@
               value="{{cityIndex}}"
               range="{{city}}"
             >
-              <view class="u-text-limit--one" name="internal">
+              <view class="u-text-limit--one">
                 {{city[0][cityIndex[0]].name}}{{city[1][cityIndex[1]].name}}
               </view>
             </picker>
           </view>
           <view class="{{countryIndex === 0 ? 'is-hidden' : ''}}">
-            <input class="form--input" type="text" name="internal" placeholder="请输入城市" />
+            <input class="form--input" type="text" name="external" placeholder="请输入城市" />
           </view>
         </view>
       </view>
@@ -116,7 +116,7 @@
           <view class="auth-modal__post" wx-if="{{status === 1}}">{{formData.company}}・{{formData.position}}</view>
           <view class="auth-modal__post" wx-if="{{status === 0}}">{{formData.school}}・{{formData.major}}・{{formData.degree}}</view>
         </block>
-        <view wx:else>{{userInfo.nickName}}</view>
+        <view class="auth-modal__name" wx:else>{{userInfo.nickName}}</view>
       </view>
     </view>
   </view>
