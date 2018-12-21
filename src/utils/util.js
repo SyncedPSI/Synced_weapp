@@ -160,7 +160,13 @@ export const request = ({ url, data = {}, method = "GET", isHandleNotFound = fal
               }
             }
           })
-        } else if (res.statusCode == 500) {
+        } else if (res.statusCode == 400) {
+          wx.showModal({
+            title: '提示',
+            content: res.data.errors || res.data,
+            showCancel: false
+          })
+        }else if (res.statusCode == 500) {
           showErrorToast('服务器错误');
           reject(res);
         } else {
