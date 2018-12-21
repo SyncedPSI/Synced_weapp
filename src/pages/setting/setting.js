@@ -15,17 +15,30 @@ Page({
     noticePage: 1,
     isAuth: getApp().globalData.isAuth,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
+    isShowModal: false,
+    pubInfo: '职务信息'
   },
 
   onLoad: function () {
     this.noticePage = 1;
     const user = wx.getStorageSync('userInfo');
     user.nickName = user.nickName.slice(0, 8);
-    const { globalData } = getApp();
     this.setData({
       user,
       unreadNoticeCount: getApp().globalData.notifyCount,
     });
+  },
+
+  openModal: function () {
+    this.setData({
+      isShowModal: true,
+    })
+  },
+
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
   },
 
   onShow: function() {
