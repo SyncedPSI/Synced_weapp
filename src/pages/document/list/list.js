@@ -14,6 +14,11 @@ Page({
       { id: 'zhizhou', name: '#智周' },
       { id: 'top500', name: '#500强' },
     ],
+    categoryDesc: {
+      all: '',
+      zhizhou: '',
+      top500: '',
+    }
   },
 
   onLoad: function() {

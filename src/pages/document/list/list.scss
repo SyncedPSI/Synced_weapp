@@ -57,8 +57,16 @@ page {
   }
 }
 
-.content--list {
-  padding: 0 40rpx;
+.document {
+  &--list {
+    padding: 0 40rpx;
+  }
+
+  &--desc {
+    margin-bottom: 40rpx;
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
 }
 
 .document-nav {
@@ -71,7 +79,7 @@ page {
   z-index: 10;
 
   &__height {
-    height: 140rpx;
+    height: 130rpx;
   }
 
   .u-tab__item {

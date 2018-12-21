@@ -11,7 +11,8 @@
       </view>
       <view class="document-nav__height"></view>
 
-      <view class="content--list">
+      <view class="document--list document--desc" wx-if="{{categoryDesc[activeCategory] !== ''}}">{{categoryDesc[activeCategory]}}</view>
+      <view class="document--list">
         <navigator class="u-flex document-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
           <image class="document-item__cover" src="{{item.cover_image_url}}" />
           <view class="document-item__body document-item__height">
