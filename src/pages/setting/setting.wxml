@@ -42,4 +42,4 @@
     <view class="setting--safe"></view>
   </scroll-view>
 </view>
-<modal isShowModal="{{isShowModal}}" pubInfo="{{pubInfo}}" bindclosemodal="closeModal"></modal>
+<modal isShowModal="{{isShowModal}}" pubInfo="{{pubInfo}}" isShowInfo="{{isShowInfo}}" bindclosemodal="closeModal"></modal>

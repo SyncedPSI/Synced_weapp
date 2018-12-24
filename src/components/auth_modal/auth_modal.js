@@ -10,10 +10,13 @@ Component({
     pubInfo: {
       type: String,
       value: ''
+    },
+    isShowInfo: {
+      type: Boolean,
+      value: true
     }
   },
   data: {
-    isShowInComment: true,
     userInfo: {},
   },
   attached: function () {
@@ -32,7 +35,7 @@ Component({
         }
       }).then(() => {
         this.setData({
-          isShowInComment: event.detail.value
+          isShowInfo: event.detail.value
         });
       })
     },
