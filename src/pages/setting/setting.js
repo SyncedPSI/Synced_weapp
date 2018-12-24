@@ -39,14 +39,14 @@ Page({
     request({
       url: `${users}/certification`
     }).then(res => {
-      const { pubInfo } = res.data;
+      const { pubinfo } = res.data;
       let isShowInfo = true;
-      if (pubInfo === '') {
+      if (pubinfo === '') {
         isShowInfo = false
       }
 
       this.setData({
-        pubInfo,
+        pubInfo: pubinfo,
         isShowInfo
       })
     })
