@@ -20,7 +20,6 @@
         <view class="slide--dot {{currentBannerIndex === index ? 'is-active' : ''}}" wx:for="{{slide}}" wx:key="{{index}}"></view>
       </view>
 
-      <!--<navigator url="/pages/web_view/web_view?url=https://www.jiqizhixin.com/topics/2018-12-19/web_view" hover-class="none">web_view</navigator>-->
       <view class="content--body">
         <view class="content--title">当下热点</view>
         <block wx:for="{{recommends}}" wx:key="list-{{index}}">

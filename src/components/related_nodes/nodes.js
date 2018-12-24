@@ -22,7 +22,7 @@ Component({
       const { query } = event.currentTarget.dataset;
       getApp().td_app_sdk.event({
         id: `related_node_in_graph_with_tap`,
-        label: `tap_query_is_${query}`,
+        label: query,
       });
     },
   }

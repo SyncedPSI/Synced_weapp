@@ -2,7 +2,7 @@
   <view class="related {{isSmallPadding ? 't-small' : ''}}">
     <view class="related--title u-flex" wx:if="{{hasMore}}">
       <text>关联数据</text>
-      <navigator class="related--more" url="/pages/graph/related/related{{query}}"  data-type="{{query}}" bindtap="track">查看全部数据</navigator>
+      <navigator class="related--more" url="/pages/graph/related/related{{query}}"  data-query="{{query}}" bindtap="track">查看全部数据</navigator>
     </view>
     <view class="related--title" wx:else>关联数据</view>
     <scroll-view scroll-x class="related--scroll" >
