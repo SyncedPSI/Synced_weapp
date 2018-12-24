@@ -5034,9 +5034,9 @@ json5@^0.5.0, json5@^0.5.1:
   integrity sha1-Hq3nrMASA0rYTiOWdn6tn6VJWCE=
 
 jsonfile@^3.0.0:
-  version "3.0.0"
-  resolved "http://registry.npm.taobao.org/jsonfile/download/jsonfile-3.0.0.tgz#92e7c7444e5ffd5fa32e6a9ae8b85034df8347d0"
-  integrity sha1-kufHRE5f/V+jLmqa6LhQNN+DR9A=
+  version "3.0.1"
+  resolved "http://registry.npm.taobao.org/jsonfile/download/jsonfile-3.0.1.tgz#a5ecc6f65f53f662c4415c7675a0331d0992ec66"
+  integrity sha1-pezG9l9T9mLEQVx2daAzHQmS7GY=
   optionalDependencies:
     graceful-fs "^4.1.6"
 
@@ -7318,9 +7318,9 @@ sntp@1.x.x:
     hoek "2.x.x"
 
 source-list-map@^1.1.1:
-  version "1.1.1"
-  resolved "http://registry.npm.taobao.org/source-list-map/download/source-list-map-1.1.1.tgz#1a33ac210ca144d1e561f906ebccab5669ff4cb4"
-  integrity sha1-GjOsIQyhRNHlYfkG68yrVmn/TLQ=
+  version "1.1.2"
+  resolved "http://registry.npm.taobao.org/source-list-map/download/source-list-map-1.1.2.tgz#9889019d1024cce55cdc069498337ef6186a11a1"
+  integrity sha1-mIkBnRAkzOVc3AaUmDN+9hhqEaE=
 
 source-list-map@^2.0.0:
   version "2.0.0"
@@ -8467,10 +8467,10 @@ write@^0.2.1:
   dependencies:
     mkdirp "^0.5.1"
 
-wxapp-webpack-plugin@^0.17.1:
-  version "0.17.1"
-  resolved "http://registry.npm.taobao.org/wxapp-webpack-plugin/download/wxapp-webpack-plugin-0.17.1.tgz#52d244b8046acd5f8bfbfa4a743ac7dee31dfcd9"
-  integrity sha1-UtJEuARqzV+L+/pKdDrH3uMd/Nk=
+wxapp-webpack-plugin@^0.19.0:
+  version "0.19.0"
+  resolved "http://registry.npm.taobao.org/wxapp-webpack-plugin/download/wxapp-webpack-plugin-0.19.0.tgz#2bfcf5bb1aec3cbc5d6266462b264fa34f89f3be"
+  integrity sha1-K/z1uxrsPLxdYmZGKyZPo0+J874=
   dependencies:
     fs-extra "^3.0.1"
     globby "^6.1.0"
