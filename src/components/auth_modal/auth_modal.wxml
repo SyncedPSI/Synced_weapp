@@ -13,7 +13,7 @@
       <image class="auth-modal__avatar" src="{{userInfo.avatarUrl}}" />
       <view class="auth-modal__right">
         <block wx:if="{{isShowInfo}}">
-          <view class="u-flex">
+          <view class="u-flex auth-modal__top">
             <text class="auth-modal__name">{{userInfo.nickName}}</text>
             <text class="auth-modal__pro">pro</text>
           </view>

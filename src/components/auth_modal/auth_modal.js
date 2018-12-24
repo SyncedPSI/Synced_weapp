@@ -14,7 +14,11 @@ Component({
     isShowInfo: {
       type: Boolean,
       value: true
-    }
+    },
+    showModify: {
+      type: Boolean,
+      value: true
+    },
   },
   data: {
     userInfo: {},

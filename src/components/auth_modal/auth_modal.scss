@@ -32,6 +32,10 @@
     background-color: #f2f2f2;
   }
 
+  &__top {
+    justify-content: flex-start;
+  }
+
   &__name {
     font-size: 30rpx;
     font-weight: 500;

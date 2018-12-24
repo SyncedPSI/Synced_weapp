@@ -94,4 +94,4 @@
   </view>
 </view>
 
-<modal isShowModal="{{isShowModal}}" pubInfo="{{pubInfo}}" bindclosemodal="closeModal"></modal>
+<modal isShowModal="{{isShowModal}}" showModify="{{false}}" pubInfo="{{pubInfo}}" bindclosemodal="closeModal"></modal>
