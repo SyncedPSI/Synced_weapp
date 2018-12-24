@@ -22,6 +22,6 @@
         <view class="auth-modal__name" wx:else>{{userInfo.nickName}}</view>
       </view>
     </view>
-    <navigator class="auth-modal__modify" url="/pages/auth/auth" redirect hover-class="none">修改职业认证信息</navigator>
+    <navigator class="auth-modal__modify" url="/pages/auth/auth" hover-class="none" wx:if="{{showModify}}">修改职业认证信息</navigator>
   </view>
 </modal>
