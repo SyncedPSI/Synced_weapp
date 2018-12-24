@@ -8,7 +8,7 @@
         <swiper autoplay circular bindchange="bannerChange" previous-margin="38px" next-margin="38px">
           <swiper-item wx:for="{{banners}}" wx:key="slide-{{index}}">
             <navigator class="slide--content t-{{index}} {{currentBannerIndex === index ? 'is-active' : ''}}"
-              url="/pages/{{item.path}}?id={{item.content.id}}">
+              url="/pages/{{item.path}}?id={{item.content.id}}" data-index="{{index}}" data-type="banner" bindtap="track">
               <image class="slide--img" src="{{item.content.cover_image_url}}?imageView2/1/w/600/h/308" mode="aspectFill" />
               <view class="slide--cover"></view>
               <view class="slide--title" wx-if="{{item.tableize !== 'trends'}}">{{item.content.title}}</view>
@@ -25,7 +25,8 @@
         <view class="content--title">当下热点</view>
         <block wx:for="{{recommends}}" wx:key="list-{{index}}">
           <view class="trend-item__tip t-{{index}}">NO.{{index + 1}}</view>
-          <navigator class="u-flex trend-item__inline" url="/pages/{{item.node.node_type_en}}/{{item.node.node_type_en}}?id={{item.node.id}}" hover-class="none">
+          <navigator class="u-flex trend-item__inline" url="/pages/{{item.node.node_type_en}}/{{item.node.node_type_en}}?id={{item.node.id}}" hover-class="none"
+               data-index="{{index}}" data-type="hot" bindtap="track">
             <image class="trend-item__image" src="{{item.avatar_url}}" mode="aspectFill" />
             <view class="trend-item__right">
               <view class="trend-item__header">

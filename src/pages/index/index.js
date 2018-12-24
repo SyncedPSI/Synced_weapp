@@ -44,6 +44,14 @@ Page({
     });
   },
 
+  track: function(event) {
+    const { index, type } = event.currentTarget.dataset;
+    getApp().td_app_sdk.event({
+      id: `${type}_tap`,
+      label: `tap_index_of_${index}`,
+    });
+  },
+
   onShareAppMessage: function() {
     return {
       title: '机器之心',
