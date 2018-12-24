@@ -33,9 +33,10 @@ Component({
         data: {
           reveal: newStatus
         }
-      }).then(() => {
+      }).then((res) => {
         this.setData({
-          isShowInfo: event.detail.value
+          isShowInfo: event.detail.value,
+          pubInfo: res.data.pubInfo
         });
       })
     },
