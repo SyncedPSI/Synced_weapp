@@ -70,6 +70,10 @@ page {
     }
   }
 
+  &--hr {
+    margin: 0 28rpx;
+  }
+
   &--icon {
     width: 40rpx;
     height: 30rpx;
@@ -77,6 +81,10 @@ page {
     margin-bottom: 8rpx;
     display: inline-block;
     vertical-align: bottom;
+
+    &.t-notice {
+      width: 26rpx;
+    }
   }
 }
 

@@ -1,8 +1,23 @@
 <import src="/pages/common/page_loading.wxml"/>
 <import src="/pages/common/fixed_comment.wxml"/>
+<template name="document_published">
+  <image class="document--icon" src="/icons/download.png" />
+  <text>获取报告</text>
+</template>
+
+<template name="document_pending">
+  <image class="document--icon t-notice" src="/icons/document_notice.png" />
+  <text>开启发布通知</text>
+</template>
+
+<template name="document_part">
+  <text bindtap="download">获取报告</text>
+  <text class="document--hr">|</text>
+  <text bindtap="download">获取扩展版</text>
+</template>
+
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasHeaderHeight hasShadow pageLogin="{{isLogin}}"></nav>
-
 <template is="page_loading" wx:if="{{document === null}}" />
 <block wx:else>
   <view class="document--bannner">
@@ -22,14 +37,31 @@
   <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecomment="closeComment"
     bindopencomment="openComment" bindsharecomment="shareComment"></comment>
 
-  <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download" wx:if="{{isLogin}}">
-    <image class="document--icon" src="/icons/download.png" />
-    <text>获取报告</text>
-  </view>
-  <button class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="download"  wx:else>
-    <image class="document--icon" src="/icons/download.png" />
-    <text>获取报告</text>
-  </button>
+  <block wx:if="{{document.status === 'published'}}">
+    <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download" wx:if="{{isLogin}}">
+      <template is="document_published" />
+    </view>
+    <button class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="download"  wx:else>
+      <template is="document_published" />
+    </button>
+  </block>
+  <block wx:if="{{document.status === 'pending'}}">
+    <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download" wx:if="{{isLogin}}">
+      <template is="document_pending" />
+    </view>
+    <button class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="download"  wx:else>
+      <template is="document_pending" />
+    </button>
+  </block>
+
+  <block wx:if="{{document.status === 'part'}}">
+    <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" wx:if="{{isLogin}}">
+      <template is="document_part" />
+    </view>
+    <button class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="download"  wx:else>
+      <template is="document_part" />
+    </button>
+  </block>
 
   <template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
 

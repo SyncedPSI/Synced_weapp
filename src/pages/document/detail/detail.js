@@ -37,6 +37,7 @@ Page({
         this.getWxcode(id);
       }
 
+      document.status = 'published';
       this.setData({
         document,
         navigateTitle: document.title,
