@@ -22,6 +22,7 @@
     "pages/account/link/link",
     "pages/setting/setting",
     "pages/web_view/web_view",
+    "pages/form_gd/form_gd",
     "pages/expert/expert",
     "pages/paper/paper",
     "pages/publication/publication",
@@ -64,5 +65,11 @@
         "selectedIconPath": "icons/tab/document_active.png"
       }
     ]
+  },
+  "plugins": {
+    "gdPlugin": {
+      "version": "0.2.3",
+      "provider": "wx34b0738d0eef5f78"
+    }
   }
 }

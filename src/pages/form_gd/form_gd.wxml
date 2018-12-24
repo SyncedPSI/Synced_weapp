@@ -1,0 +1,3 @@
+<nav title="金数据表单" hasHeaderHeight hasShadow></nav>
+
+<gd-form token="se9p3k" bindsubmit="submit"></gd-form>
