@@ -40,7 +40,7 @@ Component({
       }).then((res) => {
         this.setData({
           isShowInfo: event.detail.value,
-          pubInfo: res.data.pubInfo
+          pubInfo: res.data.pubinfo
         });
       })
     },
