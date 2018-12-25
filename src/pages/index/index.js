@@ -48,7 +48,10 @@ Page({
     const { index, type } = event.currentTarget.dataset;
     getApp().td_app_sdk.event({
       id: `${type}_tap`,
-      label: `tap_index_of_${index}`,
+      label: 'tap in index',
+      params: {
+        index,
+      }
     });
   },
 

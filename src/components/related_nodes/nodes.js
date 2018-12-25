@@ -21,8 +21,11 @@ Component({
     track: function(event) {
       const { query } = event.currentTarget.dataset;
       getApp().td_app_sdk.event({
-        id: `related_node_in_graph_with_tap`,
-        label: query,
+        id: 'related_node_in_graph_brief',
+        label: 'related_node_in_graph_with_tap',
+        params: {
+          query,
+        }
       });
     },
   }
