@@ -48,18 +48,18 @@
       </view>
       <block wx:if="{{status === 1}}">
         <view class="form--label">公司</view>
-        <input class="form--input" type="text" placeholder="请输入公司" name="company" />
+        <input class="form--input" type="text" placeholder="请输入公司" name="company" value="{{initalData.company}}" />
         <view class="form--label">职务</view>
-        <input class="form--input" type="text" placeholder="请输入职务" name="position" />
+        <input class="form--input" type="text" placeholder="请输入职务" name="position" value="{{initalData.position}}" />
         <view class="form--label">工作年限</view>
         <picker class="form--input t-picker" name="work_experience" bindchange="bindWorkChange" value="{{workExperienceIndex}}" range="{{workExperience}}">
           <text>{{workExperience[workExperienceIndex]}} </text>
         </picker>
       </block>
       <view class="form--label">毕业/在读院校</view>
-      <input class="form--input" type="text" placeholder="请输入毕业院校" name="school" />
+      <input class="form--input" type="text" placeholder="请输入毕业院校" name="school" value="{{initalData.school}}" />
       <view class="form--label">专业</view>
-      <input class="form--input" type="text" placeholder="请输入专业" name="major" />
+      <input class="form--input" type="text" placeholder="请输入专业" name="major" value="{{initalData.major}}" />
       <view class="form--label">学位</view>
        <picker class="form--input t-picker" name="degree" bindchange="bindDegreeChange" value="{{degreeIndex}}" range="{{allDegree}}">
         <text>{{allDegree[degreeIndex]}} </text>
@@ -79,13 +79,13 @@
     <view class="auth--desc">我们会将你的信息保密，仅用于为你提供更精准的信息服务</view>
     <form class="auth--form" bindsubmit="submitForm">
       <view class="form--label">姓名</view>
-      <input class="form--input" type="text" placeholder="请输入姓名" name="full_name" auto-focus />
+      <input class="form--input" type="text" placeholder="请输入姓名" name="full_name" value="{{initalData.full_name}}" />
       <view class="form--label">手机号码</view>
-      <input class="form--input" type="text" placeholder="请输入手机号码" name="mobile" />
+      <input class="form--input" type="text" placeholder="请输入手机号码" name="mobile" value="{{initalData.mobile}}" />
       <view class="form--label">微信 ID</view>
-      <input class="form--input" type="text" placeholder="请输入微信 ID" name="wechat" />
+      <input class="form--input" type="text" placeholder="请输入微信 ID" name="wechat" value="{{initalData.wechat}}" />
       <view class="form--label">邮箱</view>
-      <input class="form--input" type="text" placeholder="请输入邮箱" name="email" />
+      <input class="form--input" type="text" placeholder="请输入邮箱" name="email" value="{{initalData.email}}" />
 
       <view class="form--button__container">
         <button class="form--button" form-type="submit">完成</button>

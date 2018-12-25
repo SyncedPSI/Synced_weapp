@@ -1,5 +1,5 @@
 import { province, city } from "utils/city";
-import { certifications } from 'config/api';
+import { certifications, users } from 'config/api';
 import { showErrorToast, request } from "utils/util";
 
 const getGraduationYear = () => {
@@ -37,8 +37,25 @@ Page({
     formData: {},
     isShowModal: false,
     pubInfo: '',
+    initalData: {
+      company: '',
+      position: '',
+      school: '',
+      major: '',
+      full_name: '',
+      mobile: '',
+      wechat: '',
+      email: '',
+    }
   },
   onLoad: function () {
+    request({
+      url: `${users}/certification`
+    }).then(res => {
+      this.setData({
+        initalData: res.data
+      })
+    })
   },
 
   closeModal: function() {
