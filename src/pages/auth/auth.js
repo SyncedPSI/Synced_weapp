@@ -52,9 +52,11 @@ Page({
     request({
       url: `${users}/certification`
     }).then(res => {
-      this.setData({
-        initalData: res.data
-      })
+      if (res.data !== null) {
+        this.setData({
+          initalData: res.data
+        })
+      }
     })
   },
 
