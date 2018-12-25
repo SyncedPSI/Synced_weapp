@@ -28,7 +28,8 @@ Page({
     }).then(res => {
       const node = res.data;
       const catalogList = this.getCatalog(node);
-      WxParse.wxParse("node_content", "html", res.data.desc, this, 5);
+      WxParse.wxParse("node_content", "html", node.desc, this, 5);
+      node.desc = null;
       this.setData({
         catalogList,
         navigateTitle: node.full_name,

@@ -71,6 +71,7 @@ Page({
       }
       article.publishedAt = getDateDiff(article.published_at);
       WxParse.wxParse("article_content", "html", article.content, this, 5);
+      article.content = null;
       let hasMetadata = false;
       try {
         hasMetadata = Object.keys(article.metadata).length > 0

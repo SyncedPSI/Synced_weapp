@@ -43,12 +43,12 @@ Page({
       url: `${topicDetail}${option.id}`,
       isHandleNotFound: true
     }).then(res => {
-      const topic = res.data;
-      topic.publishedAt = getDateDiff(res.data.published_at);
-      WxParse.wxParse("topic_content", "html", res.data.content, this, 5);
+      const { published_at, content, ...otherProps }  = res.data;
+      topic.publishedAt = getDateDiff(published_at);
+      WxParse.wxParse("topic_content", "html", content, this, 5);
       this.setData({
         navigateTitle: topic.title,
-        topic,
+        topic: otherProps,
       }, () => {
         this.getTitleHeight();
       });
