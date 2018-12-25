@@ -166,7 +166,7 @@ export const request = ({ url, data = {}, method = "GET", isHandleNotFound = fal
             icon: 'none',
             duration: 2000
           })
-        }else if (res.statusCode == 500) {
+        } else if (res.statusCode == 500) {
           showErrorToast('服务器错误');
           reject(res);
         } else {

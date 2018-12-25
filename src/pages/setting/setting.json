@@ -3,6 +3,7 @@
     "nav": "../../components/navigate/navigate",
     "readlater": "../../components/readlater/readlater",
     "subscribe": "../../components/subscribe/subscribe",
-    "notice": "../../components/notice/notice"
+    "notice": "../../components/notice/notice",
+    "modal": "../../components/auth_modal/auth_modal"
   }
 }

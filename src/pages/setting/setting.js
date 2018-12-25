@@ -1,5 +1,5 @@
 import { request } from "utils/util";
-import { notice } from "config/api";
+import { notice, users } from "config/api";
 
 Page({
   data: {
@@ -15,17 +15,53 @@ Page({
     noticePage: 1,
     isAuth: getApp().globalData.isAuth,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
+    isShowModal: false,
+    pubInfo: '职务信息',
+    isShowInfo: true
   },
 
   onLoad: function () {
     this.noticePage = 1;
     const user = wx.getStorageSync('userInfo');
     user.nickName = user.nickName.slice(0, 8);
-    const { globalData } = getApp();
+    const { isAuth, notifyCount } = getApp().globalData;
     this.setData({
       user,
-      unreadNoticeCount: getApp().globalData.notifyCount,
+      unreadNoticeCount: notifyCount,
     });
+
+    if (isAuth) {
+      this.getAuthInfo();
+    }
+  },
+
+  getAuthInfo: function() {
+    request({
+      url: `${users}/certification`
+    }).then(res => {
+      const { pubinfo } = res.data;
+      let isShowInfo = true;
+      if (pubinfo === '') {
+        isShowInfo = false
+      }
+
+      this.setData({
+        pubInfo: pubinfo,
+        isShowInfo
+      })
+    })
+  },
+
+  openModal: function () {
+    this.setData({
+      isShowModal: true,
+    })
+  },
+
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
   },
 
   onShow: function() {

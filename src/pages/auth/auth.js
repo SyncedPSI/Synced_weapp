@@ -1,5 +1,5 @@
 import { province, city } from "utils/city";
-import { certifications } from 'config/api';
+import { certifications, users } from 'config/api';
 import { showErrorToast, request } from "utils/util";
 
 const getGraduationYear = () => {
@@ -36,27 +36,27 @@ Page({
     degreeIndex: 0,
     formData: {},
     isShowModal: false,
-    isShowInComment: true,
-    userInfo: {},
+    pubInfo: '',
+    initalData: {
+      company: '',
+      position: '',
+      school: '',
+      major: '',
+      full_name: '',
+      mobile: '',
+      wechat: '',
+      email: '',
+    }
   },
   onLoad: function () {
-    this.setData({
-      userInfo: getApp().globalData.userInfo
-    });
-  },
-
-  switchChange: function(event) {
-    const newStatus = event.detail.value;
     request({
-      url: certifications,
-      method: 'POST',
-      data: {
-        reveal: newStatus
+      url: `${users}/certification`
+    }).then(res => {
+      if (res.data !== null) {
+        this.setData({
+          initalData: res.data
+        })
       }
-    }).then(() => {
-      this.setData({
-        isShowInComment: event.detail.value
-      });
     })
   },
 
@@ -121,7 +121,8 @@ Page({
         graduation_year: graduationYear[graduation_year],
         work_experience: workExperience[work_experience],
         degree: allDegree[degree],
-      }
+      },
+      pubInfo: this.data.status === 1 ? `${company}・${position}` : `${school}・${major}・${degree}`,
     });
   },
 
