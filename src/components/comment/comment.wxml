@@ -12,10 +12,14 @@
 <view class="u-container-cover comment-editor" wx:if="{{isShowComment}}" catchtouchmove="move">
   <view class="u-container-cover comment-editor__mask" bindtap="closeComment"></view>
   <view class="comment-editor__main {{isIphoneX ? 'has-safe-padding' : ''}}" style="bottom: {{keyboardHeight}}px">
-    <view class="comment-editor__body {{ isAndroid ? '' : 't-ios'}}">
-      <textarea class="comment-editor__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" maxlength="-1" auto-height auto-focus
-       cursor-spacing="14" placeholder="{{placeholder}}" fixed show-confirm-bar="{{false}}" name="textarea" bindinput="bindContentInput" />
-    </view>
-    <text class="comment-editor__submit" bindtap="submitComment">发布</text>
+    <form report-submit bindsubmit="submitComment">
+      <view class="comment-editor__form">
+        <view class="comment-editor__body {{ isAndroid ? '' : 't-ios'}}">
+          <textarea class="comment-editor__textarea" adjust-position="{{false}}" bindfocus="inputFocus" bindblur="inputBlur" maxlength="-1" auto-height auto-focus
+          cursor-spacing="14" placeholder="{{placeholder}}" fixed show-confirm-bar="{{false}}" name="content" />
+        </view>
+        <button class="comment-editor__submit" form-type="submit">发布</button>
+      </view>
+    </form>
   </view>
 </view>

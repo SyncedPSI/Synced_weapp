@@ -24,7 +24,6 @@ Component({
   data: {
     comments: [],
     count: 0,
-    content: '',
     placeholder: '请输入评论',
     keyboardHeight: null,
     isIphoneX: getApp().globalData.isIphoneX,
@@ -80,21 +79,17 @@ Component({
       });
       this.triggerEvent('opencomment');
     },
-    bindContentInput: function (e) {
-      this.setData({
-        content: e.detail.value
-      });
-    },
-    submitComment: function () {
-      const { content } = this.data;
-
+    submitComment: function (event) {
+      const { value: { content }, formId } = event.detail;
       if (content === '') return;
+
       const isCreateComment = this.replyCommentId === null;
       const url = isCreateComment ? `${ApiV1}${this.properties.baseUrl}/comments` : `${comments}/${this.replyCommentId}/reply`;
       request({
         url,
         data: {
-          content
+          content,
+          form_id: formId
         },
         method: 'POST'
       }).then(() => {
@@ -110,9 +105,6 @@ Component({
         showErrorToast('操作失败，请重试！');
       })
       .then(() => {
-        this.setData({
-          content: ''
-        });
         this.replyCommentId = null;
         this.triggerEvent('closecomment', {commentStr: content});
       })
