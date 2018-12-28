@@ -349,8 +349,7 @@ Page({
 
       const _contentTop = heightInfo.titleTop + titleInfo.height;
       heightInfo.leftMarkTop = _contentTop + 19;
-      heightInfo.userTop = _contentTop + 33;
-      heightInfo.descTop = _contentTop + 59;
+      heightInfo.descTop = heightInfo.leftMarkTop + 51;
       heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
       heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 36;
     }

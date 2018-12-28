@@ -1,15 +1,15 @@
 <template name="comment_inline">
   <view class="comment-inline">
-    <view class="comment-inline__header">
+    <view class="comment-inline__flex">
       <view class="comment-inline__avatar--height">
       </view>
       <view class="comment-inline__avatar">
         <image  class="comment-inline__img" src="{{from.avatar_url}}" mode="aspectFill" />
       </view>
       <view>
-        <view class="comment-inline__user">
+        <view class="comment-inline__user comment-inline__flex">
           <text class="comment-inline__from">{{from.nickname}}</text>
-          <view class="comment-inline__pro" wx-if="{{from.pubinfo !== undefined && from.pubinfo !== ''}}">pro</view>
+          <image class="comment-inline__pro" src="{{path}}/icons/pro.png" wx-if="{{from.pubinfo !== undefined && from.pubinfo !== ''}}" />
         </view>
         <view class="comment-inline__pubinfo" wx-if="{{from.pubinfo !== undefined && from.pubinfo !== ''}}">{{from.pubinfo}}</view>
 

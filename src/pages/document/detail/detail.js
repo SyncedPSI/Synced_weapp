@@ -316,8 +316,7 @@ Page({
     });
 
     heightInfo.leftMarkTop = 30 + heightInfo.bannerHeight + 30;
-    heightInfo.userTop = heightInfo.leftMarkTop + 14;
-    heightInfo.descTop = heightInfo.leftMarkTop + 41;
+    heightInfo.descTop = heightInfo.leftMarkTop + 51;
     heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
     heightInfo.qrcodeTop = heightInfo.rightMarkTop + 54;
     heightInfo.tipTop = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 9;

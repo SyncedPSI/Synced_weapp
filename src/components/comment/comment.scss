@@ -62,7 +62,7 @@
     color: #121212;
   }
 
-  &__header {
+  &__flex {
     display: flex;
     align-items: center;
   }
@@ -77,13 +77,9 @@
   }
 
   &__pro {
-    display: inline-block;
-    padding: 0 6rpx 4rpx;
     margin-left: 10rpx;
-    font-size: 24rpx;
-    color: #fff;
-    background-color: $red;
-    line-height: 1;
+    width: 44rpx;
+    height: 24rpx;
   }
 
   &__from {

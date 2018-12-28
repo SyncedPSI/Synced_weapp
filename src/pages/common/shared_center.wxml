@@ -4,12 +4,12 @@
       <image class="shared-center__quot t-large t-left" src="{{path}}/icons/article_mark_left.png" />
       <view class="u-flex shared-center__user">
         <image class="shared-center__avatar" src="{{targetComment.user.avatar_url}}" />
-        <view>
+        <view class="shared-center__top">
           <view class="shared-center__username">
             <text>{{targetComment.user.nickname}}</text>
             <image class="shared-center__pro" src="{{path}}/icons/pro.png" />
           </view>
-          <text class="u-text-limit--one shared-center__pubinfo">{{targetComment.user.pubinfo}}</text>
+          <text class="shared-center__pubinfo">{{targetComment.user.pubinfo}}</text>
         </view>
       </view>
       <view class="shared-center__commentstr">{{targetComment.content}}</view>

@@ -1,5 +1,3 @@
-@import 'text_limit';
-
 .shared-center {
   &__commentstr {
     font-size: 24rpx;
@@ -11,6 +9,7 @@
     padding-top: 24rpx;
     overflow: visible;
     font-size: 0;
+    position: relative;
   }
 
   &__quot {
@@ -58,13 +57,19 @@
 
   &__user {
     position: absolute;
-    margin-left: 10rpx;
+    width: 100%;
+    padding-left: 10rpx;
     margin-top: -32rpx;
+  }
+
+  &__top {
+    flex-grow: 1;
   }
 
   &__avatar {
     width: 44rpx;
     height: 44rpx;
+    flex-shrink: 0;
     margin-right: 10rpx;
     border-radius: 50%;
   }
@@ -85,6 +90,9 @@
   &__pubinfo {
     color: #a8a8a8;
     font-size: 20rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__center {
