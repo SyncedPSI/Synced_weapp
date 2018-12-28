@@ -1,7 +1,9 @@
+@import 'text_limit';
+
 .shared-center {
   &__commentstr {
     font-size: 24rpx;
-    margin: 24rpx 0;
+    margin: 36rpx 0 24rpx;
     padding: 0 10rpx;
   }
 
@@ -57,12 +59,12 @@
   &__user {
     position: absolute;
     margin-left: 10rpx;
-    margin-top: -16rpx;
+    margin-top: -32rpx;
   }
 
   &__avatar {
-    width: 24rpx;
-    height: 24rpx;
+    width: 44rpx;
+    height: 44rpx;
     margin-right: 10rpx;
     border-radius: 50%;
   }
@@ -70,6 +72,19 @@
   &__username {
     font-size: 20rpx;
     color: $secondary-black;
+    display: flex;
+    align-items: center;
+  }
+
+  &__pro {
+    margin-left: 8rpx;
+    width: 44rpx;
+    height: 24rpx;
+  }
+
+  &__pubinfo {
+    color: #a8a8a8;
+    font-size: 20rpx;
   }
 
   &__center {
