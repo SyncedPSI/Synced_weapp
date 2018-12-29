@@ -210,8 +210,7 @@ Page({
 
       // heightInfo.coverHeight = 190
       heightInfo.leftMarkTop = 190 + 30;
-      heightInfo.userTop = 190 + 43;
-      heightInfo.descTop = 190 + 71;
+      heightInfo.descTop = 190 + 81;
       heightInfo.rightMarkTop = heightInfo.descTop + descInfo.height - 8;
       heightInfo.qrcodeTop = heightInfo.descTop + descInfo.height + 36;
     }

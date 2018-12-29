@@ -1,7 +1,7 @@
 .shared-center {
   &__commentstr {
     font-size: 24rpx;
-    margin: 24rpx 0;
+    margin: 36rpx 0 24rpx;
     padding: 0 10rpx;
   }
 
@@ -9,6 +9,7 @@
     padding-top: 24rpx;
     overflow: visible;
     font-size: 0;
+    position: relative;
   }
 
   &__quot {
@@ -56,13 +57,19 @@
 
   &__user {
     position: absolute;
-    margin-left: 10rpx;
-    margin-top: -16rpx;
+    width: 100%;
+    padding-left: 10rpx;
+    margin-top: -32rpx;
+  }
+
+  &__top {
+    flex-grow: 1;
   }
 
   &__avatar {
-    width: 24rpx;
-    height: 24rpx;
+    width: 44rpx;
+    height: 44rpx;
+    flex-shrink: 0;
     margin-right: 10rpx;
     border-radius: 50%;
   }
@@ -70,6 +77,22 @@
   &__username {
     font-size: 20rpx;
     color: $secondary-black;
+    display: flex;
+    align-items: center;
+  }
+
+  &__pro {
+    margin-left: 8rpx;
+    width: 44rpx;
+    height: 24rpx;
+  }
+
+  &__pubinfo {
+    color: #a8a8a8;
+    font-size: 20rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__center {

@@ -15,7 +15,8 @@
         <block wx:if="{{isShowInfo}}">
           <view class="u-flex auth-modal__top">
             <text class="auth-modal__name">{{userInfo.nickName}}</text>
-            <text class="auth-modal__pro">pro</text>
+
+            <image class="auth-modal__pro" src="/icons/pro.png" />
           </view>
           <view class="auth-modal__post">{{pubInfo}}</view>
         </block>

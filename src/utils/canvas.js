@@ -172,17 +172,40 @@ export const downloadImage = (url, successCb) => {
 export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset, rightMarkOffset, cb}) => {
   const markHeight = 20;
   const markWidth = 26;
-  const avatarHalfHeight = 10;
+  const avatarHalfHeight = 15;
   // left mark
   ctx.drawImage('/icons/article_mark_left.png', leftMarkOffset, heightInfo.leftMarkTop, markWidth, markHeight);
   ctx.drawImage('/icons/article_mark_right.png', rightMarkOffset - markHeight, heightInfo.rightMarkTop, markWidth, markHeight);
+  const { nickName, nickname, pubinfo } = userInfo;
+  const avatarTop = heightInfo.leftMarkTop + 8;
+  const name = nickName || nickname;
+  let nameTop = avatarTop;
+  const nameX = 33 + avatarHalfHeight * 2 + 5;
+  ctx.setFontSize(14);
+  const proX = nameX + ctx.measureText(name).width + 8;
+
+  if (pubinfo) {
+    ctx.drawImage('/icons/pro.png', proX, avatarTop + 2, 27, 14);
+    drawOneLine({
+      ctx: ctx,
+      fontSize: 12,
+      color: '#a8a8a8',
+      text: pubinfo,
+      x: nameX,
+      y: nameTop + 20,
+    });
+    setBg(ctx, 34, 20, '#fff', getApp().globalData.systemInfo.screenWidth - 34, nameTop + 20);
+  } else {
+    nameTop += 5;
+  }
+
   drawOneLine({
     ctx: ctx,
     fontSize: 14,
     color: '#7d7d7d',
-    text: userInfo.nickName || userInfo.nickname,
-    x: 33 + avatarHalfHeight * 2 + 5,
-    y: heightInfo.userTop + 3,
+    text: name,
+    x: nameX,
+    y: nameTop,
     isBold: true,
   });
 
@@ -197,10 +220,10 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
   downloadImage((userInfo.avatarUrl || userInfo.avatar_url), (path) => {
     ctx.save();
     ctx.setFillStyle('#fff');
-    ctx.arc(33 + avatarHalfHeight, heightInfo.userTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
+    ctx.arc(33 + avatarHalfHeight, avatarTop + avatarHalfHeight, avatarHalfHeight, 0, 2 * Math.PI);
     ctx.fill();
     ctx.clip();
-    ctx.drawImage(path, 33, heightInfo.userTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
+    ctx.drawImage(path, 33, avatarTop, avatarHalfHeight * 2, avatarHalfHeight * 2);
     ctx.restore();
     cb();
   })
