@@ -7,7 +7,7 @@
         <view class="shared-center__top">
           <view class="shared-center__username">
             <text>{{targetComment.user.nickname}}</text>
-            <image class="shared-center__pro" src="{{path}}/icons/pro.png" />
+            <image class="shared-center__pro" src="{{path}}/icons/pro.png" wx-if="{{targetComment.user.pubinfo}}" />
           </view>
           <text class="shared-center__pubinfo">{{targetComment.user.pubinfo}}</text>
         </view>
