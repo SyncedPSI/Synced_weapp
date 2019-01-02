@@ -4,7 +4,7 @@ const isPunctuation = (char) => {
   return (char === '，' || char === '。')
 };
 
-export const setBg = (ctx, width, height, color = '#fff', startX = 0, startY = 0) => {
+export const setBg = (ctx, width, height, startX = 0, startY = 0, color = '#fff') => {
   ctx.setFillStyle(color);
   ctx.fillRect(startX, startY, width, height);
 };
@@ -194,7 +194,7 @@ export const drawComment = ({ctx, userInfo, heightInfo, comment, leftMarkOffset,
       x: nameX,
       y: nameTop + 20,
     });
-    setBg(ctx, 34, 20, '#fff', getApp().globalData.systemInfo.screenWidth - 34, nameTop + 20);
+    setBg(ctx, 34, 20, getApp().globalData.systemInfo.screenWidth - 34, nameTop + 20);
   } else {
     nameTop += 5;
   }

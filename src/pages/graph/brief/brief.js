@@ -250,14 +250,14 @@ Page({
     this.ctx.clearRect(0, 0, this.width, this.height);
     const containerWidth = this.width - 60;
     this.ctx.drawImage('/images/graph_share_bg.png', 0, 0, this.width, this.height);
-    setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, '#fff', 30, 30);
-    setBg(this.ctx, containerWidth, this.height - heightInfo.aboutTop + 5, '#fff', 30, heightInfo.aboutTop - 25);
+    setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, 30, 30);
+    setBg(this.ctx, containerWidth, this.height - heightInfo.aboutTop + 5, 30, heightInfo.aboutTop - 25);
     let hrHeight = 40;
 
     // award
     if (this.award) {
       hrHeight = 24;
-      setBg(this.ctx, containerWidth, 78, '#fff', 30, heightInfo.awardTop - 17);
+      setBg(this.ctx, containerWidth, 78, 30, heightInfo.awardTop - 17);
       this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.awardTop + 55, 8, hrHeight);
       this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.awardTop + 55, 8, hrHeight);
       this.ctx.drawImage('/icons/award.png', 42, heightInfo.awardTop, 43, 43);
