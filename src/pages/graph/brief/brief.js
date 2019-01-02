@@ -22,7 +22,6 @@ Page({
     const { id, from } = options;
     let { type } = options;
     this.page = 1;
-    this.award = true;
     request({
       url: `${graph}/${type}/${id}`,
       isHandleNotFound: true
@@ -31,6 +30,7 @@ Page({
       if (node.wxacode_url === null) {
         this.getWxcode(id, type);
       }
+      this.hasAward = node.award_items;
       this.setData({
         id,
         type,
@@ -202,7 +202,7 @@ Page({
     heightInfo.summaryTop = heightInfo.enTop + enInfo.height + 12;
     heightInfo.headerOffset = heightInfo.summaryTop + summaryInfo.height + 22;
 
-    if (this.award) {
+    if (this.hasAward) {
       heightInfo.awardTop = heightInfo.headerOffset + 27;
       heightInfo.aboutTop = heightInfo.headerOffset + 127;
     } else {
@@ -251,12 +251,12 @@ Page({
     let hrHeight = 40;
 
     // award
-    if (this.award) {
+    if (this.hasAward) {
       hrHeight = 24;
       setBg(this.ctx, containerWidth, 78, 30, heightInfo.awardTop - 17);
       this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.awardTop + 55, 8, hrHeight);
       this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.awardTop + 55, 8, hrHeight);
-      this.ctx.drawImage('/icons/award.png', 42, heightInfo.awardTop, 43, 43);
+      this.ctx.drawImage('/icons/award.png', 42, heightInfo.awardTop, 38, 43);
       drawOneLine({
         ctx: this.ctx,
         fontSize: 16,
@@ -271,7 +271,7 @@ Page({
         ctx: this.ctx,
         fontSize: 16,
         color: '#d18f54',
-        text: '2018机器之心年度榜单评选',
+        text: this.data.node.award_items[0].award_name,
         x: 92,
         y: heightInfo.awardTop + 25,
       });
@@ -362,7 +362,7 @@ Page({
 
     const { wxacode_url } = this.data.node;
     if (wxacode_url === null) {
-      this.drawOther('/images/qrcode.png', heightInfo);
+      this.drawOther('/images/qrcode.png', heightInfo, halfWidth);
     } else {
       downloadImage(wxacode_url, (path) => {
         this.drawOther(path, heightInfo, halfWidth);
