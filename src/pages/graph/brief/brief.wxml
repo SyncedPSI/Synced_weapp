@@ -43,7 +43,7 @@
       </view>
 
       <view class="u-flex node-award">
-        <image class="node-award__icon" src="" />
+        <image class="node-award__icon" src="/icons/award.png" />
         <view>
           <view class="node-award__title">2018机器之心年度榜单评选</view>
           <view class="node-award__desc">2018机器之心年度榜单评选</view>
