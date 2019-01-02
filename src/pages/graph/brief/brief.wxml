@@ -75,10 +75,11 @@
     <view class="graph-shared__container">
       <view class="graph-shared__title">{{node.full_name}}</view>
       <view class="graph-shared__name">{{node.en_name}}</view>
-      <view class="u-text-limit--three graph-shared__desc">{{node.summary}}</view>
+      <view class="u-text-limit--two graph-shared__desc">{{node.summary}}</view>
     </view>
     <image class="graph-shared__contact t-left" src="/images/graph_hr.png" />
     <image class="graph-shared__contact t-right" src="/images/graph_hr.png" />
+
     <view class="graph-shared__container t-bottom">
       <view class="graph-shared__tip">相关动态</view>
       <template is="no-trend" data="{{isHidden: sharedTrends.length > 0 }}" />

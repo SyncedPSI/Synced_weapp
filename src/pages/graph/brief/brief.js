@@ -22,6 +22,7 @@ Page({
     const { id, from } = options;
     let { type } = options;
     this.page = 1;
+    this.award = true;
     request({
       url: `${graph}/${type}/${id}`,
       isHandleNotFound: true
@@ -200,7 +201,13 @@ Page({
     heightInfo.enTop = heightInfo.nameTop + nameInfo.height;
     heightInfo.summaryTop = heightInfo.enTop + enInfo.height + 12;
     heightInfo.headerOffset = heightInfo.summaryTop + summaryInfo.height + 22;
-    heightInfo.aboutTop = heightInfo.headerOffset + 45;
+
+    if (this.award) {
+      heightInfo.awardTop = heightInfo.headerOffset + 27;
+      heightInfo.aboutTop = heightInfo.headerOffset + 127;
+    } else {
+      heightInfo.aboutTop = heightInfo.headerOffset + 45;
+    }
 
     let trendsInfo = null;
     if (sharedTrends.length > 0) {
@@ -231,7 +238,7 @@ Page({
     } else {
       heightInfo.qrcodeTop = heightInfo.aboutTop + 24 + 158;
     }
-    this.height = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 55;
+    this.height = heightInfo.qrcodeTop + heightInfo.qrcodeHeight + 45;
     this.setData({
       canvasHeight: this.height
     }, () => {
@@ -244,13 +251,41 @@ Page({
     const containerWidth = this.width - 60;
     this.ctx.drawImage('/images/graph_share_bg.png', 0, 0, this.width, this.height);
     setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, '#fff', 30, 30);
-    setBg(this.ctx, containerWidth, this.height - heightInfo.headerOffset - 50, '#fff', 30, heightInfo.headerOffset + 20);
-    this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.headerOffset - 5, 8, 40);
-    this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.headerOffset - 5, 8, 40);
+    setBg(this.ctx, containerWidth, this.height - heightInfo.headerOffset - 50, '#fff', 30, heightInfo.aboutTop - 25);
+    let hrHeight = 40;
 
+    // award
+    if (this.award) {
+      hrHeight = 24;
+      setBg(this.ctx, containerWidth, 78, '#fff', 30, heightInfo.awardTop - 17);
+      this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.awardTop + 55, 8, hrHeight);
+      this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.awardTop + 55, 8, hrHeight);
+      this.ctx.drawImage('/icons/award.png', 42, heightInfo.awardTop, 43, 43);
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 16,
+        color: '#121212',
+        text: '2018机器之心年度榜单评选',
+        x: 92,
+        y: heightInfo.awardTop,
+        isBold: true,
+      });
+
+      drawOneLine({
+        ctx: this.ctx,
+        fontSize: 16,
+        color: '#d18f54',
+        text: '2018机器之心年度榜单评选',
+        x: 92,
+        y: heightInfo.awardTop + 25,
+      });
+    }
+    // award end
+    this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.headerOffset - 5, 8, hrHeight);
+    this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.headerOffset - 5, 8, hrHeight);
     const rank = this.data.node.hot_rank;
     if (rank !== null) {
-      this.ctx.drawImage(`/images/rank/${rank}.svg`, 50, 51, 130, 22);
+      this.ctx.drawImage(`/images/rank/${rank}.png`, 50, 51, 130, 22);
     }
     drawMultiLines({
       ctx: this.ctx,
