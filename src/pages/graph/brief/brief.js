@@ -251,7 +251,7 @@ Page({
     const containerWidth = this.width - 60;
     this.ctx.drawImage('/images/graph_share_bg.png', 0, 0, this.width, this.height);
     setBg(this.ctx, containerWidth, heightInfo.headerOffset - 30, '#fff', 30, 30);
-    setBg(this.ctx, containerWidth, this.height - heightInfo.headerOffset - 50, '#fff', 30, heightInfo.aboutTop - 25);
+    setBg(this.ctx, containerWidth, this.height - heightInfo.aboutTop + 5, '#fff', 30, heightInfo.aboutTop - 25);
     let hrHeight = 40;
 
     // award
