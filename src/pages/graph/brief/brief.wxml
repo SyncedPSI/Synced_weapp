@@ -41,8 +41,17 @@
         </view>
         <image class="node--shared" src="/icons/daily_action.png" bindtap="openShared" />
       </view>
+
+      <view class="u-flex node-award">
+        <image class="node-award__icon" src="" />
+        <view>
+          <view class="node-award__title">2018机器之心年度榜单评选</view>
+          <view class="node-award__desc">2018机器之心年度榜单评选</view>
+        </view>
+      </view>
     </view>
-    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore isSmallPadding />
+
+    <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore isSmallPadding hasAwards />
 
     <view class="node-trend">
       <view class="node-trend__title">相关动态</view>

@@ -15,7 +15,11 @@ Component({
     isSmallPadding: {
       type: Boolean,
       value: false
-    }
+    },
+    hasAwards: {
+      type: Boolean,
+      value: false
+    },
   },
   methods: {
     track: function(event) {

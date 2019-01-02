@@ -61,10 +61,6 @@
   }
 }
 
-nodes {
-  margin-bottom: 80rpx;
-}
-
 .node-trend {
   padding: 80rpx 40rpx $safe-padding-bottom;
 
@@ -92,6 +88,31 @@ nodes {
 
   &__type {
     margin-left: 40rpx;
+  }
+}
+
+.node-award {
+  justify-content: flex-start;
+  margin-top: 60rpx;
+  padding: 28rpx;
+  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 20rpx;
+
+  &__icon {
+    width: 96rpx;
+    height: 96rpx;
+    margin-right: 8rpx;
+  }
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__desc {
+    color: #d18f54;
+    font-size: 32rpx;
   }
 }
 
