@@ -225,15 +225,11 @@ Page({
         }
       });
 
-      const [first, second] = trendsInfo;
-      first.titleTop = heightInfo.aboutTop + 24 + 21;
-      first.timeTop = first.titleTop + first.height + 12;
-
-      if (second) {
-        second.titleTop = first.timeTop + 20 + 20;
-        second.timeTop = second.titleTop + second.height + 12;
-      }
-
+      trendsInfo.reduce((acc, item) => {
+        item.titleTop = acc + 40;
+        item.timeTop = item.titleTop + item.height + 12;
+        return item.timeTop;
+      }, heightInfo.aboutTop + 5);
       heightInfo.qrcodeTop = trendsInfo[trendsInfo.length - 1].timeTop + 20 + 28;
     } else {
       heightInfo.qrcodeTop = heightInfo.aboutTop + 24 + 158;
