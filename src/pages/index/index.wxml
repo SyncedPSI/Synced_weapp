@@ -30,7 +30,7 @@
             <view class="trend-item__right">
               <view class="trend-item__header">
                 <text class="trend-item__title">{{item.node.full_name}}</text>
-                <image class="trend-item__award" src="/icons/award.png" wx-if="{{item.node.award}}" />
+                <image class="trend-item__award" src="/images/award.png" wx-if="{{item.node.award}}" />
                 <text class="trend-item__type">{{item.node.node_type}}</text>
               </view>
               <view class="u-text-limit--two trend-item__desc" wx:if="{{item.node.summary !== null}}">{{item.node.summary}}</view>

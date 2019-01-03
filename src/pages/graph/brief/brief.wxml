@@ -42,9 +42,9 @@
         <image class="node--shared" src="/icons/daily_action.png" bindtap="openShared" />
       </view>
 
-      <view class="u-flex node-award" wx:for="{{node.award_items}}" wx:for="{{index}}">
-        <image class="node-award__icon" src="/icons/award.png" />
-        <view>
+      <view class="u-flex node-award node-award__bg" wx:for="{{node.award_items}}" wx:key="{{index}}">
+        <image class="node-award__icon" src="/images/award.png" />
+        <view class="node-award__right">
           <view class="node-award__title">2018机器之心年度榜单评选</view>
           <view class="node-award__desc">{{item.award_name}}</view>
         </view>
@@ -77,10 +77,30 @@
       <view class="graph-shared__name">{{node.en_name}}</view>
       <view class="u-text-limit--two graph-shared__desc">{{node.summary}}</view>
     </view>
-    <image class="graph-shared__contact t-left" src="/images/graph_hr.png" />
-    <image class="graph-shared__contact t-right" src="/images/graph_hr.png" />
 
-    <view class="graph-shared__container t-bottom">
+    <!-- award -->
+    <block wx:if="{{node.award_items.length > 0}}">
+      <image class="graph-shared__contact t-mini t-left" src="/images/graph_hr.png" />
+      <image class="graph-shared__contact t-mini t-right" src="/images/graph_hr.png" />
+      <view class="u-flex graph-award node-award__bg">
+        <image class="graph-award__icon" src="/images/award.png" />
+        <view class="graph-award__right">
+          <view class="node-award__title">2018机器之心年度榜单评选</view>
+          <view class="node-award__desc">{{node.award_items[0].award_name}}</view>
+        </view>
+      </view>
+      <image class="graph-shared__contact t-mini t-left" src="/images/graph_hr.png" />
+      <image class="graph-shared__contact t-mini t-right" src="/images/graph_hr.png" />
+      <view class="graph-shared__hr t-mini"></view>
+    </block>
+    <block wx:else>
+      <image class="graph-shared__contact t-left" src="/images/graph_hr.png" />
+      <image class="graph-shared__contact t-right" src="/images/graph_hr.png" />
+      <view class="graph-shared__hr"></view>
+    </block>
+    <!-- award -->
+
+    <view class="graph-shared__container">
       <view class="graph-shared__tip">相关动态</view>
       <template is="no-trend" data="{{isHidden: sharedTrends.length > 0 }}" />
       <block wx:for="{{sharedTrends}}" wx:key="{{item.id}}">

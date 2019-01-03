@@ -30,7 +30,7 @@ Page({
       if (node.wxacode_url === null) {
         this.getWxcode(id, type);
       }
-      this.hasAward = node.award_items;
+      this.hasAward = node.award_items.length > 0;
       this.setData({
         id,
         type,
@@ -204,7 +204,7 @@ Page({
 
     if (this.hasAward) {
       heightInfo.awardTop = heightInfo.headerOffset + 27;
-      heightInfo.aboutTop = heightInfo.headerOffset + 127;
+      heightInfo.aboutTop = heightInfo.headerOffset + 123;
     } else {
       heightInfo.aboutTop = heightInfo.headerOffset + 45;
     }
@@ -254,9 +254,10 @@ Page({
     if (this.hasAward) {
       hrHeight = 24;
       setBg(this.ctx, containerWidth, 78, 30, heightInfo.awardTop - 17);
+      this.ctx.drawImage('/images/award_bg.png', 30, heightInfo.awardTop - 17, containerWidth, 78);
       this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.awardTop + 55, 8, hrHeight);
       this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.awardTop + 55, 8, hrHeight);
-      this.ctx.drawImage('/icons/award.png', 42, heightInfo.awardTop, 38, 43);
+      this.ctx.drawImage('/images/award.png', 42, heightInfo.awardTop, 39, 46);
       drawOneLine({
         ctx: this.ctx,
         fontSize: 16,
@@ -274,6 +275,7 @@ Page({
         text: this.data.node.award_items[0].award_name,
         x: 92,
         y: heightInfo.awardTop + 25,
+        isBold: true,
       });
     }
     // award end
