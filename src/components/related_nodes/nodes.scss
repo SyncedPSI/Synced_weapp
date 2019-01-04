@@ -6,6 +6,10 @@
   background-color: $background-color;
   padding: 28rpx 0 48rpx;
 
+  &.t-award {
+    margin-top: 40rpx;
+  }
+
   &.t-small &--title {
     padding: 0 40rpx;
   }
