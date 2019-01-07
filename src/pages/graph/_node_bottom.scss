@@ -7,5 +7,18 @@
     font-size: 32rpx;
     font-weight: 500;
     color: #121212;
+
+    &.t-flex {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__tip {
+    width: 6rpx;
+    height: 24rpx;
+    border-radius: 3rpx;
+    background-color: $red;
+    margin-right: 14rpx;
   }
 }

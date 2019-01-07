@@ -13,7 +13,10 @@
     <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type=solutions" hasMore isSmallPadding hasAwards="{{node.award_items.length > 0}}" />
 
     <view class="node-bottom__container" wx:if="{{node.producers.length > 0}}">
-      <view class="node-bottom__title">提供方</view>
+      <view class="node-bottom__title t-flex">
+        <view class="node-bottom__tip"></view>
+        <text>提供方</text>
+      </view>
       <navigator class="u-flex institution-item__inline" wx:for="{{node.producers}}" wx:key="{{item.node_id}}" url="/pages/institution/institution?id={{item.node_id}}" hover-class="none">
         <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
         <view class="institution-item__right">
