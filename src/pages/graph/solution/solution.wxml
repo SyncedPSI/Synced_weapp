@@ -1,4 +1,5 @@
 <import src="/pages/common/node_header.wxml"/>
+<import src="/pages/common/node_website.wxml"/>
 
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
 
@@ -7,11 +8,7 @@
     <view class="node-header__container">
       <template is="node-header" data="{{...node}}" />
       <view class="node-header__summary" wx:if="{{node.summary !== null}}">{{node.summary}}</view>
-      <view class="node-header__website" wx:if="{{website !== undefined && website !== '' && website !== null}}">
-        <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
-        <text>机构主页：</text>
-        <text class="node-header__link" data-url="{{website}}" bindtap="copyclip">{{website}}</text>
-      </view>
+      <template is="node-website" data="{{website: node.website}}"/>
     </view>
     <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type=solutions" hasMore isSmallPadding hasAwards="{{node.award_items.length > 0}}" />
 

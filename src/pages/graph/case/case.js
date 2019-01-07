@@ -1,4 +1,4 @@
-import { request } from "utils/util";
+import { request, showTipToast } from "utils/util";
 import { graph } from "config/api";
 
 Page({
@@ -29,5 +29,14 @@ Page({
       title: full_name,
       path: `/pages/graph/case/case?id=${id}&from=weapp`,
     };
+  },
+
+  copyclip: function (event) {
+    wx.setClipboardData({
+      data: event.target.dataset.url,
+      success: () => {
+        showTipToast('链接已复制');
+      }
+    });
   },
 })

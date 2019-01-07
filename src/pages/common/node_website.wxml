@@ -1,0 +1,7 @@
+<template name="node-website">
+  <view class="node-header__website" wx:if="{{website !== undefined && website !== '' && website !== null}}">
+    <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
+    <text>机构主页：</text>
+    <text class="node-header__link" data-url="{{website}}" bindtap="copyclip">{{website}}</text>
+  </view>
+</template>

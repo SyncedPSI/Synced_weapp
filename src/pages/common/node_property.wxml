@@ -1,6 +1,8 @@
 <import src="/pages/common/node_technologies.wxml"/>
+<import src="/pages/common/node_website.wxml"/>
 
 <template name="node-property">
+  <template is="node-website" data="{{website}}"/>
   <view class="node-header__website" wx:if="{{website !== undefined && website !== '' && website !== null}}">
     <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
     <text>机构主页：</text>
