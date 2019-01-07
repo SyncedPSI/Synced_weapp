@@ -192,6 +192,6 @@ export const getWxcodeUrl = (id, page, model, cb) => {
   }).then((res) => {
     cb(res.data.file_path);
   }).catch(() => {
-    cb('/images/qrcode.png');
+    cb(null);
   })
 };

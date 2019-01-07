@@ -199,7 +199,11 @@ Page({
     });
 
     heightInfo.enTop = heightInfo.nameTop + nameInfo.height;
-    heightInfo.summaryTop = heightInfo.enTop + enInfo.height + 12;
+    if (node.en_name) {
+      heightInfo.summaryTop = heightInfo.enTop + enInfo.height + 12;
+    } else {
+      heightInfo.summaryTop = heightInfo.enTop + 12;
+    }
     heightInfo.headerOffset = heightInfo.summaryTop + summaryInfo.height + 22;
 
     if (this.hasAward) {
