@@ -17,7 +17,7 @@
 
     <view class="node-bottom__container" wx:if="{{node.producers.length > 0}}">
       <view class="node-bottom__title">提供方</view>
-      <navigator class="u-flex institution-item__inline" wx:for="{{node.producers}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+      <navigator class="u-flex institution-item__inline" wx:for="{{node.producers}}" wx:key="{{item.node_id}}" url="/pages/institution/institution?id={{item.node_id}}" hover-class="none">
         <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
         <view class="institution-item__right">
           <view class="institution-item__title">{{item.full_name}}</view>
