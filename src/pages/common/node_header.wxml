@@ -4,6 +4,6 @@
       <view class="node-header__full">{{full_name}}</view>
       <view class="node-header__en">{{en_name}}</view>
     </view>
-    <image class="node-header__avatar" src="{{image_url}}" mode="aspectFill" wx:if="{{image_url !== undefined && image_url !== null}}" />
+    <image class="node-header__avatar" src="{{image_url}}" mode="aspectFit" wx:if="{{image_url !== undefined && image_url !== null}}" />
   </view>
 </template>
