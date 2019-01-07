@@ -45,7 +45,7 @@
       <view class="u-flex node-award node-award__bg" wx:for="{{node.award_items}}" wx:key="{{index}}">
         <image class="node-award__icon" src="/images/award.png" />
         <view class="node-award__right">
-          <view class="node-award__title">2018机器之心年度榜单评选</view>
+          <view class="node-award__title">2018机器之心年度奖项评选</view>
           <view class="node-award__desc">{{item.award_name}}</view>
         </view>
       </view>
@@ -85,7 +85,7 @@
       <view class="u-flex graph-award node-award__bg">
         <image class="graph-award__icon" src="/images/award.png" />
         <view class="graph-award__right">
-          <view class="node-award__title">2018机器之心年度榜单评选</view>
+          <view class="node-award__title">2018机器之心年度奖项评选</view>
           <view class="node-award__desc">{{node.award_items[0].award_name}}</view>
         </view>
       </view>

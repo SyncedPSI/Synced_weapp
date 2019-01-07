@@ -266,7 +266,7 @@ Page({
         ctx: this.ctx,
         fontSize: 16,
         color: '#121212',
-        text: '2018机器之心年度榜单评选',
+        text: '2018机器之心年度奖项评选',
         x: 92,
         y: heightInfo.awardTop,
         isBold: true,
