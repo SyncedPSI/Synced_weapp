@@ -1,5 +1,7 @@
 <import src="/pages/common/node_header.wxml"/>
 
+<nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
+
 <view class="u-container" style="padding-top: {{statusBarHeight}}px" wx:if="{{node !== null}}">
   <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMore">
     <view class="node-header__container">
@@ -12,20 +14,20 @@
       </view>
     </view>
 
-    <view class="graph-shared__container">
+    <view class="node-bottom__container">
       <block wx:if="{{node.producers.length > 0}}">
-        <view class="graph-shared__tip">技术供应方</view>
+        <view class="node-bottom__title">技术供应方</view>
         <navigator class="u-flex institution-item__inline" wx:for="{{node.producers}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
           <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
           <view class="institution-item__right">
             <view class="institution-item__title">{{item.full_name}}</view>
-            <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
+            <view class="institution-item__desc">{{item.summary}}</view>
           </view>
         </navigator>
       </block>
 
       <block wx:if="{{node.clients.length > 0}}">
-        <view class="graph-shared__tip">应用方</view>
+        <view class="node-bottom__title">应用方</view>
         <navigator class="u-flex institution-item__inline" wx:for="{{node.clients}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
           <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
           <view class="institution-item__right">
@@ -36,8 +38,8 @@
       </block>
 
       <block wx:if="{{node.solutions.length > 0}}">
-        <view class="graph-shared__tip">涉及产品/解决方案</view>
-        <navigator class="institution-item__inline" wx:for="{{node.solutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+        <view class="node-bottom__title">涉及产品/解决方案</view>
+        <navigator class="institution-item__inline" wx:for="{{node.solutions}}" wx:key="{{item.id}}" url="/pages/graph/solution/solution?id={{item.id}}" hover-class="none">
           <view class="institution-item__title">{{item.full_name}}</view>
           <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
         </navigator>

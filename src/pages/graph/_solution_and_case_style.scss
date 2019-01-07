@@ -1,0 +1,29 @@
+@import 'variables';
+@import '../node_header';
+@import '../institution_item';
+@import '../node_bottom';
+
+.node-header {
+  &__container {
+    box-shadow: none;
+    padding-bottom: 0;
+  }
+
+  &__avatar {
+    margin-bottom: 0;
+  }
+
+  &__summary {
+    margin-top: 28rpx;
+  }
+}
+
+.node-bottom {
+  &__container {
+    padding-top: 0;
+  }
+
+  &__title {
+    margin: 80rpx 0 40rpx;
+  }
+}

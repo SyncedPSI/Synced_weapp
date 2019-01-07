@@ -53,8 +53,8 @@
 
     <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore isSmallPadding hasAwards="{{node.award_items.length > 0}}" />
 
-    <view class="node-trend">
-      <view class="node-trend__title">相关动态</view>
+    <view class="node-bottom__container node-trend">
+      <view class="node-bottom__title">相关动态</view>
       <template is="no-trend" data="{{isHidden: (noTrends || trends.length > 0) }}" />
       <navigator class="node-trend__item" url="/pages/{{item.flow_type === 'articles' ? 'article/article' : 'daily/show/show'}}?id={{item.id}}"
           hover-class="none" wx:for="{{trends}}" wx:key="{{item.id}}">

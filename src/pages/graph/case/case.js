@@ -4,6 +4,7 @@ import { graph } from "config/api";
 Page({
   data: {
     node: null,
+    navigateTitle: '',
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isFromWeapp: false,
   },
