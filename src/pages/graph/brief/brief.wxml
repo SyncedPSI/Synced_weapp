@@ -42,13 +42,13 @@
         <image class="node--shared" src="/icons/daily_action.png" bindtap="openShared" />
       </view>
 
-      <view class="u-flex node-award node-award__bg" wx:for="{{node.award_items}}" wx:key="{{index}}">
+      <navigator class="u-flex node-award node-award__bg" wx:for="{{node.award_items}}" wx:key="{{index}}" url="/pages/web_view/web_view?url=https://www.jiqizhixin.com/awards">
         <image class="node-award__icon" src="/images/award.png" />
         <view class="node-award__right">
           <view class="node-award__title">2018机器之心年度奖项评选</view>
           <view class="node-award__desc">{{item.award_name}}</view>
         </view>
-      </view>
+      </navigator>
     </view>
 
     <nodes nodes="{{node.related_nodes}}" query="?id={{id}}&type={{type}}" hasMore isSmallPadding hasAwards="{{node.award_items.length > 0}}" />
