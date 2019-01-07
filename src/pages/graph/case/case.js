@@ -6,23 +6,17 @@ Page({
     node: null,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isFromWeapp: false,
-    activeCategory: null,
-    category: [],
   },
   onLoad: function(options) {
     const { id, from } = options;
     request({
-      url: `${graph}/business_cases/${id}/relations`
+      url: `${graph}/business_cases/${id}`
     }).then((res) => {
       const node = res.data;
-      const category = this.getCategory(node);
       this.setData({
         id,
-        type,
         navigateTitle: node.full_name,
         node: node,
-        category,
-        activeCategory: category[0].en,
         isFromWeapp: from === "weapp",
       })
     })
