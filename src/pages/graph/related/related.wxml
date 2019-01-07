@@ -1,6 +1,23 @@
 <import src="/pages/common/node_header.wxml"/>
 <import src="/pages/common/node_property.wxml"/>
 
+<template name="institution_item">
+  <navigator class="u-flex institution-item__inline" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+    <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
+    <view class="institution-item__right">
+      <view class="institution-item__title">{{item.full_name}}</view>
+      <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
+    </view>
+  </navigator>
+</template>
+
+<template name="simple_item">
+  <navigator class="institution-item__inline" url="/pages/{{path}}?id={{item.id}}" hover-class="none">
+    <view class="institution-item__title">{{item.full_name}}</view>
+    <view class="u-text-limit--two institution-item__desc">{{item.en_name}}</view>
+  </navigator>
+</template>
+
 <nav isFromWeapp="{{isFromWeapp}}" title="{{navigateTitle}}" hasShadow></nav>
 
 <block wx:if="{{node !== null}}">
@@ -16,20 +33,15 @@
         </scroll-view>
 
         <view hidden="{{activeCategory !== 'institutions'}}">
-          <navigator class="u-flex institution-item__inline" wx:for="{{node.institutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
-            <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
-            <view class="institution-item__right">
-              <view class="institution-item__title">{{item.full_name}}</view>
-              <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
-            </view>
-          </navigator>
+          <block wx:for="{{node.institutions}}" wx:key="{{item.id}}">
+            <template is="institution_item" data="{{item}}" />
+          </block>
         </view>
 
         <view hidden="{{activeCategory !== 'technologies'}}">
-          <navigator class="institution-item__inline" wx:for="{{node.technologies}}" wx:key="{{item.id}}" url="/pages/technology/technology?id={{item.id}}" hover-class="none">
-            <view class="institution-item__title">{{item.full_name}}</view>
-            <view class="u-text-limit--two institution-item__desc">{{item.en_name}}</view>
-          </navigator>
+          <block wx:for="{{node.technologies}}" wx:key="{{item.id}}">
+            <template is="simple_item" data="{{item, path: 'technology/technology'}}" />
+          </block>
         </view>
 
         <view hidden="{{activeCategory !== 'experts'}}">
@@ -40,6 +52,24 @@
               <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
             </view>
           </navigator>
+        </view>
+
+        <view hidden="{{activeCategory !== 'business_cases'}}">
+          <block wx:for="{{node.business_cases}}" wx:key="{{item.id}}">
+            <template is="simple_item" data="{{item, path: 'graph/case/case'}}" />
+          </block>
+        </view>
+
+        <view hidden="{{activeCategory !== 'clients'}}">
+          <block wx:for="{{node.clients}}" wx:key="{{item.id}}">
+            <template is="institution_item" data="{{item}}" />
+          </block>
+        </view>
+
+        <view hidden="{{activeCategory !== 'producers'}}">
+          <block wx:for="{{node.producers}}" wx:key="{{item.id}}">
+            <template is="institution_item" data="{{item}}" />
+          </block>
         </view>
       </view>
     </scroll-view>
