@@ -1,6 +1,7 @@
 @import 'variables';
 @import 'common';
 @import 'u_tab_in_header';
+@import '../institution_item';
 
 .node-header {
   &__full {
@@ -36,40 +37,4 @@ scroll-view.u-tab {
 
 .related {
   padding: 0 40rpx;
-
-  &--item {
-    margin-bottom: 40rpx;
-    align-items: flex-start;
-
-    &:last-child {
-      margin-bottom: 60rpx;
-    }
-  }
-
-  &--avatar  {
-    flex-shrink: 0;
-    margin-right: 28rpx;
-    width: 100rpx;
-    height: 100rpx;
-
-    &.t-institition {
-      border: 2rpx solid #e7e7e7;
-    }
-  }
-
-  &--right {
-    flex-grow: 1;
-  }
-
-  &--title {
-    font-size: 32rpx;
-    font-weight: 500;
-    color: #121212;
-  }
-
-  &--desc {
-    margin-top: 12rpx;
-    font-size: 28rpx;
-    color: #a8a8a8;
-  }
 }

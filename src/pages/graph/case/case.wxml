@@ -1,0 +1,47 @@
+<import src="/pages/common/node_header.wxml"/>
+
+<view class="u-container" style="padding-top: {{statusBarHeight}}px" wx:if="{{node !== null}}">
+  <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMore">
+    <view class="node-header__container">
+      <template is="node-header" data="{{...node}}" />
+      <view class="u-text-limit--three node-header__summary" wx:if="{{node.summary !== null}}">{{node.summary}}</view>
+      <view class="node-header__website" wx:if="{{website !== undefined && website !== '' && website !== null}}">
+        <image class="node-header__icon" src="{{val}}/icons/node_home.png" />
+        <text>机构主页：</text>
+        <text class="node-header__link" data-url="{{website}}" bindtap="copyclip">{{website}}</text>
+      </view>
+    </view>
+
+    <view class="graph-shared__container">
+      <block wx:if="{{node.producers.length > 0}}">
+        <view class="graph-shared__tip">技术供应方</view>
+        <navigator class="u-flex institution-item__inline" wx:for="{{node.producers}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+          <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
+          <view class="institution-item__right">
+            <view class="institution-item__title">{{item.full_name}}</view>
+            <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
+          </view>
+        </navigator>
+      </block>
+
+      <block wx:if="{{node.clients.length > 0}}">
+        <view class="graph-shared__tip">应用方</view>
+        <navigator class="u-flex institution-item__inline" wx:for="{{node.clients}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+          <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
+          <view class="institution-item__right">
+            <view class="institution-item__title">{{item.full_name}}</view>
+            <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
+          </view>
+        </navigator>
+      </block>
+
+      <block wx:if="{{node.solutions.length > 0}}">
+        <view class="graph-shared__tip">涉及产品/解决方案</view>
+        <navigator class="institution-item__inline" wx:for="{{node.solutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+          <view class="institution-item__title">{{item.full_name}}</view>
+          <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
+        </navigator>
+      </block>
+    </view>
+  </scroll-view>
+</view>

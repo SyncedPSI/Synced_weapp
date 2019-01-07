@@ -1,0 +1,37 @@
+.institution-item {
+  &__inline {
+    margin-bottom: 40rpx;
+    align-items: flex-start;
+
+    &:last-child {
+      margin-bottom: 60rpx;
+    }
+  }
+
+  &__avatar {
+    flex-shrink: 0;
+    margin-right: 28rpx;
+    width: 100rpx;
+    height: 100rpx;
+
+    &.t-institition {
+      border: 2rpx solid #e7e7e7;
+    }
+  }
+
+  &__right {
+    flex-grow: 1;
+  }
+
+  &__title {
+    font-size: 32rpx;
+    font-weight: 500;
+    color: #121212;
+  }
+
+  &__desc {
+    margin-top: 12rpx;
+    font-size: 28rpx;
+    color: #a8a8a8;
+  }
+}

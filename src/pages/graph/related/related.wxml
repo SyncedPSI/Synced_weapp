@@ -16,28 +16,28 @@
         </scroll-view>
 
         <view hidden="{{activeCategory !== 'institutions'}}">
-          <navigator class="u-flex related--item" wx:for="{{node.institutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
-            <image class="related--avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
-            <view class="related--right">
-              <view class="related--title">{{item.full_name}}</view>
-              <view class="u-text-limit--two related--desc">{{item.summary}}</view>
+          <navigator class="u-flex institution-item__inline" wx:for="{{node.institutions}}" wx:key="{{item.id}}" url="/pages/institution/institution?id={{item.id}}" hover-class="none">
+            <image class="institution-item__avatar t-institition" src="{{item.image_url || '/images/default_insititution.jpg'}}" />
+            <view class="institution-item__right">
+              <view class="institution-item__title">{{item.full_name}}</view>
+              <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
             </view>
           </navigator>
         </view>
 
         <view hidden="{{activeCategory !== 'technologies'}}">
-          <navigator class="related--item" wx:for="{{node.technologies}}" wx:key="{{item.id}}" url="/pages/technology/technology?id={{item.id}}" hover-class="none">
-            <view class="related--title">{{item.full_name}}</view>
-            <view class="u-text-limit--two related--desc">{{item.en_name}}</view>
+          <navigator class="institution-item__inline" wx:for="{{node.technologies}}" wx:key="{{item.id}}" url="/pages/technology/technology?id={{item.id}}" hover-class="none">
+            <view class="institution-item__title">{{item.full_name}}</view>
+            <view class="u-text-limit--two institution-item__desc">{{item.en_name}}</view>
           </navigator>
         </view>
 
         <view hidden="{{activeCategory !== 'experts'}}">
-          <navigator class="u-flex related--item" wx:for="{{node.experts}}" wx:key="{{item.id}}" url="/pages/expert/expert?id={{item.id}}" hover-class="none">
-            <image class="related--avatar" src="{{item.image_url || '/images/default_expert.jpg'}}" />
-            <view class="related--right">
-              <view class="related--title">{{item.full_name}}</view>
-              <view class="u-text-limit--two related--desc">{{item.summary}}</view>
+          <navigator class="u-flex institution-item__inline" wx:for="{{node.experts}}" wx:key="{{item.id}}" url="/pages/expert/expert?id={{item.id}}" hover-class="none">
+            <image class="institution-item__avatar" src="{{item.image_url || '/images/default_expert.jpg'}}" />
+            <view class="institution-item__right">
+              <view class="institution-item__title">{{item.full_name}}</view>
+              <view class="u-text-limit--two institution-item__desc">{{item.summary}}</view>
             </view>
           </navigator>
         </view>

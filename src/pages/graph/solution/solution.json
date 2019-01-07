@@ -1,0 +1,9 @@
+{
+  "window": {
+    "backgroundColor": "#fff"
+  },
+  "usingComponents": {
+    "nav": "../../../components/navigate/navigate",
+    "nodes": "../../../components/related_nodes/nodes"
+  }
+}
