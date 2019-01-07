@@ -18,6 +18,8 @@
     "pages/graph/brief/brief",
     "pages/graph/detail/detail",
     "pages/graph/related/related",
+    "pages/graph/case/case",
+    "pages/graph/solution/solution",
     "pages/account/mobile/mobile",
     "pages/account/link/link",
     "pages/setting/setting",

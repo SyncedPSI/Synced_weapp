@@ -30,7 +30,7 @@ Page({
       if (node.wxacode_url === null) {
         this.getWxcode(id, type);
       }
-      this.hasAward = node.award_items.length > 0;
+      this.hasAward = node.award_items && node.award_items.length > 0;
       this.setData({
         id,
         type,

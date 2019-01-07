@@ -34,9 +34,12 @@ Page({
       institutions: '相关机构',
       technologies: '关联技术',
       experts: '相关人物',
+      business_cases: '相关案例',
+      clients: '应用方',
+      producers: '提供方'
     };
 
-    ['institutions', 'technologies', 'experts'].forEach((item) => {
+    ['institutions', 'technologies', 'experts', 'business_cases', 'clients', 'producers'].forEach((item) => {
       if (node[item] && node[item].length > 0) {
         category.push({ en:item, zh: translate[item] });
       }
