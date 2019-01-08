@@ -206,9 +206,15 @@ Page({
     }
     heightInfo.headerOffset = heightInfo.summaryTop + summaryInfo.height + 22;
 
+    let awardsInfo = null;
     if (this.hasAward) {
-      heightInfo.awardTop = heightInfo.headerOffset + 27;
-      heightInfo.aboutTop = heightInfo.headerOffset + 123;
+      awardsInfo = node.award_items;
+      awardsInfo.reduce((acc, item) => {
+        item.titleTop = acc + 10 + 78;
+        return item.titleTop;
+      }, heightInfo.headerOffset + 17 - 78);
+
+      heightInfo.aboutTop = awardsInfo[awardsInfo.length - 1].titleTop + 73 + 22;
     } else {
       heightInfo.aboutTop = heightInfo.headerOffset + 45;
     }
@@ -242,11 +248,11 @@ Page({
     this.setData({
       canvasHeight: this.height
     }, () => {
-      this.draw(nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo);
+        this.draw(nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo, awardsInfo);
     });
   },
 
-  draw: function (nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo) {
+  draw: function (nameInfo, enInfo, summaryInfo, trendsInfo, heightInfo, awardsInfo) {
     this.ctx.clearRect(0, 0, this.width, this.height);
     const containerWidth = this.width - 60;
     this.ctx.drawImage('/images/graph_share_bg.png', 0, 0, this.width, this.height);
@@ -257,30 +263,35 @@ Page({
     // award
     if (this.hasAward) {
       hrHeight = 24;
-      setBg(this.ctx, containerWidth, 78, 30, heightInfo.awardTop - 17);
-      this.ctx.drawImage('/images/award_bg.png', 30, heightInfo.awardTop - 17, containerWidth, 78);
-      this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.awardTop + 55, 8, hrHeight);
-      this.ctx.drawImage('/images/graph_hr.png', this.width - 74, heightInfo.awardTop + 55, 8, hrHeight);
-      this.ctx.drawImage('/images/award.png', 42, heightInfo.awardTop, 39, 46);
-      drawOneLine({
-        ctx: this.ctx,
-        fontSize: 16,
-        color: '#121212',
-        text: '2018机器之心年度奖项评选',
-        x: 92,
-        y: heightInfo.awardTop,
-        isBold: true,
-      });
+      awardsInfo.forEach((item) => {
+        setBg(this.ctx, containerWidth, 78, 30, item.titleTop - 17);
+        this.ctx.drawImage('/images/award_bg.png', 30, item.titleTop - 17, containerWidth, 78);
+        this.ctx.drawImage('/images/award.png', 42, item.titleTop, 39, 46);
+        drawOneLine({
+          ctx: this.ctx,
+          fontSize: 16,
+          color: '#121212',
+          text: '2018机器之心年度奖项评选',
+          x: 92,
+          y: item.titleTop,
+          isBold: true,
+        });
 
-      drawOneLine({
-        ctx: this.ctx,
-        fontSize: 16,
-        color: '#d18f54',
-        text: this.data.node.award_items[0].award_name,
-        x: 92,
-        y: heightInfo.awardTop + 25,
-        isBold: true,
-      });
+        drawOneLine({
+          ctx: this.ctx,
+          fontSize: 16,
+          color: '#d18f54',
+          text: item.award_name,
+          x: 92,
+          y: item.titleTop + 25,
+          isBold: true,
+        });
+      })
+
+      awardsInfo.forEach(item => {
+        this.ctx.drawImage('/images/graph_hr.png', 74, item.titleTop + 55, 8, hrHeight);
+        this.ctx.drawImage('/images/graph_hr.png', this.width - 74, item.titleTop + 55, 8, hrHeight);
+      })
     }
     // award end
     this.ctx.drawImage('/images/graph_hr.png', 74, heightInfo.headerOffset - 5, 8, hrHeight);
@@ -408,6 +419,7 @@ Page({
       this.setData({
         isDraw: true
       });
+      this.closeShared();
     })
   },
   openActionSheet: function () {

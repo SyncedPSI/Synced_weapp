@@ -80,17 +80,19 @@
 
     <!-- award -->
     <block wx:if="{{node.award_items.length > 0}}">
-      <image class="graph-shared__contact t-mini t-left" src="/images/graph_hr.png" />
-      <image class="graph-shared__contact t-mini t-right" src="/images/graph_hr.png" />
-      <view class="u-flex graph-award node-award__bg">
-        <image class="graph-award__icon" src="/images/award.png" />
-        <view class="graph-award__right">
-          <view class="node-award__title">2018机器之心年度奖项评选</view>
-          <view class="node-award__desc">{{node.award_items[0].award_name}}</view>
+      <block wx:for="{{node.award_items}}" wx:key="shared-{{item.id}}">
+        <image class="graph-shared__contact t-mini t-left" src="/images/graph_hr.png" />
+        <image class="graph-shared__contact t-mini t-right" src="/images/graph_hr.png" />
+        <view class="u-flex graph-award node-award__bg">
+          <image class="graph-award__icon" src="/images/award.png" />
+          <view class="graph-award__right">
+            <view class="node-award__title">2018机器之心年度奖项评选</view>
+            <view class="node-award__desc">{{item.award_name}}</view>
+          </view>
         </view>
-      </view>
-      <image class="graph-shared__contact t-mini t-left" src="/images/graph_hr.png" />
-      <image class="graph-shared__contact t-mini t-right" src="/images/graph_hr.png" />
+        <image class="graph-shared__contact t-mini t-left" src="/images/graph_hr.png" />
+        <image class="graph-shared__contact t-mini t-right" src="/images/graph_hr.png" />
+      </block>
       <view class="graph-shared__hr t-mini"></view>
     </block>
     <block wx:else>
