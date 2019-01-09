@@ -15,8 +15,23 @@ page {
   padding: 2rpx 40rpx 3rpx;
   z-index: 10;
 
+  &__container {
+    width: 100%;
+    white-space: nowrap;
+  }
+
   &__height {
     height: 140rpx;
+  }
+}
+
+.u-tab__item {
+  display: inline-block;
+  margin-right: 20rpx;
+  margin-top: 28rpx;
+
+  &:last-child {
+    margin-right: 0;
   }
 }
 
