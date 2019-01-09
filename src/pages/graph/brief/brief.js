@@ -42,8 +42,17 @@ Page({
     this.fetchTrends(id, type, true);
   },
   getWxcode: function (id, type) {
+    const { model, path } = this.getModalAndPath(type);
+    getWxcodeUrl(id, `pages/${path}/${path}`, model, (path) => {
+      this.setData({
+        'node.wxacode_url': path
+      })
+    });
+  },
+  getModalAndPath: function(type) {
     let model = null;
     let path = null;
+
     if (type === 'technologies') {
       model = 'Graph::Technology';
       path = 'technology';
@@ -66,12 +75,7 @@ Page({
       model = 'Graph::Resource';
       path = 'resource';
     }
-
-    getWxcodeUrl(id, `pages/${path}/${path}`, model, (path) => {
-      this.setData({
-        'node.wxacode_url': path
-      })
-    });
+    return {model, path};
   },
   fetchTrends: function(id, type, firstFetch = false) {
     if (this.data.isFetching || !this.data.hasNextPage) return;
