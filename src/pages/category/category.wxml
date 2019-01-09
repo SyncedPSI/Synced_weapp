@@ -9,7 +9,7 @@
     <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
       <view  class="u-tab article-nav">
         <scroll-view scroll-x class="article-nav__container">
-          <view class="u-tab__item {{activeCategory === item.en ? 'is-active' : ''}}" data-type="{{item.en}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
+          <view class="u-tab__item {{activeCategory === item.en ? 'is-active' : ''}}" data-name="{{item.en}}" data-type="{{item.type}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
         </scroll-view>
       </view>
       <view class="article-nav__height"></view>
