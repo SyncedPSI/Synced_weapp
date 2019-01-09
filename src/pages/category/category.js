@@ -9,7 +9,6 @@ Page({
     scrollTop: 0,
     activeCategory: 'all',
     category: [
-      { id: 'all', name: '全部', type: 'category' },
       { id: 'industry', name: '#产业', type: 'category' },
       { id: 'practice', name: '#工程', type: 'category' },
       { id: 'theory', name: '#理论', type: 'category' },
@@ -53,7 +52,7 @@ Page({
     }).then(res => {
       const { category } = this.data;
       res.data.forEach(({key, value}) => {
-        category.push({
+        category.unshift({
           id: key,
           name: `#${value}`,
           type: 'hotTopic'

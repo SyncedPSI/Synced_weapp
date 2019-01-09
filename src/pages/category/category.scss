@@ -30,6 +30,10 @@ page {
   margin-right: 20rpx;
   margin-top: 28rpx;
 
+  &.t-red {
+    color: $red;
+  }
+
   &:last-child {
     margin-right: 0;
   }

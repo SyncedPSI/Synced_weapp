@@ -9,7 +9,8 @@
     <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
       <view  class="u-tab article-nav">
         <scroll-view scroll-x class="article-nav__container">
-          <view class="u-tab__item {{activeCategory === item.id ? 'is-active' : ''}}" data-name="{{item.id}}" data-type="{{item.type}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.id}}">{{item.name}}</view>
+          <view class="u-tab__item {{activeCategory === 'all' && 'is-active'}}" data-name="all" data-type="category" bindtap="switchCategory">全部</view>
+          <view class="u-tab__item {{item.type === 'hotTopic' && 't-red'}} {{activeCategory === item.id && 'is-active'}}" data-name="{{item.id}}" data-type="{{item.type}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.id}}">{{item.name}}</view>
         </scroll-view>
       </view>
       <view class="article-nav__height"></view>
