@@ -22,6 +22,13 @@ Page({
 
   onLoad: function () {
     this.noticePage = 1;
+    this.bannerPath = {
+      article: '/pages/article/article',
+      daily: '/pages/daily/show/show',
+      trend: '/pages/trend/trend',
+      document: '/pages/document/detail/detail',
+    }
+
     const user = wx.getStorageSync('userInfo');
     user.nickName = user.nickName.slice(0, 8);
     const { isAuth, notifyCount } = getApp().globalData;
@@ -116,6 +123,7 @@ Page({
       this.noticePage += 1;
       const { notifications, has_next_page } = res.data;
       let { noticeList } = this.data;
+
       if (isFirst) {
         const count = res.data.notifications_count;
         this.getNoticeCount(count);
@@ -131,15 +139,7 @@ Page({
         const { created_at } = item;
         if (created_at === undefined) return;
         item.created_at = item.created_at.split(' ')[1];
-        if (item.comment.commentable_type === 'article') {
-          item.path = '/pages/article/article';
-        } else if (item.comment.commentable_type === 'daily') {
-          item.path = '/pages/daily/show/show';
-        } else if (item.comment.commentable_type === 'trend') {
-          item.path = '/pages/trend/trend';
-        } else if (item.comment.commentable_type === 'document') {
-          item.path = '/pages/document/detail/detail';
-        }
+        item.path = this.bannerPath[item.comment.commentable_type];
 
         // key format: 2018/9/21
         const [_, key] = created_at.match(new RegExp('^([^\\s]+)', 'i'));
