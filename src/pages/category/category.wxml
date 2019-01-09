@@ -9,14 +9,16 @@
     <scroll-view scroll-y enable-back-to-top bindscrolltolower="fetchMoreData" scroll-top="{{scrollTop}}">
       <view  class="u-tab article-nav">
         <scroll-view scroll-x class="article-nav__container">
-          <view class="u-tab__item {{activeCategory === item.en ? 'is-active' : ''}}" data-name="{{item.en}}" data-type="{{item.type}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.en}}">{{item.zh}}</view>
+          <view class="u-tab__item {{activeCategory === item.id ? 'is-active' : ''}}" data-name="{{item.id}}" data-type="{{item.type}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.id}}">{{item.name}}</view>
         </scroll-view>
       </view>
       <view class="article-nav__height"></view>
       <view class="content--list">
         <article wx:for="{{articleList}}" wx:key="{{item.id}}" article="{{item}}" />
       </view>
-      <template is="loading" />
+      <view hidden="{{!hasNextPage}}">
+        <template is="loading" />
+      </view>
     </scroll-view>
   </view>
 </view>

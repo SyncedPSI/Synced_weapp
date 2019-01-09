@@ -4,15 +4,16 @@ import { articles, articleHotTopics } from "config/api";
 Page({
   data: {
     articleList: [],
+    hasNextPage: true,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     scrollTop: 0,
     activeCategory: 'all',
     category: [
-      { en: 'all', zh: '全部', type: 'category' },
-      { en: 'industry', zh: '#产业', type: 'category' },
-      { en: 'practice', zh: '#工程', type: 'category' },
-      { en: 'theory', zh: '#理论', type: 'category' },
-      { en: 'basic', zh: '#入门', type: 'category' },
+      { id: 'all', name: '全部', type: 'category' },
+      { id: 'industry', name: '#产业', type: 'category' },
+      { id: 'practice', name: '#工程', type: 'category' },
+      { id: 'theory', name: '#理论', type: 'category' },
+      { id: 'basic', name: '#入门', type: 'category' },
     ],
     isLogin: false,
     notifyCount: 0,
@@ -23,7 +24,7 @@ Page({
     this.activeType = 'category';
 
     this.getArticleList();
-    // this.getHotTopic();
+    this.getHotTopic();
   },
 
   onShow: function () {
@@ -40,6 +41,7 @@ Page({
       activeCategory: name,
       scrollTop: 0,
       articleList: [],
+      hasNextPage: true
     }, () => {
       this.page = 1;
       this.getArticleList();
@@ -49,9 +51,17 @@ Page({
     return request({
       url: articleHotTopics
     }).then(res => {
-      console.log(res)
+      const { category } = this.data;
+      res.data.forEach(({key, value}) => {
+        category.push({
+          id: key,
+          name: `#${value}`,
+          type: 'hotTopic'
+        })
+      })
+
       this.setData({
-        category: [...category, res.data]
+        category
       })
     })
   },
@@ -59,8 +69,9 @@ Page({
   getArticleList: function () {
     const { activeCategory } = this.data;
     const queryCategory = activeCategory === 'all' ? '' : `&category=${activeCategory}`;
+    const queryHotTopic = this.activeType === 'hotTopic' ? `&hot_topic=true` : '';
     return request({
-      url: `${articles}?page=${this.page}&type=${this.activeType}${queryCategory}`
+      url: `${articles}?page=${this.page}${queryHotTopic}${queryCategory}`
     }).then(res => {
       this.page += 1;
       const { articleList } = this.data;
@@ -71,6 +82,7 @@ Page({
 
       this.setData({
         articleList: [...articleList, ...newList],
+        hasNextPage: newList.length > 0
       });
     });
   },
