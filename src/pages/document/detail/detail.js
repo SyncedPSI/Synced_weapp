@@ -37,7 +37,7 @@ Page({
         this.getWxcode(id);
       }
 
-      document.status = 'published';
+      document.status = 'pending';
       this.setData({
         document,
         navigateTitle: document.title,
@@ -61,18 +61,39 @@ Page({
   },
   getUserInfo: function (event) {
     const {currentTarget: { dataset }, detail: { userInfo }} = event;
-    const isShowComment = dataset.type === 'comment';
+    const { type } = dataset.type === 'comment';
+
+    const newData = {
+      isLogin: true,
+    };
+    if (type === 'comment') {
+      newData.isShowComment = true;
+    } else if (type === 'subscribe') {
+      newData.isShowModal = true;
+    }
+
+    // comment:
 
     getApp().login(userInfo, () => {
-      this.setData({
-        isLogin: true,
-        isShowComment
-      });
+      this.setData(newData);
 
-      if (!isShowComment) {
+      if (type === 'download') {
         this.download();
       }
+
+      if (type === 'extend') {
+        this.getExtend();
+      }
     });
+  },
+  subscribe: function() {
+    // whether the user subscribes
+    // true: send subscribes single
+    this.openModal();
+    // false: open modal
+  },
+  getExtend: function() {
+    // get document extend
   },
   download: function() {
     if (!getApp().globalData.isAuth) {
