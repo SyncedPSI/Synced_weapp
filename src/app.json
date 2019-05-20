@@ -30,6 +30,7 @@
     "pages/venue/venue",
     "pages/institution/institution",
     "pages/technology/technology",
+    "pages/insight/list/list",
     "pages/resource/resource"
   ],
   "window":{
@@ -61,7 +62,7 @@
         "selectedIconPath": "icons/tab/category_active.png"
       },
       {
-        "pagePath": "pages/document/list/list",
+        "pagePath": "pages/insight/list/list",
         "iconPath": "icons/tab/document.png",
         "selectedIconPath": "icons/tab/document_active.png"
       }

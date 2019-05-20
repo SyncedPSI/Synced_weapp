@@ -86,7 +86,6 @@ Page({
     }
     // 判断用户身份
     // true 获取 false 填写表单
-
     wx.downloadFile({
       url,
       success: (res) => {
@@ -95,6 +94,7 @@ Page({
             filePath: res.tempFilePath,
             success: () => {
               hideLoading();
+              this.sendEmail();
             },
             fail: (error) => {
               console.log(error);
@@ -110,6 +110,14 @@ Page({
         showErrorToast('获取失败');
       }
     })
+  },
+  sendEmail: function (){
+    const { id } = this.data.document;
+    request({
+      url: `${documents}/${id}/send_email`,
+      data: {},
+      method: "GET"
+    });
   },
   openComment: function () {
     this.switchComment(true);

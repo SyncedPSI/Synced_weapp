@@ -25,3 +25,4 @@ export const notice = ApiRootUrl + '/notifications';
 export const certifications = ApiRootUrl + '/certifications';
 export const advertisement = ApiRootUrl + '/advertisements';
 export const users = ApiRootUrl + '/users';
+export const insight = ApiRootUrl + '/insight'

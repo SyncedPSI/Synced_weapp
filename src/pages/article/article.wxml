@@ -25,6 +25,10 @@
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
         </view>
+        <view class="insight-authority">
+          <view class="insight-authority__title">专业用户独享</view>
+          <view class="insight-authority__content">本文为机器之心深度精选内容，专业认证后即可阅读全文</view>
+        </view>
       </view>
 
       <nodes nodes="{{article.related_nodes}}" />

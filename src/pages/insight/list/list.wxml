@@ -12,8 +12,8 @@
       <view class="document-nav__height"></view>
 
       <view class="document--list document--desc" wx-if="{{categoryDesc[activeCategory] !== ''}}">{{categoryDesc[activeCategory]}}</view>
-      <view class="document--list">
-        <navigator class="u-flex document-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{reportList}}" wx:key="{{item.id}}">
+      <view  wx:if="{{activeCategory === 'documents'}}" class="document--list">
+        <navigator class="u-flex document-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{insightList}}" wx:key="{{item.id}}">
           <image class="document-item__cover" src="{{item.cover_image_url}}" />
           <view class="document-item__body document-item__height">
             <view class="document-item__height">
@@ -23,6 +23,9 @@
             <view class="document-item__time">{{item.created_at}}</view>
           </view>
         </navigator>
+      </view>
+      <view wx:if="{{activeCategory === 'articles'}}"  class="content--list">
+        <article wx:for="{{insightList}}" wx:key="{{item.id}}" article="{{item}}" />
       </view>
       <template is="loading" wx:if="{{hasMore}}" />
     </scroll-view>

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav": "../../../components/navigate/navigate",
+    "article": "../../../components/article_with_cover/article"
+  },
+  "enablePullDownRefresh": false
+}
