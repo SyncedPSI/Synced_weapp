@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "nav": "../../../components/navigate/navigate"
-  },
-  "enablePullDownRefresh": false
-}
