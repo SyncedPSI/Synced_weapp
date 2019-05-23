@@ -1,4 +1,6 @@
 .modal {
+  z-index: 2;
+
   &__img {
     display: block;
     width: 100%;
@@ -14,7 +16,8 @@
 
   &__desc {
     margin: 10rpx 0 0;
-    font-size: 32rpx;
+    margin-bottom: 20rpx;
+    font-size: 30rpx;
     color: #a8a8a8;
   }
 }

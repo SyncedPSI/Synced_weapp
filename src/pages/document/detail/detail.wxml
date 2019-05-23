@@ -18,18 +18,27 @@
       <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
     </view>
   </view>
-   <nodes nodes="{{document.related_nodes}}" />
-  <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecomment="closeComment"
-    bindopencomment="openComment" bindsharecomment="shareComment"></comment>
-
-  <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download" wx:if="{{isLogin}}">
+  <nodes nodes="{{document.related_nodes}}" />
+  <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="download" wx:if="{{isAuth}}">
     <image class="document--icon" src="/icons/download.png" />
     <text>获取报告</text>
   </view>
-  <button class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="download"  wx:else>
-    <image class="document--icon" src="/icons/download.png" />
-    <text>获取报告</text>
-  </button>
+  <view class="insight-authority" wx:else>
+    <view class="insight-authority__title">
+      <span class="insight-authority__tip">专业用户独享</span>
+    </view>
+    <view class="insight-authority__wrapper">
+      <view class="insight-authority__content">本文为机器之心深度精选内容，专业认证后即可获取报告</view>
+      <view class="insight-authority__btn" bindtap="download" wx:if="{{isLogin}}">
+        <text>开启专业认证</text>
+      </view>
+      <button class="insight-authority__btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="download" wx:else>
+        <text>开启专业认证</text>
+      </button>
+    </view>
+  </view>
+  <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecomment="closeComment"
+    bindopencomment="openComment" bindsharecomment="shareComment"></comment>
 
   <template is="fixed_comment" data="{{isIphoneX, isLogin}}" />
 
