@@ -1,11 +1,10 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/search/search",
     "pages/article/article",
     "pages/author/author",
     "pages/column/column",
-    "pages/document/list/list",
     "pages/document/detail/detail",
     "pages/auth/auth",
     "pages/advertisement/advertisement",
@@ -33,12 +32,12 @@
     "pages/insight/list/list",
     "pages/resource/resource"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationStyle": "custom",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "机器之心",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle": "black",
     "backgroundColor": "#f6f6f6"
   },
   "tabBar": {
