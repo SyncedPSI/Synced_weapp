@@ -20,7 +20,7 @@
               <view class="document-item__title">{{item.title}}</view>
               <view class="u-text-limit--two document-item__desc">{{item.description}}</view>
             </view>
-            <view class="document-item__time">{{item.created_at}}</view>
+            <view class="document-item__time">{{item.published_at}}</view>
           </view>
         </navigator>
       </view>

@@ -1,4 +1,4 @@
-import { request } from "utils/util";
+import { request, getDateDiff } from "utils/util";
 import { insight } from "config/api";
 
 Page({
@@ -51,6 +51,9 @@ Page({
       this.page += 1;
       const { insightList } = this.data;
       const { nodes, has_next_page } = res.data;
+      nodes.forEach(item => {
+        item.published_at = getDateDiff(item.published_at);
+      });
       if (isRefresh) {
         this.setData({
           insightList: nodes,
