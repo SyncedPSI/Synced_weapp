@@ -4,11 +4,9 @@
     <view class="article-item__title">{{article.title}}</view>
     <view class="u-flex article-item__footer">
       <view class="u-flex article-item__left">
-        <image class="article-item__avatar" src="{{article.author.avatar_url}}" />
-        <text class="article-item__bold u-text-limit--one">{{article.author.nickname}}</text>
         <text class="article-item__time article-item__shrink">{{article.published_at}}</text>
       </view>
-      <text class="article-item__bold article-item__shrink">#{{article.category}}</text>
+      <text class="article-item__bold article-item__shrink">{{article.category}}</text>
     </view>
   </view>
 </navigator>

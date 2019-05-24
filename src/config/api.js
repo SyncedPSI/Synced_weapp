@@ -4,6 +4,7 @@ export const ApiRootUrl = 'https://www.jiqizhixin.com/api/v2';
 export const articles = ApiRootUrl + '/articles/weapp';
 export const articleHotTopics = ApiRootUrl + '/articles/hot_topic';
 export const dailies = ApiRootUrl + '/dailies';
+export const documents = ApiRootUrl +  '/documents';
 export const getAhoyTokens = ApiV1 + '/ahoy_tokens'
 export const articleDetail = ApiRootUrl + '/articles/';
 export const dailyDetail = ApiRootUrl + '/dailies/';
