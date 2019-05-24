@@ -18,13 +18,15 @@ Page({
     commentStr: null,
     isShowComment: false,
     isIphoneX: getApp().globalData.isIphoneX,
+    isAuth: false,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isLogin: false,
     userInfo: null,
     canvasHeight: 0,
     actionSheetHidden: true,
     isSharedComment: false,
-    targetComment: null
+    targetComment: null,
+    isShowModal: false
   },
 
   onLoad: function(options) {
@@ -44,7 +46,7 @@ Page({
         isFromReadLater: read_later || false,
         isLogin: getApp().globalData.isLogin,
         isFromWeapp: from === "weapp",
-        userInfo: wx.getStorageSync('userInfo')
+        userInfo: wx.getStorageSync('userInfo'),
       });
     } else {
       const scene = decodeURIComponent(options.scene);
@@ -55,7 +57,7 @@ Page({
         isFromReadLater: false,
         isLogin: getApp().globalData.isLogin,
         isFromWeapp: true,
-        userInfo: wx.getStorageSync('userInfo')
+        userInfo: wx.getStorageSync('userInfo'),
       });
     }
 
@@ -80,13 +82,21 @@ Page({
         hasMetadata,
         article,
         articleOwn,
-        isFetching: false
+        isFetching: false,
+        isAuth: getApp().globalData.isAuth
       }, () => {
         this.getTitleHeight();
         this.getContentHeight();
       });
     });
     this.initCanvas();
+  },
+
+  onShow: function() {
+    this.setData({
+      isShowModal: false
+    })
+    console.log(getApp().globalData.isAuth);
   },
 
   getWxcode: function (id) {
@@ -267,7 +277,21 @@ Page({
         this.openCommentInShared();
       }
       this.setData(newData);
+      if (!isShowComment) {
+        this.openAuthModal();
+      }
     });
+  },
+
+  openAuthModal: function() {
+    if (getApp().globalData.isAuth) {
+      this.setData({
+        isAuth: true
+      });
+    } else {
+      this.openModal();
+      return;
+    }
   },
   successLogin: function() {
     this.setData({
@@ -448,4 +472,14 @@ Page({
       actionSheetHidden: true
     });
   },
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
+  },
+  openModal: function() {
+    this.setData({
+      isShowModal: true,
+    })
+  }
 });

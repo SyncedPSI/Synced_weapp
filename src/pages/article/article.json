@@ -4,6 +4,7 @@
     "comment": "../../components/comment/comment",
     "nodes": "../../components/related_nodes/nodes",
     "shared": "../../components/shared_modal/shared",
+    "modal": "../../components/modal/modal",
     "nav": "../../components/navigate/navigate",
     "album-setting": "../../components/album_setting/setting"
   }
