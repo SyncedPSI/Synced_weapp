@@ -12,11 +12,7 @@ Page({
     category: [
       { id: 'documents', name: '报告' },
       { id: 'articles', name: '文章' }
-    ],
-    categoryDesc: {
-      document: '',
-      article: ''
-    }
+    ]
   },
 
   onLoad: function() {

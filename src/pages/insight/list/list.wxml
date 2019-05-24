@@ -10,8 +10,6 @@
         <view class="u-tab__item {{activeCategory === item.id ? 'is-active' : ''}}" data-type="{{item.id}}" bindtap="switchCategory" wx:for="{{category}}" wx:key="{{item.id}}">{{item.name}}</view>
       </view>
       <view class="document-nav__height"></view>
-
-      <view class="document--list document--desc" wx-if="{{categoryDesc[activeCategory] !== ''}}">{{categoryDesc[activeCategory]}}</view>
       <view  wx:if="{{activeCategory === 'documents'}}" class="document--list">
         <navigator class="u-flex document-item" url="/pages/document/detail/detail?id={{item.id}}" hover-class="none" wx:for="{{insightList}}" wx:key="{{item.id}}">
           <image class="document-item__cover" src="{{item.cover_image_url}}" />
