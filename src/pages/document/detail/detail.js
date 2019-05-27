@@ -42,6 +42,7 @@ Page({
         navigateTitle: document.title,
         isFromWeapp,
         isLogin: getApp().globalData.isLogin,
+        isAuth: getApp().globalData.isAuth
       })
     });
     this.initCanvas();
@@ -69,16 +70,13 @@ Page({
       });
 
       if (!isShowComment) {
-        this.download();
+        this.openAuthModal();
+        this.downloadDocument();
       }
     });
   },
-  download: function() {
-    if (!getApp().globalData.isAuth) {
-      this.openModal();
-      return;
-    }
 
+  downloadDocument: function() {
     showLoading('获取中');
     const url = this.data.document.file_url;
     if (!url) {
@@ -110,6 +108,17 @@ Page({
         showErrorToast('获取失败');
       }
     })
+  },
+
+  openAuthModal: function() {
+    if (getApp().globalData.isAuth) {
+      this.setData({
+        isAuth: true
+      });
+    } else {
+      this.openModal();
+      return;
+    }
   },
   sendEmail: function (){
     const { id } = this.data.document;
