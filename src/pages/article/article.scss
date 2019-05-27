@@ -199,10 +199,14 @@
   &__btn {
     display: inline-block;
     margin: 50rpx 0 44rpx;
-    padding: 16rpx 56rpx;
+    padding: 0 56rpx;
     font-size: 32rpx;
     color: #fff;
     background-color: #eb2835;
+  }
+
+  button {
+    padding: 0 56rpx;
   }
 }
 
