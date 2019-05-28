@@ -51,6 +51,14 @@
       <view class="document-modal__no" bindtap="closeModal">暂不认证</view>
     </view>
   </modal>
+  <modal isShowModal="{{isShowDownloadModal}}" bindclosemodal="closeDownloadModal">
+    <view class="download-modal">
+      <view class="download-modal__detail">报告已发送至您的</view>
+      <view class="download-modal__detail">{{certification_email}}&nbsp邮箱，请注意查收。</view>
+      <view class="download-modal__btn inactive download-modal_close" bindtap="openDocument">在线预览</view>
+      <view class="download-modal__btn active download-modal_close" bindtap="closeDownloadModal">知道了</view>
+    </view>
+  </modal>
   <shared bindcloseevent="closeShared" bindsharedevent="sharedPage" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}" imgUrl="{{author.cover_url}}">
     <view class="shared-comment__container" wx:if="{{isSharedComment}}">
       <view class="u-flex shared-comment__header">
