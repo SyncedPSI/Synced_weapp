@@ -8,6 +8,8 @@ Page({
     isFromWeapp: false,
     isShowComment: false,
     isIphoneX: getApp().globalData.isIphoneX,
+    isAuth: getApp().globalData.isAuth,
+    certification_email: getApp().globalData.certification_email,
     isLogin: false,
     logo: "/images/logo.svg",
     hiddenShared: true,
@@ -17,6 +19,8 @@ Page({
     isSharedComment: false,
     targetComment: null,
     isShowModal: false,
+    isShowDownloadModal: false,
+    filePath: ''
   },
   onLoad: function (options) {
     let id = null;
@@ -42,7 +46,8 @@ Page({
         navigateTitle: document.title,
         isFromWeapp,
         isLogin: getApp().globalData.isLogin,
-        isAuth: getApp().globalData.isAuth
+        isAuth: getApp().globalData.isAuth,
+        certification_email: getApp().globalData.certification_email
       })
     });
     this.initCanvas();
@@ -51,6 +56,7 @@ Page({
     this.setData({
       isShowModal: false
     })
+    console.log(getApp().globalData.certification_email);
   },
   getWxcode: function (id) {
     getWxcodeUrl(id, 'pages/document/detail/detail', 'Document', (path) => {
@@ -76,6 +82,21 @@ Page({
     });
   },
 
+  openDocument: function() {
+    wx.openDocument({
+      filePath: this.data.filePath,
+      success: () => {
+        hideLoading();
+        // this.sendEmail();
+        // this.openDownloadModal();
+      },
+      fail: (error) => {
+        // console.log(error);
+        showErrorToast('获取失败');
+      }
+    });
+  },
+
   downloadDocument: function() {
     showLoading('获取中');
     const url = this.data.document.file_url;
@@ -88,17 +109,24 @@ Page({
       url,
       success: (res) => {
         if (res.statusCode === 200) {
-          wx.openDocument({
-            filePath: res.tempFilePath,
-            success: () => {
-              hideLoading();
-              this.sendEmail();
-            },
-            fail: (error) => {
-              console.log(error);
-              showErrorToast('获取失败');
-            }
+          hideLoading();
+          this.setData({
+            filePath: res.tempFilePath
           });
+          this.sendEmail();
+          this.openDownloadModal();
+          // wx.openDocument({
+          //   filePath: res.tempFilePath,
+          //   success: () => {
+          //     hideLoading();
+          //     this.sendEmail();
+          //     this.openDownloadModal();
+          //   },
+          //   fail: (error) => {
+          //     console.log(error);
+          //     showErrorToast('获取失败');
+          //   }
+          // });
         } else {
           showErrorToast('获取失败');
         }
@@ -414,6 +442,16 @@ Page({
   openModal: function() {
     this.setData({
       isShowModal: true,
+    })
+  },
+  closeDownloadModal: function() {
+    this.setData({
+      isShowDownloadModal: false,
+    })
+  },
+  openDownloadModal: function() {
+    this.setData({
+      isShowDownloadModal: true,
     })
   }
 })
