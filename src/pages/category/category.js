@@ -9,10 +9,10 @@ Page({
     scrollTop: 0,
     activeCategory: 'all',
     category: [
-      { id: 'industry', name: '#产业', type: 'category' },
-      { id: 'practice', name: '#工程', type: 'category' },
-      { id: 'theory', name: '#理论', type: 'category' },
-      { id: 'basic', name: '#入门', type: 'category' },
+      { id: 'industry', name: '产业', type: 'category' },
+      { id: 'practice', name: '工程', type: 'category' },
+      { id: 'theory', name: '理论', type: 'category' },
+      { id: 'basic', name: '入门', type: 'category' },
     ],
     isLogin: false,
     notifyCount: 0,
@@ -54,7 +54,7 @@ Page({
       res.data.forEach(({key, value}) => {
         category.unshift({
           id: key,
-          name: `#${value}`,
+          name: `${value}`,
           type: 'hotTopic'
         })
       })

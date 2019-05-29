@@ -18,13 +18,15 @@ Page({
     commentStr: null,
     isShowComment: false,
     isIphoneX: getApp().globalData.isIphoneX,
+    isAuth: false,
     statusBarHeight: getApp().globalData.systemInfo.statusBarHeight,
     isLogin: false,
     userInfo: null,
     canvasHeight: 0,
     actionSheetHidden: true,
     isSharedComment: false,
-    targetComment: null
+    targetComment: null,
+    isShowModal: false
   },
 
   onLoad: function(options) {
@@ -44,7 +46,7 @@ Page({
         isFromReadLater: read_later || false,
         isLogin: getApp().globalData.isLogin,
         isFromWeapp: from === "weapp",
-        userInfo: wx.getStorageSync('userInfo')
+        userInfo: wx.getStorageSync('userInfo'),
       });
     } else {
       const scene = decodeURIComponent(options.scene);
@@ -55,7 +57,7 @@ Page({
         isFromReadLater: false,
         isLogin: getApp().globalData.isLogin,
         isFromWeapp: true,
-        userInfo: wx.getStorageSync('userInfo')
+        userInfo: wx.getStorageSync('userInfo'),
       });
     }
 
@@ -71,7 +73,9 @@ Page({
       }
       article.publishedAt = getDateDiff(article.published_at);
       WxParse.wxParse("article_content", "html", article.content, this, 5);
+      WxParse.wxParse("simple_content", "html", article.simple_content, this, 5);
       article.content = null;
+      article.simple_content = null;
       let hasMetadata = false;
       try {
         hasMetadata = Object.keys(article.metadata).length > 0
@@ -80,13 +84,21 @@ Page({
         hasMetadata,
         article,
         articleOwn,
-        isFetching: false
+        isFetching: false,
+        isAuth: getApp().globalData.isAuth
       }, () => {
         this.getTitleHeight();
         this.getContentHeight();
       });
     });
     this.initCanvas();
+  },
+
+  onShow: function() {
+    this.setData({
+      isShowModal: false,
+      isAuth: getApp().globalData.isAuth
+    })
   },
 
   getWxcode: function (id) {
@@ -265,9 +277,27 @@ Page({
         this.addRead(false);
       } else if (type === 'share') {
         this.openCommentInShared();
+      } else if (type === 'auth') {
+        this.setData({
+          isAuth: getApp().globalData.isAuth
+        });
       }
       this.setData(newData);
+      if (!isShowComment) {
+        this.openAuthModal();
+      }
     });
+  },
+
+  openAuthModal: function() {
+    if (getApp().globalData.isAuth) {
+      this.setData({
+        isAuth: true
+      });
+    } else {
+      this.openModal();
+      return;
+    }
   },
   successLogin: function() {
     this.setData({
@@ -448,4 +478,14 @@ Page({
       actionSheetHidden: true
     });
   },
+  closeModal: function() {
+    this.setData({
+      isShowModal: false,
+    })
+  },
+  openModal: function() {
+    this.setData({
+      isShowModal: true,
+    })
+  }
 });

@@ -8,6 +8,8 @@ Page({
     isFromWeapp: false,
     isShowComment: false,
     isIphoneX: getApp().globalData.isIphoneX,
+    isAuth: getApp().globalData.isAuth,
+    certification_email: getApp().globalData.certification_email,
     isLogin: false,
     logo: "/images/logo.svg",
     hiddenShared: true,
@@ -17,6 +19,8 @@ Page({
     isSharedComment: false,
     targetComment: null,
     isShowModal: false,
+    isShowDownloadModal: false,
+    filePath: ''
   },
   onLoad: function (options) {
     let id = null;
@@ -42,6 +46,8 @@ Page({
         navigateTitle: document.title,
         isFromWeapp,
         isLogin: getApp().globalData.isLogin,
+        isAuth: getApp().globalData.isAuth,
+        certification_email: getApp().globalData.certification_email
       })
     });
     this.initCanvas();
@@ -65,20 +71,30 @@ Page({
     getApp().login(userInfo, () => {
       this.setData({
         isLogin: true,
+        isAuth: getApp().globalData.isAuth,
+        certification_email: getApp().globalData.certification_email,
         isShowComment
       });
 
       if (!isShowComment) {
-        this.download();
+        this.openAuthModal();
       }
     });
   },
-  download: function() {
-    if (!getApp().globalData.isAuth) {
-      this.openModal();
-      return;
-    }
 
+  openDocument: function() {
+    wx.openDocument({
+      filePath: this.data.filePath,
+      success: () => {
+        hideLoading();
+      },
+      fail: (error) => {
+        showErrorToast('获取失败');
+      }
+    });
+  },
+
+  downloadDocument: function() {
     showLoading('获取中');
     const url = this.data.document.file_url;
     if (!url) {
@@ -90,17 +106,12 @@ Page({
       url,
       success: (res) => {
         if (res.statusCode === 200) {
-          wx.openDocument({
-            filePath: res.tempFilePath,
-            success: () => {
-              hideLoading();
-              this.sendEmail();
-            },
-            fail: (error) => {
-              console.log(error);
-              showErrorToast('获取失败');
-            }
+          hideLoading();
+          this.setData({
+            filePath: res.tempFilePath
           });
+          this.sendEmail();
+          this.openDownloadModal();
         } else {
           showErrorToast('获取失败');
         }
@@ -110,6 +121,17 @@ Page({
         showErrorToast('获取失败');
       }
     })
+  },
+
+  openAuthModal: function() {
+    if (getApp().globalData.isAuth) {
+      this.setData({
+        isAuth: true
+      });
+    } else {
+      this.openModal();
+      return;
+    }
   },
   sendEmail: function (){
     const { id } = this.data.document;
@@ -189,7 +211,6 @@ Page({
       }
     });
     this.openShared();
-    // this.readyDraw(comment, user);
   },
 
   initCanvas: function() {
@@ -200,10 +221,6 @@ Page({
 
   drawImage: function () {
     showLoading('图片生成中');
-    // if (this.data.isDraw) {
-    //   this.saveImage();
-    //   return;
-    // }
 
     if (this.data.isSharedComment) {
       const { content, user } = this.data.targetComment;
@@ -405,6 +422,16 @@ Page({
   openModal: function() {
     this.setData({
       isShowModal: true,
+    })
+  },
+  closeDownloadModal: function() {
+    this.setData({
+      isShowDownloadModal: false,
+    })
+  },
+  openDownloadModal: function() {
+    this.setData({
+      isShowDownloadModal: true,
     })
   }
 })

@@ -21,13 +21,27 @@
       <view class="u-detail-padding article" id="js-article-content">
         <view class="article--time">{{article.publishedAt}}</view>
         <view class="article--foreword" wx-if="{{article.foreword !== null && article.foreword !== ''}}">{{article.foreword}}</view>
-        <view class="content">
+        <view class="content" wx:if="{{isAuth}}">
           <import src="../../wxParse/wxParse.wxml"/>
           <template is="wxParse" data="{{wxParseData:article_content.nodes}}" />
         </view>
-        <view class="insight-authority">
-          <view class="insight-authority__title">专业用户独享</view>
+        <view class="content" wx:else>
+          <import src="../../wxParse/wxParse.wxml"/>
+          <template is="wxParse" data="{{wxParseData:simple_content.nodes}}" />
+        </view>
+      </view>
+      <view class="insight-authority" wx:if="{{!isAuth}}">
+        <view class="insight-authority__title">
+          <span class="insight-authority__tip">专业用户独享</span>
+        </view>
+        <view class="insight-authority__wrapper">
           <view class="insight-authority__content">本文为机器之心深度精选内容，专业认证后即可阅读全文</view>
+          <view class="insight-authority__btn" bindtap="openAuthModal" wx:if="{{isLogin}}">
+            <text>开启专业认证</text>
+          </view>
+          <button class="insight-authority__btn" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-type="auth" wx:else>
+            <text>开启专业认证</text>
+          </button>
         </view>
       </view>
 
@@ -83,6 +97,16 @@
     <view class="{{isIphoneX ? 'has-safe-padding' : ''}}"></view>
   </scroll-view>
 </view>
+
+<modal isShowModal="{{isShowModal}}" bindclosemodal="closeModal">
+  <view class="document-modal">
+    <image class="modal__img" src="/images/auth_finish.png" />
+    <view class="modal__title">完成职业认证</view>
+    <view class="modal__desc">为你提供更精准的信息服务</view>
+    <navigator class="document-modal__link" url="/pages/auth/auth" hover-class="none">去认证</navigator>
+    <view class="document-modal__no" bindtap="closeModal">暂不认证</view>
+  </view>
+</modal>
 
 <shared bindcloseevent="closeShared" bindsharedevent="sharedArticle" binddrawevent="drawImage" hiddenShared="{{hiddenShared}}">
   <view class="article-shared__cover--mask"></view>

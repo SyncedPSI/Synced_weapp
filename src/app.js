@@ -11,6 +11,7 @@ App({
     isAuth: false,
     systemInfo: {},
     notifyCount: 0,
+    certification_email: ''
   },
 
   onLaunch: function () {
@@ -88,9 +89,10 @@ App({
             url: login,
             method: 'POST'
           }).then((res) => {
-            const { user_info: {certification}, notify_count } = res.data;
+            const { user_info: {certification, certification_email}, notify_count } = res.data;
             this.globalData.notifyCount = notify_count;
             this.globalData.isAuth = certification;
+            this.globalData.certification_email = certification_email;
 
             const remain_hours = timeDistance / 3600;
             if (remain_hours > 1.5) {
@@ -162,7 +164,7 @@ App({
     });
   },
   setLoginSuccess: function (loginData, msg) {
-    const { auth_token, expired_time, notify_count, user_info: {certification}, } = loginData;
+    const { auth_token, expired_time, notify_count, user_info: {certification, certification_email}, } = loginData;
     wx.setStorage({
       key: 'authToken',
       data: auth_token
@@ -173,6 +175,7 @@ App({
     });
 
     this.globalData.isAuth = certification;
+    this.globalData.certification_email = certification_email;
     this.globalData.notifyCount = notify_count;
     this.globalData.isLogin = true;
     showTipToast(msg);
