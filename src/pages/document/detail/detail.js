@@ -72,12 +72,13 @@ Page({
     getApp().login(userInfo, () => {
       this.setData({
         isLogin: true,
+        isAuth: getApp().globalData.isAuth,
+        certification_email: getApp().globalData.certification_email,
         isShowComment
       });
 
       if (!isShowComment) {
         this.openAuthModal();
-        this.downloadDocument();
       }
     });
   },

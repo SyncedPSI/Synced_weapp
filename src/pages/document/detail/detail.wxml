@@ -18,7 +18,6 @@
       <image class="document--shared" src="/icons/daily_action.png" bindtap="openShared" />
     </view>
   </view>
-  <nodes nodes="{{document.related_nodes}}" />
   <view class="document--download {{isIphoneX ? 'has-safe-padding' : ''}}" bindtap="downloadDocument" wx:if="{{isAuth}}">
     <image class="document--icon" src="/icons/download.png" />
     <text>获取报告</text>
@@ -37,6 +36,7 @@
       </button>
     </view>
   </view>
+  <nodes nodes="{{document.related_nodes}}" />
   <comment hasShared isShowComment="{{isShowComment}}" baseUrl="/documents/{{document.id}}" bindclosecomment="closeComment"
     bindopencomment="openComment" bindsharecomment="shareComment"></comment>
 
@@ -53,8 +53,10 @@
   </modal>
   <modal isShowModal="{{isShowDownloadModal}}" bindclosemodal="closeDownloadModal">
     <view class="download-modal">
-      <view class="download-modal__detail">报告已发送至您的</view>
-      <view class="download-modal__detail">{{certification_email}}&nbsp邮箱，请注意查收。</view>
+      <view class="download-modal__detail">
+        <view>报告已发送至您的</view>
+        <view>{{certification_email}} 邮箱，请注意查收。</view>
+      </view>
       <view class="download-modal__btn inactive download-modal_close" bindtap="openDocument">在线预览</view>
       <view class="download-modal__btn active download-modal_close" bindtap="closeDownloadModal">知道了</view>
     </view>
