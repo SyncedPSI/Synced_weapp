@@ -73,7 +73,9 @@ Page({
       }
       article.publishedAt = getDateDiff(article.published_at);
       WxParse.wxParse("article_content", "html", article.content, this, 5);
+      WxParse.wxParse("simple_content", "html", article.simple_content, this, 5);
       article.content = null;
+      article.simple_content = null;
       let hasMetadata = false;
       try {
         hasMetadata = Object.keys(article.metadata).length > 0
@@ -94,9 +96,9 @@ Page({
 
   onShow: function() {
     this.setData({
-      isShowModal: false
+      isShowModal: false,
+      isAuth: getApp().globalData.isAuth
     })
-    console.log(getApp().globalData.isAuth);
   },
 
   getWxcode: function (id) {
@@ -275,6 +277,10 @@ Page({
         this.addRead(false);
       } else if (type === 'share') {
         this.openCommentInShared();
+      } else if (type === 'auth') {
+        this.setData({
+          isAuth: getApp().globalData.isAuth
+        });
       }
       this.setData(newData);
       if (!isShowComment) {

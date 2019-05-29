@@ -25,7 +25,8 @@ Component({
   },
   attached: function () {
     this.setData({
-      userInfo: getApp().globalData.userInfo
+      userInfo: getApp().globalData.userInfo,
+      isAuth: getApp().globalData.isAuth
     });
   },
   methods: {
