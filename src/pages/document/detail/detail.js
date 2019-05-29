@@ -56,7 +56,6 @@ Page({
     this.setData({
       isShowModal: false
     })
-    console.log(getApp().globalData.certification_email);
   },
   getWxcode: function (id) {
     getWxcodeUrl(id, 'pages/document/detail/detail', 'Document', (path) => {
@@ -88,11 +87,8 @@ Page({
       filePath: this.data.filePath,
       success: () => {
         hideLoading();
-        // this.sendEmail();
-        // this.openDownloadModal();
       },
       fail: (error) => {
-        // console.log(error);
         showErrorToast('获取失败');
       }
     });
@@ -116,18 +112,6 @@ Page({
           });
           this.sendEmail();
           this.openDownloadModal();
-          // wx.openDocument({
-          //   filePath: res.tempFilePath,
-          //   success: () => {
-          //     hideLoading();
-          //     this.sendEmail();
-          //     this.openDownloadModal();
-          //   },
-          //   fail: (error) => {
-          //     console.log(error);
-          //     showErrorToast('获取失败');
-          //   }
-          // });
         } else {
           showErrorToast('获取失败');
         }
@@ -227,7 +211,6 @@ Page({
       }
     });
     this.openShared();
-    // this.readyDraw(comment, user);
   },
 
   initCanvas: function() {
@@ -238,10 +221,6 @@ Page({
 
   drawImage: function () {
     showLoading('图片生成中');
-    // if (this.data.isDraw) {
-    //   this.saveImage();
-    //   return;
-    // }
 
     if (this.data.isSharedComment) {
       const { content, user } = this.data.targetComment;
