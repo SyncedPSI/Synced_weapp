@@ -64,6 +64,7 @@ page {
     font-size: 28rpx;
     border-radius: 100rpx;
     line-height: 1.4;
+    z-index: 999;
 
     &.has-safe-padding {
       margin-bottom: $safe-padding-bottom;
